@@ -1,0 +1,16 @@
+.root {
+  display: block;
+  
+  .image {
+    width: 100px;
+
+    &.small {
+      width: 50px;
+    }
+
+    &.medium {
+      width: 70px;
+    }
+  }
+}
+
