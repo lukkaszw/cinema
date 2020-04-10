@@ -1,0 +1,27 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.root {
+  width: 1400px;
+  max-width: 100%;
+  margin: 60px auto;
+  padding: 20px;
+
+  .title {
+    position: relative;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: normal;
+
+    &::before {
+      @include under-red-line(-70%, 6px, 6px, 50%);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .title {
+      display: block;
+      text-align: center;
+    }
+  }
+}
