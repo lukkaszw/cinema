@@ -1,0 +1,105 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.root {
+  position: fixed;
+  top: 50vh;
+  left: 50vw;
+  width: 100vw;
+  height: 100vh;
+  transform: translate(-50%, -250%);
+  background-color: $mobile-menu-cl;
+  transition: .3s;
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+
+    .btn {
+      margin: 0 20px;
+    }
+  }
+
+  .logo {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .list {
+    @include centered;
+    opacity: 0;
+    list-style: none;
+    text-align: center;
+    transition: .3s .6s;
+
+    .item {
+      margin-bottom: 20px;
+    }
+
+    .link {
+      @include menu-link;
+      font-size: 20px;
+
+      &::before {
+        @include under-red-line;
+        opacity: 0;
+      }
+
+      &.active::before {
+        opacity: 1;
+      }
+    }
+  }
+
+  .leftCourtain {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    width: 50vw;
+    height: 100vh;
+    transform: translate(0, -50%);
+    background-image: url('/images/left-courtain.jpg');
+    background-position: right;
+    background-size: cover;
+    transition: .3s .4s;
+  }
+
+  .rightCourtain {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 50vw;
+    height: 100vh;
+    transform: translate(0, -50%);
+    background-image: url('/images/right-courtain.jpg');
+    background-position: left;
+    background-size: cover;
+    transition: .3s .4s;
+  }
+
+  &.active {
+    transform: translate(-50%, -50%);
+
+    .list {
+      opacity: 1;
+    }
+
+    .leftCourtain {
+      transform: translate(-35vw, -50%);
+    }
+
+    .rightCourtain {
+      transform: translate(35vw, -50%);
+    }
+  }
+
+  @media (max-height: 400px) {
+    .logo {
+      left: 20%;
+    }
+  }
+}

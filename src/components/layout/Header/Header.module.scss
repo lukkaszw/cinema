@@ -1,0 +1,18 @@
+@import '../../../styles/variables';
+
+.root {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  top: 40px;
+  left: 0;
+  padding: 20px 15%;
+  height: 50px;
+  width: 100%;
+
+  @media (max-width: 800px) {
+    top: 10px;
+    padding: 20px 5%;
+  }
+}

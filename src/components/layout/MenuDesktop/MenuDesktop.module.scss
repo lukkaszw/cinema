@@ -1,0 +1,30 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.root {
+  list-style: none;
+
+  .item {
+    display: inline-block;
+    margin-left: 30px;
+    font-size: 18px;
+    
+    .link {
+      @include menu-link;
+      font-size: 18px;
+
+      &::before {
+        @include under-red-line;
+        opacity: 0;
+      }
+
+      &:hover::before, &.active::before {
+        opacity: 1;
+      }
+    };
+  }
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
+}

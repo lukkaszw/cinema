@@ -1,0 +1,29 @@
+@mixin menu-link {
+  position: relative;
+  display: block;
+  color: inherit;
+  font-weight: bold;
+  text-decoration: none;
+  transition: .2s;
+}
+
+@mixin under-red-line($top: 120%, $width: 16px, $height: 2px, $borderRadius: 0) {
+  position: absolute;
+  content: '';
+  display: block;
+  top: $top;
+  left: 50%;
+  transform: translateX(-50%);
+  width: $width;
+  height: $height;
+  border-radius: $borderRadius;
+  background-color: $main-red;
+  transition: .2s;
+}
+
+@mixin centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
