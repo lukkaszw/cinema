@@ -1,0 +1,29 @@
+@import '../../../styles/variables';
+
+.root {
+  color: inherit;
+  font-size: inherit;
+
+  &.circle {
+    position: relative;
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #fff;
+    color: #000;
+    line-height: 30px;
+  }
+
+  &:hover.facebook {
+    color: $facebook-cl;
+  }
+
+  &:hover.twitter {
+    color: $twitter-cl;
+  }
+
+  &:hover.instagram {
+    color: $instagram-cl;
+  }
+}
