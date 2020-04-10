@@ -1,11 +1,23 @@
 import React from 'react';
-
-import styles from './Home.module.scss';
+import EntryPanel from '../../layout/EntryPanel/EntryPanel';
+import Section from '../../layout/Section/Section';
 
 const Home = () => {
   return (
     <div>
-      Home
+      <EntryPanel
+        img="/images/entry.jpg"
+        from="18 April"
+        to="28 April"
+        title="300 Rise of an empire"
+        types={['2d', '3d']}
+      />
+      <Section 
+        title="CURRENTLY PLAYED"
+      />
+      <Section 
+        title="COMMING SOON"
+      />
     </div>
   );
 }
