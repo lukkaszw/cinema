@@ -1,0 +1,94 @@
+@import '../../../styles/variables';
+//basic sizes
+$width-and-height: 80px;
+$dots-size: 7px;
+// colors
+$light-cl: $main-font-cl;
+$red-cl: $main-red;
+//basic dot positions
+$top-positions: 63px, 68px, 71px, 72px, 71px, 68px, 63px, 56px;
+$left-positions: 63px, 56px, 48px, 40px, 32px, 24px, 17px, 12px;
+// dot delay times
+$delta-time: -0.036s;
+
+@mixin dotPosition ($baseTop, $baseLeft, $multiplier) {
+  top: $baseTop * $multiplier;
+  left: $baseLeft * $multiplier;
+}
+
+@mixin dotsSize($multiplier) {
+  width: $dots-size * $multiplier;
+  height: $dots-size * $multiplier;
+}
+
+@mixin generateDotsPosition($multiplier) {
+  @for $i from 1 to 9 {
+    &:nth-child(#{$i}):after {
+      @include dotsSize($multiplier);
+      $top: nth($top-positions, $i);
+      $left: nth($left-positions, $i); 
+      @include dotPosition($top, $left, $multiplier);
+    }
+  }
+}
+
+@mixin generateDotsDelay() {
+  @for $i from 1 to 9 {
+    &:nth-child(#{$i}) {
+      animation-delay: $delta-time * $i;
+    }
+  }
+}
+
+@mixin loaderSize($multiplier) {
+  width: $width-and-height * $multiplier;
+  height: $width-and-height * $multiplier;
+
+  .dot {
+    transform-origin: $width-and-height/2 * $multiplier $width-and-height/2 * $multiplier;
+    @include generateDotsPosition($multiplier);
+  }
+}
+
+.root {
+  display: inline-block;
+  position: relative;
+  @include loaderSize(1);
+
+  .dot {
+    animation: roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    @include generateDotsDelay();
+
+    &::after {
+      content: " ";
+      display: block;
+      position: absolute;
+      border-radius: 50%;
+      background: $light-cl;
+      margin: -4px 0 0 -4px;
+    }
+  }
+
+  &.red {
+    .dot::after {
+      background-color: $red-cl;
+    }
+  }
+
+  &.small {
+    @include loaderSize(.8);
+  }
+
+  &.big {
+    @include loaderSize(1.2);
+  }
+}
+
+@keyframes roller {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
