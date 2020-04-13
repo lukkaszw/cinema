@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+# credentials
+nodemon.json
+
 # production
 /build
 
