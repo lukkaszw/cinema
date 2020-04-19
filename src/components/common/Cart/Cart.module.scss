@@ -1,0 +1,36 @@
+@import '../../../styles/variables';
+
+.root {
+  position: relative;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  font-size: 14px;
+  transition: .2s;
+
+  .dateBelt {
+    position: absolute;
+    top: 70%;
+    right: 0;
+    padding: 10px;
+    background-color: $main-red;
+  }
+
+  .image {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .title {
+    margin: 4px 0;
+  }
+
+  .descr {
+    color: #aaa;
+    word-spacing: 4px;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
