@@ -26,4 +26,11 @@ describe('Button component', () => {
     expect(buttonEl.hasClass(expectedClasses[0]));
     expect(buttonEl.hasClass(expectedClasses[1]));
   });
+
+  it('has button disabled only when disabled prop is provided', () => {
+    const component = shallow(<Button action={mockedFunc} />);
+    expect(component.find('button').prop('disabled')).toBeFalsy();
+    const componentWithDisabled = shallow(<Button action={mockedFunc} disabled />);
+    expect(componentWithDisabled.find('button').prop('disabled')).toBe(true);
+  });
 });

@@ -55,6 +55,10 @@
     }
   }
 
+  &:disabled, &.gray {
+    background-color: #555;
+  }
+
   &.inline {
     padding: 0;
     background-color: transparent;
