@@ -4,10 +4,14 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import initialState from './initialState';
 
-import ticketsReducer from './reducers/ticketsRedux';
+import ticketsReducer from './reducers/ticketsRedux/ticketsRedux';
+import moviesReducer from './reducers/moviesRedux/moviesRedux';
+import futureMoviesReducer from './reducers/futureMoviesRedux/futureMoviesRedux';
 
 const reducers = {
+  movies: moviesReducer,
   tickets: ticketsReducer,
+  futureMovies: futureMoviesReducer,
 };
 
 Object.keys(initialState).forEach(item => {
