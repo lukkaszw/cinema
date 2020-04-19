@@ -3,18 +3,20 @@ const path = require('path');
 const cors = require('cors');
 require('./database');
 
+//import routers
+const moviesRouter = require('./routes/movies.router');
+
 const port = process.env.PORT || 8000;
 
 const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
 app.use(express.static(path.join(__dirname, '..', 'build')));
 
-app.get('/api/movies', (req, res) => {
-  res.json([]);
-});
+
+
+app.use('/api/movies', moviesRouter);
 
 app.listen(port, () => {
   console.log(`Server is listening on port: ${port}.`);
