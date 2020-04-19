@@ -2,29 +2,31 @@ import {
   startFetching,
   fetchError,
   fetchSucceded,
+  setFilter
 } from './moviesRedux';
 import  {
   START_FETCHING,
   SET_ERROR,
-  SET_DATA
+  SET_DATA,
+  SET_FILTER,
 } from './moviesRedux'; 
 
 describe('Movies Reducer actions', () => {
-  it('create proper action for starting fetching data', () => {
+  it('creates proper action for starting fetching data', () => {
     const expectedAction = {
       type: START_FETCHING,
     };
     expect(startFetching()).toEqual(expectedAction);
   });
 
-  it('create proper action when error is occured', () => {
+  it('creates proper action when error is occured', () => {
     const expectedAction = {
       type: SET_ERROR,
     };
     expect(fetchError()).toEqual(expectedAction);
   });
 
-  it('create proper action when fetching is succeded', () => {
+  it('creates proper action when fetching is succeded', () => {
     const payloadData = [  {
         id: '1',
         title: 'Title test 1',
@@ -45,5 +47,16 @@ describe('Movies Reducer actions', () => {
       payload: payloadData,
     };
     expect(fetchSucceded(payloadData)).toEqual(expectedAction);
+  });
+
+  it('creates proper action when filters are updated', () => {
+    const payloadData = '3d';
+
+    const expectedAction = {
+      type: SET_FILTER,
+      payload: payloadData,
+    }
+
+    expect(setFilter(payloadData)).toEqual(expectedAction);
   });
 });

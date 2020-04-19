@@ -1,6 +1,7 @@
 const initialState = {
   movies: {
     data: [],
+    filter: 'all',
     loading: {
       isActive: false,
       isError: false,

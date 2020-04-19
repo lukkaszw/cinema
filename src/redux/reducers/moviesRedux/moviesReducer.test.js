@@ -3,11 +3,12 @@ import {
   START_FETCHING,
   SET_ERROR,
   SET_DATA,
+  SET_FILTER,
 } from './moviesRedux';
 
 const mockedStatePart = {
   data: [],
-  count: 0,
+  filter: null,
   loading: {
     isActive: false,
     isError: false,
@@ -47,7 +48,7 @@ describe('Movies Reducer', () => {
     //check if reducer returns proper state
     expect(moviesReducer(mockedStatePart, { type: START_FETCHING })).toEqual({
       data: [],
-      count: 0,
+      filter: null,
       loading: {
         isActive: true,
         isError: false,
@@ -61,7 +62,7 @@ describe('Movies Reducer', () => {
     //check if reducer returns proper state
     expect(moviesReducer(mockedStatePart, { type: SET_ERROR })).toEqual({
       data: [],
-      count: 0,
+      filter: null,
       loading: {
         isActive: false,
         isError: true,
@@ -75,7 +76,7 @@ describe('Movies Reducer', () => {
     //check if reducer returns proper state
     expect(moviesReducer(mockedStatePart, { type: SET_DATA, payload: mockedData })).toEqual({
       data: mockedData,
-      count: mockedData.length,
+      filter: null,
       loading: {
         isActive: false,
         isError: false,
@@ -83,5 +84,18 @@ describe('Movies Reducer', () => {
     })
   });
 
+  it('returns proper data in state when user set filter', () => {
+    const expectedPayload = '3d';
+    //check if reducer is clean function
+    expect(moviesReducer(mockedStatePart, { type: SET_FILTER, payload: expectedPayload })).not.toBe(mockedStatePart);
+    expect(moviesReducer(mockedStatePart, { type: SET_FILTER, payload: expectedPayload })).toEqual({
+      data: [],
+      loading: {
+        isActive: false,
+        isError: false,
+      },
+      filter: expectedPayload,
+    });
+  });
 });
 
