@@ -1,0 +1,28 @@
+.root {
+  position: relative;
+  min-height: 100px;
+
+  .loader {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .noFound {
+    font-size: 18px;
+  }
+
+  .moreBtn {
+    margin-top: 30px;
+    text-align: right;
+
+    @media (max-width: 700px) {
+      padding: 0 40px;
+    }
+
+    @media (max-width: 500px) {
+      text-align: center;
+    }
+  }
+}
