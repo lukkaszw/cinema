@@ -33,7 +33,7 @@ describe('CurrentFilmsList component', () => {
   it('uses fetchMovies in ComponentDidMount only when movies data is not provided', () => {
     const fetchMoviesFunc = jest.fn();
     const fetchMoviesFunc2 = jest.fn();
-    const component = shallow(<CurrentFilms isLoading={false} fetchMovies={fetchMoviesFunc}/>);
+    const component = shallow(<CurrentFilms isLoading={false} fetchMovies={fetchMoviesFunc} setFilter={jest.fn()}/>);
     component.instance();
     expect(fetchMoviesFunc).toHaveBeenCalledTimes(1);
     const component2 = shallow(
@@ -41,6 +41,7 @@ describe('CurrentFilmsList component', () => {
         isLoading={false} 
         movies={mockedPropsWithData.movies}
         fetchMovies={fetchMoviesFunc2}
+        setFilter={jest.fn()}
       />
     );
     component2.instance();
@@ -79,9 +80,17 @@ describe('CurrentFilmsList component', () => {
     const expectedText = 'No movies were found. Please try to update searching criteria and try again. If you have chosen all movies and nothing was found, please try again later!';
     expect(componentWhenLoading.find('.noFound').exists()).toBeFalsy();
     expect(componentWithData.find('.noFound').exists()).toBeFalsy();
-    const component = shallow(<CurrentFilms fetchMovies={jest.fn()} isLoading={false} isError={false} movies={[]}/>);
+    const component = shallow(<CurrentFilms fetchMovies={jest.fn()} setFilter={jest.fn()} isLoading={false} isError={false} movies={[]}/>);
     const noFoundEl = component.find('p.noFound');
     expect(noFoundEl.exists()).toBeTruthy();
     expect(noFoundEl.text()).toEqual(expectedText);
+  });
+
+  it('includes ButtonList', () => {
+    const buttonsListEl = componentWhenLoading.find('ButtonsList');
+    expect(buttonsListEl.exists()).toBeTruthy();
+    expect(buttonsListEl.prop('value')).toBe(mockedPropsWhenLoading.filter);
+    expect(buttonsListEl.prop('buttons')).toBe(componentWhenLoading.instance().categoriesButtons);
+    expect(buttonsListEl.prop('action')).toBe(mockedPropsWhenLoading.setFilter);
   });
 });

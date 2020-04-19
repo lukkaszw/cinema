@@ -1,6 +1,8 @@
 export const mockedPropsWhenLoading = {
   isLoading: true,
+  filter: 'all',
   fetchMovies: jest.fn(),
+  setFilter: jest.fn(),
 };
 
 
@@ -23,8 +25,10 @@ for(let i = 0; i < 18; i++) {
 export const mockedPropsWithData = {
   isLoading: false,
   isError: false,
+  filter: 'all',
   movies: mockedMovies,
   fetchMovies: jest.fn(),
+  setFilter: jest.fn(),
 }
 
 export const mockedScreenSizes = [

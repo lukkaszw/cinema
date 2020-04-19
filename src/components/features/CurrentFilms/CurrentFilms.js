@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Button from '../../common/Button/Button';
+import ButtonsList from '../ButtonsList/ButtonsList';
 import Loader from '../../common/Loader/Loader';
 import CartsList from '../../common/CartsList/CartsList';
 import PropTypes from 'prop-types';
@@ -26,6 +27,29 @@ class CurrentFilms extends Component {
     medium: 6,
     small: 4,
   }
+
+  categoriesButtons = [
+    {
+      key: 1,
+      value: 'all',
+      title: 'All',
+    },
+    {
+      key: 2,
+      value: '3d',
+      title: '3D',
+    },
+    {
+      key: 3,
+      value: '2d',
+      title: '2D'
+    },
+    {
+      key: 4,
+      value: 'for kids',
+      title: 'Kids',
+    }
+  ]
 
   componentDidMount() {
     if(this.props.movies.length === 0) {
@@ -80,12 +104,19 @@ class CurrentFilms extends Component {
   }
 
   render() {
-    const { isLoading, movies, isError } = this.props;
+    const { isLoading, movies, filter, setFilter, isError } = this.props;
     const { cartsInList, lists } = this.state;
-    const { getGeneratedCarts, getMoreCarts } = this;
+    const { getGeneratedCarts, getMoreCarts, categoriesButtons } = this;
 
     return ( 
       <div className={styles.root}>
+        <div className={styles.btns}>
+          <ButtonsList 
+            buttons={categoriesButtons}
+            action={setFilter}
+            value={filter}
+          />
+        </div>
         <CartsList movies={getGeneratedCarts()} />
         {
           !isLoading && movies.length === 0 &&
@@ -119,6 +150,7 @@ CurrentFilms.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   movies: PropTypes.arrayOf(PropTypes.object),
   fetchMovies: PropTypes.func.isRequired,
+  filter: PropTypes.string,
 };
 
 CurrentFilms.defaultProps = {
