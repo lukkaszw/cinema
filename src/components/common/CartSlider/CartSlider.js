@@ -30,7 +30,6 @@ class CartSlider extends Component {
 
   clearInterval = () => {
     if(this.intervalId) {
-      console.log('interval cleared');
       clearInterval(this.intervalId);
       this.intervalId = null;
     }
