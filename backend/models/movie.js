@@ -20,7 +20,14 @@ const movieSchema = new mongoose.Schema({
   played: {
     type: String,
     required: true,
-  }
+  },
+  filters: {
+    type: [String],
+  },
+  playDate: {
+    type: String,
+  },
+
 }, 
 {
   timestamps: true,
