@@ -1,5 +1,3 @@
-
-
 .root {
   display: inline;
   border: none;
@@ -19,5 +17,13 @@
 
   &:active {
     transform: scale(1);
+  }
+
+  &:disabled {
+    color: #666;
+
+    &:hover {
+      transform: scale(1);
+    }
   }
 }

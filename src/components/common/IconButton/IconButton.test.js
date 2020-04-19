@@ -24,4 +24,10 @@ describe('IconButton component', () => {
     expect(buttonEl.exists()).toBeTruthy();
     expect(buttonEl.prop('onClick')).toBe(mockedProps.action);
   });
+
+  it('includes disabled button when disable prop provided', () => {
+    expect(component.find('button').prop('disabled')).toBeFalsy();
+    const componentWithPropDisable = shallow(<IconButton {...mockedProps} disabled />);
+    expect(componentWithPropDisable.find('button').prop('disabled')).toBeTruthy();
+  });
 });
