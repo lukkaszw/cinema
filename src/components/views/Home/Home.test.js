@@ -19,4 +19,12 @@ describe('Home Component', () => {
     expect(sectionsEl.at(0).prop('title')).toBe("CURRENTLY PLAYED");
     expect(sectionsEl.at(1).prop('title')).toBe("COMMING SOON");
   });
+
+  it('includes CurrentFilms component connected with redux state', () => {
+    expect(component.find('Connect(CurrentFilms)').exists()).toBeTruthy();
+  });
+
+  it('includes ComingFilms component connected with redux state', () => {
+    expect(component.find('Connect(ComingFilms)').exists()).toBeTruthy();
+  });
 });
