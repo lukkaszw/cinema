@@ -1,0 +1,65 @@
+@import '../../../styles/variables';
+
+.root {
+  .slider {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    padding: 5px;
+
+    .advert {
+      padding: 10px;
+
+      img {
+        width: 100%;
+        height: 90%;
+        object-fit: contain;
+      }
+    }
+  
+  
+    .cartsList {
+      position: absolute;
+      display: flex;
+      list-style: none;
+      transition: .4s;
+     } 
+  
+    .cartWrapper {
+      transform: scale(0.90) perspective(500px ) rotate3d(0,-10, 0.5, 15deg);
+      padding: 10px;
+      transition: .2s;
+
+      &.active {
+        transform: scale(1) perspective(500px)  rotate3d(0,0, 0, 0);
+      }
+
+      &:hover {
+        transform: scale(1) perspective(500px)  rotate3d(0,0, 0, 0);
+      }
+    }
+  }
+
+  .panel {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 30px;
+
+    p {
+      text-transform: uppercase;
+      color: $main-red;
+      line-height: 1;
+      font-size: 22px;
+    }
+  }
+
+  .panel {
+    margin-top: 20px;
+    text-align: center;
+  }
+}
