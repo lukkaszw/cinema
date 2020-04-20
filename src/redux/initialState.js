@@ -22,6 +22,13 @@ const initialState = {
       isError: false,
     },
   },
+  moviePage: {
+    data: {},
+    loading: {
+      isActive: false,
+      isError: false,
+    }
+  }
 };
 
 export default initialState;
