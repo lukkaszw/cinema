@@ -30,6 +30,7 @@ const movieSchema = new mongoose.Schema({
   details: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Detail",
+    required: true,
   }
 }, 
 {
