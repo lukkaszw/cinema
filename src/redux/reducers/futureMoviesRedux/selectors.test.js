@@ -4,18 +4,20 @@ import {
   getIsError,
 } from './futureMoviesRedux';
 
+const mockedData = [
+  {
+    _id: '1',
+    title: 'Movie 1',
+  },
+  {
+    _id: '2',
+    title: 'Movie 2',
+  }
+];
+
 const mockedState = {
   futureMovies: {
-    data: [
-      {
-        _id: '1',
-        title: 'Movie 1',
-      },
-      {
-        _id: '2',
-        title: 'Movie 2',
-      }
-    ],
+    data: mockedData,
     loading: {
       isActive: false,
       isError: false,
@@ -26,18 +28,7 @@ const mockedState = {
 describe('FutureMovies Reducer - selectors', () => {
   describe('getFutureMovies selector', () => {
     it('returns proper data', () => {
-      expect(getFutureMovies(mockedState)).toEqual(
-        [
-          {
-            _id: '1',
-            title: 'Movie 1',
-          },
-          {
-            _id: '2',
-            title: 'Movie 2',
-          }
-        ],
-      );
+      expect(getFutureMovies(mockedState)).toEqual(mockedData);
     });
   });
 
