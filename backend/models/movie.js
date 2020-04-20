@@ -27,7 +27,10 @@ const movieSchema = new mongoose.Schema({
   playDate: {
     type: String,
   },
-
+  details: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Detail",
+  }
 }, 
 {
   timestamps: true,

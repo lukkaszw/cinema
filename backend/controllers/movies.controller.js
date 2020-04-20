@@ -1,4 +1,5 @@
 const Movie = require('../models/movie');
+const Detail = require('../models/details');
 
 const getAll = async (req, res) => {
   try {
@@ -19,6 +20,18 @@ const getCommingSoon = async (req, res) => {
 }
 
 const getOne = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const movie = await Movie.findById(id).populate('details');
+    if(!movie) {
+      res.status(404).json({
+        message: 'Not found',
+      });
+    }
+    res.json(movie);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 
 }
 
