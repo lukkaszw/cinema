@@ -31,8 +31,6 @@ const mockSuccess = data => ({ status: 200, response: data })
 const mockError = error => ({ status: 500, response: error })
 
 
-
-
 describe('Movies Reducer async actions', () => {
   beforeEach(() => moxios.install());
   afterEach(() => moxios.uninstall());

@@ -8,6 +8,7 @@ export const getAllMovies = ({ movies }) => {
 };
 export const getIsLoading = ({ movies }) => movies.loading.isActive;
 export const getFilter = ({ movies }) => movies.filter;
+export const getIsError = ({ movies }) => movies.loading.isError;
 
 /* action name creators */
 const reducerName = 'movies';
