@@ -1,6 +1,9 @@
 import axios from 'axios';
 import api from '../../../config/api';
 /* selectors */
+export const getData = ({ moviePage }) => moviePage.data;
+export const getIsLoading = ({ moviePage }) => moviePage.loading.isActive;
+export const getIsError = ({ moviePage }) => moviePage.loading.isError;
 
 /* action name creators */
 const reducerName = 'movie-page';
@@ -17,8 +20,8 @@ export const setError = () => ({ type: SET_ERROR });
 export const setData = (payload) => ({ payload, type: SET_DATA });
 
 /* thunk actions creators */
-export const fetchMoviePageData = () => {
-  const url = `${api.url}/${api.endpoints.movies}`;
+export const fetchMoviePageData = (movieId) => {
+  const url = `${api.url}/${api.endpoints.movies}/${movieId}`;
   return dispatch => {
     dispatch(startFetching());
     return axios.get(url)
