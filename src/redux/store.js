@@ -7,11 +7,13 @@ import initialState from './initialState';
 import ticketsReducer from './reducers/ticketsRedux/ticketsRedux';
 import moviesReducer from './reducers/moviesRedux/moviesRedux';
 import futureMoviesReducer from './reducers/futureMoviesRedux/futureMoviesRedux';
+import moviePageReducer from './reducers/moviePageRedux/moviePageRedux';
 
 const reducers = {
   movies: moviesReducer,
   tickets: ticketsReducer,
   futureMovies: futureMoviesReducer,
+  moviePage: moviePageReducer,
 };
 
 Object.keys(initialState).forEach(item => {
