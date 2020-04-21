@@ -59,6 +59,14 @@ class CurrentFilms extends Component {
     this.checkCartsAmount();
   }
 
+  
+  componentWillUnmount() {
+    const queries = this.queries;
+    Object.keys(queries).forEach(query => {
+      this.matches[query].removeEventListener('change', this.checkers[query]);
+    });
+  }
+
   setCartsInList = () => {
     const width = window.innerWidth;
     let cartsInList = 4;
@@ -83,7 +91,8 @@ class CurrentFilms extends Component {
     this.checkers = {};
     Object.keys(queries).forEach(query => {
       this.checkers[query] = () => this.setCartsInList();
-      this.matches[query] = window.matchMedia(queries[query]).addEventListener('change', this.checkers[query]);
+      this.matches[query] = window.matchMedia(queries[query]);
+      this.matches[query].addEventListener('change', this.checkers[query]);
     });
   }
 
