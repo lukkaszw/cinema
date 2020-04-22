@@ -1,0 +1,79 @@
+@import '../../../styles/variables';
+
+.root {
+  font-size: 18px;
+
+  .details {
+    display: flex;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #555;
+  }
+
+  .title {
+    padding-bottom: 20px;
+  }
+
+  .actor {
+    color: $main-font-cl;
+  }
+ 
+  .data {
+    padding-top: 45px;
+    flex: 2;
+    min-width: 280px;
+    max-width: 90%;
+    padding-right: 10px;
+  }
+
+  .cast {
+    margin-top: 10px;
+
+    .title {
+      font-size: inherit;
+      padding-bottom: 4px;
+    }
+
+    .list {
+      list-style: none;
+
+      li {
+        display: inline;
+        padding-right: 16px;
+      }
+
+      .actor {
+        display: inline-block;
+        text-decoration: none;
+        transition: .2s;
+
+        &:hover {
+          color: $link-cl;
+        }
+      }
+    }
+  }
+
+  .storyLine {
+    flex: 5;
+
+    p {
+      margin-bottom: 10px;
+      line-height: 1.5;
+      text-align: justify;
+      text-indent: 20px;
+    }
+  }
+
+  @media (max-width: 800px) {
+    font-size: 16px;
+
+    .details {
+      flex-direction: column-reverse;
+    }
+    
+
+    .data {
+      padding-top: 10px;
+    }
+  }
+}
