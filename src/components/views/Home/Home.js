@@ -3,7 +3,6 @@ import EntryPanel from '../../layout/EntryPanel/EntryPanel';
 import CurrentFilms from '../../features/CurrentFilms/CurrentFilms.container';
 import ComingFilms from '../../features/ComingFilms/ComingFilms.container';
 import Section from '../../layout/Section/Section';
-import data from '../../../demo/currentMoviesData.json';
 
 const Home = () => {
   return (
