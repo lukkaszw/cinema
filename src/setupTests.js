@@ -6,3 +6,11 @@ Object.defineProperty(window, 'innerWidth', {
   writable: true,
   value: 1920,
 });
+
+Object.defineProperty(window, 'scrollTo', {
+  writable: false,
+  value: function(scrollX, scrollY) {
+    window.innerWidth = scrollX;
+    window.innerHeight = scrollY;
+  }
+});
