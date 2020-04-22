@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 import styles from './MenuDesktop.module.scss';
 import ButtonLink from '../../common/ButtonLink/ButtonLink';
@@ -21,7 +21,7 @@ const MenuDesktop = ({ links }) => {
             <NavLink
               className={styles.link}
               to={link.to}
-              exact
+              exact={link.to === '/'}
               activeClassName={styles.active}
             >
               {link.title}

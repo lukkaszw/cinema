@@ -36,7 +36,7 @@ const PullOutMenu = ({ isActive, links, closeAction }) => {
             <NavLink
               className={styles.link}
               to={link.to}
-              exact
+              exact={link.to === '/'}
               activeClassName={styles.active}
               onClick={closeAction}
             >
