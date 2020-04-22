@@ -34,7 +34,7 @@ const moviePageReducer = (statePart = {}, action = {}) => {
     switch(action.type) {
       case START_LOADING: {
         return {
-          ...statePart,
+          data: {},
           loading: {
             isActive: true,
             isError: false,
