@@ -1,0 +1,19 @@
+.root {
+  max-width: 100%;
+
+  tr {
+    td {
+      padding: 4px 0;
+
+      &:not(:first-child) {
+        padding-left: 40px;
+
+        @media (max-width: 500px) {
+          padding-left: 20px;
+        }
+      }
+
+
+    }
+  }
+}
