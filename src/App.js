@@ -4,7 +4,7 @@ import Home from './components/views/Home/Home';
 import Schedule from './components/views/Schedule/Schedule';
 import Movies from './components/views/Movies/Movies';
 import Order from './components/views/Order/Order';
-import Movie from './components/views/Movie/Movie';
+import Movie from './components/views/Movie/Movie.container';
 import MovieSchedule from './components/views/MovieSchedule/MovieSchedule';
 import MainLayout from './components/layout/MainLayout/MainLayout';
 
