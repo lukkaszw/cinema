@@ -1,0 +1,16 @@
+@import '../../../styles/variables';
+
+.root {
+  background-color: $main-red;
+  text-align: center;
+  font-size: 28px;
+  padding: 10px;
+
+  .info {
+    font-weight: 400;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 20px;
+  }
+}
