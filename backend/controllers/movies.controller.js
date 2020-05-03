@@ -1,5 +1,7 @@
 const Movie = require('../models/movie');
-const Detail = require('../models/details');
+require('../models/details');
+require('../models/show');
+
 
 const getAll = async (req, res) => {
   try {
@@ -22,7 +24,10 @@ const getCommingSoon = async (req, res) => {
 const getOne = async (req, res) => {
   const id = req.params.id;
   try {
-    const movie = await Movie.findById(id).populate('details');
+    const movie = await Movie.findById(id)
+      .populate('details')
+      .populate('shows');
+      
     if(!movie) {
       res.status(404).json({
         message: 'Not found',

@@ -31,7 +31,11 @@ const movieSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Detail",
     required: true,
-  }
+  },
+  shows: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Show'
+  }],
 }, 
 {
   timestamps: true,
