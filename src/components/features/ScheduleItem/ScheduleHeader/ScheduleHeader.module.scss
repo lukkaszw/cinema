@@ -1,0 +1,20 @@
+.root {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+
+  .descr {
+    padding: 5px 0;
+    word-spacing: 5px;
+    color: #aaa;
+  }
+
+  .separator {
+    padding: 0 10px;
+  }
+
+  .rate {
+    font-weight: bold;
+    word-spacing: 5px;
+  }
+}
