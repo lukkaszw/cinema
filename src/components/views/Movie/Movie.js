@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Page from '../../layout/Page/Page';
 import Section from '../../layout/Section/Section';
 import Details from '../../features/Details/Details';
+import Gallery from '../../common/Gallery/Gallery';
 import ScheduleItem from '../../features/ScheduleItem/ScheduleItem';
 import ComingFilmInfo from '../../common/ComingFilmInfo/ComingFilmInfo';
 import PageHeader from '../../layout/PageHeader/PageHeader';
@@ -31,6 +32,7 @@ class Movie extends Component {
     const { details, title, duration, categories, scheduleImg, filters, shows, played, playDate } = data;
     const pageImage = details ? details.pageImage : null;
     const imagePortrait = details ? details.imagePortrait : null;
+    const gallery = details ? details.gallery : null;
 
     return ( 
       <Page isFetching={isLoading} isFetchingError={isError}>
@@ -72,6 +74,18 @@ class Movie extends Component {
                 releaseDate={details.reliseDate}
                 duration={duration ? `${duration} min` : null}
                 cast={details.cast}
+              />
+            </Section>
+        }
+        {
+          gallery &&
+            <Section 
+              title="GALLERY"
+            >
+              <Gallery 
+                title={data.title}
+                gallery={gallery}
+                padImage='/images/gallery/pad-image.jpg'
               />
             </Section>
         }
