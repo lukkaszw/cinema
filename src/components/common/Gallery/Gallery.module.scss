@@ -1,0 +1,75 @@
+.root {
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+
+  .pad {
+    width: 100%;
+    height: auto;
+  }
+
+  .list {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    list-style: none;
+    transition: .2s;
+  }
+
+  .descr {
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 1;
+    font-size: 14px;
+    padding: 3px 14px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, .5);
+  }
+
+  .img {
+    width: 1360px;
+    max-width: calc(100vw - 40px);
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .btnPrev, .btnNext {
+    opacity: .4;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0 10px;
+    font-size: 36px;
+    transition: .2s;
+  }
+
+  .btnPrev {
+    left: 0;
+  }
+
+  .btnNext {
+    right: 0;
+  }
+
+  &:hover {
+    .descr, .btnPrev, .btnNext {
+      opacity: 1;
+    }
+  }
+
+  @media(max-width: 800px) {
+    .btnPrev, .btnNext {
+      font-size: 26px;
+      padding: 0 2px;
+    }
+  }
+
+  @media (max-width: 1400px) and (min-aspect-ratio: 1400/725 ) {
+    height: 100vh;
+  }
+}
