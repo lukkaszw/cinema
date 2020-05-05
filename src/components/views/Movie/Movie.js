@@ -25,8 +25,6 @@ class Movie extends Component {
     } 
   }
 
-  
-
   render() {
     const { data, isLoading, isError  } = this.props;
     const { details, title, duration, categories, scheduleImg, filters, shows, played, playDate } = data;
