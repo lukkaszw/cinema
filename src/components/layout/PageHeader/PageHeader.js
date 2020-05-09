@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import PageEntryImg from '../PageEntryImg/PageEntryImg';
 import styles from './PageHeader.module.scss';
 
 const PageHedaer = ({ img, imgPortrait, title }) => {
@@ -7,14 +8,11 @@ const PageHedaer = ({ img, imgPortrait, title }) => {
     <header
       className={styles.root}
     >
-      <picture>
-        {
-          imgPortrait &&
-          <source media="(max-width: 500px) and (orientation: portrait)" srcSet={imgPortrait} />
-        }
-        <img className={styles.photo} src={img} alt="page-header" />
-      </picture>
-      <h1 className={styles.title}>{title}</h1>
+      <PageEntryImg 
+        img={img}
+        title={title}
+        imagePortrait={imgPortrait}
+      />
     </header>
    );
 }

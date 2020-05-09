@@ -14,24 +14,9 @@ describe('PageHeader component', () => {
     expect(component).toBeTruthy();
   });
 
-  it('includes title with proper text', () => {
-    const titleEl = component.find('.title');
-    expect(titleEl.exists()).toBeTruthy();
-  });
-
-  it('includes image with proper props', () => {
-    const imageEl = component.find('.photo');
-    expect(imageEl.exists()).toBeTruthy();
-    expect(imageEl.prop('src')).toBe(mockedProps.img);
-  });
-
-  it('includes extra portrait image if prop imgPortrait is provided', () => {
-    expect(component.find('picture source').exists()).toBeFalsy();
-    const expectedImg = '/portrait-image.jpg';
-    const componentWithPortraitImg = shallow(<PageHeader {...mockedProps} imgPortrait={expectedImg} />);
-    const prictureSourceEl = componentWithPortraitImg.find('picture source');
-    expect(prictureSourceEl.exists()).toBeTruthy();
-    expect(prictureSourceEl.prop('srcSet')).toBe(expectedImg);
-
+  it('includes PageEntryImg element with proper props', () => {
+    const pageEntryImgEl = component.find('PageEntryImg');
+    expect(pageEntryImgEl.exists()).toBeTruthy();
+    expect(pageEntryImgEl.props()).toEqual(mockedProps);
   });
 });
