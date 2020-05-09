@@ -18,6 +18,15 @@ class Schedule extends Component {
     this.props.fetchSchedule();
   }
 
+  componentDidUpdate(prevProps) {
+    if(prevProps.page !== this.props.page) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
+    }
+  }
+
   onSubmit = (e) => e.preventDefault();
 
   resetSearchText = () => this.props.changeSearchText('');
@@ -38,47 +47,45 @@ class Schedule extends Component {
     const movies = getMoviesOnPage();
 
     return ( 
-      <div className={styles.root}>
-        <Page isFetching={isLoading} isFetchingError={isError}>
-          <Container>
-            <div className={styles.filters}>
-              <SearchInput 
-                placeholder="Search by title"
-                onChange={handleChangeSearchText}
-                value={searchText}
-                onSubmit={onSubmit}
-              />
-              {
-                searchText &&
-                  <SearchedByPanel>
-                    <SearchedByItem
-                      value={searchText}
-                      removeAction={resetSearchText}
-                    />
-                  </SearchedByPanel>
-              }
-            </div>
-            <ScheduleList 
-              movies={movies}
+      <Page isFetching={isLoading} isFetchingError={isError} noHeader>
+        <Container>
+          <div className={styles.filters}>
+            <SearchInput 
+              placeholder="Search by title"
+              onChange={handleChangeSearchText}
+              value={searchText}
+              onSubmit={onSubmit}
             />
             {
-              movies.length === 0 &&
-                <ErrorMessage 
-                  message="No movies found!"
-                  action={resetSearchText}
-                  btnTitle="Cancel"
-                />
-               
+              searchText &&
+                <SearchedByPanel>
+                  <SearchedByItem
+                    value={searchText}
+                    removeAction={resetSearchText}
+                  />
+                </SearchedByPanel>
             }
-            <Pagination 
-              currentPage={page}
-              itemsPerPage={this.LIMIT_ON_PAGE}
-              allItems={scheduleList.length}
-              paginate={setPage}
-            />
-          </Container>
-        </Page>
-      </div>
+          </div>
+          <ScheduleList 
+            movies={movies}
+          />
+          {
+            movies.length === 0 &&
+              <ErrorMessage 
+                message="No movies found!"
+                action={resetSearchText}
+                btnTitle="Cancel"
+              />
+              
+          }
+          <Pagination 
+            currentPage={page}
+            itemsPerPage={this.LIMIT_ON_PAGE}
+            allItems={scheduleList.length}
+            paginate={setPage}
+          />
+        </Container>
+      </Page>
     );
   }
 }

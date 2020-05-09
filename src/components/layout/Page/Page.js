@@ -1,11 +1,12 @@
 import React from 'react';
 import Loader from '../../common/Loader/Loader';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import styles from './Page.module.scss';
 
-const Page = ({ isFetching, isFetchingError, children }) => {
+const Page = ({ isFetching, isFetchingError, noHeader, children }) => {
   return ( 
-    <main className={styles.root}>
+    <main className={clsx([styles.root, noHeader && styles.noHeader ])}>
       {
         isFetching &&
           <div className={styles.loader}>
