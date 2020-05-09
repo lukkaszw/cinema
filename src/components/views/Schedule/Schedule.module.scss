@@ -1,0 +1,23 @@
+.root {
+  padding-top: 200px;
+  background-image: linear-gradient(rgba(0, 0, 0, .3), black, black), url('/images/entry.jpg');
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  background-size: 100%;
+
+  .filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 20px 0;
+  }
+
+  @media (max-width: 600px) {
+    background-size: 200%;
+
+    .filters {
+      justify-content: center;
+    }
+  }
+}

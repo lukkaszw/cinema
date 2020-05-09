@@ -1,4 +1,5 @@
 @import '../styles/variables';
+@import '../styles/animations';
 
 @mixin menu-link {
   position: relative;
@@ -67,4 +68,12 @@
       color: $main-red;
     }
   }
+}
+
+@mixin pageHeader {
+  width: 100%;
+  height: 700px;
+  max-height: 100vh;
+  opacity: 0;
+  animation: show 1s .1s both;
 }
