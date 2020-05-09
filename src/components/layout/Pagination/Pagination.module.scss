@@ -1,0 +1,29 @@
+@import '../../../styles/variables';
+.root {
+  padding: 20px 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+
+  .item {
+    margin: 0 2px;
+  }
+
+  .pageNr {
+    display: block;
+    width: 30px;
+    height: 30px;
+    color: #555;
+    background-color: #fff;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: .2s;
+
+    &:hover, &.active {
+      background-color: $main-red;
+      color: #fff;
+    }
+  }
+}
