@@ -12,6 +12,7 @@ export const getAllMovies = ({ movies }) => {
       return false;
     });
 };
+export const checkIfDataFetched = ({ movies }) => movies.data.length > 0;
 export const getCurrentMovies = ({ movies }) => {
   const currentMovies = movies.data.filter(movie => movie.played === 'current');
   const crntFilter = movies.filters.current;

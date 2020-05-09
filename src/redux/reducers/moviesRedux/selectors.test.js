@@ -6,6 +6,7 @@ import {
   getCurrentMoviesFilter,
   getCurrentMovies,
   getSoonMovies,
+  checkIfDataFetched,
 } from './moviesRedux';
 
 const mockedData =  [
@@ -70,10 +71,28 @@ describe('Movies Reducer selectors', () => {
   });
 
   describe('getCurrentMovies selector', () => {
-    checkMoviesFilter('current', 'all', getCurrentMovies, mockedData.slice(0, 3));
-    checkMoviesFilter('current', '2d', getCurrentMovies, [mockedData[0]]);
-    checkMoviesFilter('current', '3d', getCurrentMovies, [mockedData[1]]);
-    checkMoviesFilter('current', 'for kids', getCurrentMovies, [mockedData[2]]);
+    it('returns proper movies data', () => {
+      checkMoviesFilter('current', 'all', getCurrentMovies, mockedData.slice(0, 3));
+      checkMoviesFilter('current', '2d', getCurrentMovies, [mockedData[0]]);
+      checkMoviesFilter('current', '3d', getCurrentMovies, [mockedData[1]]);
+      checkMoviesFilter('current', 'for kids', getCurrentMovies, [mockedData[2]]);
+    });
+  });
+
+  
+  describe('getSoonMovies selector', () => {
+    it('returns proper movies data', () => {
+      expect(getSoonMovies(mockedState)).toEqual(mockedData.slice(3, 5));
+    });
+  });
+
+  describe('checkIfDataFetched selector', () => {
+    it('informs if data are fetched', () => {
+      expect(checkIfDataFetched(mockedState)).toBe(true);
+      const stateWithoutData = JSON.parse(JSON.stringify(mockedState));
+      stateWithoutData.movies.data = [];
+      expect(checkIfDataFetched(stateWithoutData)).toBe(false);
+    })
   });
 
   describe('getAllMoviesFilter selector', () => {
@@ -155,4 +174,6 @@ describe('Movies Reducer selectors', () => {
       expect(getIsError(stateWithActiveLoading)).toBe(true);
     });
   });
+
+
 });

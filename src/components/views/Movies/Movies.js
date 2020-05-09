@@ -5,6 +5,12 @@ import styles from './Movies.module.scss';
 
 class Movies extends Component {
 
+  componentDidMount() {
+    if(!this.props.dataFetched) {
+      this.props.fetchMovies();
+    }
+  }
+
   render() {
     const { isLoading, isError } = this.props; 
 
@@ -20,6 +26,10 @@ class Movies extends Component {
 
 Movies.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.object).isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  isError: PropTypes.bool.isRequired,
+  fetchMovies: PropTypes.func.isRequired,
+  dataFetched: PropTypes.bool.isRequired,
 };
 
 Movies.defaultProps = {
