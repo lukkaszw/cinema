@@ -13,8 +13,14 @@ const mockedProps = {
 };
 
 const mockedPropsWithData = {
-  currentMovies: [{}],
-  soonMovies: [{}],
+  currentMovies: [{
+    _id: '1',
+    title: 'Movie 1',
+  }],
+  soonMovies: [{
+    _id: '2',
+    title: 'Movie 2',
+  }],
   filter: 'all',
   isLoading: false,
   isError: false,
@@ -58,5 +64,29 @@ describe('Home Component', () => {
     expect(sectionsEl.length).toBe(2);
     expect(sectionsEl.at(0).prop('title')).toBe("CURRENTLY PLAYED");
     expect(sectionsEl.at(1).prop('title')).toBe("COMMING SOON");
+  });
+
+  it('includes CurrentFilms element with proper props', () => {
+    const componetnWithData = shallow(<Home {...mockedPropsWithData} />);
+    const crntFilmsEl = componetnWithData.find('CurrentFilms');
+    expect(crntFilmsEl.exists()).toBeTruthy();
+    expect(crntFilmsEl.props()).toEqual({
+      movies: mockedPropsWithData.currentMovies,
+      filter: mockedPropsWithData.filter,
+      setFilter: mockedPropsWithData.setFilter,
+      isError: mockedPropsWithData.isError,
+      isLoading: mockedPropsWithData.isLoading,
+    });
+  });
+
+  it('includes ComingFilms element with proper props', () => {
+    const componetnWithData = shallow(<Home {...mockedPropsWithData} />);
+    const comingFilmsEl = componetnWithData.find('ComingFilms');
+    expect(comingFilmsEl.exists()).toBeTruthy();
+    expect(comingFilmsEl.props()).toEqual({
+      movies: mockedPropsWithData.soonMovies,
+      isError: mockedPropsWithData.isError,
+      isLoading: mockedPropsWithData.isLoading,
+    });
   });
 });
