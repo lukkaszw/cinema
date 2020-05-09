@@ -1,12 +1,13 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import styles from './IconButton.module.scss';
 
-const IconButton = ({ icon, action, disabled }) => {
+const IconButton = ({ icon, action, disabled, notGrow }) => {
   return ( 
     <button
-      className={styles.root}
+      className={clsx([styles.root, notGrow && styles.notGrow])}
       onClick={action}
       disabled={disabled}
     >
