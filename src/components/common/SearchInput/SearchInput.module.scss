@@ -1,0 +1,27 @@
+@import '../../../styles/variables';
+
+.root {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  border: 1px solid #555;
+  border-radius: 8px;
+
+  .input {
+    width: 230px;
+    font-size: 18px;
+    padding: 10px;
+    background-color: transparent;
+    color: #fff;
+    border: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .iconBtn {
+    padding: 0 12px;
+    border-left: 1px solid #555;
+  }
+}
