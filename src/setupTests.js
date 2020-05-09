@@ -14,3 +14,10 @@ Object.defineProperty(window, 'scrollTo', {
     window.innerHeight = scrollY;
   }
 });
+
+Object.defineProperty(window, 'location', {
+  writable: true,
+  value: {
+    hash: '',
+  }
+});
