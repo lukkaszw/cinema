@@ -1,0 +1,14 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 16px;
+  background-color: #111;
+  border-radius: 10px;
+  font-size: 13px;
+
+  .text {
+    padding-right: 10px;
+    line-height: 1;
+    font-size: 16px;
+  }
+}
