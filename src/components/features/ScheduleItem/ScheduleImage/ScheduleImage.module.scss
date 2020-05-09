@@ -8,9 +8,9 @@
     top: 0;
     left: 0;
     width: 200px;
-    height: 356px;
+    height: 100%;
     transition: .5s;
-    transform: scale(1) translate(0, 0);
+    transform: translate(0, 0);
 
     .image {
       width: 100%;
@@ -19,21 +19,17 @@
     }
   }
 
-  @media (max-width: 1024px) {
-    width: 0;
-    margin-right: 0;
+  @media (max-width: 800px) {
+      width: 0;
+      margin-right: 0;
+      height: 300px;
 
-    .imageWrapper {
-      z-index: -1;
-      opacity: .3;
-      left: 50%;
-      transform: scale(1) translate(-50%, -20px);
-    }
-  }
-
-  @media (max-width: 700px) {
       .imageWrapper {
-        transform: scale(.8) translate(-50%, -50px);
+        width: 60px;
+        height: 90px;
+        top: 0;
+        left: 100%;
+        transform: translate(-100%, 20px);
       }
    }
 }

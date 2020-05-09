@@ -168,6 +168,7 @@ class ScheduleItem extends Component {
             getNext={getNextWeek}
             days={daysOfWeek}
           />
+
         </div>
       </article>
      );
