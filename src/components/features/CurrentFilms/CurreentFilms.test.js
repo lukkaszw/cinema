@@ -30,24 +30,6 @@ describe('CurrentFilmsList component', () => {
     expect(componentWithData).toBeTruthy();
   });
 
-  it('uses fetchMovies in ComponentDidMount only when movies data is not provided', () => {
-    const fetchMoviesFunc = jest.fn();
-    const fetchMoviesFunc2 = jest.fn();
-    const component = shallow(<CurrentFilms isLoading={false} fetchMovies={fetchMoviesFunc} setFilter={jest.fn()}/>);
-    component.instance();
-    expect(fetchMoviesFunc).toHaveBeenCalledTimes(1);
-    const component2 = shallow(
-      <CurrentFilms 
-        isLoading={false} 
-        movies={mockedPropsWithData.movies}
-        fetchMovies={fetchMoviesFunc2}
-        setFilter={jest.fn()}
-      />
-    );
-    component2.instance();
-    expect(fetchMoviesFunc2).toHaveBeenCalledTimes(0);
-  });
-
   it('includes Loader when data is loading', () => {
     const loaderEl = componentWhenLoading.find('.loader');
     expect(loaderEl.find('Loader').exists()).toBeTruthy();

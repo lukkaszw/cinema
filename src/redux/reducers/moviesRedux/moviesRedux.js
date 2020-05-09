@@ -2,12 +2,28 @@ import axios from 'axios';
 import api from '../../../config/api';
 /* selectors */
 export const getAllMovies = ({ movies }) => {
-  const filterCat = movies.filter;
+  const filterCat = movies.filters.all;
   if(filterCat === 'all') return movies.data;
-  return movies.data.filter(movie => movie.filters.includes(filterCat));
+  return movies.data
+    .filter(movie => {
+      if(movie.filters) {
+        return movie.filters.includes(filterCat);
+      }
+      return false;
+    });
 };
+export const getCurrentMovies = ({ movies }) => {
+  const currentMovies = movies.data.filter(movie => movie.played === 'current');
+  const crntFilter = movies.filters.current;
+  if(crntFilter === 'all') {
+    return currentMovies;
+  }
+  return currentMovies.filter(movie => movie.filters.includes(crntFilter));
+}
+export const getSoonMovies = ({ movies }) => movies.data.filter(movie => movie.played === 'soon');
 export const getIsLoading = ({ movies }) => movies.loading.isActive;
-export const getFilter = ({ movies }) => movies.filter;
+export const getAllMoviesFilter = ({ movies }) => movies.filters.all;
+export const getCurrentMoviesFilter = ({ movies }) => movies.filters.current;
 export const getIsError = ({ movies }) => movies.loading.isError;
 
 /* action name creators */
@@ -18,13 +34,15 @@ const createActionName = name => `app/${reducerName}/${name}`;
 export const START_FETCHING = createActionName('START_FETCHING');
 export const SET_ERROR = createActionName('SET_ERROR');
 export const SET_DATA = createActionName('SET_DATA');
-export const SET_FILTER = createActionName('SET_FILTER');
+export const SET_ALL_FILTER = createActionName('SET_FILTER');
+export const SET_CURRENT_FILTER = createActionName('SET_CURRENT_FILTER');
 
 /* action creators */
 export const startFetching = () => ({ type: START_FETCHING });
 export const fetchError = () => ({ type: SET_ERROR });
 export const fetchSucceded = (payload) => ({ payload, type: SET_DATA });
-export const setFilter = (payload) => ({payload, type: SET_FILTER });
+export const setAllMoviesFilter = (payload) => ({payload, type: SET_ALL_FILTER });
+export const setCurrentMoviesFilter = (payload) => ({ payload, type: SET_CURRENT_FILTER })
 
 /* thunk actions creators */
 export const fetchMoviesData = () => {
@@ -68,11 +86,23 @@ const moviesReducer = (statePart = {}, action = {}) => {
         }
       }
     }
-    case SET_FILTER: {
+    case SET_ALL_FILTER: {
       return {
         ...statePart,
-        filter: action.payload,
+        filters: {
+          ...statePart.filters,
+          all: action.payload,
+        }
       } 
+    }
+    case SET_CURRENT_FILTER: {
+      return {
+        ...statePart,
+        filters: {
+          ...statePart.filters,
+          current: action.payload,
+        }
+      }
     }
     default: 
     return statePart;

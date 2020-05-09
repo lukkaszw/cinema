@@ -4,11 +4,13 @@ import ComingFilms from './ComingFilms';
 
 const mockedPropsWhenLoading = {
   isLoading: true,
+  isError: false,
   fetchMovies: jest.fn(),
 };
 
 const mockedPropsWhithData = {
   isLoading: false,
+  isError: false,
   movies: [
     {
       id: '1',
@@ -38,22 +40,6 @@ describe('CurrentFilmsList component', () => {
   it('renders without crashing', () => {
     expect(componentWhenLoading).toBeTruthy();
     expect(componentWithData).toBeTruthy();
-  });
-
-  it('uses fetchMovies in ComponentDidMount only when movies data is not provided', () => {
-    const fetchMoviesFunc = jest.fn();
-    const fetchMoviesFunc2 = jest.fn();
-    const component = shallow(<ComingFilms isLoading={false} fetchMovies={fetchMoviesFunc}/>);
-    component.instance();
-    expect(fetchMoviesFunc).toHaveBeenCalledTimes(1);
-    const component2 = shallow(
-      <ComingFilms 
-        isLoading={false}
-        movies={mockedPropsWhithData.movies}
-        fetchMovies={fetchMoviesFunc2}
-      />);
-    component2.instance();
-    expect(fetchMoviesFunc2).toHaveBeenCalledTimes(0);
   });
 
   it('includes Loader when data is loading', () => {

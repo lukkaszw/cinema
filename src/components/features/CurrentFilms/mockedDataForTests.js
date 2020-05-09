@@ -1,5 +1,6 @@
 export const mockedPropsWhenLoading = {
   isLoading: true,
+  isError: false,
   filter: 'all',
   fetchMovies: jest.fn(),
   setFilter: jest.fn(),

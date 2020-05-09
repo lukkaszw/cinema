@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Home from './components/views/Home/Home';
+import Home from './components/views/Home/Home.container';
 import Schedule from './components/views/Schedule/Schedule.container';
 import Movies from './components/views/Movies/Movies';
 import Order from './components/views/Order/Order';

@@ -2,23 +2,16 @@ const Movie = require('../models/movie');
 require('../models/details');
 require('../models/show');
 
-
 const getAll = async (req, res) => {
   try {
-    const movies = await Movie.find({ played: 'current' });
+    const movies = await Movie.find()
+    .populate('details', '-description -_id -country -reliseDate -cast -pageImage -imagePortrait -gallery')
+    .select('-shows -createdAt -updatedAt -scheduleImg -__v')
     res.json(movies);
   } catch (error) {
     res.status(500).json(error);
   }
-}
 
-const getCommingSoon = async (req, res) => {
-  try {
-    const movies = await Movie.find({ played: 'soon' });
-    res.json(movies);
-  } catch (error) {
-    res.status(500).json(error);
-  }
 }
 
 const getOne = async (req, res) => {
@@ -53,7 +46,6 @@ const createOne = async (req, res) => {
 
 module.exports = {
   getAll,
-  getCommingSoon,
   getOne,
   createOne,
 };

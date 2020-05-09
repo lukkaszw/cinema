@@ -52,9 +52,6 @@ class CurrentFilms extends Component {
   ]
 
   componentDidMount() {
-    if(this.props.movies.length === 0) {
-      this.props.fetchMovies();
-    }
     this.setCartsInList();
     this.checkCartsAmount();
   }
@@ -157,8 +154,9 @@ class CurrentFilms extends Component {
 
 CurrentFilms.propTypes = {
   isLoading: PropTypes.bool.isRequired,
+  isError: PropTypes.bool.isRequired,
   movies: PropTypes.arrayOf(PropTypes.object),
-  fetchMovies: PropTypes.func.isRequired,
+  setFilter: PropTypes.func.isRequired,
   filter: PropTypes.string,
 };
 

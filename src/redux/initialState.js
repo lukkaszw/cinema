@@ -1,18 +1,14 @@
 const initialState = {
   movies: {
     data: [],
-    filter: 'all',
+    filters: {
+      all: 'all',
+      current: 'all',
+    },
     loading: {
       isActive: false,
       isError: false,
     },
-  },
-  futureMovies: {
-    data: [],
-    loading: {
-      isActive: false,
-      isError: false,
-    }
   },
   schedule: {
     data: [],

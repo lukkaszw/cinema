@@ -2,13 +2,15 @@ import {
   startFetching,
   fetchError,
   fetchSucceded,
-  setFilter
+  setAllMoviesFilter,
+  setCurrentMoviesFilter,
 } from './moviesRedux';
 import  {
   START_FETCHING,
   SET_ERROR,
   SET_DATA,
-  SET_FILTER,
+  SET_ALL_FILTER,
+  SET_CURRENT_FILTER,
 } from './moviesRedux'; 
 
 describe('Movies Reducer actions', () => {
@@ -49,14 +51,25 @@ describe('Movies Reducer actions', () => {
     expect(fetchSucceded(payloadData)).toEqual(expectedAction);
   });
 
-  it('creates proper action when filters are updated', () => {
+  it('creates proper action when all movies filter is updated', () => {
     const payloadData = '3d';
 
     const expectedAction = {
-      type: SET_FILTER,
+      type: SET_ALL_FILTER,
       payload: payloadData,
     }
 
-    expect(setFilter(payloadData)).toEqual(expectedAction);
+    expect(setAllMoviesFilter(payloadData)).toEqual(expectedAction);
+  });
+
+  it('creates proper action when current movies filter is updated', () => {
+    const payloadData = '2d';
+
+    const expectedAction = {
+      type: SET_CURRENT_FILTER,
+      payload: payloadData,
+    }
+
+    expect(setCurrentMoviesFilter(payloadData)).toEqual(expectedAction);
   });
 });

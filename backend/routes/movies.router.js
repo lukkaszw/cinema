@@ -4,8 +4,6 @@ const moviesController = require('../controllers/movies.controller');
 
 router.get('', moviesController.getAll);
 
-router.get('/soon', moviesController.getCommingSoon);
-
 router.get('/:id', moviesController.getOne);
 
 router.post('', moviesController.createOne);

@@ -2,31 +2,50 @@ import {
   getAllMovies,
   getIsLoading,
   getIsError,
-  getFilter,
+  getAllMoviesFilter,
+  getCurrentMoviesFilter,
+  getCurrentMovies,
+  getSoonMovies,
 } from './moviesRedux';
 
 const mockedData =  [
   {
     _id: '1',
     title: 'Movie 1',
-    filters: ['2d']
+    filters: ['2d'],
+    played: 'current',
   },
   {
     _id: '2',
     title: 'Movie 2',
     filters: ['3d'],
+    played: 'current',
   },
   {
     _id: '3',
     title: 'Movie 3',
     filters: ['for kids'],
+    played: 'current',
+  },
+  {
+    _id: '4',
+    title: 'Movie 4',
+    played: 'soon',
+  },
+  {
+    _id: '5',
+    title: 'Movie 5',
+    played: 'soon',
   },
 ];
 
 const mockedState = {
   movies: {
     data: mockedData,
-    filter: 'all',
+    filters: {
+      all: 'all',
+      current: 'all',
+    },
     loading: {
       isActive: false,
       isError: false,
@@ -34,33 +53,40 @@ const mockedState = {
   },
 };
 
+const checkMoviesFilter = (filterType, filter, selector, expectedMovies) => {
+  const stateWithFilter = JSON.parse(JSON.stringify(mockedState));
+  stateWithFilter.movies.filters[filterType] = filter;
+  expect(selector(stateWithFilter)).toEqual(expectedMovies);
+}
+
 describe('Movies Reducer selectors', () => {
   describe('getAllMovies selector', () => {
     it('returns proper movies data', () => {
-      expect(getAllMovies(mockedState)).toEqual(mockedData);
+      checkMoviesFilter('all', 'all', getAllMovies, mockedData);
+      checkMoviesFilter('all', '2d', getAllMovies, [mockedData[0]]);
+      checkMoviesFilter('all', '3d', getAllMovies, [mockedData[1]]);
+      checkMoviesFilter('all', 'for kids', getAllMovies, [mockedData[2]]);
     });
-
-    const stateWith2dFilter = JSON.parse(JSON.stringify(mockedState));
-    stateWith2dFilter.movies.filter = '2d';
-    expect(getAllMovies(stateWith2dFilter)).toEqual([mockedData[0]]);
-
-    const stateWith3dFilter = JSON.parse(JSON.stringify(mockedState));
-    stateWith3dFilter.movies.filter = '3d';
-    expect(getAllMovies(stateWith3dFilter)).toEqual([mockedData[1]]);
-
-    const stateWithForKidsFilter = JSON.parse(JSON.stringify(mockedState));
-    stateWithForKidsFilter.movies.filter = 'for kids';
-    expect(getAllMovies(stateWithForKidsFilter)).toEqual([mockedData[2]]);
   });
 
-  describe('getFilter selector', () => {
+  describe('getCurrentMovies selector', () => {
+    checkMoviesFilter('current', 'all', getCurrentMovies, mockedData.slice(0, 3));
+    checkMoviesFilter('current', '2d', getCurrentMovies, [mockedData[0]]);
+    checkMoviesFilter('current', '3d', getCurrentMovies, [mockedData[1]]);
+    checkMoviesFilter('current', 'for kids', getCurrentMovies, [mockedData[2]]);
+  });
+
+  describe('getAllMoviesFilter selector', () => {
     it('returns proper filter state', () => {
-      expect(getFilter(mockedState)).toBe('all');
+      expect(getAllMoviesFilter(mockedState)).toBe('all');
     
       const stateWithOtherFilter = {
         movies: {
           data: [],
-          filter: 'other',
+          filters: {
+            all: 'other',
+            current: 'all',
+          },
           loading: {
             isActive: false,
             isError: false,
@@ -68,7 +94,29 @@ describe('Movies Reducer selectors', () => {
         }
       }
   
-      expect(getFilter(stateWithOtherFilter)).toBe('other');
+      expect(getAllMoviesFilter(stateWithOtherFilter)).toBe('other');
+    });
+  });
+
+  describe('getCurrentMoviesFilter selector', () => {
+    it('returns proper filter state', () => {
+      expect(getCurrentMoviesFilter(mockedState)).toBe('all');
+    
+      const stateWithOtherFilter = {
+        movies: {
+          data: [],
+          filters: {
+            all: 'all',
+            current: 'other',
+          },
+          loading: {
+            isActive: false,
+            isError: false,
+          }
+        }
+      }
+  
+      expect(getCurrentMoviesFilter(stateWithOtherFilter)).toBe('other');
     });
   });
 
