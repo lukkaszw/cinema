@@ -19,7 +19,7 @@
     transform: scale(1);
   }
 
-  &.disabled {
+  &:disabled, &.inactive {
     color: #666;
   }
 
