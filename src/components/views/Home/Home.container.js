@@ -7,7 +7,8 @@ import {
   getIsLoading, 
   setCurrentMoviesFilter,
   fetchMoviesData, 
-  getIsError} from '../../../redux/reducers/moviesRedux/moviesRedux';
+  getIsError,
+  checkIfDataFetched } from '../../../redux/reducers/moviesRedux/moviesRedux';
 
 const mapStateToProps = (state) => ({
   currentMovies: getCurrentMovies(state),
@@ -15,6 +16,7 @@ const mapStateToProps = (state) => ({
   filter: getCurrentMoviesFilter(state),
   isLoading: getIsLoading(state),
   isError: getIsError(state),
+  dataFetched: checkIfDataFetched(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

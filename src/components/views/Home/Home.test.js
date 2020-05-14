@@ -10,6 +10,7 @@ const mockedProps = {
   isError: false,
   fetchMovies: () => console.log('fetch movies'),
   setFilter: () => console.log('set filter'),
+  dataFetched: false,
 };
 
 const mockedPropsWithData = {
@@ -25,6 +26,7 @@ const mockedPropsWithData = {
   isLoading: false,
   isError: false,
   setFilter: () => console.log('set filter'),
+  dataFetched: true,
 }
 
 const component = shallow(<Home {...mockedProps} />);

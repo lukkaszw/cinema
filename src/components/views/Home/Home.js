@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 class Home extends Component {
 
   componentDidMount() {
-    if(this.props.currentMovies.length === 0) {
+    if(!this.props.dataFetched) {
       this.props.fetchMovies();
     }
   }
@@ -57,6 +57,7 @@ Home.propTypes = {
   setFilter: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
   isError: PropTypes.bool.isRequired,
+  dataFetched: PropTypes.bool.isRequired,
 };
 
 export default Home;
