@@ -1,0 +1,152 @@
+@import '../../../styles/variables';
+
+.root {
+  margin-bottom: 40px;
+
+  &:hover {
+    box-shadow: 0 0px 4px #fff;
+  }
+
+  .link {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .imageWrapper {
+    width: 80px;
+    height: 120px;
+    margin-right: 20px;
+
+    .image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .description {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .filters {
+    position: absolute;
+    bottom: 30px;
+    right: 0;
+    list-style: none;
+    display: flex;
+
+    .filter {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-transform: uppercase;
+      background-color: orangered;
+      font-size: 12px;
+      margin-left: 5px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      line-height: 1;
+
+      &.threeD {
+        background-color: #0044ff;
+      }
+      
+      &.kids {
+        background-color: #498000;
+      }
+    }
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .categories {
+    text-transform: uppercase;
+    font-size: 14px;
+    word-spacing: 10px;
+  }
+
+  .playTime {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 12px;
+    padding: 5px 20px;
+    background-color: $main-red;
+
+    &::after {
+      display: block;
+      content: '';
+      position: absolute;
+      top: 9px;
+      left: -22px;
+      width: 44px;
+      height: 44px;
+      background-color: $main-red;
+      transform: rotate(45deg);
+    }
+
+    
+    &.active {
+      background-color: darken($link-cl, 10%);
+
+      &::after {
+        background-color: darken($link-cl, 10%);
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    .link, .title {
+      font-size: 14px;
+    }
+
+    .imageWrapper {
+      width: 70px;
+      height: 112px;
+      margin-right: 10px;
+    }
+
+    .filters {
+      bottom: 25px;
+
+      .filter {
+        width: 24px;
+        height: 24px;
+        font-size: 11px;
+      }
+    }
+
+    .categories {
+      font-size: 11px;
+    }
+
+    p {
+      font-size: 12px;
+    }
+
+    .rate {
+      position: absolute;
+      bottom: 0;
+      left: 3px;
+      font-size: 12px;
+      padding: 1px 2px;
+      background-color: $main-red;
+    }
+
+    .playTime {
+      font-size: 10px;
+      padding: 3px 14px;
+    }
+  }
+}
