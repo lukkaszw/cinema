@@ -1,8 +1,15 @@
 const initialState = {
   movies: {
     data: [],
-    filters: {
-      all: 'all',
+    filtersFor: {
+      all: {
+        filter: 'all',
+        searchText: '',
+        playTime: 'all',
+        sort: 'asc',
+        genres: [],
+        page: 1,
+      },
       current: 'all',
     },
     loading: {

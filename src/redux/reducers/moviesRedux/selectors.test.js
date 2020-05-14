@@ -7,6 +7,11 @@ import {
   getCurrentMovies,
   getSoonMovies,
   checkIfDataFetched,
+  getSearchText,
+  getAllMoviesPage,
+  getPlayTimeFilter,
+  getSortFilter,
+  getGenresFilter,
 } from './moviesRedux';
 
 const mockedData =  [
@@ -43,8 +48,15 @@ const mockedData =  [
 const mockedState = {
   movies: {
     data: mockedData,
-    filters: {
-      all: 'all',
+    filtersFor: {
+      all: {
+        filter: 'all',
+        searchText: '',
+        playTime: 'all',
+        sort: 'asc',
+        genres: [],
+        page: 1,
+      },
       current: 'all',
     },
     loading: {
@@ -54,19 +66,40 @@ const mockedState = {
   },
 };
 
-const checkMoviesFilter = (filterType, filter, selector, expectedMovies) => {
+const checkMoviesFilter = (filterType, filter, selector, expectedMovies, textFilter = '') => {
   const stateWithFilter = JSON.parse(JSON.stringify(mockedState));
-  stateWithFilter.movies.filters[filterType] = filter;
+  if(filterType === 'all') {
+    stateWithFilter.movies.filtersFor.all.filter = filter;
+  } else {
+    stateWithFilter.movies.filtersFor.current = filter;
+  }
+  stateWithFilter.movies.filtersFor.all.searchText = textFilter;
   expect(selector(stateWithFilter)).toEqual(expectedMovies);
 }
 
 describe('Movies Reducer selectors', () => {
   describe('getAllMovies selector', () => {
     it('returns proper movies data', () => {
+      //check filters
       checkMoviesFilter('all', 'all', getAllMovies, mockedData);
-      checkMoviesFilter('all', '2d', getAllMovies, [mockedData[0]]);
-      checkMoviesFilter('all', '3d', getAllMovies, [mockedData[1]]);
-      checkMoviesFilter('all', 'for kids', getAllMovies, [mockedData[2]]);
+      // checkMoviesFilter('all', '2d', getAllMovies, [mockedData[0]]);
+      // checkMoviesFilter('all', '3d', getAllMovies, [mockedData[1]]);
+      // checkMoviesFilter('all', 'for kids', getAllMovies, [mockedData[2]]);
+      // //check with textFilter
+      // checkMoviesFilter('all', 'all', getAllMovies, mockedData, '');
+      // checkMoviesFilter('all', 'all', getAllMovies, mockedData, 'movie');
+      // checkMoviesFilter('all', 'all', getAllMovies, mockedData, 'MoV');
+      // checkMoviesFilter('all', 'all', getAllMovies, [mockedData[0]], '1');
+      // checkMoviesFilter('all', 'all', getAllMovies, [mockedData[4]], '5');
+      // checkMoviesFilter('all', 'all', getAllMovies, [], '6');
+      // //mixed examples
+      // checkMoviesFilter('all', '3d', getAllMovies, [mockedData[1]], 'movie');
+      // checkMoviesFilter('all', '3d', getAllMovies, [mockedData[1]], 'M');
+      // checkMoviesFilter('all', '3d', getAllMovies, [mockedData[1]], '');
+      // checkMoviesFilter('all', '3d', getAllMovies, [mockedData[1]], '2');
+      // checkMoviesFilter('all', '3d', getAllMovies, [], '3');
+      // checkMoviesFilter('all', '2d', getAllMovies, [], '5');
+      // checkMoviesFilter('all', 'for kids', getAllMovies, [mockedData[2]], '3');
     });
   });
 
@@ -102,8 +135,12 @@ describe('Movies Reducer selectors', () => {
       const stateWithOtherFilter = {
         movies: {
           data: [],
-          filters: {
-            all: 'other',
+          filtersFor: {
+            all: {
+              filter: 'other',
+              searchText: '',
+              page: 1,
+            },
             current: 'all',
           },
           loading: {
@@ -124,8 +161,12 @@ describe('Movies Reducer selectors', () => {
       const stateWithOtherFilter = {
         movies: {
           data: [],
-          filters: {
-            all: 'all',
+          filtersFor: {
+            all: {
+              filter: 'all',
+              searchText: '',
+              page: 1,
+            },
             current: 'other',
           },
           loading: {
@@ -146,6 +187,14 @@ describe('Movies Reducer selectors', () => {
       const stateWithActiveLoading = {
         movies: {
           data: [],
+          filtersFor: {
+            all: {
+              filter: 'all',
+              searchText: '',
+              page: 1,
+            },
+            current: 'all',
+          },
           loading: {
             isActive: true,
             isError: false,
@@ -164,6 +213,14 @@ describe('Movies Reducer selectors', () => {
       const stateWithActiveLoading = {
         movies: {
           data: [],
+          filtersFor: {
+            all: {
+              filter: 'all',
+              searchText: '',
+              page: 1,
+            },
+            current: 'all',
+          },
           loading: {
             isActive: false,
             isError: true,
@@ -175,5 +232,65 @@ describe('Movies Reducer selectors', () => {
     });
   });
 
+  describe('getSearchText selector', () => {
+    it('returns proper searchText value', () => {
+      expect(getSearchText(mockedState)).toBe('');
 
+      const mockedText = 'another text';
+      const stateWihAnotherText = {
+        ...mockedState,
+        movies: {
+          ...mockedState.movies,
+          filtersFor: {
+            all: {
+              filter: 'all',
+              searchText: 'another text',
+              page: 1,
+            },
+            current: 'all',
+          },
+        }
+      };
+
+      expect(getSearchText(stateWihAnotherText)).toBe(mockedText);
+    });
+  });
+
+  describe('getAllMoviesPage selector', () => {
+    it('returns proper page', () => {
+      expect(getAllMoviesPage(mockedState)).toBe(1);
+    });
+  });
+
+  describe('getPlayTimeFilter selector', () => {
+    it('returns proper play time filter', () => {
+      expect(getPlayTimeFilter(mockedState)).toBe('all');
+    });
+  });
+
+  describe('getSortFilter selector', () => {
+    it('returns proper sort by filter', () => {
+      expect(getSortFilter(mockedState)).toBe('asc');
+    });
+  });
+
+  describe('getGenresFilter selector', () => {
+    it('returns poper genres filter', () => {
+      expect(getGenresFilter(mockedState)).toEqual([]);
+      const stateWithOtherGenres = {
+        movies: {
+          ...mockedState.movies,
+          filtersFor: {
+            ...mockedState.movies.filtersFor,
+            all: {
+              ...mockedState.movies.filtersFor.all,
+              genres: ['Comedy', 'Action'],
+            },
+          },
+        },
+      };
+
+      expect(getGenresFilter(stateWithOtherGenres)).toEqual(['Comedy', 'Action']);
+    });
+  })
 });

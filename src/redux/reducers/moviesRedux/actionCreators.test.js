@@ -4,6 +4,12 @@ import {
   fetchSucceded,
   setAllMoviesFilter,
   setCurrentMoviesFilter,
+  setSearchText,
+  setPage,
+  setTimeFilter,
+  setSortFilter,
+  toggleGenre,
+  resetAllMoviesFilters,
 } from './moviesRedux';
 import  {
   START_FETCHING,
@@ -11,6 +17,12 @@ import  {
   SET_DATA,
   SET_ALL_FILTER,
   SET_CURRENT_FILTER,
+  SET_SEARCH_TEXT,
+  SET_PAGE,
+  SET_PLAY_TIME,
+  SET_SORT,
+  TOGGLE_GENRE,
+  RESET_FILTERS,
 } from './moviesRedux'; 
 
 describe('Movies Reducer actions', () => {
@@ -71,5 +83,61 @@ describe('Movies Reducer actions', () => {
     }
 
     expect(setCurrentMoviesFilter(payloadData)).toEqual(expectedAction);
+  });
+
+  it('creates proper action when user updates searchText', () => {
+    const payloadData = 'test text';
+
+    const expectedAction = {
+      type: SET_SEARCH_TEXT,
+      payload: payloadData,
+    }
+
+    expect(setSearchText(payloadData)).toEqual(expectedAction);
+  });
+
+  it('creates proper action when user set page', () => {
+    const payloadData = 3;
+    const expectedAction = {
+      type: SET_PAGE,
+      payload: 3,
+    };
+
+    expect(setPage(payloadData)).toEqual(expectedAction);
+  });
+
+  it('creates proper action when user set play time filter', () => {
+    const payloadData = 'soon';
+    const expectedAction = {
+      type: SET_PLAY_TIME,
+      payload: payloadData,
+    };
+
+    expect(setTimeFilter(payloadData)).toEqual(expectedAction);
+  });
+
+  it('creates proper action when user sortBy filter', () => {
+    const payloadData = 'desc';
+    const expectedAction = {
+      type: SET_SORT,
+      payload: payloadData,
+    };
+    expect(setSortFilter(payloadData)).toEqual(expectedAction);
+  });
+
+  it('creates proper action when toggleGenre is fired', () => {
+    const payloadData = 'Comedy';
+    const expectedAction = {
+      type: TOGGLE_GENRE,
+      payload: payloadData,
+    };
+    expect(toggleGenre(payloadData)).toEqual(expectedAction);
+  });
+
+  it('creates proper action when user wants to reset all filters', () => {
+    const expectedAction = {
+      type: RESET_FILTERS,
+    };
+    expect(resetAllMoviesFilters()).toEqual(expectedAction);
   });
 });
