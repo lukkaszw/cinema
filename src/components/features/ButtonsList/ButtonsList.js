@@ -3,7 +3,7 @@ import Button from '../../common/Button/Button';
 import PropTypes from 'prop-types';
 import styles from './ButtonsList.module.scss';
 
-const ButtonsList = ({ buttons, action, value }) => {
+const ButtonsList = ({ buttons, action, value, variants }) => {
   return ( 
     <ul className={styles.root}>
       {
@@ -14,7 +14,7 @@ const ButtonsList = ({ buttons, action, value }) => {
           >
             <Button 
               action={() => action(button.value)}
-              variants={[value === button.value ? null : 'gray']}
+              variants={[value === button.value ? null : 'gray', ...variants]}
             >
               {button.title}
             </Button>
@@ -28,6 +28,11 @@ const ButtonsList = ({ buttons, action, value }) => {
 ButtonsList.propTypes = {
   buttons: PropTypes.arrayOf(PropTypes.object),
   action: PropTypes.func.isRequired,
+  variants: PropTypes.arrayOf(PropTypes.string),
 };
+
+ButtonsList.defaultProps = {
+  variants: [],
+}
  
 export default ButtonsList;

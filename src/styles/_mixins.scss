@@ -56,6 +56,10 @@
     }
   }
 
+  &.secondary {
+    background-color: $main-blue;
+  }
+
   &:disabled, &.gray {
     background-color: #555;
   }
@@ -68,6 +72,8 @@
       color: $main-red;
     }
   }
+
+
 }
 
 @mixin pageHeader {

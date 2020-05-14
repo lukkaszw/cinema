@@ -2,7 +2,7 @@
   display: flex;
   list-style: none;
 
-  .btnItem {
-    margin-right: 10px;
+  .btnItem:not(:last-child) {
+    margin-right: 5px;
   }
 }

@@ -3,3 +3,11 @@ body {
   font-family: $main-font;
   color: $main-font-cl;
 }
+
+#mobile-menu {
+  display: none;
+
+  @media (max-width: 1024px) {
+    display: block;
+  }
+}
