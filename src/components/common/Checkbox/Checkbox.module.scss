@@ -1,0 +1,47 @@
+.root {
+
+  input {
+    visibility: hidden;
+  }
+
+  label {
+    position: relative;
+    margin-left: 12px;
+    font-size: 18px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: -25px;
+      width: 16px;
+      height: 16px;
+      transform: translateY(-50%);
+      background-color: #444;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: -25px;
+      width: 14px;
+      height: 6px;
+      border: 4px solid #359985;
+      border-top: none;
+      border-right: none;
+      transform: rotate(-45deg);
+      opacity: 0;
+    }
+
+    cursor: pointer;
+  }
+
+  input:checked + label::before {
+    background-color: #ccc;
+  }
+
+  input:checked + label::after {
+    opacity: 1;
+  }
+}
