@@ -42,7 +42,15 @@ const initialState = {
       isActive: false,
       isError: false,
     }
-  }
+  },
+  searchPanel: {
+    data: [],
+    query: '',
+    loading: {
+      isActive: false,
+      isError: false,
+    }
+  },
 };
 
 export default initialState;

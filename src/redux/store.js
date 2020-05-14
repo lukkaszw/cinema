@@ -8,12 +8,14 @@ import ticketsReducer from './reducers/ticketsRedux/ticketsRedux';
 import moviesReducer from './reducers/moviesRedux/moviesRedux';
 import moviePageReducer from './reducers/moviePageRedux/moviePageRedux';
 import scheduleReducer from './reducers/scheduleRedux/scheduleRedux';
+import searchPanelReducer from './reducers/searchPanelReducer/searchPanelReducer';
 
 const reducers = {
   movies: moviesReducer,
   tickets: ticketsReducer,
   moviePage: moviePageReducer,
   schedule: scheduleReducer,
+  searchPanel: searchPanelReducer,
 };
 
 Object.keys(initialState).forEach(item => {
