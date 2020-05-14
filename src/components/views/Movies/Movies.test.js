@@ -1,27 +1,37 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import Movies from './Movies';
 
 const mockedProps = {
-  movies: [],
+  movies: [
+    {
+      _id: '1',
+      title: 'Title 1',
+    },
+    {
+      _id: '2',
+      title: 'Title 2',
+    }
+  ],
   isLoading: false,
   isError: false,
-  fetchMovies: () => {},
+  fetchMovies: () => console.log('fetch movies'),
   dataFetched: false,
+  page: 1,
+  setPage: () => console.log('set page'),
+  resetFilters: () => console.log('reset filters'),
 };
 
 const mockedPropsWithData = {
+  ...mockedProps,
+  dataFetched: true,
   movies: [{
     _id: '1',
     title: 'Title',
   }],
-  isLoading: false,
-  isError: false,
-  fetchMovies: () => {},
-  dataFetched: true,
 };
 
-const component = mount(<Movies {...mockedProps}/>);
+const component = shallow(<Movies {...mockedProps}/>);
 
 describe('Movies Component', () => {
   it('renders without crashing', () => {
@@ -30,19 +40,51 @@ describe('Movies Component', () => {
 
   it('fetches movies when mounted if movies have not been fetched', () => {
     const mockedFunc = jest.fn();
-    const testProps = {...mockedProps};
+    let testProps = {...mockedProps};
     testProps.fetchMovies = mockedFunc;
-    const componentWhithoutData= mount(<Movies {...testProps} />);
+    const componentWhithoutData= shallow(<Movies {...testProps} />);
     componentWhithoutData.instance();
     expect(mockedFunc).toHaveBeenCalledTimes(1);
+
+    const mockedFunc2 = jest.fn();
+    testProps = {...mockedPropsWithData};
+    testProps.fetchMovies = mockedFunc2;
+    const componentWhithData= shallow(<Movies {...testProps} />);
+    componentWhithData.instance();
+    expect(mockedFunc2).toHaveBeenCalledTimes(0);
   });
 
   it('includes page', () => {
     expect(component.find('Page').exists()).toBeTruthy();
   });
 
-  it('includes filters', () => {
-    const filtersEl = component.find('.filters');
-    expect(filtersEl.exists()).toBeTruthy();
+  it('includes filters panel connected with redux state', () => {
+    const filtersPanelEl = component.find('Connect(FiltersPanel)');
+    expect(filtersPanelEl.exists()).toBeTruthy();
+
+    expect(filtersPanelEl.prop('foundMoviesAmount')).toEqual(mockedProps.movies.length);
+  });
+
+  it('includes movies list with proper props', () => {
+    const movieListEl = component.find('MoviesList');
+    expect(movieListEl.exists()).toBeTruthy();
+    const instance = component.instance();
+    expect(movieListEl.props()).toEqual({
+      movies: instance.getMoviesOnPage(),
+    });
+
+  });
+
+  it('includes pagination with proper props', () => {
+    const paginationEl = component.find('Pagination');
+    expect(paginationEl.exists()).toBeTruthy();
+    const instance = component.instance();
+
+    expect(paginationEl.props()).toEqual({
+      currentPage: mockedProps.page,
+      itemsPerPage: instance.LIMIT_ON_PAGE,
+      allItems: mockedProps.movies.length,
+      paginate: mockedProps.setPage,
+    });
   });
 });

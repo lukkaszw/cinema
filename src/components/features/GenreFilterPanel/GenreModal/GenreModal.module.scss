@@ -1,0 +1,25 @@
+@import '../../../../styles/variables';
+
+.foundInfo {
+  text-align: center;
+  margin: 10px 0;
+
+  .count {
+    font-weight: 700;
+    color: $link-cl;
+
+    &.null {
+      color: $main-red;
+    }
+  }
+}
+
+.info {
+  margin-top: 10px;
+  font-size: 11px;
+
+  span {
+    display: block;
+    margin: 2px 0;
+  }
+}

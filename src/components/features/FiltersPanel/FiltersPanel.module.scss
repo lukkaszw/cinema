@@ -1,0 +1,69 @@
+.root {
+  padding-bottom: 10px;
+
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  
+    .filtersBtn {
+      font-size: 20px;
+    }
+  }
+
+  .sortPanel {
+    padding: 20px 10px 0 10px;
+  }
+
+  
+  .center {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    height: 0;
+    transition: .3s;
+    overflow: hidden;
+
+    .filterName, .genre {
+      color: #ddd;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+
+    .genrePanel {
+      padding-top: 5px;
+
+      .genre {
+        margin: 0;
+      }
+    }
+
+
+    .filterBtns {
+      position: relative;
+
+      &.disabled {
+        opacity: 0;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;;
+        }
+      }
+    }
+
+    &.active {
+      height: 100px;
+    }
+  }
+
+  @media (max-width: 599px) {
+
+  }
+}

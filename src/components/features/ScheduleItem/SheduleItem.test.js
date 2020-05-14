@@ -59,6 +59,7 @@ describe('ScheduleItem component', () => {
         buttons: instance.buttons,
         value: instance.state.filter,
         action: instance.setFilter,
+        variants: [],
       };
       const buttonsListEl = component.find('ButtonsList');
       expect(buttonsListEl.exists()).toBeTruthy();
