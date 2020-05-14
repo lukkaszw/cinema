@@ -14,6 +14,22 @@ const getAll = async (req, res) => {
 
 }
 
+const searchSome = async (req, res) => {
+  const searchedTitle = req.query.title;
+
+  const regexText = new RegExp(searchedTitle, 'i');
+
+  try {
+    const movies = await Movie.find({ title: { $regex:  regexText }})
+      .select('-filters -shows -image -duration -scheduleImg -details -createdAt -updatedAt -__v');
+    console.log(movies.length);
+    res.json(movies);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+
+}
+
 const getOne = async (req, res) => {
   const id = req.params.id;
   try {
@@ -48,4 +64,5 @@ module.exports = {
   getAll,
   getOne,
   createOne,
+  searchSome,
 };

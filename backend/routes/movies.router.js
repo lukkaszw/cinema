@@ -4,6 +4,8 @@ const moviesController = require('../controllers/movies.controller');
 
 router.get('', moviesController.getAll);
 
+router.get('/search', moviesController.searchSome);
+
 router.get('/:id', moviesController.getOne);
 
 router.post('', moviesController.createOne);
