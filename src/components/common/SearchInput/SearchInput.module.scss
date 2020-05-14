@@ -24,4 +24,10 @@
     padding: 0 12px;
     border-left: 1px solid #555;
   }
+
+  @media (max-width: 359px) {
+    .input {
+      width: 200px;
+    }
+  }
 }

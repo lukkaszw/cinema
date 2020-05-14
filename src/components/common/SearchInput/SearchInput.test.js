@@ -35,6 +35,4 @@ describe('SearchInput component', () => {
     expect(iconBtnX.exists()).toBeTruthy();
     expect(iconBtnX.prop('icon')).toEqual(faSearch);
   });
-
-  
 });
