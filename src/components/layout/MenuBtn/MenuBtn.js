@@ -4,7 +4,7 @@ import styles from './MenuBtn.module.scss';
 import clsx from 'clsx';
 
 const MenuBtn = ({ isActive, toggleAction }) => {
-  return ( 
+  return (
     <button
       className={clsx([styles.root, isActive && styles.active])}
       aria-label="Mobile menu button"

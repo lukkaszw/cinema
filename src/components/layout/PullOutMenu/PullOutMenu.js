@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import styles from './PullOutMenu.module.scss';
 
 const PullOutMenu = ({ isActive, links, closeAction }) => {
-  return ( 
+  return (
     <div className={clsx([ styles.root, isActive && styles.active ])}>
       <div className={styles.logo}>
         <Logo 
@@ -58,7 +58,7 @@ const PullOutMenu = ({ isActive, links, closeAction }) => {
       <div className={styles.leftCourtain} />
       <div className={styles.rightCourtain} />
     </div>
-   );
+  );
 }
 
 PullOutMenu.propTypes = {

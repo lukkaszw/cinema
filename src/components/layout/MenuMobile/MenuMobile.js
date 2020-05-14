@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
 import MenuBtn from '../MenuBtn/MenuBtn';
 import PullOutMenu from '../PullOutMenu/PullOutMenu';
-import Backdrop from '../../common/Backdrop/Backdrop';
-import styles from './MenuMobile.module.scss';
+import Portal from './Portal';
 
 import menuLinks from '../../../config/menuLinks';
 
 const MenuMobile = () => {
   const [isOpen, changeIsOpen] = useState(false);
 
-  return ( 
-    <div
-      className={styles.root}
-    >
+  return (
+    <Portal>
       <PullOutMenu 
         links={menuLinks}
         isActive={isOpen}
@@ -22,8 +19,8 @@ const MenuMobile = () => {
         isActive={isOpen}
         toggleAction={() => changeIsOpen(prevIsOpen => !prevIsOpen)}
       />
-    </div>
-   );
+    </Portal>
+  );
 }
  
 export default MenuMobile;
