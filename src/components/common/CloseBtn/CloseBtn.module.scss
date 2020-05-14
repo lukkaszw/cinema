@@ -1,0 +1,9 @@
+@import '../../../styles/variables';
+
+.root {
+  position: absolute;
+  color: $main-red;
+  font-size: 20px;
+  top: 8px;
+  right: 10px;
+}

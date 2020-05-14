@@ -1,12 +1,11 @@
 import React from 'react';
 import Backdrop from '../Backdrop/Backdrop';
-import IconButton from '../IconButton/IconButton';
-import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
-import { createPortal } from 'react-dom';
+import CloseBtn from '../CloseBtn/CloseBtn';
+import { ModalsPortal } from '../../layout/Portals/Portals';
 import styles from './Modal.module.scss';
 
-const Modal = ({ closeAction, children }) => createPortal(
-  <>
+const Modal = ({ closeAction, children }) => (
+  <ModalsPortal>
     <Backdrop 
       isActive={true} 
       closeAction={closeAction}
@@ -15,16 +14,11 @@ const Modal = ({ closeAction, children }) => createPortal(
       <div className={styles.content}>
         {children}
       </div>
-      <div className={styles.closeBtn}>
-        <IconButton 
-          icon={faWindowClose}
-          action={closeAction}
-        />
-      </div>
+      <CloseBtn 
+        closeAction={closeAction}
+      />
     </div>
-  </>
-  ,
-  document.getElementById('modals')
+  </ModalsPortal>
 );
  
 export default Modal;
