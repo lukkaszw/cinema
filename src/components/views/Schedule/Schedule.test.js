@@ -14,7 +14,7 @@ const mockedProps = {
   changeSearchText: () => console.log('change search text'),
 };
 
-describe('Home Component', () => {
+describe('Schedule Component', () => {
   describe('rendering', () => {
     let testedProps = {...mockedProps};
     let component;

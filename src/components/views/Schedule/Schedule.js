@@ -76,7 +76,6 @@ class Schedule extends Component {
                 action={resetSearchText}
                 btnTitle="Cancel"
               />
-              
           }
           <Pagination 
             currentPage={page}
