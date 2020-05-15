@@ -22,13 +22,14 @@ export const setError = () => ({ type: SET_ERROR });
 
 /* async action creators */
 
-export const searchMovie = (searchedTitle) => {
+export const searchMovies = (searchedTitle) => {
   const url = `${api.url}/${api.endpoints.searchMovie}`;
-
   return dispatch => {
     dispatch(startSearching(searchedTitle));
     return axios.get(url, {
-      title: searchedTitle,
+      params: {
+        title: searchedTitle,
+      }
     })
       .then(res => dispatch(setFoundData(res.data)))
       .catch(() => dispatch(setError()));

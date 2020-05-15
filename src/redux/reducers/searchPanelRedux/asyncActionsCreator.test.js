@@ -2,7 +2,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import moxios from 'moxios';
 import {
-  searchMovie
+  searchMovies
 } from './searchPanelRedux';
 import {
   START_SEARCHING,
@@ -49,7 +49,7 @@ describe('SearchPanel reducer async actions', () => {
       { type: SET_FOUND_DATA, payload: response },
     ];
  
-    return store.dispatch(searchMovie(mockedQuery))
+    return store.dispatch(searchMovies(mockedQuery))
       .then(() => {
         expect(store.getActions()).toEqual(expected);
       });
@@ -70,7 +70,7 @@ describe('SearchPanel reducer async actions', () => {
       { type: SET_ERROR },
     ];
 
-    return store.dispatch(searchMovie(mockedQuery))
+    return store.dispatch(searchMovies(mockedQuery))
     .then(() => {
       expect(store.getActions()).toEqual(expected);
     });
