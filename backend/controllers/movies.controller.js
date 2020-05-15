@@ -21,8 +21,7 @@ const searchSome = async (req, res) => {
 
   try {
     const movies = await Movie.find({ title: { $regex:  regexText }})
-      .select('-filters -shows -image -duration -scheduleImg -details -createdAt -updatedAt -__v');
-    console.log(movies.length);
+      .select('-filters -shows -image -duration -scheduleImg -details -categories -createdAt -updatedAt -__v');
     res.json(movies);
   } catch (error) {
     res.status(500).json(error);
