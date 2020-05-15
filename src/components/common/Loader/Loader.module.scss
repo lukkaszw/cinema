@@ -75,6 +75,10 @@ $delta-time: -0.036s;
     }
   }
 
+  &.tiny {
+    @include loaderSize(.6);
+  }
+
   &.small {
     @include loaderSize(.8);
   }
