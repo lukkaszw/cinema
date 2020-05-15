@@ -2,7 +2,13 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import MenuMobile from './MenuMobile';
 
-const component = shallow(<MenuMobile />);
+import menuLinks from '../../../config/menuLinks';
+
+const mockedProps = {
+  openSearchPanel: () => console.log('open search modal'),
+}
+
+const component = shallow(<MenuMobile {...mockedProps}/>);
 
 describe('MenuMobile component', () => {
   it('renders without crashing', () => {
@@ -13,8 +19,11 @@ describe('MenuMobile component', () => {
     expect(component.find('MenuBtn').exists()).toBeTruthy();
   });
 
-  it('includes PullOutMenu', () => {
-    expect(component.find('PullOutMenu').exists()).toBeTruthy();
+  it('includes PullOutMenu with proper props', () => {
+    const pullOutMenuEl = component.find('PullOutMenu');
+    expect(pullOutMenuEl.exists()).toBeTruthy();
+    expect(pullOutMenuEl.prop('links')).toEqual(menuLinks);
+    expect(pullOutMenuEl.prop('openSearchPanel')).toEqual(mockedProps.openSearchPanel);
   });
 
   it('has MenuBtn, PullOutMenu components with prop isActive value as false' ,() => {
@@ -36,7 +45,7 @@ describe('MenuMobile component', () => {
   });
 
   it('update isActive when closeAction in PullOutMenu is loaded', () => {
-    const component2 = shallow(<MenuMobile />);
+    const component2 = shallow(<MenuMobile {...mockedProps}/>);
     const menuBtnEl = component2.find('MenuBtn');
     const pullOutMenuEl = component2.find('PullOutMenu');
     //click menu to open menu:

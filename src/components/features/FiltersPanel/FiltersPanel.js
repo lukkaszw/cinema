@@ -5,7 +5,7 @@ import ButtonsList from '../../features/ButtonsList/ButtonsList';
 import SearchInput from '../../common/SearchInput/SearchInput';
 import SortPanel from '../../common/SortPanel/SortPanel';
 import GenreFilterPanel from '../GenreFilterPanel/GenreFilterPanel';
-import SearchedFilters from './SearchedFiltersList/SearchedFilters';
+import SearchedFilters from './SearchedFilters/SearchedFilters';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import styles from './FiltersPanel.module.scss';

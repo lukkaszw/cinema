@@ -18,6 +18,8 @@ const mockedProps = {
       to: '/about',
     },
   ],
+  closeAction: jest.fn(),
+  openSearchPanel: jest.fn(),
 };
 
 const component = shallow(<PullOutMenu {...mockedProps}/>);
@@ -29,12 +31,12 @@ describe('PullOutMenu component', () => {
 
   it('has not got an active class when prop isActive is default or false', () => {
     expect(component.hasClass('active')).toBeFalsy();
-    const componentWithFalseIsActive = shallow(<PullOutMenu isActive={false} />);
+    const componentWithFalseIsActive = shallow(<PullOutMenu isActive={false} {...mockedProps}/>);
     expect(componentWithFalseIsActive.hasClass('active')).toBeFalsy();
   });
 
   it('has got an active class when prop isActive is true', () => {
-    const componentWithTrueIsActive = shallow(<PullOutMenu isActive={true} />);
+    const componentWithTrueIsActive = shallow(<PullOutMenu isActive={true} {...mockedProps}/>);
     expect(componentWithTrueIsActive.hasClass('active')).toBeTruthy();
   });
 
@@ -52,6 +54,15 @@ describe('PullOutMenu component', () => {
     const iconBtnEl = component.find('IconButton');
     expect(iconBtnEl.exists()).toBeTruthy();
     expect(iconBtnEl.prop('icon')).toEqual(faSearch);
+  });
+
+  it('opens search modal and closes menu when icon button is clicked', () => {
+    expect(mockedProps.closeAction).toHaveBeenCalledTimes(0);
+    expect(mockedProps.openSearchPanel).toHaveBeenCalledTimes(0);
+    const iconBtnEl = component.find('IconButton');
+    iconBtnEl.prop('action')();
+    expect(mockedProps.closeAction).toHaveBeenCalledTimes(1);
+    expect(mockedProps.openSearchPanel).toHaveBeenCalledTimes(1);
   });
 
   it('includes small ButtonLink with title "Sign in" and to "/login"', () => {

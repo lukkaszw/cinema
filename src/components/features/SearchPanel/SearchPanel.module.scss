@@ -1,0 +1,16 @@
+.root {
+  width: 600px;
+  max-width: 100%;
+  min-height: 150px;
+  color: #fff;
+
+  .message {
+    padding: 5px 0;
+    text-align: center;
+  }
+
+  .loader {
+    padding: 20px 0;
+    text-align: center;
+  }
+}

@@ -1,0 +1,52 @@
+@import '../../../styles/variables';
+
+.root {
+  padding: 10px 0;
+  height: 40px;
+
+  .link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 30px;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+
+    .right {
+      display: flex;
+      align-items: center;
+
+      .title {
+        font-size: 15px;
+        margin-left: 20px;
+      }
+    }
+
+ 
+    &:hover {
+      .title {
+        color: $link-cl;
+      }
+    }
+  }
+
+  .image {
+    height: 30px;
+    width: auto;
+  }
+
+  .played {
+    max-width: 40px;
+    padding: 3px; 
+    border-radius: 5px;
+    line-height: 1;
+    font-size: 10px;
+    text-align: center;
+    background-color: green;
+
+    &.soon {
+      background-color: $main-red;
+    }
+  }
+}

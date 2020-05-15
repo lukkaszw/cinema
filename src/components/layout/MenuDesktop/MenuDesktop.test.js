@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import MenuDesktop from './MenuDesktop';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const mockedProps = {
   links: [
@@ -16,7 +17,8 @@ const mockedProps = {
       title: 'About',
       to: '/about',
     },
-  ]
+  ],
+  openSearchPanel: jest.fn(),
 };
 
 const component = shallow(<MenuDesktop {...mockedProps}/>);
@@ -37,8 +39,13 @@ describe('MenuDesktop component', () => {
     expect(buttonLinkEl.prop('title')).toEqual('Sign in');
   });
 
-  it('includes IconButton', () => {
-    expect(component.find('IconButton').exists()).toBeTruthy();
+  it('includes IconButton with proper props', () => {
+    const iconBtnEl = component.find('IconButton');
+    expect(iconBtnEl.exists()).toBeTruthy();
+    expect(iconBtnEl.props()).toEqual({
+      icon: faSearch,
+      action: mockedProps.openSearchPanel,
+    });
   });
 
   it('includes 3 NavLinks related to props links', () => {

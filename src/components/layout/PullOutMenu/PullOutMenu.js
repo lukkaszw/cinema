@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { NavLink } from 'react-router-dom';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Logo from '../Logo/Logo';
@@ -9,7 +9,12 @@ import PropTypes from 'prop-types';
 
 import styles from './PullOutMenu.module.scss';
 
-const PullOutMenu = ({ isActive, links, closeAction }) => {
+const PullOutMenu = ({ isActive, links, closeAction, openSearchPanel }) => {
+  const openPanelCloseMenu = useCallback(() => {
+    openSearchPanel();
+    closeAction();
+  }, [openSearchPanel, closeAction])
+
   return (
     <div className={clsx([ styles.root, isActive && styles.active ])}>
       <div className={styles.logo}>
@@ -49,9 +54,7 @@ const PullOutMenu = ({ isActive, links, closeAction }) => {
         >
           <IconButton 
             icon={faSearch} 
-            action={() => {
-              closeAction();
-            }}
+            action={openPanelCloseMenu}
           />
         </li>
       </ul>
@@ -64,6 +67,7 @@ const PullOutMenu = ({ isActive, links, closeAction }) => {
 PullOutMenu.propTypes = {
   isActive: PropTypes.bool.isRequired,
   links: PropTypes.arrayOf(PropTypes.object).isRequired,
+  openSearchPanel: PropTypes.func.isRequired,
 };
 
 PullOutMenu.defaultProps = {

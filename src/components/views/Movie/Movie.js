@@ -15,6 +15,12 @@ class Movie extends Component {
     this.fetchMovieData();
   }
 
+  componentDidUpdate(prevProps) {
+    if(this.props.match.url !== prevProps.match.url) {
+      this.fetchMovieData();
+    }
+  }
+
   fetchMovieData = () => {
     const movieId = this.props.match.params.id;
     const { data } = this.props;
