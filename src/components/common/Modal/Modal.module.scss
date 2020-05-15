@@ -2,17 +2,33 @@
 
 .root {
   position: fixed;
-  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
+
+  &.center {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &.top {
+    top: 5%;
+  }
+
+  &.high {
+    top: 25%;
+  }
   
   .content {
-    padding: 20px;
+    padding: 40px 20px;
     min-width: 300px;
-    max-width: 95vw;
+    max-width: 90vw;
     background-color: #fff;
-    max-height: 85vh;
+    max-height: 90vh;
     overflow-y: auto;
     color: #000;
+
+    &.dark {
+      background-color: #222;
+    }
   }
 }
