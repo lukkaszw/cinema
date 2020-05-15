@@ -8,7 +8,7 @@ const useSearchedItems = (propsActions, propsValues ) => {
 
   const resetPlayTime = useCallback(() => setPlayTime('all'), [setPlayTime]);
   const resetFilter = useCallback(() => setFilter('all'), [setFilter]);
-  const resetInput = useCallback(() => changeInput(''), [changeInput]);
+  const resetInput = useCallback(() => changeInput({ target: { value: '' }}), [changeInput]);
   const createItem = useCallback((value, removeAction) => ({ value, removeAction }), []);
 
   useEffect(() => {
