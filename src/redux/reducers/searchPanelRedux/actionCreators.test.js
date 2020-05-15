@@ -2,12 +2,14 @@ import {
   startSearching,
   setFoundData,
   setError,
+  resetQuery,
 } from './searchPanelRedux';
 
 import {
   START_SEARCHING,
   SET_FOUND_DATA,
   SET_ERROR,
+  RESET_QUERY,
 } from './searchPanelRedux';
 
 describe('Search panel reducers action creators', () => {
@@ -35,5 +37,12 @@ describe('Search panel reducers action creators', () => {
       type: SET_ERROR, 
     };
     expect(setError()).toEqual(expectedAction);
+  });
+
+  it('creates proper action when user reset query', () => {
+    const expectedAction = {
+      type: RESET_QUERY, 
+    };
+    expect(resetQuery()).toEqual(expectedAction);
   });
 });

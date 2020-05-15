@@ -3,6 +3,7 @@ import {
   START_SEARCHING,
   SET_FOUND_DATA,
   SET_ERROR,
+  RESET_QUERY,
 } from './searchPanelRedux';
 
 const mockedStatePart = {
@@ -15,17 +16,6 @@ const mockedStatePart = {
     },
   },
 };
-
-const mockedData = [
-  {
-    _id: '1',
-    title: 'Title 1',
-  },
-  {
-    _id: '2',
-    title: 'Title 2',
-  },
-]
 
 describe('SearchPanel reducer', () => {
   it('returns the same state if action type is other than defined actions', () => {
@@ -77,6 +67,28 @@ describe('SearchPanel reducer', () => {
       loading: {
         isActive: false,
         isError: true,
+      },
+    });
+  });
+
+  it('returns proper state if user reset query', () => {
+    const stateWithDataAndQuery = {
+      data: [{ _id: '1', title: 'Title 1' }],
+      query: 'dummy query',
+      loading: {
+        isActive: true,
+        isError: false,
+      }
+    }
+    //check if reducer is clean function
+    expect(searchPanelReducer(stateWithDataAndQuery, { type: RESET_QUERY })).not.toBe(stateWithDataAndQuery);
+    //check if reducer returns proper state
+    expect(searchPanelReducer(stateWithDataAndQuery, { type: RESET_QUERY })).toEqual({
+      data: [],
+      query: '',
+      loading: {
+        isActive: false,
+        isError: false,
       },
     });
   });

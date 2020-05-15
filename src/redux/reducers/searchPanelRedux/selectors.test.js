@@ -2,6 +2,7 @@ import {
   getSearchedMovies,
   getIsLoading,
   getIsError,
+  getQuery,
 } from './searchPanelRedux';
 
 const mockedData = [
@@ -15,9 +16,12 @@ const mockedData = [
   }
 ];
 
+const mockedQuery = 'dummy query';
+
 const mockedState = {
   searchPanel: {
     data: mockedData,
+    query: mockedQuery,
     loading: {
       isActive: false,
       isError: false,
@@ -63,6 +67,12 @@ describe('Search Panel reducer - selectors', () => {
       };
 
       expect(getIsError(stateWhenLoading)).toBe(true);
+    });
+  });
+
+  describe('getQuery selector', () => {
+    it('returns proper query state', () => {
+      expect(getQuery(mockedState)).toBe(mockedQuery);
     });
   });
 });

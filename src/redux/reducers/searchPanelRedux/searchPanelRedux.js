@@ -5,6 +5,7 @@ import axios from 'axios';
 export const getSearchedMovies = ({ searchPanel }) => searchPanel.data;
 export const getIsLoading = ({ searchPanel }) => searchPanel.loading.isActive;
 export const getIsError = ({ searchPanel }) => searchPanel.loading.isError;
+export const getQuery = ({ searchPanel }) => searchPanel.query;
 
 /* action name creators */
 const reducerName = 'search-panel';
@@ -14,11 +15,13 @@ const createActionName = name => `app/${reducerName}/${name}`;
 export const START_SEARCHING = createActionName('START_SEARCHING');
 export const SET_FOUND_DATA = createActionName('SET_FOUND_DATA');
 export const SET_ERROR = createActionName('SET_ERROR');
+export const RESET_QUERY = createActionName('RESET_QUERY');
 
 /* action creators */
 export const startSearching = (searchedTitle) => ({ payload: searchedTitle, type: START_SEARCHING });
 export const setFoundData = (data) => ({ payload: data, type: SET_FOUND_DATA });
 export const setError = () => ({ type: SET_ERROR });
+export const resetQuery = () => ({ type: RESET_QUERY });
 
 /* async action creators */
 
@@ -67,6 +70,16 @@ const searchPanelReducer = (statePart = {}, action = {}) => {
           isError: true,
         },
       };
+    }
+    case RESET_QUERY: {
+      return {
+        data: [],
+        query: '',
+        loading: {
+          isActive: false,
+          isError: false,
+        }
+      }
     }
     default:  
       return statePart;
