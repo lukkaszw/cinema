@@ -4,7 +4,7 @@ const menuLinks = [
     to: '/',
   },
   {
-    title: 'Shedule',
+    title: 'Schedule',
     to: '/schedule',
   },
   {
