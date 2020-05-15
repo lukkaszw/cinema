@@ -1,19 +1,14 @@
-/* action creators */
-// export const startSearching = () => ({ type: START_SEARCHING });
-// export const setFoundData = (data) => ({ payload: data, type: SET_FOUND_DATA });
-// export const setError = () => ({ type: SET_ERROR });
-
 import {
   startSearching,
   setFoundData,
   setError,
-} from './searchPanelReducer';
+} from './searchPanelRedux';
 
 import {
   START_SEARCHING,
   SET_FOUND_DATA,
   SET_ERROR,
-} from './searchPanelReducer';
+} from './searchPanelRedux';
 
 describe('Search panel reducers action creators', () => {
   it('creates proper action when user is starting to search', () => {

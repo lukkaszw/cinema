@@ -1,9 +1,9 @@
-import searchPanelReducer from './searchPanelReducer';
+import searchPanelReducer from './searchPanelRedux';
 import {
   START_SEARCHING,
   SET_FOUND_DATA,
   SET_ERROR,
-} from './searchPanelReducer';
+} from './searchPanelRedux';
 
 const mockedStatePart = {
   searchPanel: {

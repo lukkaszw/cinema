@@ -8,7 +8,7 @@ import ticketsReducer from './reducers/ticketsRedux/ticketsRedux';
 import moviesReducer from './reducers/moviesRedux/moviesRedux';
 import moviePageReducer from './reducers/moviePageRedux/moviePageRedux';
 import scheduleReducer from './reducers/scheduleRedux/scheduleRedux';
-import searchPanelReducer from './reducers/searchPanelReducer/searchPanelReducer';
+import searchPanelReducer from './reducers/searchPanelRedux/searchPanelRedux';
 
 const reducers = {
   movies: moviesReducer,

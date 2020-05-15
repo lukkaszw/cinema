@@ -2,7 +2,7 @@ import {
   getSearchedMovies,
   getIsLoading,
   getIsError,
-} from './searchPanelReducer';
+} from './searchPanelRedux';
 
 const mockedData = [
   {

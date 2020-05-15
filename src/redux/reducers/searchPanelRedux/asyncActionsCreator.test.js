@@ -3,12 +3,12 @@ import thunk from 'redux-thunk';
 import moxios from 'moxios';
 import {
   searchMovie
-} from './searchPanelReducer';
+} from './searchPanelRedux';
 import {
   START_SEARCHING,
   SET_FOUND_DATA,
   SET_ERROR,
-} from './searchPanelReducer';
+} from './searchPanelRedux';
 
 const initialState =   {
   data: [],
