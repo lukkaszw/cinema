@@ -51,6 +51,15 @@ const initialState = {
       isError: false,
     }
   },
+  formsState: {
+    sending: {
+      isActive: false,
+      isError: false,
+      isSuccess: false,
+    },
+    message: '',
+    validation: [],
+  }
 };
 
 export default initialState;

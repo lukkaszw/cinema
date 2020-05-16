@@ -3,7 +3,8 @@ const api = {
   endpoints: {
     movies: 'movies',
     schedule: 'schedule',
-    searchMovie: 'movies/search'
+    searchMovie: 'movies/search',
+    messages: 'messages',
   }
 };
 

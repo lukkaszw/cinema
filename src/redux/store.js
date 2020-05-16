@@ -9,6 +9,7 @@ import moviesReducer from './reducers/moviesRedux/moviesRedux';
 import moviePageReducer from './reducers/moviePageRedux/moviePageRedux';
 import scheduleReducer from './reducers/scheduleRedux/scheduleRedux';
 import searchPanelReducer from './reducers/searchPanelRedux/searchPanelRedux';
+import formsReducer from './reducers/formsRedux/formsRedux';
 
 const reducers = {
   movies: moviesReducer,
@@ -16,6 +17,7 @@ const reducers = {
   moviePage: moviePageReducer,
   schedule: scheduleReducer,
   searchPanel: searchPanelReducer,
+  formsState: formsReducer,
 };
 
 Object.keys(initialState).forEach(item => {
