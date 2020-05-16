@@ -21,7 +21,7 @@ const Button = ({ children, variants, action, disabled }) => {
 Button.propTypes = {
   children: PropTypes.node,
   variants: PropTypes.arrayOf(PropTypes.string),
-  action: PropTypes.func.isRequired,
+  action: PropTypes.func,
   disabled: PropTypes.bool,
 };
 
