@@ -4,6 +4,7 @@ import Home from './components/views/Home/Home.container';
 import Schedule from './components/views/Schedule/Schedule.container';
 import Movies from './components/views/Movies/Movies.container';
 import Order from './components/views/Order/Order';
+import About from './components/views/About/About';
 import Movie from './components/views/Movie/Movie.container';
 import MovieSchedule from './components/views/MovieSchedule/MovieSchedule';
 import MainLayout from './components/layout/MainLayout/MainLayout';
@@ -19,6 +20,7 @@ function App() {
           <Route exact path="/schedule" component={Schedule} />
           <Route exact path="/schedule/:id" component={MovieSchedule} />
           <Route exact path="/order/:id" component={Order} />
+          <Route exact path="/about" component={About} />
         </Switch>
       </MainLayout>
     </BrowserRouter>
