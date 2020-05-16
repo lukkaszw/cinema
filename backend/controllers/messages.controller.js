@@ -13,10 +13,12 @@ const validateMessage = (req, res, next) => {
   }
 
   if(validation.length > 0) {
-    return res.json({
-      message: 'Incorrect fields values!',
+    res.json({ 
+      isError: true,
+      message: 'Incorrect fields values!',      
       validation,
-    })
+    });
+    return;
   }
   next();
 }
@@ -27,14 +29,13 @@ const createOne = async (req, res) => {
   try {
     const newMessage = new Message({ email, message });
     await newMessage.save();
-    res.json({
-      message: 'Thank you for your message!',
+
+    return res.json({
+      message: 'Massege has sended correctly!',
     });
+
   } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      message: 'We are sorry. Internal server error.',
-    });
+    res.status(500).json(error);
   }
 }
 
