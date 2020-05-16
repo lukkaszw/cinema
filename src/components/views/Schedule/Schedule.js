@@ -50,20 +50,25 @@ class Schedule extends Component {
       <Page isFetching={isLoading} isFetchingError={isError} noHeader>
         <Container>
           <div className={styles.filters}>
-            <SearchInput 
-              placeholder="Search by title"
-              onChange={handleChangeSearchText}
-              value={searchText}
-              onSubmit={onSubmit}
-            />
+            <div className={styles.filter}>
+              <SearchInput 
+                placeholder="Search by title"
+                onChange={handleChangeSearchText}
+                value={searchText}
+                onSubmit={onSubmit}
+              />
+            </div>
+    
             {
               searchText &&
-                <SearchedByPanel>
-                  <SearchedByItem
-                    value={searchText}
-                    removeAction={resetSearchText}
-                  />
-                </SearchedByPanel>
+                <div className={styles.filter}>
+                  <SearchedByPanel>
+                    <SearchedByItem
+                      value={searchText}
+                      removeAction={resetSearchText}
+                    />
+                  </SearchedByPanel>
+                </div>
             }
           </div>
           <ScheduleList 
