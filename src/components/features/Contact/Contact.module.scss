@@ -1,0 +1,32 @@
+@import '../../../styles/variables';
+
+.root {
+  width: 100%;
+  display: flex;
+
+  .info {
+    flex: 3;
+    padding: 0 20px;
+
+    min-width: 280px;
+    text-align: center;
+  }
+
+  .map {
+    flex: 4;
+    min-width: 280px;
+  }
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+
+    .info {
+      padding: 0;
+    }
+
+    .map {
+      margin-top: 20px;
+      height: 250px;
+    }
+  }
+}

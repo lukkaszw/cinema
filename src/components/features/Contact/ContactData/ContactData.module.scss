@@ -1,0 +1,11 @@
+@import '../../../../styles/variables';
+
+.contactItem {
+  margin: 10px 0;
+}
+
+.phone {
+  margin-left: 10px;
+  text-decoration: none;
+  color: $link-cl;
+}
