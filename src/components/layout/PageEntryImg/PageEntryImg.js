@@ -12,7 +12,10 @@ const PageEntryImg = ({ img, title, imagePortrait }) => {
         }
         <img className={styles.photo} src={img} alt="page-header" />
       </picture>
-      <h1 className={styles.title}>{title}</h1>
+      {
+        title &&
+          <h1 className={styles.title}>{title}</h1>
+      }
     </div>
    );
 }
