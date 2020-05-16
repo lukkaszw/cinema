@@ -36,7 +36,7 @@ export const sendData = (url, data) => {
           dispatch(setSuccess(res.data.message));
         }
       })
-      .catch((error) => {
+      .catch(() => {
         dispatch(setError({ error: 'Internal server error. Try again later.' }))
       });
   }
@@ -56,7 +56,6 @@ const formsReducer = (statePart = {}, action = {}) => {
         };
       }
       case SET_SUCCESS: {
-        console.log('jest tutaj');
         return {
           sending: {
             isActive: false,
