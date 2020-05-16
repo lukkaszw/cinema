@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import PageEntryImg from '../PageEntryImg/PageEntryImg';
 import styles from './PageHeader.module.scss';
 
-const PageHedaer = ({ img, imgPortrait, title }) => {
+const PageHeader = ({ img, imgPortrait, title }) => {
   return ( 
     <header
       className={styles.root}
@@ -17,10 +17,10 @@ const PageHedaer = ({ img, imgPortrait, title }) => {
    );
 }
 
-PageHedaer.propTypes = {
+PageHeader.propTypes = {
   title: PropTypes.string,
   img: PropTypes.string,
   imgPortrait: PropTypes.string,
 }
  
-export default PageHedaer;
+export default PageHeader;
