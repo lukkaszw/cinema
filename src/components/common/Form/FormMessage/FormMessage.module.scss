@@ -1,0 +1,32 @@
+@import '../../../../styles/variables';
+
+.root {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  padding: 10px 10px 5px 10px;
+  max-width: 90%;
+  color: #000;
+
+  .confirmMsg {
+    display: block;
+    color: green;
+    font-size: 20px;
+  }
+
+  .sign {
+    font-size: 18px;
+    margin-right: 6px;
+    color: $link-cl;
+  }
+
+  &.error {
+    color: $main-red;
+
+    .sign {
+      color: $main-red;
+    }
+  }
+}
