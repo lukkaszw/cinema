@@ -83,3 +83,39 @@
   opacity: 0;
   animation: show 1s .1s both;
 }
+
+@mixin inputs {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  padding: 10px 0;
+
+  input, textarea {
+    width: 100%;
+    font-size: 16px;
+    background-color: $inputs-cl;
+    color: inherit;
+    outline: none;
+
+    &:focus {
+      border-color: $link-cl; 
+    }
+  }
+
+  .message {
+    position: absolute;
+    top: -3px;
+    left: 0;
+    font-size: 10px;
+  }
+
+  &.error {
+    input, textarea {
+      border-color: $main-red;
+    }
+
+    .message {
+      color: $main-red;
+    }
+  }
+}
