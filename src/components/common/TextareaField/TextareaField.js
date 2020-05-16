@@ -19,7 +19,7 @@ const TextareaField = ({ value, onChange, placeholder, isError, message, maxChar
          </span>
       }
       {
-        maxChars &&
+        (maxChars && value.length > 0) &&
           <span className={styles.maxChars}>
             {`${value.length}/${maxChars}`}
           </span>
