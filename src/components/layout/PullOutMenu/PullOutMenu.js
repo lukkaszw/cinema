@@ -29,7 +29,7 @@ const PullOutMenu = ({ isActive, links, closeAction, openSearchPanel }) => {
           <ButtonLink 
             title='Sign in'
             size='small'
-            to='/login'
+            to='/auth'
             secondaryAction={closeAction}
           />
         </li>

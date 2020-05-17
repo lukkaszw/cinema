@@ -65,12 +65,12 @@ describe('PullOutMenu component', () => {
     expect(mockedProps.openSearchPanel).toHaveBeenCalledTimes(1);
   });
 
-  it('includes small ButtonLink with title "Sign in" and to "/login"', () => {
+  it('includes small ButtonLink with title "Sign in" and to "/auth"', () => {
     const btnLinkEl = component.find('ButtonLink');
     expect(btnLinkEl.exists()).toBeTruthy();
     expect(btnLinkEl.prop('size')).toBe('small');
     expect(btnLinkEl.prop('title')).toBe('Sign in');
-    expect(btnLinkEl.prop('to')).toBe('/login');
+    expect(btnLinkEl.prop('to')).toBe('/auth');
   });
 
   it('includes links list', () => {

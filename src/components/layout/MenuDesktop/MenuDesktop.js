@@ -41,7 +41,7 @@ const MenuDesktop = ({ links, openSearchPanel }) => {
         className={styles.item}
       >
         <ButtonLink 
-          to="/login"
+          to="/auth"
           title="Sign in"
           size="small"
         />
