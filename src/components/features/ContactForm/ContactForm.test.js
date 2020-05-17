@@ -6,6 +6,7 @@ const mockedProps = {
   sendData: jest.fn(),
   emailErrorMsg: '',
   messageErrorMsg: '',
+  resetForm: () => {},
 }
 
 const mockedPropsWithErrors = {

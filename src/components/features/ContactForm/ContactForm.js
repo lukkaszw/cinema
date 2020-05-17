@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import Button from '../../common/Button/Button';
 import Form from '../../common/Form/Form.container';
 import InputField from '../../common/InputField/InputField';
@@ -7,10 +7,11 @@ import useContactForm from './useContactForm';
 import PropTypes from 'prop-types';
 import styles from './ContactForm.module.scss';
 
-const ContactForm = ({ sendData, emailErrorMsg, messageErrorMsg }) => {
+const ContactForm = ({ sendData, emailErrorMsg, messageErrorMsg, resetForm }) => {
   const { message, email, onChangeMessage, onChangeEmail } = useContactForm();
   const onSubmit = useCallback(() => sendData({ message, email }), [message, email, sendData]);
-
+  useEffect(() => () => resetForm(), [resetForm]);
+  
   return ( 
     <div className={styles.root}>
       <Form 
@@ -49,6 +50,7 @@ ContactForm.propTypes = {
   sendData: PropTypes.func.isRequired,  
   emailErrorMsg: PropTypes.string, 
   messageErrorMsg: PropTypes.string,
+  resetForm: PropTypes.func.isRequired,
 };
  
 export default ContactForm;

@@ -6,8 +6,6 @@ import styles from './Form.module.scss';
 
 const Form = ({ onSubmit, isSending, isError, isSuccess, message, resetMessage, children }) => {
 
-  useEffect(() => () => resetMessage(), [resetMessage]);
-
   const submitAction = useCallback((e) => {
     e.preventDefault();
     onSubmit();
