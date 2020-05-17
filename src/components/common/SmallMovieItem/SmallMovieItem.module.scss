@@ -23,10 +23,30 @@
       }
     }
 
+    .played {
+      max-width: 40px;
+      padding: 3px; 
+      padding-top: 1px;
+      border-radius: 5px;
+      font-size: 10px;
+      text-align: center;
+      background-color: green;
+      color: #fff;
+      transition: .1s;
+  
+      &.soon {
+        background-color: $main-red;
+      }
+    }
+
  
     &:hover {
       .title {
         color: $link-cl;
+      }
+
+      .played {
+        transform: scale(1.2);
       }
     }
   }
@@ -34,19 +54,5 @@
   .image {
     height: 30px;
     width: auto;
-  }
-
-  .played {
-    max-width: 40px;
-    padding: 3px; 
-    border-radius: 5px;
-    line-height: 1;
-    font-size: 10px;
-    text-align: center;
-    background-color: green;
-
-    &.soon {
-      background-color: $main-red;
-    }
   }
 }
