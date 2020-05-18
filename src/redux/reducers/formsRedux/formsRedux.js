@@ -8,7 +8,7 @@ export const getMessage = ({ formsState }) => formsState.message;
 export const getValidation = ({ formsState }) => formsState.validation;
 
 /* action name creators */
-const reducerName = 'movie-page';
+const reducerName = 'forms';
 const createActionName = name => `app/${reducerName}/${name}`;
 
 /* action types */
