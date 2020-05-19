@@ -1,27 +1,4 @@
 const Message = require('../models/message');
-const validator = require('validator');
-
-const validateMessage = (req, res, next) => {
-  const { email, message } = req.body;
-  const validation = [];
-  if(!validator.isEmail(email)) {
-    validation.push({ name: 'email', error: 'Incorrect email address!' });
-  }
-
-  if(message.length > 1000) {
-    validation.push({ name: 'message', error: 'To long message (1000 characters allowed)!'});
-  }
-
-  if(validation.length > 0) {
-    res.json({ 
-      isError: true,
-      message: 'Incorrect fields values!',      
-      validation,
-    });
-    return;
-  }
-  next();
-}
 
 const createOne = async (req, res) => {
   const { email, message } = req.body;
@@ -35,6 +12,13 @@ const createOne = async (req, res) => {
     });
 
   } catch (error) {
+    if(error.errors) {
+      return res.json({
+        isError: true,
+        userFault: true,
+        message: 'Incorrect data. Correct it and try again!',
+      });
+    }
     res.status(500).json(error);
   }
 }
@@ -42,5 +26,4 @@ const createOne = async (req, res) => {
 
 module.exports = {
   createOne,
-  validateMessage,
 };
