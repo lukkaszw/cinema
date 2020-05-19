@@ -65,7 +65,6 @@ describe('SearchPanel component', () => {
     expect(modalEl.exists()).toBeTruthy();
     expect(modalEl.prop('closeAction')).toEqual(initMockedProps.closeAction);
     expect(modalEl.prop('renderPlace')).toEqual('modals-after-menu');
-    expect(modalEl.prop('variant')).toEqual('dark');
   });
 
   it('includes SearchInput with proper props', () => {

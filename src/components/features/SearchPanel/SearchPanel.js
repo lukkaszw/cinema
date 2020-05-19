@@ -30,7 +30,6 @@ const SearchPanel = ({ closeAction, isLoading, resetQuery, isError, movies, sear
       closeAction={closeAction}
       renderPlace='modals-after-menu'
       position="top"
-      variant="dark"
     >
       <div className={styles.root}>
         <SearchInput 
@@ -39,12 +38,14 @@ const SearchPanel = ({ closeAction, isLoading, resetQuery, isError, movies, sear
           onSubmit={onSubmit}
           placeholder="Search movie by title"
         />
-        <SearchedByPanel>
-          {
-            query &&
-              <SearchedByItem value={query} removeAction={resetQuery}/>
-          }
-        </SearchedByPanel>
+        <div className={styles.searchedByPanel}>
+          <SearchedByPanel>
+            {
+              query &&
+                <SearchedByItem value={query} removeAction={resetQuery}/>
+            }
+          </SearchedByPanel>
+        </div>
         {
           message && 
             <h4 className={styles.message}>{message}</h4>
