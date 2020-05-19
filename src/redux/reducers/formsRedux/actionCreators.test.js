@@ -15,10 +15,13 @@ import {
 
 describe('Forms reducer action creators', () => {
   it('creates proper action when user starts to send data', () => {
+    const expectedDest = 'contact-form';
+
     const expectedAction = {
       type: START_SENDING,
+      payload: expectedDest,
     };
-    expect(startSending()).toEqual(expectedAction);
+    expect(startSending(expectedDest)).toEqual(expectedAction);
   });
 
   it('creates proper action when sending was successful', () => {
@@ -32,10 +35,7 @@ describe('Forms reducer action creators', () => {
   });
 
   it('creates proper action when error occured', () => {
-    const payload = {
-      error: 'Error!',
-      validators:[{ name: 'name', error: 'Valid name!' }],
-    };
+    const payload = 'Error!';
 
     const expectedAction = {
       payload,

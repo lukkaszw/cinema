@@ -74,7 +74,6 @@ describe('Forms Reducer async actions', () => {
     const response = {
       isError: true,
       message: 'user error!',
-      validation: [{ name: 'name', error: 'Invalid name!' }],
     };
 
     const store = makeMockStore();
@@ -85,7 +84,7 @@ describe('Forms Reducer async actions', () => {
 
     const expected = [
       { type: START_SENDING },
-      { type: SET_ERROR, payload: { error: response.message, validation: response.validation } },
+      { type: SET_ERROR, payload: response.message },
     ];
  
     return store.dispatch(sendData(mockedUrl, mockedData))
@@ -108,7 +107,7 @@ describe('Forms Reducer async actions', () => {
 
     const expected = [
       { type: START_SENDING },
-      { type: SET_ERROR, payload: { error: 'Internal server error. Try again later.' } },
+      { type: SET_ERROR, payload: 'Internal server error. Try again later.' },
     ];
  
     return store.dispatch(sendData(mockedUrl, mockedData))

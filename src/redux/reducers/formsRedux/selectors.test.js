@@ -4,11 +4,13 @@ import {
   getIsSuccess,
   getMessage,
   getValidation,
+  getDestination,
 } from './formsRedux';
 
 
 const mockedInitialState = {
   formsState: {
+    destination: 'some-destination',
     sending: {
       isActive: false,
       isError: false,
@@ -63,26 +65,34 @@ describe('Forms reducer - selectors', () => {
   });
 
   describe('getIsError', () => {
-    expect(getIsError(mockedInitialState)).toBe(false);
-    expect(getIsError(stateWhenError)).toBe(true);
+    it('returns proper error state', () => {
+      expect(getIsError(mockedInitialState)).toBe(false);
+      expect(getIsError(stateWhenError)).toBe(true);
+    });
+
   });
 
   describe('getIsSuccess', () => {
-    expect(getIsSuccess(mockedInitialState)).toBe(false);
-    expect(getIsSuccess(stateWhenSuccess)).toBe(true);
-  })
+    it('returns proper success state', () => {
+      expect(getIsSuccess(mockedInitialState)).toBe(false);
+      expect(getIsSuccess(stateWhenSuccess)).toBe(true);
+    });
+
+  });
 
   describe('getMessage', () => {
-    expect(getMessage(mockedInitialState)).toBe('');
-    const expectedErrorMsg = 'Error!';
-    expect(getMessage(stateWhenError)).toBe(expectedErrorMsg);
-    const expectedSuccessMsg = 'Success!';
-    expect(getMessage(stateWhenSuccess)).toBe(expectedSuccessMsg);
+    it('returns proper message', () => {
+      expect(getMessage(mockedInitialState)).toBe('');
+      const expectedErrorMsg = 'Error!';
+      expect(getMessage(stateWhenError)).toBe(expectedErrorMsg);
+      const expectedSuccessMsg = 'Success!';
+      expect(getMessage(stateWhenSuccess)).toBe(expectedSuccessMsg);
+    });
   })
 
-  describe('getValidation', () => {
-    expect(getValidation(mockedInitialState)).toEqual([]);
-    const expecetValidation = [{ name: 'name', error: 'Valid name!' }];
-    expect(getValidation(stateWhenError)).toEqual(expecetValidation);
-  });
+  describe('getDestination', () => {
+    it('returns proper destination', () => {
+      expect(getDestination(mockedInitialState)).toBe('some-destination');
+    });
+  })
 })

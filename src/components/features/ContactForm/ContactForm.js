@@ -7,9 +7,8 @@ import useContactForm from './useContactForm';
 import PropTypes from 'prop-types';
 import styles from './ContactForm.module.scss';
 
-const ContactForm = ({ sendData, emailErrorMsg, messageErrorMsg, resetForm }) => {
-  const { message, email, onChangeMessage, onChangeEmail } = useContactForm();
-  const onSubmit = useCallback(() => sendData({ message, email }), [message, email, sendData]);
+const ContactForm = ({ sendData, resetForm }) => {
+  const { message, email, emailError, messageError,  onChangeMessage, onChangeEmail, onSubmit } = useContactForm(sendData);
   useEffect(() => () => resetForm(), [resetForm]);
   
   return ( 
@@ -23,8 +22,8 @@ const ContactForm = ({ sendData, emailErrorMsg, messageErrorMsg, resetForm }) =>
             type='email'
             onChange={onChangeEmail}
             placeholder='Your email address'
-            isError={!!emailErrorMsg}
-            message={emailErrorMsg}
+            isError={!!emailError}
+            message={emailError}
           />
         </div>
         <div className={styles.textarea}>
@@ -32,9 +31,9 @@ const ContactForm = ({ sendData, emailErrorMsg, messageErrorMsg, resetForm }) =>
             value={message}
             onChange={onChangeMessage}
             placeholder='Your message'
-            isError={!!messageErrorMsg}
-            message={messageErrorMsg}
             maxChars={1000}
+            isError={!!messageError}
+            message={messageError}
           />
         </div>
 
@@ -48,8 +47,6 @@ const ContactForm = ({ sendData, emailErrorMsg, messageErrorMsg, resetForm }) =>
 
 ContactForm.propTypes = {
   sendData: PropTypes.func.isRequired,  
-  emailErrorMsg: PropTypes.string, 
-  messageErrorMsg: PropTypes.string,
   resetForm: PropTypes.func.isRequired,
 };
  

@@ -5,7 +5,7 @@ export const getIsSending = ({ formsState }) => formsState.sending.isActive;
 export const getIsError = ({ formsState }) => formsState.sending.isError;
 export const getIsSuccess = ({ formsState }) => formsState.sending.isSuccess;
 export const getMessage = ({ formsState }) => formsState.message;
-export const getValidation = ({ formsState }) => formsState.validation;
+export const getDestination = ({ formsState }) => formsState.destination;
 
 /* action name creators */
 const reducerName = 'forms';
@@ -18,26 +18,26 @@ export const SET_SUCCESS = createActionName('SET_SUCCESS');
 export const RESET_ALL = createActionName('RESET_ALL');
 
 /* action creators */
-export const startSending = () => ({ type: START_SENDING });
+export const startSending = (payload) => ({ payload, type: START_SENDING });
 export const setError = (payload) => ({ payload, type: SET_ERROR });
 export const setSuccess = (payload) => ({ payload, type: SET_SUCCESS });
 export const resetAll = () => ({ type: RESET_ALL })
 
 /* thunk actions creators */
-export const sendData = (url, data) => {
+export const sendData = (url, data, destination) => {
   
   return dispatch => {
-    dispatch(startSending());
+    dispatch(startSending(destination));
     return axios.post(url, data)
       .then(res => {
         if(res.data.isError) {
-          dispatch(setError({ error: res.data.message, validation: res.data.validation || [] }))
+          dispatch(setError(res.data.message))
         } else {
           dispatch(setSuccess(res.data.message));
         }
       })
       .catch(() => {
-        dispatch(setError({ error: 'Internal server error. Try again later.' }))
+        dispatch(setError('Internal server error. Try again later.'))
       });
   }
 }
@@ -46,46 +46,46 @@ const formsReducer = (statePart = {}, action = {}) => {
     switch(action.type) {
       case START_SENDING: {
         return {
+          destination: action.payload,
           sending: {
             isActive: true,
             isError: false,
             isSuccess: false,
           },
           message: '',
-          validation: [],
         };
       }
       case SET_SUCCESS: {
         return {
+          ...statePart,
           sending: {
             isActive: false,
             isError: false,
             isSuccess: true,
           },
           message: action.payload,
-          validation: [],
         }
       }
       case SET_ERROR: {
         return {
+          ...statePart,
           sending: {
             isActive: false,
             isError: true,
             isSuccess: false,
           },
-          message: action.payload.error,
-          validation: action.payload.validation,
+          message: action.payload,
         }
       }
       case RESET_ALL: {
         return {
+          destination: null,
           sending: {
             isActive: false,
             isError: false,
             isSuccess: false,
           },
           message: '',
-          validation: [],
         };
       }
       default: 

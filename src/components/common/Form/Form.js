@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import Loader from '../Loader/Loader';
 import FormMessage from './FormMessage/FormMessage';
 import PropTypes from 'prop-types';

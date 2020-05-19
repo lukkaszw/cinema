@@ -1,4 +1,7 @@
 const initialState = {
+  auth: {
+    token: null,
+  },
   movies: {
     data: [],
     filtersFor: {
@@ -52,13 +55,13 @@ const initialState = {
     }
   },
   formsState: {
+    destination: null,
     sending: {
       isActive: false,
       isError: false,
       isSuccess: false,
     },
     message: '',
-    validation: [],
   }
 };
 
