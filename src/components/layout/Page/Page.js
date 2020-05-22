@@ -29,7 +29,9 @@ const Page = ({ isFetching, isFetchingError, noHeader, children }) => {
 }
 
 Page.propTypes = {
-  isFetching: PropTypes.bool.isRequired,
+  isFetching: PropTypes.bool,
+  isFetchingError: PropTypes.bool,
+  noHeader: PropTypes.bool,
 };
  
 export default Page;

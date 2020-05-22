@@ -2,10 +2,14 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Navigation from './Navigation';
 
+const mockedProps = {
+  isAuth: false,
+};
+
 let component; 
 describe('Navigation component', () => {
   beforeEach(() => {
-    component = shallow(<Navigation />);
+    component = shallow(<Navigation {...mockedProps}/>);
   });
 
   it('renders without crashing', () => {

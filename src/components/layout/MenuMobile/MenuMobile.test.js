@@ -5,6 +5,7 @@ import MenuMobile from './MenuMobile';
 import menuLinks from '../../../config/menuLinks';
 
 const mockedProps = {
+  isAuth: false,
   openSearchPanel: () => console.log('open search modal'),
 }
 

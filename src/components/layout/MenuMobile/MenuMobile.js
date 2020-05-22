@@ -6,12 +6,13 @@ import PropTypes from 'prop-types';
 
 import menuLinks from '../../../config/menuLinks';
 
-const MenuMobile = ({ openSearchPanel }) => {
+const MenuMobile = ({ isAuth, openSearchPanel }) => {
   const [isOpen, changeIsOpen] = useState(false);
 
   return (
     <MenuPortal>
       <PullOutMenu 
+        isAuth={isAuth}
         links={menuLinks}
         isActive={isOpen}
         closeAction={() => changeIsOpen(false)}
@@ -26,6 +27,7 @@ const MenuMobile = ({ openSearchPanel }) => {
 }
 
 MenuMobile.propTypes = {
+  isAuth: PropTypes.bool.isRequired,
   openSearchPanel: PropTypes.func.isRequired,
 };
  

@@ -11,17 +11,6 @@
   background-color: $mobile-menu-cl;
   transition: .3s;
 
-  .buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 0;
-
-    .btn {
-      margin: 0 20px;
-    }
-  }
-
   .logo {
     position: absolute;
     top: 20px;
@@ -29,13 +18,29 @@
     transform: translateX(-50%);
   }
 
-  .list {
+  .links {
     @include centered;
     opacity: 0;
-    list-style: none;
-    text-align: center;
     transition: .3s .6s;
 
+    .iconLinks {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 20px;
+      width: 120px;
+      margin-bottom: 40px;
+    }
+
+    .signInBtn {
+      font-size: 18px;
+    }
+  }
+
+  .list {
+    list-style: none;
+    text-align: center;
+  
     .item {
       margin-bottom: 20px;
     }
@@ -84,7 +89,7 @@
   &.active {
     transform: translate(-50%, -50%);
 
-    .list {
+    .links {
       opacity: 1;
     }
 
