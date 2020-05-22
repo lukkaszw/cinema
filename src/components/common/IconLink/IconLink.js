@@ -5,13 +5,20 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import styles from './IconLink.module.scss';
 
-const IconLink = ({ to, outside, icon, circle, specialClass }) => {
+const IconLink = ({ to, outside, icon, circle, specialClass, mobile }) => {
+  const classes = [
+    styles.root, 
+    circle && styles.circle, 
+    specialClass && styles[specialClass],
+    mobile && styles.mobile
+  ];
+
   return (
     <>
       {
         outside ? 
           <a 
-            className={clsx([styles.root, circle && styles.circle, specialClass && styles[specialClass]])}
+            className={clsx(classes)}
             href={to}
             target="__blank"
           >
@@ -19,7 +26,7 @@ const IconLink = ({ to, outside, icon, circle, specialClass }) => {
           </a>
           :
           <Link
-            className={clsx([styles.root, circle && styles.circle])}
+            className={clsx(classes)}
             to={to}
           >
             <FontAwesomeIcon icon={icon} />

@@ -3,6 +3,7 @@
 .root {
   color: inherit;
   font-size: inherit;
+  transition: .2s;
 
   &.circle {
     position: relative;
@@ -13,6 +14,14 @@
     background-color: #fff;
     color: #000;
     line-height: 30px;
+  }
+
+  &:hover.user, &.user.mobile {
+    color: $link-cl;
+  }
+
+  &:hover.logout, &.logout.mobile {
+    color: $main-red;
   }
 
   &:hover.facebook {
