@@ -8,7 +8,8 @@ const url = process.env.NODE_ENV === 'production' ?
 
 mongoose.connect(url, {
   useNewUrlParser: true, 
-  useUnifiedTopology: true 
+  useUnifiedTopology: true,
+  useCreateIndex: true,
 });
 
 const db = mongoose.connection;
