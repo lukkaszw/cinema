@@ -10,7 +10,7 @@ const mockedProps = {
   isError: false,
   isSuccess: false,
   message: 'Some message',
-  resetMessage: jest.fn(),
+  resetForm: jest.fn(),
 };
 
 const component = shallow(<Form {...mockedProps}><MockedComponent /></Form>);
@@ -53,7 +53,7 @@ describe('Form component', () => {
     expect(formMsgEl.exists()).toBeTruthy();
     const expectedPropsWhenSuccess = {
       isError: false,
-      resetMessage: mockedProps.resetMessage,
+      resetMessage: mockedProps.resetForm,
       message: mockedProps.message,
     };
     expect(formMsgEl.props()).toEqual(expectedPropsWhenSuccess);

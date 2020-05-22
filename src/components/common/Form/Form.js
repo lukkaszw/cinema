@@ -4,7 +4,7 @@ import FormMessage from './FormMessage/FormMessage';
 import PropTypes from 'prop-types';
 import styles from './Form.module.scss';
 
-const Form = ({ onSubmit, isSending, isError, isSuccess, message, resetMessage, children }) => {
+const Form = ({ onSubmit, isSending, isError, isSuccess, message, resetForm, children }) => {
 
   const submitAction = useCallback((e) => {
     e.preventDefault();
@@ -30,7 +30,7 @@ const Form = ({ onSubmit, isSending, isError, isSuccess, message, resetMessage, 
           <FormMessage 
             isError={isError}
             message={message}
-            resetMessage={resetMessage}
+            resetMessage={resetForm}
           />
       }
     </form>
@@ -43,7 +43,7 @@ Form.propTypes = {
   isError: PropTypes.bool,
   isSuccess:PropTypes.bool,
   message: PropTypes.string,
-  resetMessage: PropTypes.func,
+  resetForm: PropTypes.func,
 };
  
 export default Form;
