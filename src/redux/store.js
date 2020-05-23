@@ -11,6 +11,7 @@ import scheduleReducer from './reducers/scheduleRedux/scheduleRedux';
 import searchPanelReducer from './reducers/searchPanelRedux/searchPanelRedux';
 import formsReducer from './reducers/formsRedux/formsRedux';
 import authReducer from './reducers/authRedux/authRedux';
+import userReducer from './reducers/userRedux/userRedux';
 
 const reducers = {
   movies: moviesReducer,
@@ -20,6 +21,7 @@ const reducers = {
   searchPanel: searchPanelReducer,
   formsState: formsReducer,
   auth: authReducer,
+  user: userReducer,
 };
 
 Object.keys(initialState).forEach(item => {

@@ -1,4 +1,10 @@
 const api = {
+  user: {
+    url: process.env.NODE_ENV === 'production' ? '/user' : 'http://localhost:8000/user',
+    endpoints: {
+      data: 'data',
+    },
+  },
   auth: {
     url: process.env.NODE_ENV === 'production' ? '/auth' : 'http://localhost:8000/auth',
     endpoints: {

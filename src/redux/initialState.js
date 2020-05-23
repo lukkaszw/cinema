@@ -2,6 +2,13 @@ const initialState = {
   auth: {
     token: null,
   },
+  user: {
+    data: {},
+    loading: {
+      isActive: false,
+      isError: false,
+    },
+  },
   movies: {
     data: [],
     filtersFor: {
