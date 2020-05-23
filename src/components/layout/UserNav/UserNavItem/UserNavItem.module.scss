@@ -1,0 +1,42 @@
+@import '../../../../styles/variables';
+
+.root {
+  border-right: 1px solid #555;
+
+  &:last-child {
+    border-right: none;
+
+    .link {
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+  }
+
+  &:first-child {
+
+    .link {
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+  }
+
+  .link {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    width: 100px;
+    text-align: center;
+    padding: 6px 0;
+    background-color: #fff;
+    color: #000;
+
+    .name {
+      margin-right: 10px;
+    }
+    
+    &:hover, &.active {
+      background-color: $main-red;
+      color: #fff;
+    }
+  }
+}

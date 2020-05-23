@@ -10,7 +10,7 @@ import Auth from './components/views/Auth/Auth.container';
 import Movie from './components/views/Movie/Movie.container';
 import MovieSchedule from './components/views/MovieSchedule/MovieSchedule';
 import MainLayout from './components/layout/MainLayout/MainLayout';
-import User from './components/views/User/User';
+import User from './components/views/User/User.container';
 import AuthSuccess from './components/views/AuthSuccess/AuthSuccess';
 import PropTypes from 'prop-types';
 
@@ -29,6 +29,7 @@ function App({ isAuth, onCheckStartAuth  }) {
       <Route exact path="/schedule/:id" component={MovieSchedule} />
       <Route exact path="/order/:id" component={Order} />
       <Route exact path="/about" component={About} />
+      <Route path="/user" component={User} />
       <Route exact path="/auth" component={Auth} />
       <Redirect to="/" />
     </Switch>
@@ -44,7 +45,7 @@ function App({ isAuth, onCheckStartAuth  }) {
         <Route exact path="/schedule" component={Schedule} />
         <Route exact path="/schedule/:id" component={MovieSchedule} />
         <Route exact path="/order/:id" component={Order} />
-        <Route exact path="/user" component={User} />
+        <Route path="/user" component={User} />
         <Route exact path="/auth" component={Auth} />
         <Route exact path="/auth/success" component={AuthSuccess} />
         <Route exact path="/logout" component={Logout} />
