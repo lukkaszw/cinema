@@ -1,8 +1,7 @@
-const User = require('../models/user');
 
 
 const getUserData = async (req, res) => {
-  res.json({ user: req.user });
+  res.json(req.user);
 }
 
 const postUserData = async (req, res) => {

@@ -9,6 +9,4 @@ router.post('/data', userController.postUserData);
 router.put('/data', userController.updateUserData);
 
 
-
-
 module.exports = router;
