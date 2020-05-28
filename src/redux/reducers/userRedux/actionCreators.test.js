@@ -2,12 +2,14 @@ import {
   startFetching,
   setData,
   setError,
+  setNewsAsRead,
 } from './userRedux';
 
 import {
   START_FETCHING,
   SET_DATA,
   SET_ERROR,
+  SET_NEWS_AS_READ,
 } from './userRedux';
 
 describe('User reducer - action creators', () => {
@@ -40,5 +42,16 @@ describe('User reducer - action creators', () => {
     };
 
     expect(setError()).toEqual(expectedAction);
+  });
+
+  it('creates proper action when news is set as read', () => {
+    const mockedNewsId = 'somenewsId';
+
+    const expectedAction = {
+      type: SET_NEWS_AS_READ,
+      payload: mockedNewsId,
+    };
+
+    expect(setNewsAsRead(mockedNewsId)).toEqual(expectedAction);
   });
 });

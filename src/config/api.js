@@ -1,8 +1,13 @@
 const api = {
+  news: {
+    url: process.env.NODE_ENV === 'production' ? '/news' : 'http://localhost:8000/news',
+  },
   user: {
     url: process.env.NODE_ENV === 'production' ? '/user' : 'http://localhost:8000/user',
     endpoints: {
       data: 'data',
+      news: 'news',
+      pswd: 'p',
     },
   },
   auth: {

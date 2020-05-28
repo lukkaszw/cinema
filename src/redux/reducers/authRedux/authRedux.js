@@ -7,6 +7,10 @@ import {
   setSuccess, 
 } from '../formsRedux/formsRedux';
 
+import {
+  setData
+} from '../userRedux/userRedux';
+
 /* selectors */
 export const getIsAuthenticated = ({ auth }) => !!auth.token;
 export const getToken = ({ auth }) => auth.token;
@@ -63,7 +67,7 @@ export const logoutUser = (token, isFromAllDevices) => {
     const AuthStr = `Bearer ${token}`;
 
     dispatch(logout());
-
+    dispatch(setData({}));
     return axios.post(url, {}, { headers: { 'Authorization': AuthStr }})
       .then(res => {
         console.log('Logout successfull on the server!');

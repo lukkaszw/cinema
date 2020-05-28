@@ -8,6 +8,10 @@ import {
 } from '../formsRedux/formsRedux';
 
 import {
+  SET_DATA,
+} from '../userRedux/userRedux';
+
+import {
   sendCredentials,
   logoutUser,
   checkStartAuthStatus,
@@ -194,6 +198,7 @@ describe('Auth reducer async actions', () => {
 
       const expected = [
         { type: LOGOUT },
+        { type: SET_DATA, payload: {}}
       ];
 
       //check localStoreage before logout - should exist
@@ -219,6 +224,7 @@ describe('Auth reducer async actions', () => {
 
       const expected = [
         { type: LOGOUT },
+        { type: SET_DATA, payload: {}}
       ];
 
       //check localStoreage before logout - should exist

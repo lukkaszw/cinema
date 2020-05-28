@@ -3,6 +3,7 @@ import {
   START_FETCHING,
   SET_DATA,
   SET_ERROR,
+  SET_NEWS_AS_READ,
 } from './userRedux';
 
 const mockedStatePart = {
@@ -48,7 +49,6 @@ describe('Movies Reducer', () => {
     //check if user reducer is clean function
     expect(userReducer(mockedStatePart, { type: SET_DATA, payload })).not.toBe(mockedStatePart);
 
-    //check if user reducer is clean function
     expect(userReducer(mockedStatePart, { type: SET_DATA, payload })).toEqual({
       data: payload,
       loading: {
@@ -69,5 +69,37 @@ describe('Movies Reducer', () => {
         isError: true,
       },
     });
+  });
+
+  it('properly updates news as read', () => {
+    const mockedData = {
+      name: 'Somename',
+      news: [{ _id: '1', isRead: false }, { _id: '2', isRead: false }],
+    };
+
+    const mockedStatePartWithData = {
+      data: mockedData,
+      loading: {
+        isActive: false,
+        isError: false,
+      },
+    };
+
+    const payload = '2';
+
+
+     //check if user reducer is clean function
+     expect(userReducer(mockedStatePartWithData, { type: SET_NEWS_AS_READ, payload })).not.toBe(mockedStatePartWithData);
+
+     expect(userReducer(mockedStatePartWithData, { type: SET_NEWS_AS_READ, payload })).toEqual({
+       data: {
+        name: 'Somename',
+        news: [{ _id: '1', isRead: false }, { _id: '2', isRead: true }]
+      },
+       loading: {
+        isActive: false,
+        isError: false,
+      },
+     });
   });
 });
