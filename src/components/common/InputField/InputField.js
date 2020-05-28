@@ -3,16 +3,18 @@ import PropTypes from 'prop-types';
 import styles from './InputField.module.scss';
 import clsx from 'clsx';
 
-const InputField = ({ onChange, value, type, placeholder, isError, message, autoComplete }) => {
+const InputField = ({ id, onChange, value, type, placeholder, isError, message, autoComplete, disabled, isPassive }) => {
 
   return ( 
-    <div className={clsx([styles.root, isError && styles.error ])}>
-      <input  
+    <div className={clsx([styles.root, isError && styles.error, isPassive && styles.passive ])}>
+      <input 
+        id={id} 
         type={type ? type : 'text'}
         value={value} 
         placeholder={placeholder}
         onChange={onChange} 
         autoComplete={autoComplete}
+        disabled={disabled}
       />
       { 
         message &&
@@ -33,6 +35,7 @@ InputField.propTypes = {
   placeholder: PropTypes.string,
   isError: PropTypes.bool,
   message: PropTypes.string,
+  isPassive: PropTypes.bool,
 }
  
 export default InputField;

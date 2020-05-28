@@ -8,7 +8,7 @@ const UserNavItem = ({ to, name, icon }) => {
   return ( 
     <li className={styles.root}>
       <NavLink 
-        exact
+        exact={name !== 'Settings'}
         className={styles.link}
         to={to}
         activeClassName={styles.active}

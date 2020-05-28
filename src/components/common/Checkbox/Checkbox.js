@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Checkbox.module.scss';
 
-const Checkbox = ({ value, checked, text, toggleAction }) => {
+const Checkbox = ({ value, checked, text, toggleAction, disabled }) => {
   const fireAction = useCallback(() => toggleAction(value), [toggleAction, value]);
 
   return ( 
@@ -12,6 +12,7 @@ const Checkbox = ({ value, checked, text, toggleAction }) => {
         onChange={fireAction}
         type="checkbox" 
         checked={checked} 
+        disabled={disabled}
       />
       <label htmlFor={value}>
         {text}
@@ -25,6 +26,7 @@ Checkbox.propTypes = {
   text: PropTypes.string.isRequired,
   checked: PropTypes.bool.isRequired,
   toggleAction: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
 };
  
 export default Checkbox;

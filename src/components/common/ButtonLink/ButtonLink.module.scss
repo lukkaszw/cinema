@@ -2,4 +2,8 @@
 
 .root {
  @include button;
+
+ &.disabled {
+  pointer-events: none;
+ }
 }

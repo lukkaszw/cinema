@@ -4,8 +4,9 @@ import Page from '../../layout/Page/Page';
 import Container from '../../layout/Container/Container';
 import UserNav from '../../layout/UserNav/UserNav';
 import PropTypes from 'prop-types';
-import UserNews from '../../features/UserNews/UserNews';
-import UserSettings from '../../features/UserSettings/UserSettings';
+import UserNews from '../../features/UserNews/UserNews.container';
+import UserSettings from '../../features/UserSettings/UserSettings.container';
+import UpdatePswd from '../../features/UpdatePswd/UpdatePswd.container';
 import UserOrders from '../../features/UserOrders/UserOrders';
 import isObjEmpty from '../../../utils/isObjEmpty/isObjEmpty';
 
@@ -19,7 +20,7 @@ class User extends Component {
   }
 
   render() {
-    const { isFetching, isError  } = this.props;
+    const { isFetching, isError } = this.props;
 
 
     return ( 
@@ -32,7 +33,8 @@ class User extends Component {
           <UserNav />
           <Route exact path='/user' component={UserNews} />
           <Route path='/user/orders' component={UserOrders} />
-          <Route path='/user/settings' component={UserSettings} />
+          <Route exact path='/user/settings' component={UserSettings} />
+          <Route exact path='/user/settings/up' component={UpdatePswd} />
         </Container>
       </Page>
     );
@@ -42,7 +44,6 @@ class User extends Component {
 User.propTypes = {
   token: PropTypes.string,
   fetchUserData: PropTypes.func.isRequired,
-  data: PropTypes.object.isRequired,
 }
  
 export default User;

@@ -41,7 +41,6 @@ class SignUser extends Component {
   handleChangeFieldValue = (value, fieldName) => {
     const type = this.constants.TYPE;
     const validate = this.validate;
-    console.log(type, validate[fieldName](value));
     this.setState(prevState => ({
       [fieldName]: value,
       errors: {

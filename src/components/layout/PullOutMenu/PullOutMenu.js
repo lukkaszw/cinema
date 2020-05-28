@@ -34,6 +34,7 @@ const PullOutMenu = ({ isAuth, isActive, links, closeAction, openSearchPanel }) 
             <IconLink 
               to="/user" 
               icon={faUser} 
+              secondaryAction={closeAction}
               specialClass="user" 
               mobile
             />

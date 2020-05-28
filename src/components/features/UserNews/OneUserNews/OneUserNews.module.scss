@@ -1,0 +1,74 @@
+@import '../../../../styles/variables';
+
+.root {
+  margin: 10px 0;
+
+  .header {
+    display: block;
+    text-decoration: none;
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+    background-color: #fff;
+    padding: 5px 24px;
+    color: #000;
+    transition: .2s;
+
+    .readIcon {
+      position: absolute;
+      left: 4px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .date {
+      position: absolute;
+      right: 3px;
+      top: 0;
+      font-size: 10px;
+    }
+
+    .title {
+      font-size: 16px;
+      padding: 5px 0;
+      text-align: center;
+    }
+
+    &:hover {
+      background-color: $main-red;
+      color: #fff;
+    }
+  }
+
+  .content {
+    text-align: center;
+    height: 0;
+    overflow: hidden;
+    background-color: #fff;
+    color: #000;
+    transition: .2s;
+
+    .btnLink {
+      margin-top: 20px;
+      color: #fff;
+    }
+  }
+
+  &.isRead {
+    .header {
+      background-color: #999;
+    }
+  }
+
+  &.active {
+    .header {
+      background-color: $main-red;
+      color: #fff;
+    }
+
+    .content {
+      height: auto;
+      padding: 20px 10px;
+    }
+  }
+}

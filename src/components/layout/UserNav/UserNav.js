@@ -11,7 +11,6 @@ const UserNav = () => {
           <UserNavItem 
             key={item.name}
             {...item}
-            icon={item.icon}
           />
         ))
       }

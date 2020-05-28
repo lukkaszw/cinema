@@ -10,4 +10,11 @@
     border-radius: 3px;
     border-bottom: 1px solid #444; 
   }
+
+  &.passive {
+    input {
+      background-color: transparent;
+      color: #bbb;
+    }
+  }
 }
