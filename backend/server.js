@@ -9,6 +9,7 @@ const userRouter = require('./routes/user.router');
 const moviesRouter = require('./routes/movies.router');
 const scheduleRouter = require('./routes/schedule.router');
 const messagesRouter = require('./routes/messages.router');
+const newsRouter = require('./routes/news.router');
 
 const port = process.env.PORT || 8000;
 
@@ -22,6 +23,7 @@ const auth = require('./middlewares/auth');
 
 app.use('/auth', authRouter);
 app.use('/user', auth, userRouter);
+app.use('/news', auth, newsRouter);
 app.use('/api/movies', moviesRouter);
 app.use('/api/schedule', scheduleRouter);
 app.use('/api/messages', messagesRouter);

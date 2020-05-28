@@ -41,6 +41,15 @@ const userSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
+  getsNewsletter: {
+    type: Boolean,
+    isRequired: true,
+    default: false,
+  },
+  news: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'New'
+  }],
 });
 
 userSchema.methods.generateAuthToken = async function () {
@@ -57,6 +66,9 @@ userSchema.methods.toJSON = function () {
   const user = this;
   const userObject = user.toObject();
 
+  userObject.email = userObject.login;
+
+  delete userObject.login;
   delete userObject.password;
   delete userObject.tokens;
 

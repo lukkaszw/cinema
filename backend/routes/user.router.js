@@ -8,5 +8,7 @@ router.post('/data', userController.postUserData);
 
 router.put('/data', userController.updateUserData);
 
+router.patch('/p', userController.updatePassword);
+
 
 module.exports = router;

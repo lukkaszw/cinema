@@ -1,13 +1,14 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
+require('../models/news');
 
 const auth = async (req, res, next) => {
   try {
     const token = req.header('Authorization').replace('Bearer ', '');
     const decoded = jwt.verify(token, process.env.JWT_KEY);
     const _id = decoded._id;
-    const user = await User.findOne({ _id, 'tokens.token': token });
-
+    const user = await User.findOne({ _id, 'tokens.token': token })
+      .populate({ path: 'news', options: { sort: { 'updatedAt': -1 }} });
     if(!user) {
       throw new Error();
     }

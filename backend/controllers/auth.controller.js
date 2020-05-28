@@ -1,5 +1,5 @@
 const User = require('../models/user');
-
+const News = require('../models/news');
 
 const signup = async (req, res) => {
   const { login, password, confirmPassword } = req.body;
@@ -9,11 +9,16 @@ const signup = async (req, res) => {
       throw new Error('Passwords do not match!');
     }
     const user = new User({ login, password });
+    const welcomeNews = await News.createWelcomeNews(user._id);
+    welcomeNews.forEach(welcomeNew => {
+      user.news.push(welcomeNew);
+    });
     await user.save();
     res.status(201).json({
       message: 'Your account has been created! Please sign in.',
     });
   } catch (error) {
+    console.log(error);
     User.sendRegistrationErrors(error, res);
   }
 };
