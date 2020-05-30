@@ -29,7 +29,6 @@ function App({ isAuth, onCheckStartAuth  }) {
       <Route exact path="/schedule/:id" component={MovieSchedule} />
       <Route exact path="/order/:id" component={Order} />
       <Route exact path="/about" component={About} />
-      <Route path="/user" component={User} />
       <Route exact path="/auth" component={Auth} />
       <Redirect to="/" />
     </Switch>
