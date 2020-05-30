@@ -72,7 +72,7 @@ describe('ScheduleDay component', () => {
     expect(linksEl.length).toBe(mockedProps.shows.length);
     linksEl.forEach((link, i) => {
       expect(link.text()).toBe(mockedProps.shows[i].startAt);
-      const expectedUrl = `/schedules/${mockedProps.shows[i]._id}`;
+      const expectedUrl = `/schedule/${mockedProps.shows[i]._id}`;
       expect(link.prop('to')).toBe(expectedUrl);
     });
   });

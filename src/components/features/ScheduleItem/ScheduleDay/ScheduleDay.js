@@ -18,7 +18,7 @@ const ScheduleDay = ({ inWeek, day, dayNr, month, isToday, shows, isBefore }) =>
         {
           shows.map(show => (
             <li key={show._id} className={styles.showsItem}>
-              <Link className={styles.showLink} to={`/schedules/${show._id}`}>{show.startAt}</Link>
+              <Link className={styles.showLink} to={`/schedule/${show._id}`}>{show.startAt}</Link>
             </li>
           ))
         }
