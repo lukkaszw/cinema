@@ -21,7 +21,7 @@ const showSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Movie',
     required: true,
-  }
+  },
 });
 
 module.exports = mongoose.model('Show', showSchema);

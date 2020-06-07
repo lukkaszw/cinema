@@ -18,7 +18,6 @@ const signup = async (req, res) => {
       message: 'Your account has been created! Please sign in.',
     });
   } catch (error) {
-    console.log(error);
     User.sendRegistrationErrors(error, res);
   }
 };
@@ -40,7 +39,6 @@ const signin = async (req, res) => {
       return;
     }
     res.status(500).json(error);
-
   }    
 };
 

@@ -40,6 +40,8 @@ const userSchema = new mongoose.Schema({
   phone: {
     type: String,
     trim: true,
+    validate: (value) => /(?<!\w)(\(?(\+|00)?48\)?)?[ -]?\d{3}[ -]?\d{3}[ -]?\d{3}(?!\w)/.test(value),
+    message: () => 'Invalid phone number!',
   },
   getsNewsletter: {
     type: Boolean,
@@ -49,6 +51,10 @@ const userSchema = new mongoose.Schema({
   news: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'New'
+  }],
+  orders: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Order'
   }],
 });
 

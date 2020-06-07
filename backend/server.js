@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+const socket = require('socket.io');
 require('./database');
 
 //import routers
@@ -10,16 +11,38 @@ const moviesRouter = require('./routes/movies.router');
 const scheduleRouter = require('./routes/schedule.router');
 const messagesRouter = require('./routes/messages.router');
 const newsRouter = require('./routes/news.router');
+const orderRouter = require('./routes/order.router');
+const auth = require('./middlewares/auth');
 
 const port = process.env.PORT || 8000;
 
 const app = express();
+
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '..', 'build')));
 
-const auth = require('./middlewares/auth');
+const server = app.listen(port, () => {
+  console.log(`Server is listening on port: ${port}.`);
+});
+
+const io = socket(server);
+
+io.on('connection', (socket) => {
+  socket.on('connectToShow', (showId) => {
+    socket.join(showId);
+    console.log('connected to room!');
+  });
+  socket.on('disconnect', () => {
+    console.log('disconnected');
+  });
+});
+
+app.use((req, res, next) => {
+  req.io = io;
+  next();
+});
 
 app.use('/auth', authRouter);
 app.use('/user', auth, userRouter);
@@ -27,7 +50,4 @@ app.use('/news', auth, newsRouter);
 app.use('/api/movies', moviesRouter);
 app.use('/api/schedule', scheduleRouter);
 app.use('/api/messages', messagesRouter);
-
-app.listen(port, () => {
-  console.log(`Server is listening on port: ${port}.`);
-});
+app.use('/api/orders', orderRouter);
