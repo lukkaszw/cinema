@@ -28,7 +28,6 @@ const mockedData = {
   news: [],
 };
 const mockedSuccessMsg = 'Data updated!';
-const mockedErrorMsg = 'Error!';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);

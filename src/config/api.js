@@ -1,4 +1,7 @@
 const api = {
+  socket: {
+    url: process.env.NODE_ENV === 'production' ? null : 'http://localhost:8000', 
+  },
   news: {
     url: process.env.NODE_ENV === 'production' ? '/news' : 'http://localhost:8000/news',
   },
@@ -25,6 +28,8 @@ const api = {
     schedule: 'schedule',
     searchMovie: 'movies/search',
     messages: 'messages',
+    seats: 'orders/seats',
+    orders: 'orders',
   }
 };
 

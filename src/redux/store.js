@@ -4,7 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import initialState from './initialState';
 
-import ticketsReducer from './reducers/ticketsRedux/ticketsRedux';
+import showReducer from './reducers/showRedux/showRedux';
 import moviesReducer from './reducers/moviesRedux/moviesRedux';
 import moviePageReducer from './reducers/moviePageRedux/moviePageRedux';
 import scheduleReducer from './reducers/scheduleRedux/scheduleRedux';
@@ -12,16 +12,20 @@ import searchPanelReducer from './reducers/searchPanelRedux/searchPanelRedux';
 import formsReducer from './reducers/formsRedux/formsRedux';
 import authReducer from './reducers/authRedux/authRedux';
 import userReducer from './reducers/userRedux/userRedux';
+import seatsReducer from './reducers/seatsRedux/seatsRedux';
+import orderReducer from './reducers/orderRedux/orderRedux';
 
 const reducers = {
   movies: moviesReducer,
-  tickets: ticketsReducer,
+  show: showReducer,
   moviePage: moviePageReducer,
   schedule: scheduleReducer,
   searchPanel: searchPanelReducer,
   formsState: formsReducer,
   auth: authReducer,
   user: userReducer,
+  seats: seatsReducer,
+  order: orderReducer,
 };
 
 Object.keys(initialState).forEach(item => {

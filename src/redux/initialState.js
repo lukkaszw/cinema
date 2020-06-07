@@ -38,9 +38,22 @@ const initialState = {
       searchText: '',
     }
   },
-  tickets: {
-    movieId: null,
+  show: {
+    data: {},
+    loadingData: {
+      isActive: false,
+      isError: false,
+    },
+  },
+  seats: {
     data: [],
+    loading: {
+      isActive: false,
+      isError: false,
+    }
+  },
+  order: {
+    data: {},
     loading: {
       isActive: false,
       isError: false,
