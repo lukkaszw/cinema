@@ -21,10 +21,7 @@ const addOrder = async (req, res) => {
       seats = seats.concat(order.seats);
     });
 
-    req.io.to(orderData.showId).emit('loadSeats', {
-      seats,
-      userSeats: [],
-    });
+    req.io.to(orderData.showId).emit('loadSeats', seats);
 
     res.json();
   } catch (error) {
@@ -43,11 +40,7 @@ const getSeats = async (req, res) => {
       seats = seats.concat(order.seats);
     });
 
-    res.json({
-      seats,
-      userSeats: [],
-    });
-
+    res.json(seats);
   } catch (error) {
     res.status(500).json(error);
   }
