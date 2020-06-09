@@ -1,0 +1,52 @@
+@import '../../../styles/variables';
+
+.root {
+  width: 50%;
+  height: 100%;
+
+  .orderSummary {
+    width: 300px;
+    max-width: 100%;
+    padding: 10px;
+    margin: 0 auto;
+
+    .category {
+      margin: 20px 0 5px 0;
+      color: #aaa;
+      font-size: 16px;
+    }
+
+    .list {
+      height: 200px;
+      overflow-y: auto;
+    }
+
+    .contactItem {
+      margin-left: 10px;
+    }
+
+    .value {
+      margin: 5px 0;
+      font-size: 16px;
+    }
+
+    .ticketsAmount {
+      margin-left: 10px;
+      color: #fff;
+    }
+
+    .info {
+      margin: 5px 0;
+      font-size: 12px;
+    }
+
+    .time {
+      color: $main-red;
+    }
+
+    .btn {
+      margin-top: 16px;
+      text-align: center;
+    }
+  }
+}

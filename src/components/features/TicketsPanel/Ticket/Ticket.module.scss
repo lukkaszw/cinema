@@ -1,0 +1,18 @@
+.root {
+  padding: 10px 5px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #777;
+  font-size: 16px;
+
+  .column {
+    width: 60px;
+    color: #aaa;
+
+
+    .value {
+      color: #fff;
+      margin-left: 5px;
+    }
+  }
+}

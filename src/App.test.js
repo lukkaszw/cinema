@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 
 const mockedProps = {
   isAuth: false,
+  onCheckStartAuth: jest.fn(),
 }
 
 const component = shallow(<App {...mockedProps} />);

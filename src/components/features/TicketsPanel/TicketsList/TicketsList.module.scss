@@ -1,0 +1,11 @@
+.root {
+  flex: 1;
+  max-height: calc(100% - 45px);
+  overflow-y: auto;
+
+  .message {
+    padding: 30px 0;
+    font-size: 20px;
+    text-align: center;
+  }
+}

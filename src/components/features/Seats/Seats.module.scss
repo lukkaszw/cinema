@@ -1,0 +1,7 @@
+.root {
+  margin-top: 120px;
+
+  @media (max-width: 1420px) {
+    margin-top: 80px;
+  }
+}

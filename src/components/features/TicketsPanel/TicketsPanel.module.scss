@@ -1,0 +1,57 @@
+@import '../../../styles/mixins';
+
+.root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  order: -1;
+  @include movie-schedule-panels;
+  margin-right: 20px;
+  padding: 10px;
+  width: 300px;
+  max-width: 70vw;
+  height: 760px;
+  transition: .2s;
+
+  .btn {
+    display: none;
+    position: absolute; 
+    top: 50%;
+    transform: translateY(-50%);
+    right: -60px;
+
+    .ticketsAmount {
+      display: inline-block;
+      width: 14px;
+      text-align: right;
+      margin-right: 3px;
+    }
+
+    .btnArrow {
+      display: block;
+      font-size: 18px;
+    }
+  }
+
+  @media (max-width: 1420px) {
+    width: 230px;
+    height: 700px;
+  }
+
+  @media (max-width: 1024px) {
+    position: fixed;
+    margin: 0;
+    top: 50%;
+    transform: translate(-110%, -50%);
+    height: 70vh;
+
+    &.visible {
+      transform: translate(0, -50%);
+    }
+
+    .btn {
+      display: block;
+    }
+  }
+}

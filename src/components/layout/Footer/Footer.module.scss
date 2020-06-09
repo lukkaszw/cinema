@@ -2,14 +2,9 @@
 @import '../../../styles/mixins';
 
 .root {
-  position: relative;
   padding: 20px 0;
 
-  &::before {
-    position: absolute;
-    content: '';
-    top: 0;
-    left: 0;
+  .line {
     width: 100%;
     height: 1px;
     background: $footer-line-cl;
@@ -73,6 +68,7 @@
       
       .link {
         @include menu-link;
+        position: static;
       }
     }
   }

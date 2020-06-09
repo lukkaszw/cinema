@@ -8,15 +8,11 @@ import UserNews from '../../features/UserNews/UserNews.container';
 import UserSettings from '../../features/UserSettings/UserSettings.container';
 import UpdatePswd from '../../features/UpdatePswd/UpdatePswd.container';
 import UserOrders from '../../features/UserOrders/UserOrders';
-import isObjEmpty from '../../../utils/isObjEmpty/isObjEmpty';
-
 class User extends Component {
 
   componentDidMount() {
-    const { token, fetchUserData, data } = this.props;
-    if(isObjEmpty(data)) {
-      fetchUserData(token);
-    }
+    const { token, fetchUserData} = this.props;
+    fetchUserData(token);
   }
 
   render() {

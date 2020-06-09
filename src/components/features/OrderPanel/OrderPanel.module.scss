@@ -1,0 +1,51 @@
+@import '../../../styles/mixins';
+
+.root {
+  position: relative;
+  @include movie-schedule-panels;
+  flex: 1;
+  height: 760px;
+  margin: 0 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .panel {
+    width: 600%;
+    flex: 1;
+    display: flex;
+    transition: .3s;
+  }
+
+  .loader {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .board {
+    width: 33.333%;
+    height: 100%;
+  }
+
+  .btns {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+  }
+
+  @media (max-width: 1420px) {
+    margin: 0;
+    height: 700px;
+  }
+
+  @media (max-width: 1024px) {
+    min-width: 100%;
+  }
+
+  @media (max-width: 820px) {
+    height: 620px;
+  }
+}

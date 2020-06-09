@@ -1,0 +1,44 @@
+@import '../../../../styles/variables';
+
+.root {
+  display: flex;
+  padding: 10px;
+
+  .step {
+    flex: 1;
+    font-size: 12px;
+    text-transform: uppercase;
+    text-align: center;
+    padding-bottom: 6px;
+    border-bottom: 3px solid #777;
+
+    .nr {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      line-height: 18px;
+      margin-right: 5px;
+      background-color: #777;
+    }
+
+    &.active {
+      border-color: $main-red;
+
+      .nr {
+        background-color: $main-red;
+      }
+    }
+  }
+
+  @media (max-width: 640px) {
+    .step {
+      font-size: 10px;
+
+      .nr {
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+      }
+    }
+  }
+}

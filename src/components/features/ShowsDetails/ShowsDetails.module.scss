@@ -1,0 +1,127 @@
+@import '../../../styles/mixins';
+
+.root {
+  margin-left: 20px;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;;
+
+  .image {
+    @include movie-schedule-panels;
+    height: 350px;
+    width: 200px;
+    overflow: hidden;
+  }
+
+  .detailsWrapper {
+    @include movie-schedule-panels;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 20px;
+
+    .item {
+      display: block;
+      text-align: center;
+      margin: 10px 0;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .technology {
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: 300;
+      font-size: 64px;
+      text-shadow: 2px 3px 2px #aaa;
+      color: $main-red;
+
+      &._3d {
+        color: $main-blue;
+      }
+    }
+
+    .hall {
+      font-weight: 300;
+    }
+
+    .price {
+      font-size: 32px;
+      margin: 20px auto;
+    }
+  }
+
+  @media (max-width: 1420px) {
+    order: -1;
+    width: 100%;
+    flex-direction: row;
+    margin-left: 0;
+    margin-bottom: 10px;
+    height: 40px;
+
+    .image {
+      display: none;
+    }
+
+    .detailsWrapper {
+      margin-top: 0;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      .item {
+        display: inline-block;
+        margin: 0 10px;
+      }      
+
+      .technology {
+        font-size: 32px;
+        padding-bottom: 4px;
+      }
+      
+      .price {
+        margin: 0 10px 0 0;
+        font-size: 28px;
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .detailsWrapper {
+      .item {
+        font-size: 17px;
+        margin: 0 8px;
+      }   
+
+      .technology {
+        font-size: 24px;
+      }
+      
+      .price {
+        font-size: 20px;
+      }
+    }
+  }
+
+  @media (max-width: 561px) {
+    .detailsWrapper {
+      padding-left: 5px;
+
+      .item {
+        font-size: 13px;
+        margin: 0 4px;
+      }   
+
+      .technology {
+        font-size: 20px;
+        padding-bottom: 0;
+      }
+      
+      .price {
+        font-size: 16px;
+      }
+    }
+  }
+}

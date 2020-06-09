@@ -126,3 +126,10 @@
     }
   }
 }
+
+
+@mixin movie-schedule-panels {
+  background-color: #111;
+  box-shadow: 0px 0px 4px #555;
+  border-radius: 5px;
+}

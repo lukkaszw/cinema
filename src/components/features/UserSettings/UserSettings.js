@@ -55,7 +55,7 @@ class UserSettings extends Component {
     email: value => _v.isEmail(value),
     name: value => value.trim().length > 1,
     surname: value => value.trim().length > 1,
-    phone: value => /(?<!\w)(\(?(\+|00)?48\)?)?[ -]?\d{3}[ -]?\d{3}[ -]?\d{3}(?!\w)/.test(value),
+    phone: value => /^(\+48\s+)?\d{3}(\s*|-)\d{3}(\s*|-)\d{3}$/.test(value) || /^(\+48\s*)?\d{2}\s*\d{3}(\s*|-)\d{2}(\s*|-)\d{2}$/.test(value),
   };
 
   handleChangeInputValue = (e, key) => {

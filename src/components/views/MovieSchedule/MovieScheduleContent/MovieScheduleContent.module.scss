@@ -1,0 +1,39 @@
+@import '../../../../styles/variables';
+
+.root {
+  position: absolute;
+  top: 100px;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+
+  .title {
+    text-align: center;
+    background-color: rgba(black, .6);
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    text-transform: uppercase;
+  }
+
+  .content {
+    display: flex;
+  }
+
+  @media (max-width: 1420px) {
+    .title {
+      font-size: 20px;
+    }
+
+    .content {
+      position: relative;
+      flex-wrap: wrap;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .title {
+      font-size: 16px;
+    }
+  }
+}

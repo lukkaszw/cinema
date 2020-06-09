@@ -8,7 +8,7 @@ import About from './components/views/About/About';
 import Logout from './components/views/Logout/Logout.container';
 import Auth from './components/views/Auth/Auth.container';
 import Movie from './components/views/Movie/Movie.container';
-import MovieSchedule from './components/views/MovieSchedule/MovieSchedule';
+import MovieSchedule from './components/views/MovieSchedule/MovieSchedule.container';
 import MainLayout from './components/layout/MainLayout/MainLayout';
 import User from './components/views/User/User.container';
 import AuthSuccess from './components/views/AuthSuccess/AuthSuccess';
@@ -53,9 +53,6 @@ function App({ isAuth, onCheckStartAuth  }) {
     )
   }
 
-
-
-
   return (
     <BrowserRouter>
       <MainLayout>
@@ -67,7 +64,7 @@ function App({ isAuth, onCheckStartAuth  }) {
 
 App.propTypes = {
   isAuth: PropTypes.bool.isRequired,
-
+  onCheckStartAuth: PropTypes.func.isRequired,
 };
 
 export default App;

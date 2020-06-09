@@ -15,6 +15,7 @@ import { socialMedias, contactData } from './data';
 const Footer = ({ links }) => {
   return ( 
     <footer className={styles.root}>
+      <div className={styles.line}></div>
       <Container>
         <div className={styles.grid}> 
           <div className={styles.column}>

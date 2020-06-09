@@ -1,10 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import MovieSchedule from './MovieSchedule';
+import Screen from './Screen';
 
-describe('MovieSchedule Component', () => {
+const component = shallow(<Screen />);
+
+describe('Screen component', () => {
   it('renders without crashing', () => {
-    const component = shallow(<MovieSchedule />);
     expect(component).toBeTruthy();
   });
 });
