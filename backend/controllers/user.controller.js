@@ -4,10 +4,6 @@ const getUserData = async (req, res) => {
   res.json(req.user);
 }
 
-const postUserData = async (req, res) => {
-  res.json({ user: req.user, message: 'post user data' });
-}
-
 const updateUserData = async (req, res) => {
   const data = req.body;
   const allowedUpdates = ['email', 'name', 'surname', 'phone', 'getsNewsletter'];
@@ -68,7 +64,6 @@ const updatePassword = async (req, res) => {
 
 module.exports = {
   getUserData,
-  postUserData,
   updateUserData,
   updatePassword,
 };

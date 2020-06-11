@@ -7,7 +7,8 @@ const auth = async (req, res, next) => {
     const decoded = jwt.verify(token, process.env.JWT_KEY);
     const _id = decoded._id;
     const user = await User.findOne({ _id, 'tokens.token': token })
-      .populate({ path: 'news', options: { sort: { 'updatedAt': -1 }} });
+      .populate({ path: 'news', options: { sort: { 'updatedAt': -1 }} })
+      .populate({ path: 'orders', options: { sort: { 'updatedAt': -1 }}});
 
     if(!user) {
       throw new Error();
