@@ -8,7 +8,13 @@ const auth = async (req, res, next) => {
     const _id = decoded._id;
     const user = await User.findOne({ _id, 'tokens.token': token })
       .populate({ path: 'news', options: { sort: { 'updatedAt': -1 }} })
-      .populate({ path: 'orders', options: { sort: { 'updatedAt': -1 }}});
+      .populate({ 
+        path: 'orders', 
+        options: { sort: { 'updatedAt': -1 }},
+        populate: {
+          path: 'showId',
+        }
+      });
 
     if(!user) {
       throw new Error();
