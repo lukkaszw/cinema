@@ -1,17 +1,19 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useLocation } from 'react-router-dom';
 import Page from '../../layout/Page/Page';
 import SignIn from '../../features/SignUser/SignUser.signIn.container';
 import SignUp from '../../features/SignUser/SignUser.signUp.container';
 import PropTypes from 'prop-types';
 import styles from './Auth.module.scss';
 
-const Auth = ({ isAuthenticated, resetFormState }) => {
+export const Auth = ({ isAuthenticated, resetFormState }) => {
   const [panelNr, setPanelNr] = useState(0);
   const  goToLoginPanel = useCallback(() => setPanelNr(0),[setPanelNr]);
   const goToRegisterPanel = useCallback(() => setPanelNr(1), [setPanelNr]);
   useEffect(() => () => resetFormState(), [resetFormState]);
-      
+
+  const location = useLocation();
+
   return ( 
     <Page noHeader>
       <div className={styles.root}>
@@ -33,8 +35,12 @@ const Auth = ({ isAuthenticated, resetFormState }) => {
         </div>
       </div>
       {
-        isAuthenticated &&
-          <Redirect to='/auth/success' />
+        isAuthenticated && (
+          location.state ?
+            <Redirect to={`/order/${location.state.from}`} />
+            :
+            <Redirect to='/auth/success' />
+        )
       }
     </Page>
   );

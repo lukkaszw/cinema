@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './MovieScheduleContent.module.scss';
+import styles from './OrderContent.module.scss';
 
-const MovieScheduleContent = ({ title, children }) => {
+const OrderContent = ({ title, children }) => {
   return ( 
     <div className={styles.root}>
       <h1 className={styles.title}>
@@ -15,8 +15,8 @@ const MovieScheduleContent = ({ title, children }) => {
    );
 }
  
-MovieScheduleContent.propTypes = {
+OrderContent.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-export default MovieScheduleContent;
+export default OrderContent;

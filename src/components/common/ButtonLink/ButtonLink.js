@@ -4,11 +4,11 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import styles from './ButtonLink.module.scss';
 
-const ButtonLink = ({ title, to, size, secondaryAction, disabled }) => {
+const ButtonLink = ({ title, to, size, variant, secondaryAction, disabled }) => {
   return ( 
     <Link
       to={to}
-      className={clsx([styles.root, size && styles[size], disabled && styles.disabled ])}
+      className={clsx([styles.root, size && styles[size], disabled && styles.disabled, variant && styles[variant] ])}
       onClick={secondaryAction || null}
     >
       {title}

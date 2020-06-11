@@ -2,9 +2,21 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Auth from './Auth';
 
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useLocation: () => ({
+    pathname: "localhost:3000/auth"
+  })
+}));
+
 const mockedProps = {
   isAuthenticated: false,
   resetFormState: () => console.log('reset form state'),
+};
+
+const propsWhenAuthenticated = {
+  ...mockedProps,
+  isAuthenticated: true,
 };
 
 const component = shallow(<Auth {...mockedProps} />);
@@ -48,10 +60,6 @@ describe('AuthForm component', () => {
   });
 
   it('does renders Redirect to "/auth/success" when user is authenticated', () => {
-    const propsWhenAuthenticated = {
-      ...mockedProps,
-      isAuthenticated: true,
-    };
 
     const componentWhenAuth = shallow(<Auth {...propsWhenAuthenticated} />);
     const redirectEl = componentWhenAuth.find('Redirect');

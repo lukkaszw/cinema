@@ -1,7 +1,27 @@
+@import '../../../styles/mixins';
+
 .root {
-  height: 1000px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+  .btn {
+    margin: 20px 0;
+  }
+
+  .link {
+    @include button;
+    display: inline-block;
+    width: 230px;
+  }
+
+  .toAuth {
+    background-color: $main-red;
+  }
   
-  @media (max-width: 820px) {
-    height: 900px;
+  .toOrder {
+    background-color: $main-blue;
   }
 }
