@@ -1,10 +1,5 @@
 import api from '../../../config/api';
 import axios from 'axios';
-import {
-  startSending as startSendingOrder,
-  setError as setOrderError,
-  setSuccess as setOrderSuccess,
-} from '../formsRedux/formsRedux';
 
 /* selectors */
 export const getIsFetching = ({ show }) => show.loadingData.isActive;

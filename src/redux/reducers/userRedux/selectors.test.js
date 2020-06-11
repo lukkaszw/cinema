@@ -2,11 +2,27 @@ import {
   getIsLoading,
   getIsError,
   getUserData,
+  getUserOrders,
+  getNews,
 } from './userRedux';
+
+const mockedOrders = [
+  'order1',
+  'order2',
+];
+
+const mockedNews = [
+  'news1',
+  'news2',
+];
+
 
 const mockedData = {
   name: 'Somename',
+  orders: mockedOrders,
+  news: mockedNews,
 }
+
 
 const mockedState = {
   user: {
@@ -60,6 +76,18 @@ describe('User reducer - selectors', () => {
       expect(getUserData(mockedState)).toEqual(mockedData);
       expect(getUserData(mockedStateWhenError)).toEqual({});
       expect(getUserData(mockedStateWhenLoading)).toEqual({});
+    });
+  });
+
+  describe('getUserOrders selector', () => {
+    it('returns proper user orders', () => {
+      expect(getUserOrders(mockedState)).toEqual(mockedOrders);
+    });
+  });
+
+  describe('getNews selector', () => {
+    it('returns proper user news', () => {
+      expect(getNews(mockedState)).toEqual(mockedNews);
     });
   });
 });

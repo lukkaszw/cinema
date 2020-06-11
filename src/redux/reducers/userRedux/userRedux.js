@@ -11,6 +11,7 @@ export const getIsLoading = ({ user }) => user.loading.isActive;
 export const getIsError = ({ user }) => user.loading.isError;
 export const getUserData = ({ user }) => user.data;
 export const getNews = ({ user }) => user.data.news || [];
+export const getUserOrders = ({ user }) => user.data.orders || [];
 
 /* action name creators */
 const reducerName = 'user';

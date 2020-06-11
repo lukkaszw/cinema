@@ -1,0 +1,96 @@
+@import '../../../styles/variables';
+
+.root {
+  margin: 10px 0;
+  color: #000;
+  background-color: #fff;
+  font-size: 14px;
+
+  .header {
+    color: inherit;
+    font-size: 14px;
+    text-decoration: none;
+    padding: 5px;
+    background-color: #aaa;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: .2s;
+
+    .title {
+      font-size: 15px;
+    }
+
+    .dates {
+      min-width: 100px;
+      text-align: right;
+    }
+
+    .date {
+      margin: 0 5px;
+    }
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  .content {
+    height: 0;
+    padding: 0 5px;
+    overflow: hidden;
+    transition: .2s;
+  }
+
+  .tickets {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .category {
+    display: inline-block;
+    width: 50px;
+  }
+
+  .data {
+    margin: 5px 0;
+
+    .important {
+      font-weight: bold;
+    }
+
+    .dataItem {
+      margin-right: 5px;
+    }
+  }
+
+  .btns {
+    text-align: center;
+    color: #fff;
+    margin-top: 16px;
+
+    .btn {
+      margin: 0 10px;
+    }
+  }
+
+  &.active {
+    .header {
+      background-color: $main-red;
+      color: #fff;
+    }
+
+    .content {
+      height: 180px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    font-size: 13px;
+
+    .header {
+      font-size: 13px;
+    }
+  }
+}

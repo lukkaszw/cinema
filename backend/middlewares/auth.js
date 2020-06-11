@@ -13,6 +13,10 @@ const auth = async (req, res, next) => {
         options: { sort: { 'updatedAt': -1 }},
         populate: {
           path: 'showId',
+          populate: {
+            path: 'movieId',
+            options: { select: 'title'}
+          }
         }
       });
 

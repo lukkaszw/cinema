@@ -1,7 +1,6 @@
 import React from 'react';
 import { withRouter, Redirect, Link } from 'react-router-dom';
 import Page from '../../layout/Page/Page';
-import ButtonLink from '../../common/ButtonLink/ButtonLink';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import styles from './MovieSchedule.module.scss';
