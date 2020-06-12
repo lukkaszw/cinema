@@ -2,7 +2,6 @@ import {
   getIsLoading,
   getIsError,
   getUserData,
-  getUserOrders,
   getNews,
 } from './userRedux';
 
@@ -76,12 +75,6 @@ describe('User reducer - selectors', () => {
       expect(getUserData(mockedState)).toEqual(mockedData);
       expect(getUserData(mockedStateWhenError)).toEqual({});
       expect(getUserData(mockedStateWhenLoading)).toEqual({});
-    });
-  });
-
-  describe('getUserOrders selector', () => {
-    it('returns proper user orders', () => {
-      expect(getUserOrders(mockedState)).toEqual(mockedOrders);
     });
   });
 

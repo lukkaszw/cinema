@@ -4,9 +4,16 @@ import UserOrders from './UserOrders';
 
 const mockedProps = {
   orders: [],
+  token: 'someToken',
+  isDeleting: false,
+  isDeleleteError: false,
+  isDeleteSuccess: false,
+  deleteOrder: jest.fn(),
+  resetForm: jest.fn(),
 };
 
 const propsWithOrders = {
+  ...mockedProps,
   orders: [
     {
       _id: '1',
@@ -54,6 +61,26 @@ describe('UserSettings component', () => {
       const orderEl = componentWithOrders.find('.list OrderItem');
       expect(orderEl.length).toBe(propsWithOrders.orders.length);
     });
+
+    it('does not render DeleteOrderModal by default', () => {
+      const delModalEl = componentWithOrders.find('DeleteOrderModal');
+      expect(delModalEl.exists()).toBeFalsy()
+    });
+
+    it('renders DeleteOrderModal with proper props when user is going to delete order', () => {
+      const instance = componentWithOrders.instance();
+      const ordersId = propsWithOrders.orders[0]._id;
+      instance.handleDeleting(ordersId);
+      const delModalEl = componentWithOrders.find('DeleteOrderModal');
+      expect(delModalEl.exists()).toBeTruthy();
+      expect(delModalEl.props()).toEqual({
+        onCancel: instance.handleCancelDeleting,
+        onConfirm: instance.handleConfirmDeleting,
+        isSending: propsWithOrders.isDeleting,
+        isError: propsWithOrders.isDeleleteError,
+        isSuccess: propsWithOrders.isDeleteSuccess,
+      });
+    });
   });
 
   describe('functionality', () => {
@@ -67,34 +94,11 @@ describe('UserSettings component', () => {
       expect(component.state('activeOrder')).toEqual(null);
     });
 
-    it('fires handleToggleOrder method when using onToggleActive OrderItem prop', () => {
-      class MockUserOrders extends UserOrders {
-        handleToggleOrder = jest.fn();
-      }
-
-      const mockComponent = shallow(<MockUserOrders {...propsWithOrders}/>);
-      const instance = mockComponent.instance();
-
-      let expectedCallTimes = 0;
-      //check at start
-      expect(instance.handleToggleOrder).toHaveBeenCalledTimes(expectedCallTimes);
-      //check after using onToggleActive
-      const orderEls = mockComponent.find('OrderItem');
-      orderEls.forEach((orderEl, i) => {
-        orderEl.prop('onToggleActive')();
-        expectedCallTimes++;
-        const expectedValue = propsWithOrders.orders[i]._id;
-        expect(instance.handleToggleOrder).toHaveBeenCalledTimes(expectedCallTimes);
-        expect(instance.handleToggleOrder).toHaveBeenCalledWith(expectedValue);
-      })
-
-    })
-
     it('changes active order properly', () => {
       const instance = component.instance();
-
       const firstId = '1';
       const secondId = '2';
+
       //click on first
       instance.handleToggleOrder(firstId);
       expect(instance.state.activeOrder).toBe(firstId);
@@ -107,6 +111,22 @@ describe('UserSettings component', () => {
       //click on first again
       instance.handleToggleOrder(firstId);
       expect(instance.state.activeOrder).toBe(firstId);
+    });
+
+    it('deletes order properly', () => {
+      const instance = component.instance();
+      expect(instance.state.orderToDelete).toEqual(null);
+      const orderId = propsWithOrders.orders[0]._id;
+      instance.handleDeleting(orderId);
+      expect(instance.state.orderToDelete).toBe(orderId);
+      //check the deleteOrder function from redux
+      expect(propsWithOrders.deleteOrder).toHaveBeenCalledTimes(0);
+      instance.handleConfirmDeleting();
+      expect(propsWithOrders.deleteOrder).toHaveBeenCalledTimes(1);
+      expect(propsWithOrders.deleteOrder).toHaveBeenCalledWith(orderId, propsWithOrders.token);
+     
+      instance.handleCancelDeleting();
+      expect(instance.state.orderToDelete).toBe(null);
     });
   });
 });

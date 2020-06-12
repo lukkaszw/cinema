@@ -6,3 +6,12 @@ export const mockedData = {
   phone: '666666666',
   email: 'someemail@gmail.com',
 };
+
+export const mockedUserOrders = [
+  {
+    _id: '1',
+  },
+  {
+    _id: '2',
+  }
+];

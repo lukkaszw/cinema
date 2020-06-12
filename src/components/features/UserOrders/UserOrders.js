@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import OrderItem from '../../common/OrderItem/OrderItem';
+import DeleteOrderModal from './DeleteOrderModal/DeleteOrderModal';
 import PropTypes from 'prop-types';
 import styles from './UserOrders.module.scss';
 
 class UserOrders extends Component  {
   state = {
     activeOrder: null,
+    orderToDelete: null,
+  }
+
+  componentWillUnmount() {
+    this.props.resetForm();
   }
   
   handleToggleOrder = (orderId) => {
@@ -25,15 +31,39 @@ class UserOrders extends Component  {
     console.log(orderId);
   }
 
-  handleDelete = (orderId) => {
-    console.log(orderId);
+  handleDeleting = (orderId) => {
+    this.setState({
+      orderToDelete: orderId,
+    });
+  }
+
+  handleCancelDeleting = () => {
+    this.setState({
+      orderToDelete: null,
+    });
+    this.props.resetForm();
+  }
+
+  handleConfirmDeleting = () => {
+    const orderId = this.state.orderToDelete;
+    const token = this.props.token;
+    this.props.deleteOrder(orderId, token);
   }
 
 
   render() {
-    const { activeOrder } = this.state;
-    const { orders } = this.props;
-    const { handleToggleOrder, handleDelete, handleEdit } = this;
+    const { activeOrder, orderToDelete } = this.state;
+    const { 
+      orders,
+      isDeleting,
+      isDeleleteError,
+      isDeleteSuccess } = this.props;
+    const { 
+      handleToggleOrder, 
+      handleDeleting, 
+      handleEdit,
+      handleConfirmDeleting,
+      handleCancelDeleting } = this;
 
     return ( 
       <div className={styles.root}>
@@ -51,12 +81,22 @@ class UserOrders extends Component  {
                 {...order}
                 isActive={activeOrder === order._id}
                 onToggleActive={() => handleToggleOrder(order._id)}
-                onDelete={() => handleDelete(order._id)}
+                onDelete={() => handleDeleting(order._id)}
                 onEdit={() => handleEdit(order._id)}
               />
             ))
           }
         </ul>
+        {
+          orderToDelete &&
+            <DeleteOrderModal 
+              onCancel={handleCancelDeleting}
+              onConfirm={handleConfirmDeleting}
+              isSending={isDeleting}
+              isError={isDeleleteError}
+              isSuccess={isDeleteSuccess}
+            />
+        }
       </div>
     
      );
@@ -66,6 +106,11 @@ class UserOrders extends Component  {
 
 UserOrders.propTypes = {
   orders: PropTypes.array.isRequired,
+  deleteOrder: PropTypes.func.isRequired,
+  resetForm: PropTypes.func.isRequired,
+  isDeleting: PropTypes.bool.isRequired,
+  isDeleleteError: PropTypes.bool.isRequired,
+  isDeleteSuccess: PropTypes.bool.isRequired,
 };
  
 export default UserOrders;

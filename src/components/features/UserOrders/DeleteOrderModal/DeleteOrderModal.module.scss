@@ -1,0 +1,23 @@
+.root {
+  position: relative;
+
+  .message {
+    margin: 20px 0;
+  }
+
+  .btns {
+    color: #fff;
+    text-align: center;
+    
+    .btn {
+      margin: 0 10px;
+    }
+  }
+
+  .loader {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

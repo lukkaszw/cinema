@@ -1,13 +1,19 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import moxios from 'moxios';
-import { orderTickets } from './orderRedux';
+import { 
+  orderTickets, 
+  deleteOrder,
+  DELETE_USER_ORDER } from './ordersRedux';
 import {
   START_SENDING,
   SET_SUCCESS,
   SET_ERROR,
 } from '../formsRedux/formsRedux';
 import { mockedData } from './mockedData';
+
+const mockedOrderId = '1';
+const mockedToken = 'someToken';
 
 const initialState =   {
   data: {},
@@ -69,6 +75,51 @@ describe('Order Reducer async actions', () => {
       ];
   
       return store.dispatch(orderTickets(mockedData))
+      .then(() => {
+        expect(store.getActions()).toEqual(expected);
+      });
+    });
+  });
+
+  describe('deleteOrder', () => {
+    beforeEach(() => moxios.install());
+    afterEach(() => moxios.uninstall());
+
+    it('creates proper actions when deleting was succeded', () => {
+      const response = 'orderID'
+      const store = makeMockStore();
+      moxios.wait(() => {
+        const request = moxios.requests.mostRecent();
+        request.respondWith(mockSuccess(response));
+      });
+  
+      const expected = [
+        { type: START_SENDING },
+        { type: SET_SUCCESS },
+        { payload: response, type: DELETE_USER_ORDER }
+      ];
+   
+      return store.dispatch(deleteOrder(mockedOrderId, mockedToken))
+        .then(() => {
+          expect(store.getActions()).toEqual(expected);
+        });
+    });
+
+    it('creates proper actions when deleting an order ended with error', () => {
+  
+      const response = {};
+      const store = makeMockStore();
+      moxios.wait(() => {
+        const request = moxios.requests.mostRecent();
+        request.respondWith(mockError(response));
+      });
+  
+      const expected = [
+        { type: START_SENDING },
+        { type: SET_ERROR },
+      ];
+  
+      return store.dispatch(deleteOrder(mockedOrderId, mockedToken))
       .then(() => {
         expect(store.getActions()).toEqual(expected);
       });

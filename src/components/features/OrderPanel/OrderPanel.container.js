@@ -8,7 +8,7 @@ import {
 
 import {
   orderTickets
-} from '../../../redux/reducers/orderRedux/orderRedux';
+} from '../../../redux/reducers/ordersRedux/ordersRedux';
 
 import { 
   getIsSending, 

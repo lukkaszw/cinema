@@ -29,6 +29,25 @@ const addOrder = async (req, res) => {
   }
 }
 
+const deleteOrder = async (req, res) => {
+  const _id = req.params.id;
+  const userId = req.userId;
+  try {
+    const order = await Order.findOne({ _id, userId });
+    if(!order) {
+      res.status(404).json({
+        isError: true,
+        message: 'Order not found!'
+      });
+      return;
+    }
+    await order.remove();
+    res.json(order._id);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+}
+
 const getSeats = async (req, res) => {
   const showId = req.params.showId;
   try {
@@ -49,4 +68,5 @@ const getSeats = async (req, res) => {
 module.exports = {
   getSeats,
   addOrder,
+  deleteOrder,
 };

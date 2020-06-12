@@ -52,8 +52,9 @@ const initialState = {
       isError: false,
     }
   },
-  order: {
-    data: {},
+  orders: {
+    userOrders: [],
+    orderToEdit: {},
     loading: {
       isActive: false,
       isError: false,

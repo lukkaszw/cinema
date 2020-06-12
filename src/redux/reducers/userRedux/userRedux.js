@@ -5,13 +5,13 @@ import {
   setError as setFormError,
   setSuccess,
 } from '../formsRedux/formsRedux';
+import { setUserOrders } from '../ordersRedux/ordersRedux';
 
 /* selectors */
 export const getIsLoading = ({ user }) => user.loading.isActive;
 export const getIsError = ({ user }) => user.loading.isError;
 export const getUserData = ({ user }) => user.data;
 export const getNews = ({ user }) => user.data.news || [];
-export const getUserOrders = ({ user }) => user.data.orders || [];
 
 /* action name creators */
 const reducerName = 'user';
@@ -42,8 +42,12 @@ export const fetchUserData = (token) => {
     const AuthString = `Bearer ${token}`;
     dispatch(startFetching());
     return axios.get(url, { headers: { 'Authorization': AuthString } })
-      .then(res =>{
-        dispatch(setData(res.data));
+      .then(res => {
+        const userOrders = res.data.orders;
+        const data = res.data;
+        delete data.orders;
+        dispatch(setData(data));
+        dispatch(setUserOrders(userOrders));
       })
       .catch(() => dispatch(setError()));
   }

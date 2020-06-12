@@ -13,7 +13,7 @@ import formsReducer from './reducers/formsRedux/formsRedux';
 import authReducer from './reducers/authRedux/authRedux';
 import userReducer from './reducers/userRedux/userRedux';
 import seatsReducer from './reducers/seatsRedux/seatsRedux';
-import orderReducer from './reducers/orderRedux/orderRedux';
+import ordersReducer from './reducers/ordersRedux/ordersRedux';
 
 const reducers = {
   movies: moviesReducer,
@@ -25,7 +25,7 @@ const reducers = {
   auth: authReducer,
   user: userReducer,
   seats: seatsReducer,
-  order: orderReducer,
+  orders: ordersReducer,
 };
 
 Object.keys(initialState).forEach(item => {

@@ -9,6 +9,9 @@ import {
   SET_DATA,
   SET_ERROR,
 } from './userRedux';
+import {
+  SET_USER_ORDERS,
+} from '../ordersRedux/ordersRedux';
 
 const initialState =   {
   data: [],
@@ -38,12 +41,21 @@ describe('User Reducer async actions', () => {
   afterEach(() => moxios.uninstall());
 
   it('creates proper actions with proper data when fetching is succeded', () => {
+    const mockedOrders = [
+      'order1',
+      'order2',
+    ];
     const response = {
       name: 'Someusername',
       surname: 'Sumeusersurname',
       phone: '666 666 666',
       email: 'email@wp.pl',
+      orders: mockedOrders,
     };
+
+    const expecdedData = {...response};
+    delete expecdedData.orders;
+
     const store = makeMockStore();
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
@@ -52,7 +64,8 @@ describe('User Reducer async actions', () => {
 
     const expected = [
       { type: START_FETCHING },
-      { type: SET_DATA, payload: response },
+      { type: SET_DATA, payload: expecdedData },
+      { type: SET_USER_ORDERS, payload: mockedOrders },
     ];
  
     return store.dispatch(fetchUserData(mockedToken))
