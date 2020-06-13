@@ -6,10 +6,6 @@ import {
   getIsSeatsFetching,
 } from '../../../redux/reducers/seatsRedux/seatsRedux';
 
-import {
-  orderTickets
-} from '../../../redux/reducers/ordersRedux/ordersRedux';
-
 import { 
   getIsSending, 
   getIsSuccess, 
@@ -26,7 +22,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   resetFormState: () => dispatch(resetAll()),
-  orderTickets: (orderData, token) => dispatch(orderTickets(orderData, token)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderPanel);

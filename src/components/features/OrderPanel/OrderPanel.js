@@ -92,6 +92,7 @@ export class OrderPanel extends Component {
     3: 'Please provide correct data into form!',
     4: 'Error! Your order has not been sent correctly. Please try again later!',
     5: 'Your order has been added correctly. Please check your email for backup information!',
+    6: 'Your order has been edited correctly. Please check your email for backup information!'
   }
 
   handleModalAction = (errorId) => {
@@ -122,9 +123,7 @@ export class OrderPanel extends Component {
 
   handleSubmitOrder = () => {
     const { name, surname, phone, email } = this.state;
-    const showId = this.props.showId;
-    const seats = this.props.chosenSeats;
-    const token = this.props.token;
+    const { showId, chosenSeats, isEditing, token, editingId } = this.props;
 
     const orderData = {
       name,
@@ -132,14 +131,23 @@ export class OrderPanel extends Component {
       phone,
       email,
       showId,
-      seats,
+      seats: chosenSeats,
     }
 
-    this.props.orderTickets(orderData, token);
+    if(isEditing) {
+      delete orderData.showId;
+    }
+
+    this.props.orderTickets(orderData, token, editingId);
   }
 
   backToMainPage = () => {
-    this.props.history.push('/');
+    const { history, isEditing } = this.props;
+    if(isEditing) {
+      history.push('/user/orders');
+      return;
+    }
+    history.push('/');
   }
 
   checkOrderErrors = () => {
@@ -201,6 +209,7 @@ export class OrderPanel extends Component {
       isOrderSuccess,
       isOrderError,
       resetFormState,
+      isEditing,
     } = this.props;
 
     return ( 
@@ -278,8 +287,9 @@ export class OrderPanel extends Component {
         {
           isOrderSuccess && 
             <OrderMessage 
-              message={MESSAGES[5]}
+              message={isEditing ? MESSAGES[6] : MESSAGES[5]}
               action={backToMainPage}
+              isSuccess
             />
         }
         {
@@ -310,6 +320,7 @@ OrderPanel.propTypes = {
   handleCancelTicket: PropTypes.func.isRequired,
   price: PropTypes.number.isRequired,
   userData: PropTypes.object,
+  isEditing: PropTypes.bool,
 };
  
 export default withRouter(OrderPanel);

@@ -188,6 +188,23 @@ describe('OrderPanel component', () => {
       expect(orderMsgEl.props()).toEqual({
         message: instance.MESSAGES[5],
         action: instance.backToMainPage,
+        isSuccess: true,
+      });
+    });
+
+    it('renders other message in OrderMessage when props: isOrderSuccess and isEditing are true', () => {
+      const propsWithEditSuccess = {
+        ...mockedProps,
+        isOrderSuccess: true,
+        isEditing: true,
+      };
+      const compWithEditSuccess = shallow(<OrderPanel {...propsWithEditSuccess} />);
+      const instance = compWithEditSuccess.instance();
+      const orderMsgEl = compWithEditSuccess.find('OrderMessage');
+      expect(orderMsgEl.props()).toEqual({
+        message: instance.MESSAGES[6],
+        action: instance.backToMainPage,
+        isSuccess: true,
       });
     });
 
@@ -379,7 +396,28 @@ describe('OrderPanel component', () => {
         ...mockedUserData,
         seats: mockedSeats,
         showId: mockedProps.showId,
-      }, mockedProps.token );
+      }, mockedProps.token, undefined );
+    });
+
+    it('fires orderTickets with proper values when user submit to edit order', () => {
+      const mockedSeats = ['3D', '11C'];
+      const editingId = 'someId';
+      const propsToOrder = {
+        ...mockedProps,
+        chosenSeats: mockedSeats,
+        isEditing: true,
+        editingId,
+      };
+
+      const comp = shallow(<OrderPanel {...propsToOrder}/>);
+      const instance = comp.instance();
+      expect(mockedProps.orderTickets).toHaveBeenCalledTimes(1);
+      instance.handleSubmitOrder();
+      expect(mockedProps.orderTickets).toHaveBeenCalledTimes(2);
+      expect(mockedProps.orderTickets).toHaveBeenCalledWith({
+        ...mockedUserData,
+        seats: mockedSeats,
+      }, mockedProps.token, editingId );
     });
   });
 });

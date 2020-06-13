@@ -3,7 +3,7 @@ import Button from '../../../common/Button/Button';
 import PropTypes from 'prop-types';
 import styles from './OrderMessage.module.scss';
 
-const OrderMessage = ({ message, action }) => {
+const OrderMessage = ({ message, action, isSuccess }) => {
   return ( 
     <div
       className={styles.root}
@@ -12,6 +12,7 @@ const OrderMessage = ({ message, action }) => {
       <div className={styles.btn}>
         <Button
           action={action}
+          variants={[isSuccess ? 'tertiary' : null]}
         >
           Ok
         </Button>

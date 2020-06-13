@@ -2,16 +2,19 @@ import ordersReducer from './ordersRedux';
 import {
   SET_USER_ORDERS,
   DELETE_USER_ORDER,
+  SET_ORDER_TO_EDIT,
+  UPDATE_USER_ORDER,
 } from './ordersRedux';
 import { mockedUserOrders } from './mockedData';
 
 const mockedStatePart = {
   userOrders: [],
-  orderToEdit: {},
-  loading: {
-    isActive: false,
-    isError: false,
-  },
+  orderToEdit: null,
+};
+
+const mockedStateWithOrders = {
+  ...mockedStatePart,
+  userOrders: [{ _id: '1' }, { _id: '2'}],
 };
 
 describe('Orders reducer', () => {
@@ -35,11 +38,6 @@ describe('Orders reducer', () => {
   });
 
   it('returns proper state after deleting user order', () => {
-    const mockedStateWithOrders = {
-      ...mockedStatePart,
-      userOrders: [{ _id: '1' }, { _id: '2'}],
-    };
-
     const orderToDel = '1';
     const expectedOrders = [{ _id: '2'}];
 
@@ -47,6 +45,35 @@ describe('Orders reducer', () => {
     expect(ordersReducer(mockedStateWithOrders, { payload: orderToDel ,type: DELETE_USER_ORDER })).not.toBe(mockedStateWithOrders);
     //check if reducer returns proper stae
     expect(ordersReducer(mockedStateWithOrders, { payload: orderToDel ,type: DELETE_USER_ORDER })).toEqual({
+      ...mockedStateWithOrders,
+      userOrders: expectedOrders,
+    });
+  });
+
+  it('returns proper state after setting an order to edit', () => {
+    const orderIdToEdit = '1';
+    //check if reducer is clean function
+    expect(ordersReducer(mockedStateWithOrders, { payload: orderIdToEdit ,type: SET_ORDER_TO_EDIT })).not.toBe(mockedStateWithOrders);
+    //check if reducer returns proper stae
+    expect(ordersReducer(mockedStateWithOrders, { payload: orderIdToEdit ,type: SET_ORDER_TO_EDIT })).toEqual({
+      ...mockedStateWithOrders,
+      orderToEdit: orderIdToEdit,
+    });
+  });
+
+  it('returns proper state after updating an order', () => {
+    const orderToUpdate = {
+      _id: '1',
+      name: 'Name1'
+      //...others
+    };
+
+    const expectedOrders = [orderToUpdate, {_id: '2'}];
+
+    //check if reducer is clean function
+    expect(ordersReducer(mockedStateWithOrders, { payload: orderToUpdate ,type: UPDATE_USER_ORDER })).not.toBe(mockedStateWithOrders);
+    //check if reducer returns proper stae
+    expect(ordersReducer(mockedStateWithOrders, { payload: orderToUpdate ,type: UPDATE_USER_ORDER })).toEqual({
       ...mockedStateWithOrders,
       userOrders: expectedOrders,
     });

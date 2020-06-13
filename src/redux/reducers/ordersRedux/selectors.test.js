@@ -1,15 +1,13 @@
 import {
   getUserOrders,
+  getEditingOrder,
+  getEditingOrderUser,
 } from './ordersRedux';
-import { mockedUserOrders } from './mockedData';
+import { mockedUserOrders, mockedUserData} from './mockedData';
 
 const mockedState = {
   orders: {
-    orderToEdit: {},
-    loading: {
-      isActive: false,
-      isError: false,
-    },
+    orderToEdit: mockedUserOrders[0]._id,
     userOrders: mockedUserOrders,
   }
 }
@@ -19,5 +17,15 @@ describe('Orders reducer - selectors', () => {
     it('returns proper user orders', () => {
       expect(getUserOrders(mockedState)).toEqual(mockedUserOrders);
     });
+  });
+
+  describe('getEditingOrder', () => {
+    const expected = mockedUserOrders[0];
+    expect(getEditingOrder(mockedState)).toEqual(expected);
+  });
+
+  describe('getEditingOrderUser', () => {
+    const expected = mockedUserData[0];
+    expect(getEditingOrderUser(mockedState)).toEqual(expected);
   });
 });

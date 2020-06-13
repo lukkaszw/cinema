@@ -27,8 +27,9 @@ class UserOrders extends Component  {
     });
   }
 
-  handleEdit = (orderId) => {
-    console.log(orderId);
+  handleEdit = (orderId, showId) => {
+    this.props.setOrderToEdit(orderId);
+    this.props.history.push(`/order/edit/${showId}`);
   }
 
   handleDeleting = (orderId) => {
@@ -82,7 +83,7 @@ class UserOrders extends Component  {
                 isActive={activeOrder === order._id}
                 onToggleActive={() => handleToggleOrder(order._id)}
                 onDelete={() => handleDeleting(order._id)}
-                onEdit={() => handleEdit(order._id)}
+                onEdit={() => handleEdit(order._id, order.showId._id)}
               />
             ))
           }

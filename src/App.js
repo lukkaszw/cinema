@@ -9,6 +9,7 @@ import Logout from './components/views/Logout/Logout.container';
 import Auth from './components/views/Auth/Auth.container';
 import Movie from './components/views/Movie/Movie.container';
 import Order from './components/views/Order/Order.container';
+import EditOrder from './components/views/EditOrder/EditOrder.container';
 import MainLayout from './components/layout/MainLayout/MainLayout';
 import User from './components/views/User/User.container';
 import AuthSuccess from './components/views/AuthSuccess/AuthSuccess';
@@ -43,6 +44,7 @@ function App({ isAuth, onCheckStartAuth  }) {
         <Route exact path="/movies/:id" component={Movie} />
         <Route exact path="/schedule" component={Schedule} />
         <Route exact path="/schedule/:id" component={MovieSchedule} />
+        <Route exact path="/order/edit/:id" component={EditOrder} />
         <Route exact path="/order/:id" component={Order} />
         <Route path="/user" component={User} />
         <Route exact path="/auth" component={Auth} />

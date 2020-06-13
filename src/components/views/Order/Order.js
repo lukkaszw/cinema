@@ -16,6 +16,12 @@ class Order extends Component {
     seats: JSON.parse(JSON.stringify(SEATS)),
   };
 
+  MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+  DAYS = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+  PRICES = {
+    '2d': 10,
+    '3d': 12,
+  }
   
   componentDidMount() {
     window.scrollTo(0, 0);
@@ -26,6 +32,8 @@ class Order extends Component {
     if(token && !this.props.userData.email) {
       this.props.fetchUserData(token);
     }
+
+    this.initiateChosenSeats();
   }
 
   componentWillUnmount() {
@@ -36,7 +44,16 @@ class Order extends Component {
     if(prevProps.orderedSeats !== this.props.orderedSeats) {
       this.generateSeats();
     }
-  } 
+  }
+  
+  initiateChosenSeats() {
+    const orderToEdit = this.props.orderToEdit;
+    if(orderToEdit) {
+      this.setState({
+        chosenSeats: [...orderToEdit.seats],
+      });
+    }
+  }
 
   initiateSocket = () => {
     const showId = this.props.match.params.id;
@@ -47,11 +64,21 @@ class Order extends Component {
 
   generateSeats() {
     const seats = [...this.state.seats];
-    const orderedSeats = this.props.orderedSeats;
-    let chosenSeats = this.state.chosenSeats.filter(seatId => !orderedSeats.includes(seatId));
+    
+    const { orderedSeats, orderToEdit } = this.props;
+
+    const ordered = orderedSeats.filter(seatId => {
+      if(orderToEdit) {
+        return !orderToEdit.seats.includes(seatId);
+      }
+      return true;
+    })
+
+    const chosenSeats = this.state.chosenSeats.filter(seatId => !ordered.includes(seatId));
+
     seats.map(seatsGroup => seatsGroup.map(seat => {
         seat.chosen = chosenSeats.includes(seat.seatId);
-        seat.disabled = orderedSeats.includes(seat.seatId);
+        seat.disabled = ordered.includes(seat.seatId);
         return seat;
       }));
 
@@ -59,13 +86,6 @@ class Order extends Component {
       seats,
       chosenSeats,
     });
-  }
-
-  MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-  DAYS = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-  PRICES = {
-    '2d': 10,
-    '3d': 12,
   }
 
   handleToggleSeat = (seatId) => {
@@ -143,7 +163,11 @@ class Order extends Component {
       isFetchingError, 
       showData, 
       userData, 
-      token } = this.props;
+      token,
+      isEditing,
+      orderTickets,
+      orderToEdit,
+      } = this.props;
     const { chosenSeats, seats } = this.state;
     const { 
       generateDate, 
@@ -177,6 +201,9 @@ class Order extends Component {
                   handleCancelTicket={handleCancelTicket}
                   price={price}
                   userData={userData}
+                  orderTickets={orderTickets}
+                  isEditing={isEditing}
+                  editingId={orderToEdit ? orderToEdit._id : null}
                 />
                 <ShowsDetails 
                    title={movie.title}
@@ -209,8 +236,11 @@ Order.propTypes = {
   userData: PropTypes.object,
   orderedSeats: PropTypes.array,
   fetchSeats: PropTypes.func.isRequired,
-  fetchUserData: PropTypes.func.isRequired,
+  fetchUserData: PropTypes.func,
   updateSeats: PropTypes.func.isRequired,
+  isEditing: PropTypes.bool,
+  orderToEdit: PropTypes.object,
+  orderTickets: PropTypes.func.isRequired,
 };
 
 Order.defaultProps = {

@@ -4,7 +4,9 @@ import moxios from 'moxios';
 import { 
   orderTickets, 
   deleteOrder,
-  DELETE_USER_ORDER } from './ordersRedux';
+  editOrder,
+  DELETE_USER_ORDER,
+  UPDATE_USER_ORDER } from './ordersRedux';
 import {
   START_SENDING,
   SET_SUCCESS,
@@ -16,11 +18,8 @@ const mockedOrderId = '1';
 const mockedToken = 'someToken';
 
 const initialState =   {
-  data: {},
-  loading: {
-    isActive: false,
-    isError: false,
-  },
+  userOrders: [],
+  orderToEdit: null,
 };
 
 const middlewares = [thunk];
@@ -120,6 +119,59 @@ describe('Order Reducer async actions', () => {
       ];
   
       return store.dispatch(deleteOrder(mockedOrderId, mockedToken))
+      .then(() => {
+        expect(store.getActions()).toEqual(expected);
+      });
+    });
+  });
+
+  describe('editOrder', () => {
+    const orderId = '1';
+    const orderData = {...mockedData};
+    delete orderData.showId;
+
+    beforeEach(() => moxios.install());
+    afterEach(() => moxios.uninstall());
+
+    it('creates proper actions when deleting was succeded', () => {
+  
+      const response = {
+        ...orderData,
+        _id: orderId,
+      }
+
+      const store = makeMockStore();
+      moxios.wait(() => {
+        const request = moxios.requests.mostRecent();
+        request.respondWith(mockSuccess(response));
+      });
+  
+      const expected = [
+        { type: START_SENDING },
+        { type: SET_SUCCESS },
+        { payload: response, type: UPDATE_USER_ORDER },
+      ];
+   
+      return store.dispatch(editOrder(orderData, mockedToken, orderId))
+        .then(() => {
+          expect(store.getActions()).toEqual(expected);
+        });
+    });
+
+    it('creates proper actions when deleting an order ended with error', () => {
+      const response = {};
+      const store = makeMockStore();
+      moxios.wait(() => {
+        const request = moxios.requests.mostRecent();
+        request.respondWith(mockError(response));
+      });
+  
+      const expected = [
+        { type: START_SENDING },
+        { type: SET_ERROR },
+      ];
+  
+      return store.dispatch(editOrder(orderData, mockedToken, orderId))
       .then(() => {
         expect(store.getActions()).toEqual(expected);
       });

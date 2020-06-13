@@ -54,11 +54,7 @@ const initialState = {
   },
   orders: {
     userOrders: [],
-    orderToEdit: {},
-    loading: {
-      isActive: false,
-      isError: false,
-    },
+    orderToEdit: null,
   },
   moviePage: {
     data: {},

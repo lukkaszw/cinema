@@ -24,7 +24,22 @@ describe('OrderMessage component', () => {
     expect(btnEl.props()).toEqual({
       action: mockedProps.action,
       children: 'Ok',
-      variants: [],
+      variants: [null],
+    });
+  });
+
+  it('renders tertiary Button when isSuccess prop is provided', () => {
+    const propsSuccess = {
+      ...mockedProps,
+      isSuccess: true,
+    };
+
+    const compWhenSuccess = shallow(<OrderMessage {...propsSuccess}/>);
+    const btnEl = compWhenSuccess.find('Button');
+    expect(btnEl.props()).toEqual({
+      action: mockedProps.action,
+      children: 'Ok',
+      variants: ['tertiary'],
     });
   });
 });

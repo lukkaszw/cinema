@@ -1,39 +1,38 @@
 import { connect } from 'react-redux';
-import Order from './Order';
+import EditOrder from './EditOrder';
 import { getToken } from '../../../redux/reducers/authRedux/authRedux';
-import { fetchUserData, getUserData } from '../../../redux/reducers/userRedux/userRedux';
 import { 
   fetchShowData, 
   getIsFetching, 
   getIsError, 
   getData } from '../../../redux/reducers/showRedux/showRedux';
-
-import {
-  orderTickets
-} from '../../../redux/reducers/ordersRedux/ordersRedux';
-
 import {
   fetchSeats,
   updateSeats,
   getOrderedSeats,
 } from '../../../redux/reducers/seatsRedux/seatsRedux';
+import {
+  getEditingOrderUser, 
+  getEditingOrder,
+  editOrder,
+  getEditingOrderId,
+} from '../../../redux/reducers/ordersRedux/ordersRedux';
 
 const mapStateToProps = (state) => ({
   token: getToken(state),
   showData: getData(state),
-  userData: getUserData(state),
+  userData: getEditingOrderUser(state),
   isFetchingError: getIsError(state),
   isFetching: getIsFetching(state),
   orderedSeats: getOrderedSeats(state),
+  orderToEdit: getEditingOrder(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchShowData: (showId) => dispatch(fetchShowData(showId)),
   fetchSeats: (showId, token) => dispatch(fetchSeats(showId, token)),
-  fetchUserData: (token) => dispatch(fetchUserData(token)),
   updateSeats: (data) => dispatch(updateSeats(data)),
-  orderTickets: (orderData, token) => dispatch(orderTickets(orderData, token)),
+  editOrder: (orderData, token, editingId) => dispatch(editOrder(orderData, token, editingId)), 
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Order);
-
+export default connect(mapStateToProps, mapDispatchToProps)(EditOrder);
