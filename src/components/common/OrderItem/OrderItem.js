@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import Button from '../../common/Button/Button';
 import { getDate } from '../../../utils/getDate/getDate';
 
-const OrderItem = ({ _id, showId, seats, email, phone, name, surname, isActive, onToggleActive, onEdit, onDelete }) => {
+const OrderItem = ({ _id, showId, seats, email, phone, name, price, surname, isActive, onToggleActive, onEdit, onDelete }) => {
 
   const title = showId.movieId.title;
   const date = useMemo(() => getDate(showId.day), [showId]);
@@ -49,6 +49,10 @@ const OrderItem = ({ _id, showId, seats, email, phone, name, surname, isActive, 
           <span className={styles.category}>phone: </span>
           <span>{phone}</span>
         </p>
+        <p className={styles.data}>
+          <span className={styles.category}>price:</span> 
+          <span className={styles.important}>{price}$</span>
+        </p>
         <div className={styles.btns}>
           <span className={styles.btn}>
             <Button
@@ -83,6 +87,7 @@ OrderItem.propTypes = {
   isActive: PropTypes.bool.isRequired,
   onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
+  price: PropTypes.number.isRequired,
 };
  
 export default OrderItem;

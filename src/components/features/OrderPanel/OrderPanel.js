@@ -123,7 +123,8 @@ export class OrderPanel extends Component {
 
   handleSubmitOrder = () => {
     const { name, surname, phone, email } = this.state;
-    const { showId, chosenSeats, isEditing, token, editingId } = this.props;
+    const { showId, chosenSeats, isEditing, token, editingId, price } = this.props;
+    const totalPrice = chosenSeats.length * price;
 
     const orderData = {
       name,
@@ -132,6 +133,7 @@ export class OrderPanel extends Component {
       email,
       showId,
       seats: chosenSeats,
+      price: totalPrice,
     }
 
     if(isEditing) {

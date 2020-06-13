@@ -63,7 +63,7 @@ const editOrder = async (req, res) => {
   const userId = req.userId;
 
   const data = req.body;
-  const allowed = ['name', 'surname', 'phone', 'email', 'seats'];
+  const allowed = ['name', 'surname', 'phone', 'price', 'email', 'seats'];
   const changes = Object.keys(data);
   const isMatch = changes.every(key => allowed.includes(key));
 

@@ -16,6 +16,7 @@ const mockedProps = {
   seats: ['1A', '2A'],
   email: 'somemail@wp.pl',
   phone: '666 666 666',
+  price: 20,
   surname: 'Surname',
   name: 'Name',
   isActive: false,
@@ -80,6 +81,12 @@ describe('OrderInfo component', () => {
     const expected = mockedProps.phone;
     const phoneEl = component.find('.data').at(4).find('span').at(1);
     expect(phoneEl.text()).toBe(expected);
+  });
+
+  it('renders proper info about price', () => {
+    const expected = `${mockedProps.price}$`;
+    const priceEl = component.find('.data').at(5).find('span').at(1);
+    expect(priceEl.text()).toBe(expected);
   });
 
   it('renders 2 Buttons', () => {

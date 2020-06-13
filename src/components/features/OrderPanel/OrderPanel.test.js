@@ -387,6 +387,8 @@ describe('OrderPanel component', () => {
         chosenSeats: mockedSeats,
       };
 
+      const expectedPrice = propsWithSeats.price * mockedSeats.length;
+
       const comp = shallow(<OrderPanel {...propsWithSeats}/>);
       const instance = comp.instance();
       expect(mockedProps.orderTickets).toHaveBeenCalledTimes(0);
@@ -396,20 +398,23 @@ describe('OrderPanel component', () => {
         ...mockedUserData,
         seats: mockedSeats,
         showId: mockedProps.showId,
+        price: expectedPrice,
       }, mockedProps.token, undefined );
     });
 
     it('fires orderTickets with proper values when user submit to edit order', () => {
       const mockedSeats = ['3D', '11C'];
       const editingId = 'someId';
-      const propsToOrder = {
+      const propsToEditOrder = {
         ...mockedProps,
         chosenSeats: mockedSeats,
         isEditing: true,
         editingId,
       };
 
-      const comp = shallow(<OrderPanel {...propsToOrder}/>);
+      const expectedPrice = propsToEditOrder.price * mockedSeats.length;
+
+      const comp = shallow(<OrderPanel {...propsToEditOrder}/>);
       const instance = comp.instance();
       expect(mockedProps.orderTickets).toHaveBeenCalledTimes(1);
       instance.handleSubmitOrder();
@@ -417,6 +422,7 @@ describe('OrderPanel component', () => {
       expect(mockedProps.orderTickets).toHaveBeenCalledWith({
         ...mockedUserData,
         seats: mockedSeats,
+        price: expectedPrice,
       }, mockedProps.token, editingId );
     });
   });

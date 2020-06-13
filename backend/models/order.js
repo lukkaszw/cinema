@@ -36,6 +36,10 @@ const orderSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  price: {
+    type: Number,
+    required: true,
+  },
   status: {
     type: String,
     enum: ['ordered', 'paid', 'cancelled'],
