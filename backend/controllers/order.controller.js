@@ -38,7 +38,7 @@ const addOrder = async (req, res) => {
 
 const deleteOrder = async (req, res) => {
   const _id = req.params.id;
-  const userId = req.userId;
+  const userId = req.user._id;
   try {
     const order = await Order.findOne({ _id, userId }).populate({
       path: 'showId',
@@ -77,7 +77,7 @@ const deleteOrder = async (req, res) => {
 
 const editOrder = async (req, res) => {
   const _id = req.params.id;
-  const userId = req.userId;
+  const userId = req.user._id;
 
   const data = req.body;
   const allowed = ['name', 'surname', 'phone', 'price', 'email', 'seats'];
