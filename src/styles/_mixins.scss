@@ -71,6 +71,10 @@
     background-color: $main-green;
   }
 
+  &.fourth {
+    background-color: $main-orange;
+  }
+
   &:disabled, &.gray {
     background-color: #555;
   }

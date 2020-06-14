@@ -4,6 +4,7 @@
  @include button;
 
  &.disabled {
-  pointer-events: none;
+    background-color: #555;
+    pointer-events: none;
  }
 }

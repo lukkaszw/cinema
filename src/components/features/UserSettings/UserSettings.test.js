@@ -116,7 +116,7 @@ describe('UserSettings component', () => {
       });
     });
 
-    it('renders only one Button "Edit" and one ButtonLink "Update password" in non-editing mode', () => {
+    it('renders only one Button "Edit" and two ButtonLinks: "Update password", "DeleteAccount" in non-editing mode', () => {
       const instance = component.instance();
       expect(instance.state.isEditing).toBe(false);
       const btnEditEl = component.find('Button');
@@ -126,11 +126,17 @@ describe('UserSettings component', () => {
       expect(btnEditEl.prop('children')).toBe('Edit');
 
       const btnLinkEl = component.find('ButtonLink');
-      expect(btnLinkEl.length).toBe(1);
-      expect(btnLinkEl.props()).toEqual({
+      expect(btnLinkEl.length).toBe(2);
+      expect(btnLinkEl.at(0).props()).toEqual({
         to: '/user/settings/up',
         size: 'small',
+        variant: 'fourth',
         title: 'Update password!',
+      });
+      expect(btnLinkEl.at(1).props()).toEqual({
+        to: '/user/settings/delete',
+        size: 'small',
+        title: 'Delete account',
       });
     });
 

@@ -8,6 +8,7 @@ import UserNews from '../../features/UserNews/UserNews.container';
 import UserSettings from '../../features/UserSettings/UserSettings.container';
 import UpdatePswd from '../../features/UpdatePswd/UpdatePswd.container';
 import UserOrders from '../../features/UserOrders/UserOrders.container';
+import DeleteAccount from '../../features/DeleteAccount/DeleteAccount.container';
 
 class User extends Component {
 
@@ -32,6 +33,7 @@ class User extends Component {
           <Route path='/user/orders' component={UserOrders} />
           <Route exact path='/user/settings' component={UserSettings} />
           <Route exact path='/user/settings/up' component={UpdatePswd} />
+          <Route exact path='/user/settings/delete' component={DeleteAccount} />
         </Container>
       </Page>
     );

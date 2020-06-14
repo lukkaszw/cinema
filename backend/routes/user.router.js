@@ -8,5 +8,6 @@ router.put('/data', userController.updateUserData);
 
 router.patch('/p', userController.updatePassword);
 
+router.delete('/me', userController.deleteAccount);
 
 module.exports = router;

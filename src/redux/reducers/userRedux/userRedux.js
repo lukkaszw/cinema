@@ -93,7 +93,21 @@ export const updateUserPswd = (token, data) => {
       })
       .catch(() => dispatch(setFormError('Error. Make sure you provide correct data and try again!')));
   }
+}
 
+export const deleteAccount = (token) => {
+  const url = `${api.user.url}/me`;
+  const AuthString = `Bearer ${token}`;
+
+  return dispatch => {
+    dispatch(startSending());
+    return axios.delete(url, { headers: { 'Authorization': AuthString }})
+      .then((res) => {
+        dispatch(setSuccess(res.data.message));
+        dispatch(setData({}));
+      })
+      .catch(() => dispatch(setFormError('Error. Can not delete your account. Try again later.')));
+  }
 }
 
 

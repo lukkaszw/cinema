@@ -10,6 +10,7 @@ const mockedProps = {
   isDeleteSuccess: false,
   deleteOrder: jest.fn(),
   resetForm: jest.fn(),
+  price: 10,
 };
 
 const propsWithOrders = {
@@ -23,6 +24,7 @@ const propsWithOrders = {
       email: 'email1@wp.pl',
       phone: '555 555 555',
       showId: {},
+      price: 20,
     },
     {
       _id: '2',
@@ -32,6 +34,7 @@ const propsWithOrders = {
       email: 'email2@wp.pl',
       phone: '666 666 666',
       showId: {},
+      price: 24,
     }
   ]
 }

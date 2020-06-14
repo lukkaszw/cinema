@@ -231,13 +231,23 @@ class UserSettings extends Component {
         }
         {
           !isEditing &&
-            <div className={styles.upBtn}>
-              <ButtonLink
-                to="/user/settings/up"
-                size="small"
-                title="Update password!"
-              />
-            </div>
+              <div className={styles.btns}>
+                <div className={styles.btn}>
+                  <ButtonLink
+                    to="/user/settings/up"
+                    size="small"
+                    variant="fourth"
+                    title="Update password!"
+                  />
+                </div>
+                <div className={styles.btn}>
+                  <ButtonLink
+                    to="/user/settings/delete"
+                    size="small"
+                    title="Delete account"
+                  />
+                </div>
+              </div>
         }
       </div>
      );

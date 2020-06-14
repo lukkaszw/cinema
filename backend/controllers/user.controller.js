@@ -61,9 +61,21 @@ const updatePassword = async (req, res) => {
   }
 }
 
+const deleteAccount = async (req, res) => {
+  try {
+    await req.user.remove();
+    res.json({
+      message: `Account for user ${req.user.email} has been deleted!`,
+    });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+}
+
 
 module.exports = {
   getUserData,
   updateUserData,
   updatePassword,
+  deleteAccount,
 };
