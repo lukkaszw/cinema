@@ -1,6 +1,8 @@
 const Order = require('../models/order');
 const User = require('../models/user');
 const ObjectId = require('mongoose').Types.ObjectId;
+const Show = require('../models/show');
+const sendOrderEmail = require('../emails/orders');
 
 const addOrder = async (req, res) => {
   const orderData = req.body;
@@ -23,7 +25,12 @@ const addOrder = async (req, res) => {
 
     req.io.to(orderData.showId).emit('loadSeats', seats);
 
+    const show = await Show.findById(order.showId)
+      .populate('movieId');
+
     res.json();
+    
+    sendOrderEmail.afterCreate(order, show);
   } catch (error) {
     res.status(400).json(error);
   }
@@ -33,7 +40,14 @@ const deleteOrder = async (req, res) => {
   const _id = req.params.id;
   const userId = req.userId;
   try {
-    const order = await Order.findOne({ _id, userId });
+    const order = await Order.findOne({ _id, userId }).populate({
+      path: 'showId',
+      populate: {
+        path: 'movieId',
+        options: { select: 'title'}
+      }
+    });
+
     if(!order) {
       res.status(404).json({
         isError: true,
@@ -43,16 +57,19 @@ const deleteOrder = async (req, res) => {
     }
     await order.remove();
 
-    const orders = await Order.find({ showId: ObjectId(order.showId)})
+    const orders = await Order.find({ showId: ObjectId(order.showId._id)})
       .select('seats');
     let seats = [];
     orders.forEach(order => {
       seats = seats.concat(order.seats);
     });
 
-    req.io.to(order.showId).emit('loadSeats', seats);
+    req.io.to(order.showId._id).emit('loadSeats', seats);
 
     res.json(order._id);
+
+    sendOrderEmail.afterDelete(order);
+
   } catch (error) {
     res.status(500).json(error);
   }
@@ -101,6 +118,9 @@ const editOrder = async (req, res) => {
     await order.save();
 
     res.json(order);
+
+    sendOrderEmail.afterEdit(order);
+
     if(JSON.stringify(data.seats) !== JSON.stringify(seatsBeforeUpdate)) {
       console.log('we are here');
       const orders = await Order.find({ showId: ObjectId(order.showId._id)})
