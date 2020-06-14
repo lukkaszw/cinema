@@ -91,8 +91,8 @@ export class OrderPanel extends Component {
     2: 'You have no chosen seats. Please back and select some seats!',
     3: 'Please provide correct data into form!',
     4: 'Error! Your order has not been sent correctly. Please try again later!',
-    5: 'Your order has been added correctly. Please check your email for backup information!',
-    6: 'Your order has been edited correctly. Please check your email for backup information!'
+    5: 'Your order has been added correctly. Please check your email for feedback information!',
+    6: 'Your order has been edited correctly. Please check your email for feedback information!'
   }
 
   handleModalAction = (errorId) => {
