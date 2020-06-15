@@ -1,27 +1,18 @@
 import { connect } from 'react-redux';
 import UpdatePswd from './UpdatePswd';
 
-import {
-  getToken,
-} from '../../../redux/reducers/authRedux/authRedux';
-
-import {
-  updateUserPswd
-} from '../../../redux/reducers/userRedux/userRedux';
-
-import {
-  getIsSending,
-  resetAll,
-} from '../../../redux/reducers/formsRedux/formsRedux';
+import SELECTORS from '../../../redux/selectors';
+import API from '../../../redux/api';
+import ACTION_CREATORS from '../../../redux/actionCreators';
 
 const mapStateToProps = (state) => ({
-  token: getToken(state),
-  isSending: getIsSending(state),
+  token: SELECTORS.auth.getToken(state),
+  isSending: SELECTORS.forms.getIsSending(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updatePswd: (token, pswdData) => dispatch(updateUserPswd(token, pswdData)),
-  resetUpdatePswdForm: () => dispatch(resetAll()),
+  updatePswd: (token, pswdData) => dispatch(API.user.updateUserPswd(token, pswdData)),
+  resetUpdatePswdForm: () => dispatch(ACTION_CREATORS.forms.resetAll()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UpdatePswd);

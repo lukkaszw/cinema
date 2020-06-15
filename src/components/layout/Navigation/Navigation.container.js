@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import Navigation from './Navigation';
 
-import { getIsAuthenticated } from '../../../redux/reducers/authRedux/authRedux';
+import SELECTORS from '../../../redux/selectors';
 
 const mapStateToProps = (state) => ({
-  isAuth: getIsAuthenticated(state),
+  isAuth: SELECTORS.auth.getIsAuthenticated(state),
 });
 
 export default connect(mapStateToProps)(Navigation);

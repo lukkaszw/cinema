@@ -1,38 +1,25 @@
 import { connect } from 'react-redux';
 import EditOrder from './EditOrder';
-import { getToken } from '../../../redux/reducers/authRedux/authRedux';
-import { 
-  fetchShowData, 
-  getIsFetching, 
-  getIsError, 
-  getData } from '../../../redux/reducers/showRedux/showRedux';
-import {
-  fetchSeats,
-  updateSeats,
-  getOrderedSeats,
-} from '../../../redux/reducers/seatsRedux/seatsRedux';
-import {
-  getEditingOrderUser, 
-  getEditingOrder,
-  editOrder,
-  getEditingOrderId,
-} from '../../../redux/reducers/ordersRedux/ordersRedux';
+
+import SELECTORS from '../../../redux/selectors';
+import API from '../../../redux/api';
+import ACTION_CREATORS from '../../../redux/actionCreators';
 
 const mapStateToProps = (state) => ({
-  token: getToken(state),
-  showData: getData(state),
-  userData: getEditingOrderUser(state),
-  isFetchingError: getIsError(state),
-  isFetching: getIsFetching(state),
-  orderedSeats: getOrderedSeats(state),
-  orderToEdit: getEditingOrder(state),
+  token: SELECTORS.auth.getToken(state),
+  showData: SELECTORS.show.getData(state),
+  userData: SELECTORS.orders.getEditingOrderUser(state),
+  isFetchingError: SELECTORS.show.getIsError(state),
+  isFetching: SELECTORS.show.getIsFetching(state),
+  orderedSeats: SELECTORS.seats.getOrderedSeats(state),
+  orderToEdit: SELECTORS.orders.getEditingOrder(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchShowData: (showId) => dispatch(fetchShowData(showId)),
-  fetchSeats: (showId, token) => dispatch(fetchSeats(showId, token)),
-  updateSeats: (data) => dispatch(updateSeats(data)),
-  editOrder: (orderData, token, editingId) => dispatch(editOrder(orderData, token, editingId)), 
+  fetchShowData: (showId) => dispatch(API.show.fetchShowData(showId)),
+  fetchSeats: (showId, token) => dispatch(API.seats.fetchSeats(showId, token)),
+  updateSeats: (data) => dispatch(ACTION_CREATORS.seats.updateSeats(data)),
+  editOrder: (orderData, token, editingId) => dispatch(API.orders.editOrder(orderData, token, editingId)), 
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditOrder);

@@ -1,19 +1,22 @@
 import { connect } from 'react-redux';
 import Schedule from './Schedule';
-import { fetchSchedule , getScheduleList, getLoading, getError, setPage, getPage, getSearchText, changeSearchText } from '../../../redux/reducers/scheduleRedux/scheduleRedux';
+
+import SELECTORS from '../../../redux/selectors';
+import API from '../../../redux/api';
+import ACTION_CREATORS from '../../../redux/actionCreators';
 
 const mapStateToProps = (state) => ({
-  scheduleList: getScheduleList(state),
-  isLoading: getLoading(state),
-  isError: getError(state),
-  page: getPage(state),
-  searchText: getSearchText(state),
+  scheduleList: SELECTORS.schedule.getScheduleList(state),
+  isLoading: SELECTORS.schedule.getLoading(state),
+  isError: SELECTORS.schedule.getError(state),
+  page: SELECTORS.schedule.getPage(state),
+  searchText: SELECTORS.schedule.getSearchText(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchSchedule: (limit, skip) => dispatch(fetchSchedule(limit, skip)),
-  setPage: (pageNr) => dispatch(setPage(pageNr)),
-  changeSearchText: (searchText) => dispatch(changeSearchText(searchText)),
+  fetchSchedule: (limit, skip) => dispatch(API.schedule.fetchSchedule(limit, skip)),
+  setPage: (pageNr) => dispatch(ACTION_CREATORS.schedule.setPage(pageNr)),
+  changeSearchText: (searchText) => dispatch(ACTION_CREATORS.schedule.changeSearchText(searchText)),
 });
 
 

@@ -2,7 +2,6 @@ import React from 'react';
 import Order from '../Order/Order';
 import EditOrderBottomBar from '../../features/EditOrderBottomBar/EditOrderBottomBar';
 import PropTypes from 'prop-types';
-import { orderTickets } from '../../../redux/reducers/ordersRedux/ordersRedux';
 
 const EditOrder = ({
   fetchShowData,

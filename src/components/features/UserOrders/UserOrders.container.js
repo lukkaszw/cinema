@@ -1,23 +1,22 @@
 import { connect } from 'react-redux';
 import UserOrders from './UserOrders';
 
-import { deleteOrder, getUserOrders, setOrderToEdit } from '../../../redux/reducers/ordersRedux/ordersRedux';
-import { getToken } from '../../../redux/reducers/authRedux/authRedux';
-import { getIsSending, getIsError, getIsSuccess, resetAll } from '../../../redux/reducers/formsRedux/formsRedux';
-
+import SELECTORS from '../../../redux/selectors';
+import API from '../../../redux/api';
+import ACTION_CREATORS from '../../../redux/actionCreators';
 
 const mapStateToProps = (state) => ({
-  orders: getUserOrders(state),
-  token: getToken(state),
-  isDeleting: getIsSending(state),
-  isDeleleteError: getIsError(state),
-  isDeleteSuccess: getIsSuccess(state),
+  orders: SELECTORS.orders.getUserOrders(state),
+  token: SELECTORS.auth.getToken(state),
+  isDeleting: SELECTORS.forms.getIsSending(state),
+  isDeleleteError: SELECTORS.forms.getIsError(state),
+  isDeleteSuccess: SELECTORS.forms.getIsSuccess(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  deleteOrder: (orderId, token) => dispatch(deleteOrder(orderId, token)),
-  resetForm: () => dispatch(resetAll()),
-  setOrderToEdit: (orderId) => dispatch(setOrderToEdit(orderId)),
+  deleteOrder: (orderId, token) => dispatch(API.orders.deleteOrder(orderId, token)),
+  resetForm: () => dispatch(ACTION_CREATORS.forms.resetAll()),
+  setOrderToEdit: (orderId) => dispatch(ACTION_CREATORS.orders.setOrderToEdit(orderId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserOrders);

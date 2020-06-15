@@ -1,27 +1,22 @@
 import { connect } from 'react-redux';
 import Home from './Home';
-import { 
-  getCurrentMovies, 
-  getSoonMovies, 
-  getCurrentMoviesFilter, 
-  getIsLoading, 
-  setCurrentMoviesFilter,
-  fetchMoviesData, 
-  getIsError,
-  checkIfDataFetched } from '../../../redux/reducers/moviesRedux/moviesRedux';
+
+import SELECTORS from '../../../redux/selectors';
+import API from '../../../redux/api';
+import ACTION_CREATORS from '../../../redux/actionCreators';
 
 const mapStateToProps = (state) => ({
-  currentMovies: getCurrentMovies(state),
-  soonMovies: getSoonMovies(state),
-  filter: getCurrentMoviesFilter(state),
-  isLoading: getIsLoading(state),
-  isError: getIsError(state),
-  dataFetched: checkIfDataFetched(state),
+  currentMovies: SELECTORS.movies.getCurrentMovies(state),
+  soonMovies: SELECTORS.movies.getSoonMovies(state),
+  filter: SELECTORS.movies.getCurrentMoviesFilter(state),
+  isLoading: SELECTORS.movies.getIsLoading(state),
+  isError: SELECTORS.movies.getIsError(state),
+  dataFetched: SELECTORS.movies.checkIfDataFetched(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchMovies: () => dispatch(fetchMoviesData()),
-  setFilter: (filter) => dispatch(setCurrentMoviesFilter(filter)),
+  fetchMovies: () => dispatch(API.movies.fetchMoviesData()),
+  setFilter: (filter) => dispatch(ACTION_CREATORS.movies.setCurrentMoviesFilter(filter)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

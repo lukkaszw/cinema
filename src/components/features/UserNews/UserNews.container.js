@@ -1,17 +1,16 @@
 import { connect } from 'react-redux';
 import UserNews from './UserNews';
 
-import { getToken } from '../../../redux/reducers/authRedux/authRedux';
-import { sendReadNews, getNews } from '../../../redux/reducers/userRedux/userRedux';
-
+import SELECTORS from '../../../redux/selectors';
+import API from '../../../redux/api';
 
 const mapStateToProps = (state) => ({
-  token: getToken(state),
-  news: getNews(state),
+  token: SELECTORS.auth.getToken(state),
+  news: SELECTORS.user.getNews(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setNewsAsRead: (token, newsId) => dispatch(sendReadNews(token, newsId)),
+  setNewsAsRead: (token, newsId) => dispatch(API.user.sendReadNews(token, newsId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserNews);

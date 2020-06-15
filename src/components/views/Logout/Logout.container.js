@@ -1,16 +1,15 @@
 import { connect } from 'react-redux';
 import Logout from './Logout';
-import {
-  getToken,
-  logoutUser
-} from '../../../redux/reducers/authRedux/authRedux';
+
+import SELECTORS from '../../../redux/selectors';
+import API from '../../../redux/api';
 
 const mapStateToProps = (state) => ({
-  token: getToken(state),
+  token: SELECTORS.auth.getToken(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onLogout: (token) => dispatch(logoutUser(token)),
+  onLogout: (token) => dispatch(API.auth.logoutUser(token)),
 });
 
 export default connect(mapStateToProps ,mapDispatchToProps)(Logout);

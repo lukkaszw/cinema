@@ -1,17 +1,17 @@
 import { connect } from 'react-redux';
 import User from './User';
 
-import { getToken } from '../../../redux/reducers/authRedux/authRedux';
-import { fetchUserData, getIsLoading, getIsError } from '../../../redux/reducers/userRedux/userRedux';
+import SELECTORS from '../../../redux/selectors';
+import API from '../../../redux/api';
 
 const mapStateToProps = (state) => ({
-  token: getToken(state),
-  isFetching: getIsLoading(state),
-  isError: getIsError(state),
+  token: SELECTORS.auth.getToken(state),
+  isFetching: SELECTORS.user.getIsLoading(state),
+  isError: SELECTORS.user.getIsError(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchUserData: (token) => dispatch(fetchUserData(token)),
+  fetchUserData: (token) => dispatch(API.user.fetchUserData(token)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(User);

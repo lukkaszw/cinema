@@ -1,19 +1,16 @@
 import { connect } from 'react-redux';
 import Auth from './Auth';
-import {
-  getIsAuthenticated
-} from '../../../redux/reducers/authRedux/authRedux';
-import {
-  resetAll
-} from '../../../redux/reducers/formsRedux/formsRedux';
+
+import SELECTORS from '../../../redux/selectors';
+import ACTION_CREATORS from '../../../redux/actionCreators';
 
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: getIsAuthenticated(state),
+  isAuthenticated: SELECTORS.auth.getIsAuthenticated(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  resetFormState: () => dispatch(resetAll()),
+  resetFormState: () => dispatch(ACTION_CREATORS.forms.resetAll()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Auth);

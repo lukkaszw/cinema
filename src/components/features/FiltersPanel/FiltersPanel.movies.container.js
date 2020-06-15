@@ -1,39 +1,29 @@
 import { connect } from 'react-redux';
 import FiltersPanel from './FiltersPanel';
 
-import { 
-  getAllMoviesFilter, 
-  setAllMoviesFilter,
-  getSearchText,
-  setSearchText,
-  setTimeFilter,
-  getPlayTimeFilter,
-  getSortFilter,
-  setSortFilter,
-  getGenresFilter,
-  toggleGenre,
-} from '../../../redux/reducers/moviesRedux/moviesRedux';
 import filtersBtns from '../../../config/filtersBtns';
 import playTimeBtns from '../../../config/playTimeBtns';
+import SELECTORS from '../../../redux/selectors';
+import ACTION_CREATORS from '../../../redux/actionCreators';
 
 const mapStateToProps = (state) => ({
-  inputText: getSearchText(state),
+  inputText: SELECTORS.movies.getSearchText(state),
   placeholder: 'Search by title',
   submitInput: e => e.preventDefault(),
-  filter: getAllMoviesFilter(state),
-  playTime: getPlayTimeFilter(state),
-  sort: getSortFilter(state),
+  filter: SELECTORS.movies.getAllMoviesFilter(state),
+  playTime: SELECTORS.movies.getPlayTimeFilter(state),
+  sort: SELECTORS.movies.getSortFilter(state),
   filtersBtns,
   playTimeBtns,
-  genres: getGenresFilter(state),
+  genres: SELECTORS.movies.getGenresFilter(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  changeInput: e => dispatch(setSearchText(e.target.value)),
-  setFilter: (filter) => dispatch(setAllMoviesFilter(filter)),
-  setPlayTime: (playTime) => dispatch(setTimeFilter(playTime)),
-  setSort: (sort) => dispatch(setSortFilter(sort)),
-  toggleGenre: (genre) => dispatch(toggleGenre(genre)),
+  changeInput: e => dispatch(ACTION_CREATORS.movies.setSearchText(e.target.value)),
+  setFilter: (filter) => dispatch(ACTION_CREATORS.movies.setAllMoviesFilter(filter)),
+  setPlayTime: (playTime) => dispatch(ACTION_CREATORS.movies.setTimeFilter(playTime)),
+  setSort: (sort) => dispatch(ACTION_CREATORS.movies.setSortFilter(sort)),
+  toggleGenre: (genre) => dispatch(ACTION_CREATORS.movies.toggleGenre(genre)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FiltersPanel);

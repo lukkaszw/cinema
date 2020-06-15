@@ -1,24 +1,22 @@
 import { connect } from 'react-redux';
 import SignUser from './SignUser';
 
-import {
-  sendCredentials,
-} from '../../../redux/reducers/authRedux/authRedux';
-
-import { getIsSending, getDestination, getMessage, getIsError, resetAll } from '../../../redux/reducers/formsRedux/formsRedux';
+import SELECTORS from '../../../redux/selectors';
+import API from '../../../redux/api';
+import ACTION_CREATORS from '../../../redux/actionCreators/index';
 
 const mapStateToProps = (state) => {
-  const isLogin = (getDestination(state) === 'login');
+  const isLogin = (SELECTORS.forms.getDestination(state) === 'login');
   return {
-    isSending: isLogin && getIsSending(state),
-    isError: isLogin && getIsError(state),
-    message: isLogin ? getMessage(state) : '',
+    isSending: isLogin && SELECTORS.forms.getIsSending(state),
+    isError: isLogin && SELECTORS.forms.getIsError(state),
+    message: isLogin ? SELECTORS.forms.getMessage(state) : '',
   };
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  sendCredentials: (credentials) => dispatch(sendCredentials(credentials, 'login')),
-  resetForm: () => dispatch(resetAll()),
+  sendCredentials: (credentials) => dispatch(API.auth.sendCredentials(credentials, 'login')),
+  resetForm: () => dispatch(ACTION_CREATORS.forms.resetAll()),
 });
 
 const SignIn = connect(mapStateToProps, mapDispatchToProps)(SignUser);

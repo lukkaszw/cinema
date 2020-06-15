@@ -1,17 +1,15 @@
 import { connect } from 'react-redux';
 import App from './App';
 
-import {
-  getIsAuthenticated,
-  checkStartAuthStatus
-} from './redux/reducers/authRedux/authRedux';
+import SELECTORS from './redux/selectors';
+import DISPATCHERS from './redux/dispatchers';
 
 const mapStateToProps = (state) => ({
-  isAuth: getIsAuthenticated(state),
+  isAuth: SELECTORS.auth.getIsAuthenticated(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onCheckStartAuth: () => dispatch(checkStartAuthStatus()),
+  onCheckStartAuth: () => dispatch(DISPATCHERS.auth.checkStartAuthStatus()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
