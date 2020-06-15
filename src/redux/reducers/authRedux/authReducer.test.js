@@ -1,8 +1,5 @@
 import authReducer from './authRedux';
-import {
-  LOGIN,
-  LOGOUT,
-} from './authRedux';
+import actions from './actions/actions';
 
 const mockedStatePart = {
   token: null,
@@ -21,9 +18,9 @@ describe('Auth reducer', () => {
   it('returns proper state when it uses LOGIN action', () => {
     const mockedToken = 'sometoken';
      //check if reducer is clean function
-     expect(authReducer(mockedStatePart, { type: LOGIN, payload: mockedToken })).not.toBe(mockedStatePart);
+     expect(authReducer(mockedStatePart, { type: actions.LOGIN, payload: mockedToken })).not.toBe(mockedStatePart);
     //check if reducer returns proper state
-    expect(authReducer(mockedStatePart, { type: LOGIN, payload: mockedToken })).toEqual({
+    expect(authReducer(mockedStatePart, { type: actions.LOGIN, payload: mockedToken })).toEqual({
       token: mockedToken,
     });
   });
@@ -34,9 +31,9 @@ describe('Auth reducer', () => {
       token: mockedToken,
     };
      //check if reducer is clean function
-     expect(authReducer(statePartWithToken, { type: LOGOUT })).not.toBe(statePartWithToken);
+     expect(authReducer(statePartWithToken, { type: actions.LOGOUT })).not.toBe(statePartWithToken);
     //check if reducer returns proper state
-    expect(authReducer(statePartWithToken, { type: LOGOUT })).toEqual({
+    expect(authReducer(statePartWithToken, { type: actions.LOGOUT })).toEqual({
       token: null,
     });
   });

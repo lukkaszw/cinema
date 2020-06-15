@@ -5,7 +5,7 @@ import {
   SET_ERROR,
 } from './showRedux';
 
-import { mockedData } from './mockedData';
+import { mockedData } from './testUtils/mockedData';
 
 const mockedStatePart = {
   data: {},

@@ -33,7 +33,7 @@ export const START_FETCHING = createActionName('START_FETCHING');
 export const SET_ERROR = createActionName('SET_ERROR');
 export const SET_DATA = createActionName('SET_DATA');
 export const SET_PAGE = createActionName('SET_PAGE');
-export const CHANGE_SEARCH_TEXT = createActionName('CHANGE_SEARCH_TEXT')
+export const CHANGE_SEARCH_TEXT = createActionName('CHANGE_SEARCH_TEXT');
 
 /* action creators */
 export const startFetching = () => ({ type: START_FETCHING });

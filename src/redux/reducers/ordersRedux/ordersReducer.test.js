@@ -5,7 +5,7 @@ import {
   SET_ORDER_TO_EDIT,
   UPDATE_USER_ORDER,
 } from './ordersRedux';
-import { mockedUserOrders } from './mockedData';
+import { mockedUserOrders } from './testUtils/mockedData';
 
 const mockedStatePart = {
   userOrders: [],
