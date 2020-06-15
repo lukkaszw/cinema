@@ -1,10 +1,5 @@
-import searchPanelReducer from './searchPanelRedux';
-import {
-  START_SEARCHING,
-  SET_FOUND_DATA,
-  SET_ERROR,
-  RESET_QUERY,
-} from './searchPanelRedux';
+import searchPanelReducer from './searchPanel.reducer';
+import actions from './actions/actions';
 
 const mockedStatePart = {
   searchPanel: {
@@ -30,9 +25,9 @@ describe('SearchPanel reducer', () => {
   it('returns proper state if app is starting searching data', () => {
     const mockedPayload = 'search text';
     //check if reducer is clean function
-    expect(searchPanelReducer(mockedStatePart, { payload: mockedPayload, type: START_SEARCHING })).not.toBe(mockedStatePart);
+    expect(searchPanelReducer(mockedStatePart, { payload: mockedPayload, type: actions.START_SEARCHING })).not.toBe(mockedStatePart);
     //check if reducer returns proper state
-    expect(searchPanelReducer(mockedStatePart, { payload: mockedPayload, type: START_SEARCHING })).toEqual({
+    expect(searchPanelReducer(mockedStatePart, { payload: mockedPayload, type: actions.START_SEARCHING })).toEqual({
       data: [],
       query: mockedPayload,
       loading: {
@@ -45,9 +40,9 @@ describe('SearchPanel reducer', () => {
   it('returns proper state if user found some movies', () => {
     const mockedPayload = ['Movie 1', 'Movie 2'];
     //check if reducer is clean function
-    expect(searchPanelReducer(mockedStatePart, { payload: mockedPayload, type: SET_FOUND_DATA })).not.toBe(mockedStatePart);
+    expect(searchPanelReducer(mockedStatePart, { payload: mockedPayload, type: actions.SET_FOUND_DATA })).not.toBe(mockedStatePart);
     //check if reducer returns proper state
-    expect(searchPanelReducer(mockedStatePart, { payload: mockedPayload, type: SET_FOUND_DATA })).toEqual({
+    expect(searchPanelReducer(mockedStatePart, { payload: mockedPayload, type: actions.SET_FOUND_DATA })).toEqual({
       ...mockedStatePart,
       data: mockedPayload,
       loading: {
@@ -59,9 +54,9 @@ describe('SearchPanel reducer', () => {
 
   it('returns proper state if error occured', () => {
     //check if reducer is clean function
-    expect(searchPanelReducer(mockedStatePart, { type: SET_ERROR })).not.toBe(mockedStatePart);
+    expect(searchPanelReducer(mockedStatePart, { type: actions.SET_ERROR })).not.toBe(mockedStatePart);
     //check if reducer returns proper state
-    expect(searchPanelReducer(mockedStatePart, { type: SET_ERROR })).toEqual({
+    expect(searchPanelReducer(mockedStatePart, { type: actions.SET_ERROR })).toEqual({
       ...mockedStatePart,
       data: [],
       loading: {
@@ -81,9 +76,9 @@ describe('SearchPanel reducer', () => {
       }
     }
     //check if reducer is clean function
-    expect(searchPanelReducer(stateWithDataAndQuery, { type: RESET_QUERY })).not.toBe(stateWithDataAndQuery);
+    expect(searchPanelReducer(stateWithDataAndQuery, { type: actions.RESET_QUERY })).not.toBe(stateWithDataAndQuery);
     //check if reducer returns proper state
-    expect(searchPanelReducer(stateWithDataAndQuery, { type: RESET_QUERY })).toEqual({
+    expect(searchPanelReducer(stateWithDataAndQuery, { type: actions.RESET_QUERY })).toEqual({
       data: [],
       query: '',
       loading: {

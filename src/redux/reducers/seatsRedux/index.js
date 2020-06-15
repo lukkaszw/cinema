@@ -1,1 +1,1 @@
-export { default } from './seatsRedux';
+export { default } from './seats.reducer';

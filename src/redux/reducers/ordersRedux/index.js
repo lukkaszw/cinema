@@ -1,1 +1,1 @@
-export { default } from './ordersRedux';
+export { default } from './orders.reducer';

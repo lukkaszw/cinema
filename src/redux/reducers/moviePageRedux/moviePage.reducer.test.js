@@ -1,9 +1,5 @@
-import moviePageReducer from './moviePageRedux';
-import {
-  START_LOADING,
-  SET_DATA,
-  SET_ERROR,
-} from './moviePageRedux';
+import moviePageReducer from './moviePage.reducer';
+import actions from './actions/actions';
 
 const mockedStatePart =   {
   data: {},
@@ -29,9 +25,9 @@ describe('MoviePage Reducer', () => {
 
   it('returns proper state if app is starting fetching data', () => {
     //check if reducer is clean function
-    expect(moviePageReducer(mockedStatePart, { type: START_LOADING })).not.toBe(mockedStatePart);
+    expect(moviePageReducer(mockedStatePart, { type: actions.START_LOADING })).not.toBe(mockedStatePart);
     //check if reducer returns proper state
-    expect(moviePageReducer(mockedStatePart, { type: START_LOADING })).toEqual({
+    expect(moviePageReducer(mockedStatePart, { type: actions.START_LOADING })).toEqual({
       data: {},
       loading: {
         isActive: true,
@@ -42,9 +38,9 @@ describe('MoviePage Reducer', () => {
 
   it('returns proper state if error is occured', () => {
     //check if reducer is clean function
-    expect(moviePageReducer(mockedStatePart, { type: SET_ERROR })).not.toBe(mockedStatePart);
+    expect(moviePageReducer(mockedStatePart, { type: actions.SET_ERROR })).not.toBe(mockedStatePart);
     //check if reducer returns proper state
-    expect(moviePageReducer(mockedStatePart, { type: SET_ERROR })).toEqual({
+    expect(moviePageReducer(mockedStatePart, { type: actions.SET_ERROR })).toEqual({
       data: {},
       loading: {
         isActive: false,
@@ -55,9 +51,9 @@ describe('MoviePage Reducer', () => {
 
   it('returns proper data in state when fetching data succeded', () => {
     //check if reducer is clean function
-    expect(moviePageReducer(mockedStatePart, { type: SET_DATA, payload: mockedData })).not.toBe(mockedStatePart);
+    expect(moviePageReducer(mockedStatePart, { type: actions.SET_DATA, payload: mockedData })).not.toBe(mockedStatePart);
     //check if reducer returns proper state
-    expect(moviePageReducer(mockedStatePart, { type: SET_DATA, payload: mockedData })).toEqual({
+    expect(moviePageReducer(mockedStatePart, { type: actions.SET_DATA, payload: mockedData })).toEqual({
       data: mockedData,
       loading: {
         isActive: false,

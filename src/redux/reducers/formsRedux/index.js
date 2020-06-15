@@ -1,1 +1,1 @@
-export { default } from './formsRedux';
+export { default } from './forms.reducer';

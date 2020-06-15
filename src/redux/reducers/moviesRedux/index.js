@@ -1,1 +1,1 @@
-export { default } from './moviesRedux';
+export { default } from './movies.reducer';

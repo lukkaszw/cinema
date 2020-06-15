@@ -1,1 +1,1 @@
-export { default } from './showRedux';
+export { default } from './show.reducer';

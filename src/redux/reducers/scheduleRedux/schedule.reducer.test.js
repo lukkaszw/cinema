@@ -1,10 +1,5 @@
-import scheduleReducer, { CHANGE_SEARCH_TEXT } from './scheduleRedux';
-import { 
-  START_FETCHING,
-  SET_ERROR,
-  SET_DATA,
-  SET_PAGE,
-} from './scheduleRedux';
+import scheduleReducer from './schedule.reducer';
+import actions from './actions/actions';
 
 const mockedStatePart = {
   data: [],
@@ -39,9 +34,9 @@ describe('Movies Reducer', () => {
 
   it('returns proper state if app is starting fetching data', () => {
     //check if reducer is clean function
-    expect(scheduleReducer(mockedStatePart, { type: START_FETCHING })).not.toBe(mockedStatePart);
+    expect(scheduleReducer(mockedStatePart, { type: actions.START_FETCHING })).not.toBe(mockedStatePart);
     //check if reducer returns proper state
-    expect(scheduleReducer(mockedStatePart, { type: START_FETCHING })).toEqual({
+    expect(scheduleReducer(mockedStatePart, { type: actions.START_FETCHING })).toEqual({
       data: [],
       loading: {
         isActive: true,
@@ -56,9 +51,9 @@ describe('Movies Reducer', () => {
 
   it('returns proper state if error is occured', () => {
     //check if reducer is clean function
-    expect(scheduleReducer(mockedStatePart, { type: SET_ERROR })).not.toBe(mockedStatePart);
+    expect(scheduleReducer(mockedStatePart, { type: actions.SET_ERROR })).not.toBe(mockedStatePart);
     //check if reducer returns proper state
-    expect(scheduleReducer(mockedStatePart, { type: SET_ERROR })).toEqual({
+    expect(scheduleReducer(mockedStatePart, { type: actions.SET_ERROR })).toEqual({
       data: [],
       loading: {
         isActive: false,
@@ -73,9 +68,9 @@ describe('Movies Reducer', () => {
 
   it('returns proper data in state when fetching data succeded', () => {
     //check if reducer is clean function
-    expect(scheduleReducer(mockedStatePart, { type: SET_DATA, payload: mockedData })).not.toBe(mockedStatePart);
+    expect(scheduleReducer(mockedStatePart, { type: actions.SET_DATA, payload: mockedData })).not.toBe(mockedStatePart);
     //check if reducer returns proper state
-    expect(scheduleReducer(mockedStatePart, { type: SET_DATA, payload: mockedData })).toEqual({
+    expect(scheduleReducer(mockedStatePart, { type: actions.SET_DATA, payload: mockedData })).toEqual({
       data: mockedData,
       loading: {
         isActive: false,
@@ -90,9 +85,9 @@ describe('Movies Reducer', () => {
 
   it('updates page properly', () => {
     //check if reducer is clean function
-    expect(scheduleReducer(mockedStatePart, { type: SET_PAGE, payload: 2 })).not.toBe(mockedStatePart);
+    expect(scheduleReducer(mockedStatePart, { type: actions.SET_PAGE, payload: 2 })).not.toBe(mockedStatePart);
      //check if reducer returns proper state
-    expect(scheduleReducer(mockedStatePart, { type: SET_PAGE, payload: 2 })).toEqual({
+    expect(scheduleReducer(mockedStatePart, { type: actions.SET_PAGE, payload: 2 })).toEqual({
       data: [],
       loading: {
         isActive: false,
@@ -107,9 +102,9 @@ describe('Movies Reducer', () => {
 
   it('updates searchText properly', () => {
     //check if reducer is clean function
-    expect(scheduleReducer(mockedStatePart, { type: CHANGE_SEARCH_TEXT, payload: 'test text' })).not.toBe(mockedStatePart);
+    expect(scheduleReducer(mockedStatePart, { type: actions.CHANGE_SEARCH_TEXT, payload: 'test text' })).not.toBe(mockedStatePart);
     //check if reducer returns proper state
-    expect(scheduleReducer(mockedStatePart, { type: CHANGE_SEARCH_TEXT, payload: 'test text' })).toEqual({
+    expect(scheduleReducer(mockedStatePart, { type: actions.CHANGE_SEARCH_TEXT, payload: 'test text' })).toEqual({
       data: [],
       loading: {
         isActive: false,

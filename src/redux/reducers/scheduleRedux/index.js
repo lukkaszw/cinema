@@ -1,1 +1,1 @@
-export { default } from './scheduleRedux';
+export { default } from './schedule.reducer';

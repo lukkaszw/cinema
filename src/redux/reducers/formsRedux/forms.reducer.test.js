@@ -1,10 +1,5 @@
-import formsReducer from './formsRedux';
-import {
-  START_SENDING,
-  SET_ERROR,
-  SET_SUCCESS,
-  RESET_ALL,
-} from './formsRedux';
+import formsReducer from './forms.reducer';
+import actions from './actions/actions';
 
 const mockedStatePart = {
   destination: null,
@@ -29,9 +24,9 @@ describe('Form reducer', () => {
   it('returns proper state when user starts to sending data', () => {
     const expectedDestination = 'contact-form';
      //check if reducer is clean function
-     expect(formsReducer(mockedStatePart, { type: START_SENDING, payload: expectedDestination })).not.toBe(mockedStatePart);
+     expect(formsReducer(mockedStatePart, { type: actions.START_SENDING, payload: expectedDestination })).not.toBe(mockedStatePart);
      //check if reducer returns proper state
-     expect(formsReducer(mockedStatePart, { type: START_SENDING, payload: expectedDestination })).toEqual({
+     expect(formsReducer(mockedStatePart, { type: actions.START_SENDING, payload: expectedDestination })).toEqual({
        destination: expectedDestination,
        sending: {
          isActive: true,
@@ -45,9 +40,9 @@ describe('Form reducer', () => {
   it('returns proper state when sending data was successfull', () => {
     const expectedMsg = 'Success!';
     //check if reducer is clean function
-    expect(formsReducer(mockedStatePart, { payload: expectedMsg, type: SET_SUCCESS })).not.toBe(mockedStatePart);
+    expect(formsReducer(mockedStatePart, { payload: expectedMsg, type: actions.SET_SUCCESS })).not.toBe(mockedStatePart);
     //check if reducer returns proper state
-    expect(formsReducer(mockedStatePart, { payload: expectedMsg, type: SET_SUCCESS })).toEqual({
+    expect(formsReducer(mockedStatePart, { payload: expectedMsg, type: actions.SET_SUCCESS })).toEqual({
       ...mockedStatePart,
       sending: {
         isActive: false,
@@ -61,9 +56,9 @@ describe('Form reducer', () => {
   it('returns proper state when error occurred', () => {
     const expectedPayload = 'Error!';
     //check if reducer is clean function
-    expect(formsReducer(mockedStatePart, { payload: expectedPayload, type: SET_ERROR })).not.toBe(mockedStatePart);
+    expect(formsReducer(mockedStatePart, { payload: expectedPayload, type: actions.SET_ERROR })).not.toBe(mockedStatePart);
     //check if reducer returns proper state
-    expect(formsReducer(mockedStatePart, { payload: expectedPayload, type: SET_ERROR })).toEqual({
+    expect(formsReducer(mockedStatePart, { payload: expectedPayload, type: actions.SET_ERROR })).toEqual({
       ...mockedStatePart,
       sending: {
         isActive: false,
@@ -76,7 +71,7 @@ describe('Form reducer', () => {
 
   it('returns proper state when it is reseted', () => {
         //check if reducer is clean function
-        expect(formsReducer(mockedStatePart, { type: RESET_ALL })).not.toBe(mockedStatePart);
+        expect(formsReducer(mockedStatePart, { type: actions.RESET_ALL })).not.toBe(mockedStatePart);
         //check if reducer returns proper state
         const someFullfilledState = {
           sending: {
@@ -85,6 +80,6 @@ describe('Form reducer', () => {
           },
           message: 'Error',
         }
-        expect(formsReducer(someFullfilledState, { type: RESET_ALL })).toEqual(mockedStatePart);
+        expect(formsReducer(someFullfilledState, { type: actions.RESET_ALL })).toEqual(mockedStatePart);
   });
 });

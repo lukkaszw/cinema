@@ -1,4 +1,4 @@
-import authReducer from './authRedux';
+import authReducer from './auth.reducer';
 import actions from './actions/actions';
 
 const mockedStatePart = {

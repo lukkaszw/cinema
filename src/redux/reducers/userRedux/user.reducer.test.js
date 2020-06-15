@@ -1,10 +1,5 @@
-import userReducer from './userRedux';
-import { 
-  START_FETCHING,
-  SET_DATA,
-  SET_ERROR,
-  SET_NEWS_AS_READ,
-} from './userRedux';
+import userReducer from './user.reducer';
+import actions from './actions/actions';
 
 const mockedStatePart = {
   data: {},
@@ -27,9 +22,9 @@ describe('Movies Reducer', () => {
 
   it('returns proper state if action type was START_FETCHING', () => {
     //check if user reducer is clean function
-    expect(userReducer(mockedStatePart, { type: START_FETCHING })).not.toBe(mockedStatePart);
+    expect(userReducer(mockedStatePart, { type: actions.START_FETCHING })).not.toBe(mockedStatePart);
 
-    expect(userReducer(mockedStatePart, { type: START_FETCHING })).toEqual({
+    expect(userReducer(mockedStatePart, { type: actions.START_FETCHING })).toEqual({
       data: {},
       loading: {
         isActive: true,
@@ -47,9 +42,9 @@ describe('Movies Reducer', () => {
       email: 'someemail@wp.pl',
     };
     //check if user reducer is clean function
-    expect(userReducer(mockedStatePart, { type: SET_DATA, payload })).not.toBe(mockedStatePart);
+    expect(userReducer(mockedStatePart, { type: actions.SET_DATA, payload })).not.toBe(mockedStatePart);
 
-    expect(userReducer(mockedStatePart, { type: SET_DATA, payload })).toEqual({
+    expect(userReducer(mockedStatePart, { type: actions.SET_DATA, payload })).toEqual({
       data: payload,
       loading: {
         isActive: false,
@@ -60,9 +55,9 @@ describe('Movies Reducer', () => {
 
   it('returns proper state when error occured - SET_ERROR', () => {
     //check if user reducer is clean function
-    expect(userReducer(mockedStatePart, { type: SET_ERROR })).not.toBe(mockedStatePart);
+    expect(userReducer(mockedStatePart, { type: actions.SET_ERROR })).not.toBe(mockedStatePart);
 
-    expect(userReducer(mockedStatePart, { type: SET_ERROR })).toEqual({
+    expect(userReducer(mockedStatePart, { type: actions.SET_ERROR })).toEqual({
       data: {},
       loading: {
         isActive: false,
@@ -89,9 +84,9 @@ describe('Movies Reducer', () => {
 
 
      //check if user reducer is clean function
-     expect(userReducer(mockedStatePartWithData, { type: SET_NEWS_AS_READ, payload })).not.toBe(mockedStatePartWithData);
+     expect(userReducer(mockedStatePartWithData, { type: actions.SET_NEWS_AS_READ, payload })).not.toBe(mockedStatePartWithData);
 
-     expect(userReducer(mockedStatePartWithData, { type: SET_NEWS_AS_READ, payload })).toEqual({
+     expect(userReducer(mockedStatePartWithData, { type: actions.SET_NEWS_AS_READ, payload })).toEqual({
        data: {
         name: 'Somename',
         news: [{ _id: '1', isRead: false }, { _id: '2', isRead: true }]

@@ -1,9 +1,5 @@
-import seatsReducer from './seatsRedux';
-import {
-  START_FETCHING_SEATS,
-  SET_ERROR,
-  SET_DATA,
-} from './seatsRedux';
+import seatsReducer from './seats.reducer';
+import actions from './actions/actions';
 import { mockedSeats } from './testUtils/mockedData';
 
 const mockedStatePart = {
@@ -26,9 +22,9 @@ describe('Seats reducer', () => {
 
   it('returns proper state when app is fetching', () => {
     //check if reducer is clean function
-    expect(seatsReducer(mockedStatePart, { type: START_FETCHING_SEATS })).not.toBe(mockedStatePart);
+    expect(seatsReducer(mockedStatePart, { type: actions.START_FETCHING_SEATS })).not.toBe(mockedStatePart);
     //check if reducer returns proper state
-    expect(seatsReducer(mockedStatePart, { type: START_FETCHING_SEATS })).toEqual({
+    expect(seatsReducer(mockedStatePart, { type: actions.START_FETCHING_SEATS })).toEqual({
       ...mockedStatePart,
       loading: {
         isActive: true,
@@ -39,9 +35,9 @@ describe('Seats reducer', () => {
 
   it('returns proper state when setting error', () => {
     //check if reducer is clean function
-    expect(seatsReducer(mockedStatePart, { type: SET_ERROR })).not.toBe(mockedStatePart);
+    expect(seatsReducer(mockedStatePart, { type: actions.SET_ERROR })).not.toBe(mockedStatePart);
     //check if reducer returns proper state
-    expect(seatsReducer(mockedStatePart, { type: SET_ERROR })).toEqual({
+    expect(seatsReducer(mockedStatePart, { type: actions.SET_ERROR })).toEqual({
       ...mockedStatePart,
       loading: {
         isActive: false,
@@ -52,9 +48,9 @@ describe('Seats reducer', () => {
 
   it('returns proper state when setting data', () => {
     //check if reducer is clean function
-    expect(seatsReducer(mockedStatePart, { type: SET_DATA, payload: mockedSeats })).not.toBe(mockedStatePart);
+    expect(seatsReducer(mockedStatePart, { type: actions.SET_DATA, payload: mockedSeats })).not.toBe(mockedStatePart);
     //check if reducer returns proper state
-    expect(seatsReducer(mockedStatePart, { type: SET_DATA, payload: mockedSeats })).toEqual({
+    expect(seatsReducer(mockedStatePart, { type: actions.SET_DATA, payload: mockedSeats })).toEqual({
       data: mockedSeats,
       loading: {
         isActive: false,

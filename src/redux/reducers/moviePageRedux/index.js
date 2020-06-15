@@ -1,2 +1,2 @@
-export { default } from './moviePageRedux';
+export { default } from './moviePage.reducer';
 

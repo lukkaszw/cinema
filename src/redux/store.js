@@ -4,16 +4,16 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import initialState from './initialState';
 
-import showReducer from './reducers/showRedux/showRedux';
-import moviesReducer from './reducers/moviesRedux/moviesRedux';
-import moviePageReducer from './reducers/moviePageRedux/moviePageRedux';
-import scheduleReducer from './reducers/scheduleRedux/scheduleRedux';
-import searchPanelReducer from './reducers/searchPanelRedux/searchPanelRedux';
-import formsReducer from './reducers/formsRedux/formsRedux';
-import authReducer from './reducers/authRedux/authRedux';
-import userReducer from './reducers/userRedux/userRedux';
-import seatsReducer from './reducers/seatsRedux/seatsRedux';
-import ordersReducer from './reducers/ordersRedux/ordersRedux';
+import showReducer from './reducers/showRedux';
+import moviesReducer from './reducers/moviesRedux';
+import moviePageReducer from './reducers/moviePageRedux';
+import scheduleReducer from './reducers/scheduleRedux';
+import searchPanelReducer from './reducers/searchPanelRedux';
+import formsReducer from './reducers/formsRedux';
+import authReducer from './reducers/authRedux';
+import userReducer from './reducers/userRedux';
+import seatsReducer from './reducers/seatsRedux';
+import ordersReducer from './reducers/ordersRedux';
 
 const reducers = {
   movies: moviesReducer,

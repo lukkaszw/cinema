@@ -1,1 +1,1 @@
-export { default } from './searchPanelRedux';
+export { default } from './searchPanel.reducer';
