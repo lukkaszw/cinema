@@ -18,14 +18,14 @@ describe('Search panel reducers action creators', () => {
       payload: mockedData,
       type: actions.SET_FETCH_DATA, 
     };
-    expect(actionCreators.setFoundData(mockedData)).toEqual(expectedAction);
+    expect(actionCreators.setFetchData(mockedData)).toEqual(expectedAction);
   });
 
   it('creates proper action when searching data was completed with error', () => {
     const expectedAction = {
       type: actions.SET_FETCH_ERROR, 
     };
-    expect(actionCreators.setError()).toEqual(expectedAction);
+    expect(actionCreators.setFetchError()).toEqual(expectedAction);
   });
 
   it('creates proper action when user reset query', () => {

@@ -9,7 +9,7 @@ const fetchUserData = (token) => {
 
   return dispatch => {
     if(!token) {
-      dispatch(actionCreators.setError());
+      dispatch(actionCreators.setFetchError());
       return;
     } 
     const AuthString = `Bearer ${token}`;
@@ -19,10 +19,10 @@ const fetchUserData = (token) => {
         const userOrders = res.data.orders;
         const data = res.data;
         delete data.orders;
-        dispatch(actionCreators.setData(data));
+        dispatch(actionCreators.setFetchData(data));
         dispatch(ordersActionCreators.setUserOrders(userOrders));
       })
-      .catch(() => dispatch(actionCreators.setError()));
+      .catch(() => dispatch(actionCreators.setFetchError()));
   }
 }
 
@@ -47,10 +47,10 @@ const updateUserData = (token, data) => {
     dispatch(formActionCreators.startSending());
     return axios.put(url, data, { headers: { 'Authorization': AuthString }})
       .then((res) => {
-        dispatch(formActionCreators.setSuccess(res.data.message));
-        dispatch(actionCreators.setData(res.data.userData));
+        dispatch(formActionCreators.setSendSuccess(res.data.message));
+        dispatch(actionCreators.setFetchData(res.data.userData));
       })
-      .catch(() => dispatch(formActionCreators.setError('Error. Try again later!')));
+      .catch(() => dispatch(formActionCreators.setSendError('Error. Try again later!')));
   }
 }
 
@@ -62,9 +62,9 @@ const updateUserPswd = (token, data) => {
     dispatch(formActionCreators.startSending());
     return axios.patch(url, data, { headers: { 'Authorization': AuthString }})
       .then((res) => {
-        dispatch(formActionCreators.setSuccess(res.data.message));
+        dispatch(formActionCreators.setSendSuccess(res.data.message));
       })
-      .catch(() => dispatch(formActionCreators.setError('Error. Make sure you provide correct data and try again!')));
+      .catch(() => dispatch(formActionCreators.setSendError('Error. Make sure you provide correct data and try again!')));
   }
 }
 
@@ -76,10 +76,10 @@ const deleteAccount = (token) => {
     dispatch(formActionCreators.startSending());
     return axios.delete(url, { headers: { 'Authorization': AuthString }})
       .then((res) => {
-        dispatch(formActionCreators.setSuccess(res.data.message));
-        dispatch(actionCreators.setData({}));
+        dispatch(formActionCreators.setSendSuccess(res.data.message));
+        dispatch(actionCreators.setFetchData({}));
       })
-      .catch(() => dispatch(formActionCreators.setError('Error. Can not delete your account. Try again later.')));
+      .catch(() => dispatch(formActionCreators.setSendError('Error. Can not delete your account. Try again later.')));
   }
 }
 

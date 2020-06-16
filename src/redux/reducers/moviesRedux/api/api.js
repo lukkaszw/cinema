@@ -7,8 +7,8 @@ const fetchMoviesData = () => {
   return dispatch => {
     dispatch(actionCreators.startFetching());
     return axios.get(url)
-      .then(res => dispatch(actionCreators.fetchSucceded(res.data)))
-      .catch(() => dispatch(actionCreators.fetchError()));
+      .then(res => dispatch(actionCreators.setFetchData(res.data)))
+      .catch(() => dispatch(actionCreators.setFetchError()));
   }
 }
 

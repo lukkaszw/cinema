@@ -8,8 +8,8 @@ const fetchMoviePageData = (movieId) => {
   return dispatch => {
     dispatch(actionCreators.startFetching());
     return axios.get(url)
-      .then(res => dispatch(actionCreators.setData(res.data)))
-      .catch(() => dispatch(actionCreators.setError()));
+      .then(res => dispatch(actionCreators.setFetchData(res.data)))
+      .catch(() => dispatch(actionCreators.setFetchError()));
   }
 }
 

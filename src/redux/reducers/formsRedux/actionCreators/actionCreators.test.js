@@ -19,7 +19,7 @@ describe('Forms reducer action creators', () => {
       payload: successMsg,
       type: actions.SET_SEND_SUCCESS,
     };
-    expect(actionCreators.setSuccess(successMsg)).toEqual(expectedAction);
+    expect(actionCreators.setSendSuccess(successMsg)).toEqual(expectedAction);
   });
 
   it('creates proper action when error occured', () => {
@@ -29,7 +29,7 @@ describe('Forms reducer action creators', () => {
       payload,
       type: actions.SET_SEND_ERROR,
     };
-    expect(actionCreators.setError(payload)).toEqual(expectedAction);
+    expect(actionCreators.setSendError(payload)).toEqual(expectedAction);
   });
 
   it('creates proper action when it is trying to reset forms state', () => {

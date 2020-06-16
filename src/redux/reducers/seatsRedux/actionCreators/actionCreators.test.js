@@ -27,7 +27,7 @@ describe('Seats reducer action creators', () => {
       type: actions.SET_FETCH_ERROR,
     };
 
-    expect(actionCreators.setError()).toEqual(expectedActions);
+    expect(actionCreators.setFetchError()).toEqual(expectedActions);
   });
 });
 

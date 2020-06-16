@@ -17,18 +17,18 @@ const sendCredentials = (credentials, destination) => {
     return axios.post(url, credentials)
       .then(res => {
         if(res.data.isError) {
-          dispatch(formActionCreators.setError(res.data.message))
+          dispatch(formActionCreators.setSendError(res.data.message))
         } else {
           if(res.data.token) {
             localStorage.setItem('tkn', res.data.token);
             dispatch(actionCreators.login(res.data.token));
           } else {
-            dispatch(formActionCreators.setSuccess(res.data.message));
+            dispatch(formActionCreators.setSendSuccess(res.data.message));
           }
         }
       })
       .catch(() => {
-        dispatch(formActionCreators.setError('Internal server error. Try again later.'))
+        dispatch(formActionCreators.setSendError('Internal server error. Try again later.'))
       });
   }
 }
@@ -42,7 +42,7 @@ const logoutUser = (token, isFromAllDevices) => {
     const AuthStr = `Bearer ${token}`;
 
     dispatch(actionCreators.logout());
-    dispatch(userActionCreators.setData({}));
+    dispatch(userActionCreators.setFetchData({}));
     return axios.post(url, {}, { headers: { 'Authorization': AuthStr }})
       .then(res => {
         console.log('Logout successfull on the server!');

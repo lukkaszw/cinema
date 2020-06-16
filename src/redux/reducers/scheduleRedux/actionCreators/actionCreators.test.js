@@ -13,7 +13,7 @@ describe('Schedule Reducer actions', () => {
     const expectedAction = {
       type: actions.SET_FETCH_ERROR,
     };
-    expect(actionCreators.fetchError()).toEqual(expectedAction);
+    expect(actionCreators.setFetchError()).toEqual(expectedAction);
   });
 
   it('creates proper action when fetching is succeded', () => {
@@ -26,7 +26,7 @@ describe('Schedule Reducer actions', () => {
       type: actions.SET_FETCH_DATA,
       payload: payloadData,
     };
-    expect(actionCreators.fetchSucceded(payloadData)).toEqual(expectedAction);
+    expect(actionCreators.setFetchData(payloadData)).toEqual(expectedAction);
   });
 
   it('creates proper action when setPage', () => {

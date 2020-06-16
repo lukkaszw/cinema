@@ -15,9 +15,9 @@ const orderTickets = (orderData, token) => {
     dispatch(formActionCreators.startSending());
     return axios.post(url, orderData, config)
       .then(res => {
-        dispatch(formActionCreators.setSuccess());
+        dispatch(formActionCreators.setSendSuccess());
       })
-      .catch(() => dispatch(formActionCreators.setError()));
+      .catch(() => dispatch(formActionCreators.setSendError()));
   }
 }
 
@@ -33,10 +33,10 @@ const deleteOrder = (orderId, token) => {
     dispatch(formActionCreators.startSending());
     return axios.delete(url, config)
       .then(res => {
-        dispatch(formActionCreators.setSuccess());
+        dispatch(formActionCreators.setSendSuccess());
         dispatch(actionCreators.deleteUserOrder(res.data));
       })
-      .catch(() => dispatch(formActionCreators.setError()));
+      .catch(() => dispatch(formActionCreators.setSendError()));
   }
 }
 
@@ -52,10 +52,10 @@ const editOrder = (orderData, token, editingId) => {
     dispatch(formActionCreators.startSending());
     return axios.patch(url, orderData, config)
       .then(res => {
-        dispatch(formActionCreators.setSuccess());
+        dispatch(formActionCreators.setSendSuccess());
         dispatch(actionCreators.updateUserOrder(res.data));
       })
-      .catch(() => dispatch(formActionCreators.setError()));
+      .catch(() => dispatch(formActionCreators.setSendError()));
   }
 }
 

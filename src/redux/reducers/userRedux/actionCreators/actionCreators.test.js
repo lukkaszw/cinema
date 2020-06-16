@@ -22,7 +22,7 @@ describe('User reducer - action creators', () => {
       type: actions.SET_FETCH_DATA, payload: payloadData,
     };
 
-    expect(actionCreators.setData(payloadData)).toEqual(expectedAction);
+    expect(actionCreators.setFetchData(payloadData)).toEqual(expectedAction);
   });
 
   it('creates proper action when fetching data was ended with error', () => {
@@ -30,7 +30,7 @@ describe('User reducer - action creators', () => {
       type: actions.SET_FETCH_ERROR,
     };
 
-    expect(actionCreators.setError()).toEqual(expectedAction);
+    expect(actionCreators.setFetchError()).toEqual(expectedAction);
   });
 
   it('creates proper action when news is set as read', () => {

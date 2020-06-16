@@ -19,7 +19,7 @@ describe('Show reducer action creators', () => {
       payload: mockedData,
     }
 
-    expect(actionCreators.setData(mockedData)).toEqual(expectedActions);
+    expect(actionCreators.setFetchData(mockedData)).toEqual(expectedActions);
   });
 
   it('returns proper action when setting error', () => {
@@ -27,6 +27,6 @@ describe('Show reducer action creators', () => {
       type: actions.SET_FETCH_ERROR,
     };
 
-    expect(actionCreators.setError()).toEqual(expectedActions);
+    expect(actionCreators.setFetchError()).toEqual(expectedActions);
   });
 });

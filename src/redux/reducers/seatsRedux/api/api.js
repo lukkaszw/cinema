@@ -15,7 +15,7 @@ const fetchSeats = (showId, token) => {
       .then(res => {
         dispatch(actionCreators.updateSeats(res.data));
       })
-      .catch(() => dispatch(actionCreators.setError()));
+      .catch(() => dispatch(actionCreators.setFetchError()));
   }
 } 
 

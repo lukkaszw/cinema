@@ -9,13 +9,13 @@ const sendData = (url, data, destination) => {
     return axios.post(url, data)
       .then(res => {
         if(res.data.isError) {
-          dispatch(actionCreators.setError(res.data.message))
+          dispatch(actionCreators.setSendError(res.data.message))
         } else {
-          dispatch(actionCreators.setSuccess(res.data.message));
+          dispatch(actionCreators.setSendSuccess(res.data.message));
         }
       })
       .catch(() => {
-        dispatch(actionCreators.setError('Internal server error. Try again later.'))
+        dispatch(actionCreators.setSendError('Internal server error. Try again later.'))
       });
   }
 }

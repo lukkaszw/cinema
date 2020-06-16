@@ -11,8 +11,8 @@ const searchMovies = (searchedTitle) => {
         title: searchedTitle,
       }
     })
-      .then(res => dispatch(actionCreators.setFoundData(res.data)))
-      .catch(() => dispatch(actionCreators.setError()));
+      .then(res => dispatch(actionCreators.setFetchData(res.data)))
+      .catch(() => dispatch(actionCreators.setFetchError()));
   }
 }
 

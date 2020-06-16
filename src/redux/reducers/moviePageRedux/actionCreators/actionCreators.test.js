@@ -18,7 +18,7 @@ describe('MoviePage reducer actions', () => {
       payload: expectedData,
     };
 
-    expect(actionCreators.setData(expectedData)).toEqual(expectedAction);
+    expect(actionCreators.setFetchData(expectedData)).toEqual(expectedAction);
   });
 
   it('starts setting error action when fetching data was ended with error', () => {
@@ -26,6 +26,6 @@ describe('MoviePage reducer actions', () => {
       type: actions.SET_FETCH_ERROR,
     };
 
-    expect(actionCreators.setError()).toEqual(expectedAction);
+    expect(actionCreators.setFetchError()).toEqual(expectedAction);
   });
 });
