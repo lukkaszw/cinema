@@ -19,7 +19,7 @@ describe('Seats reducer action creators', () => {
       payload: mockedSeats,
     }
 
-    expect(actionCreators.updateSeats(mockedSeats)).toEqual(expectedActions);
+    expect(actionCreators.setFetchData(mockedSeats)).toEqual(expectedActions);
   });
 
   it('returns proper action when setting error', () => {

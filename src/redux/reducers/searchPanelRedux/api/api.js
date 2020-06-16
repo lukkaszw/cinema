@@ -1,19 +1,14 @@
 import api from '../../../../config/api';
-import axios from 'axios';
+import REDUX_UTILS from '../../../utils';
 import actionCreators from '../actionCreators/actionCreators';
 
 const searchMovies = (searchedTitle) => {
   const url = `${api.url}/${api.endpoints.searchMovie}`;
-  return dispatch => {
-    dispatch(actionCreators.startSearching(searchedTitle));
-    return axios.get(url, {
-      params: {
-        title: searchedTitle,
-      }
-    })
-      .then(res => dispatch(actionCreators.setFetchData(res.data)))
-      .catch(() => dispatch(actionCreators.setFetchError()));
-  }
+  const config = {
+    params: searchedTitle,
+  };
+
+  return REDUX_UTILS.fetchData(actionCreators, { url, config }, searchedTitle);
 }
 
 export default {

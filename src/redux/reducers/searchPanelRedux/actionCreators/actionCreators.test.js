@@ -9,7 +9,7 @@ describe('Search panel reducers action creators', () => {
       payload: mockedSearchText,
       type: actions.START_FETCHING,
     };
-    expect(actionCreators.startSearching(mockedSearchText)).toEqual(expectedAction);
+    expect(actionCreators.startFetching(mockedSearchText)).toEqual(expectedAction);
   });
 
   it('creates proper action when user found some data', () => {
