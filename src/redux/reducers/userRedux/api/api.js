@@ -4,7 +4,7 @@ import actionCreators from '../actionCreators/actionCreators';
 import ordersActionCreators from '../../ordersRedux/actionCreators/actionCreators';
 import formActionCreators from '../../formsRedux/actionCreators/actionCreators';
 
-const fetchUserData = (token) => {
+const fetchData = (token) => {
   const url = `${api.user.url}/${api.user.endpoints.data}`;
 
   return dispatch => {
@@ -84,7 +84,7 @@ const deleteAccount = (token) => {
 }
 
 export default {
-  fetchUserData,
+  fetchData,
   sendReadNews,
   updateUserData,
   updateUserPswd,

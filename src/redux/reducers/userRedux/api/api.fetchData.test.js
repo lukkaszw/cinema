@@ -61,7 +61,7 @@ describe('User Reducer async actions', () => {
       { type: orderActions.SET_USER_ORDERS, payload: mockedOrders },
     ];
  
-    return store.dispatch(API.fetchUserData(mockedToken))
+    return store.dispatch(API.fetchData(mockedToken))
       .then(() => {
         expect(store.getActions()).toEqual(expected);
       });
@@ -74,7 +74,7 @@ describe('User Reducer async actions', () => {
       type: actions.SET_FETCH_ERROR,
     }];
 
-    store.dispatch(API.fetchUserData());
+    store.dispatch(API.fetchData());
     expect(store.getActions()).toEqual(expected);
   });
 
@@ -91,7 +91,7 @@ describe('User Reducer async actions', () => {
       { type: actions.SET_FETCH_ERROR },
     ];
 
-    return store.dispatch(API.fetchUserData(mockedToken))
+    return store.dispatch(API.fetchData(mockedToken))
     .then(() => {
       expect(store.getActions()).toEqual(expected);
     });

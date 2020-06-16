@@ -2,7 +2,7 @@ import api from '../../../../config/api';
 import axios from 'axios';
 import actionCreators from '../actionCreators/actionCreators';
 
-const fetchSeats = (showId, token) => {
+const fetchData = (showId, token) => {
   const url = `${api.url}/${api.endpoints.seats}/${showId}`;
   const config = {};
   if(token) {
@@ -20,5 +20,5 @@ const fetchSeats = (showId, token) => {
 } 
 
 export default {
-  fetchSeats,
+  fetchData,
 };

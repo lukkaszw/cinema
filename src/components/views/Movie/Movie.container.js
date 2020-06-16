@@ -11,7 +11,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchMovieData: (movieId) => dispatch(API.moviePage.fetchMoviePageData(movieId)),
+  fetchMovieData: (movieId) => dispatch(API.moviePage.fetchData(movieId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Movie);

@@ -2,7 +2,7 @@ import api from '../../../../config/api';
 import axios from 'axios';
 import actionCreators from '../actionCreators/actionCreators';
 
-const fetchShowData = (showId) => {
+const fetchData = (showId) => {
   const url = `${api.url}/${api.endpoints.schedule}/${showId}`;
   return dispatch => {
     dispatch(actionCreators.startFetching());
@@ -13,5 +13,5 @@ const fetchShowData = (showId) => {
 }
 
 export default {
-  fetchShowData,
+  fetchData,
 };

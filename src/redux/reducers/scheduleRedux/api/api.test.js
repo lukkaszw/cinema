@@ -44,7 +44,7 @@ describe('Schedule Reducer async actions', () => {
       { type: actions.SET_FETCH_DATA, payload: response },
     ];
  
-    return store.dispatch(API.fetchSchedule())
+    return store.dispatch(API.fetchData())
       .then(() => {
         expect(store.getActions()).toEqual(expected);
       });
@@ -63,7 +63,7 @@ describe('Schedule Reducer async actions', () => {
       { type: actions.SET_FETCH_ERROR },
     ];
 
-    return store.dispatch(API.fetchSchedule())
+    return store.dispatch(API.fetchData())
     .then(() => {
       expect(store.getActions()).toEqual(expected);
     });

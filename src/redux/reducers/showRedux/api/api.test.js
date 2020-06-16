@@ -49,7 +49,7 @@ describe('Show Reducer async actions', () => {
         { type: actions.SET_FETCH_DATA, payload: response },
       ];
 
-      return store.dispatch(API.fetchShowData())
+      return store.dispatch(API.fetchData())
       .then(() => {
         expect(store.getActions()).toEqual(expected);
       });
@@ -68,7 +68,7 @@ describe('Show Reducer async actions', () => {
         { type: actions.SET_FETCH_ERROR },
       ];
   
-      return store.dispatch(API.fetchShowData())
+      return store.dispatch(API.fetchData())
       .then(() => {
         expect(store.getActions()).toEqual(expected);
       });

@@ -3,7 +3,7 @@ import api from '../../../../config/api';
 
 import actionCreators from '../actionCreators/actionCreators';
 
-const fetchMoviePageData = (movieId) => {
+const fetchData = (movieId) => {
   const url = `${api.url}/${api.endpoints.movies}/${movieId}`;
   return dispatch => {
     dispatch(actionCreators.startFetching());
@@ -14,5 +14,5 @@ const fetchMoviePageData = (movieId) => {
 }
 
 export default {
-  fetchMoviePageData,
+  fetchData,
 };

@@ -11,7 +11,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchUserData: (token) => dispatch(API.user.fetchUserData(token)),
+  fetchUserData: (token) => dispatch(API.user.fetchData(token)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(User);

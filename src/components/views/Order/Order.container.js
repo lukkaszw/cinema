@@ -15,9 +15,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchShowData: (showId) => dispatch(API.show.fetchShowData(showId)),
-  fetchSeats: (showId, token) => dispatch(API.seats.fetchSeats(showId, token)),
-  fetchUserData: (token) => dispatch(API.user.fetchUserData(token)),
+  fetchShowData: (showId) => dispatch(API.show.fetchData(showId)),
+  fetchSeats: (showId, token) => dispatch(API.seats.fetchData(showId, token)),
+  fetchUserData: (token) => dispatch(API.user.fetchData(token)),
   updateSeats: (data) => dispatch(ACTION_CREATORS.seats.updateSeats(data)),
   orderTickets: (orderData, token) => dispatch(API.orders.orderTickets(orderData, token)),
 });

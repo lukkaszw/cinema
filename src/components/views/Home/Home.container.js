@@ -15,7 +15,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchMovies: () => dispatch(API.movies.fetchMoviesData()),
+  fetchMovies: () => dispatch(API.movies.fetchData()),
   setFilter: (filter) => dispatch(ACTION_CREATORS.movies.setCurrentMoviesFilter(filter)),
 });
 

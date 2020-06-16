@@ -14,7 +14,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchSchedule: (limit, skip) => dispatch(API.schedule.fetchSchedule(limit, skip)),
+  fetchSchedule: (limit, skip) => dispatch(API.schedule.fetchData(limit, skip)),
   setPage: (pageNr) => dispatch(ACTION_CREATORS.schedule.setPage(pageNr)),
   changeSearchText: (searchText) => dispatch(ACTION_CREATORS.schedule.changeSearchText(searchText)),
 });
