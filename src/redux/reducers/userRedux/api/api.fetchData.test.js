@@ -57,7 +57,7 @@ describe('User Reducer async actions', () => {
 
     const expected = [
       { type: actions.START_FETCHING },
-      { type: actions.SET_DATA, payload: expecdedData },
+      { type: actions.SET_FETCH_DATA, payload: expecdedData },
       { type: orderActions.SET_USER_ORDERS, payload: mockedOrders },
     ];
  
@@ -71,7 +71,7 @@ describe('User Reducer async actions', () => {
     const store = makeMockStore();
 
     const expected = [{
-      type: actions.SET_ERROR,
+      type: actions.SET_FETCH_ERROR,
     }];
 
     store.dispatch(API.fetchUserData());
@@ -88,7 +88,7 @@ describe('User Reducer async actions', () => {
 
     const expected = [
       { type: actions.START_FETCHING },
-      { type: actions.SET_ERROR },
+      { type: actions.SET_FETCH_ERROR },
     ];
 
     return store.dispatch(API.fetchUserData(mockedToken))

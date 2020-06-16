@@ -13,7 +13,7 @@ const formsReducer = (statePart = {}, action = {}) => {
           message: '',
         };
       }
-      case actions.SET_SUCCESS: {
+      case actions.SET_SEND_SUCCESS: {
         return {
           ...statePart,
           sending: {
@@ -24,7 +24,7 @@ const formsReducer = (statePart = {}, action = {}) => {
           message: action.payload,
         }
       }
-      case actions.SET_ERROR: {
+      case actions.SET_SEND_ERROR: {
         return {
           ...statePart,
           sending: {

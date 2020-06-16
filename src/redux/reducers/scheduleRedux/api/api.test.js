@@ -41,7 +41,7 @@ describe('Schedule Reducer async actions', () => {
 
     const expected = [
       { type: actions.START_FETCHING },
-      { type: actions.SET_DATA, payload: response },
+      { type: actions.SET_FETCH_DATA, payload: response },
     ];
  
     return store.dispatch(API.fetchSchedule())
@@ -60,7 +60,7 @@ describe('Schedule Reducer async actions', () => {
 
     const expected = [
       { type: actions.START_FETCHING },
-      { type: actions.SET_ERROR },
+      { type: actions.SET_FETCH_ERROR },
     ];
 
     return store.dispatch(API.fetchSchedule())

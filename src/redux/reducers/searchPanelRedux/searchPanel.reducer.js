@@ -2,7 +2,7 @@ import actions from './actions/actions';
  
 const searchPanelReducer = (statePart = {}, action = {}) => {
   switch (action.type) {
-    case actions.START_SEARCHING: {
+    case actions.START_FETCHING: {
       return {
         data: [],
         query: action.payload,
@@ -12,7 +12,7 @@ const searchPanelReducer = (statePart = {}, action = {}) => {
         },
       };
     }
-    case actions.SET_FOUND_DATA: {
+    case actions.SET_FETCH_DATA: {
       return {
         ...statePart,
         data: action.payload,
@@ -22,7 +22,7 @@ const searchPanelReducer = (statePart = {}, action = {}) => {
         },
       };
     }
-    case actions.SET_ERROR: {
+    case actions.SET_FETCH_ERROR: {
       return {
         ...statePart,
         data: [],

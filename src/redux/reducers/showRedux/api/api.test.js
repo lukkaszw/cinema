@@ -45,8 +45,8 @@ describe('Show Reducer async actions', () => {
       });
 
       const expected = [
-        { type: actions.START_FETCHING_DATA },
-        { type: actions.SET_DATA, payload: response },
+        { type: actions.START_FETCHING },
+        { type: actions.SET_FETCH_DATA, payload: response },
       ];
 
       return store.dispatch(API.fetchShowData())
@@ -64,8 +64,8 @@ describe('Show Reducer async actions', () => {
       });
   
       const expected = [
-        { type: actions.START_FETCHING_DATA },
-        { type: actions.SET_ERROR },
+        { type: actions.START_FETCHING },
+        { type: actions.SET_FETCH_ERROR },
       ];
   
       return store.dispatch(API.fetchShowData())

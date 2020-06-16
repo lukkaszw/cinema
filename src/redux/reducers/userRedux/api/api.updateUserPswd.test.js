@@ -50,7 +50,7 @@ describe('User Reducer async actions', () => {
 
     const expected = [
       { type: formActions.START_SENDING },
-      { type: formActions.SET_SUCCESS, payload: mockedSuccessMsg },
+      { type: formActions.SET_SEND_SUCCESS, payload: mockedSuccessMsg },
     ];
  
     return store.dispatch(API.updateUserPswd(mockedToken, mockedData))
@@ -71,7 +71,7 @@ describe('User Reducer async actions', () => {
 
     const expected = [
       { type: formActions.START_SENDING },
-      { type: formActions.SET_ERROR, payload: expectedMessage },
+      { type: formActions.SET_SEND_ERROR, payload: expectedMessage },
     ];
 
     return store.dispatch(API.updateUserPswd(mockedToken, mockedData))

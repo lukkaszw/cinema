@@ -40,9 +40,9 @@ describe('Form reducer', () => {
   it('returns proper state when sending data was successfull', () => {
     const expectedMsg = 'Success!';
     //check if reducer is clean function
-    expect(formsReducer(mockedStatePart, { payload: expectedMsg, type: actions.SET_SUCCESS })).not.toBe(mockedStatePart);
+    expect(formsReducer(mockedStatePart, { payload: expectedMsg, type: actions.SET_SEND_SUCCESS })).not.toBe(mockedStatePart);
     //check if reducer returns proper state
-    expect(formsReducer(mockedStatePart, { payload: expectedMsg, type: actions.SET_SUCCESS })).toEqual({
+    expect(formsReducer(mockedStatePart, { payload: expectedMsg, type: actions.SET_SEND_SUCCESS })).toEqual({
       ...mockedStatePart,
       sending: {
         isActive: false,
@@ -56,9 +56,9 @@ describe('Form reducer', () => {
   it('returns proper state when error occurred', () => {
     const expectedPayload = 'Error!';
     //check if reducer is clean function
-    expect(formsReducer(mockedStatePart, { payload: expectedPayload, type: actions.SET_ERROR })).not.toBe(mockedStatePart);
+    expect(formsReducer(mockedStatePart, { payload: expectedPayload, type: actions.SET_SEND_ERROR })).not.toBe(mockedStatePart);
     //check if reducer returns proper state
-    expect(formsReducer(mockedStatePart, { payload: expectedPayload, type: actions.SET_ERROR })).toEqual({
+    expect(formsReducer(mockedStatePart, { payload: expectedPayload, type: actions.SET_SEND_ERROR })).toEqual({
       ...mockedStatePart,
       sending: {
         isActive: false,

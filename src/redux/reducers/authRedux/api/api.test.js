@@ -101,7 +101,7 @@ describe('Auth reducer async actions', () => {
   
       const expected = [
         { type: formActions.START_SENDING, payload: mockedDestinations.register },
-        { type: formActions.SET_SUCCESS, payload: response.message },
+        { type: formActions.SET_SEND_SUCCESS, payload: response.message },
       ];
 
       return store.dispatch(API.sendCredentials(mockedCredentialsForRegister, mockedDestinations.register))
@@ -128,7 +128,7 @@ describe('Auth reducer async actions', () => {
   
       const expected = [
         { type: formActions.START_SENDING, payload: mockedDestinations.login },
-        { type: formActions.SET_ERROR, payload: response.message },
+        { type: formActions.SET_SEND_ERROR, payload: response.message },
       ];
    
       return store.dispatch(API.sendCredentials(mockedCredentialsForLogin, mockedDestinations.login))
@@ -151,7 +151,7 @@ describe('Auth reducer async actions', () => {
   
       const expected = [
         { type: formActions.START_SENDING, payload: mockedDestinations.register },
-        { type: formActions.SET_ERROR, payload: 'Internal server error. Try again later.' },
+        { type: formActions.SET_SEND_ERROR, payload: 'Internal server error. Try again later.' },
       ];
    
       return store.dispatch(API.sendCredentials(mockedCredentialsForRegister, mockedDestinations.register))
@@ -186,7 +186,7 @@ describe('Auth reducer async actions', () => {
 
       const expected = [
         { type: actions.LOGOUT },
-        { type: userActions.SET_DATA, payload: {}}
+        { type: userActions.SET_FETCH_DATA, payload: {}}
       ];
 
       //check localStoreage before logout - should exist
@@ -212,7 +212,7 @@ describe('Auth reducer async actions', () => {
 
       const expected = [
         { type: actions.LOGOUT },
-        { type: userActions.SET_DATA, payload: {}}
+        { type: userActions.SET_FETCH_DATA, payload: {}}
       ];
 
       //check localStoreage before logout - should exist

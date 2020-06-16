@@ -44,7 +44,7 @@ describe('Order Reducer async actions', () => {
   
       const expected = [
         { type: formActions.START_SENDING },
-        { type: formActions.SET_SUCCESS },
+        { type: formActions.SET_SEND_SUCCESS },
       ];
    
       return store.dispatch(API.orderTickets(mockedData))
@@ -64,7 +64,7 @@ describe('Order Reducer async actions', () => {
   
       const expected = [
         { type: formActions.START_SENDING },
-        { type: formActions.SET_ERROR },
+        { type: formActions.SET_SEND_ERROR },
       ];
   
       return store.dispatch(API.orderTickets(mockedData))
@@ -88,7 +88,7 @@ describe('Order Reducer async actions', () => {
   
       const expected = [
         { type: formActions.START_SENDING },
-        { type: formActions.SET_SUCCESS },
+        { type: formActions.SET_SEND_SUCCESS },
         { payload: response, type: actions.DELETE_USER_ORDER }
       ];
    
@@ -109,7 +109,7 @@ describe('Order Reducer async actions', () => {
   
       const expected = [
         { type: formActions.START_SENDING },
-        { type: formActions.SET_ERROR },
+        { type: formActions.SET_SEND_ERROR },
       ];
   
       return store.dispatch(API.deleteOrder(mockedOrderId, mockedToken))
@@ -142,7 +142,7 @@ describe('Order Reducer async actions', () => {
   
       const expected = [
         { type: formActions.START_SENDING },
-        { type: formActions.SET_SUCCESS },
+        { type: formActions.SET_SEND_SUCCESS },
         { payload: response, type: actions.UPDATE_USER_ORDER },
       ];
    
@@ -162,7 +162,7 @@ describe('Order Reducer async actions', () => {
   
       const expected = [
         { type: formActions.START_SENDING },
-        { type: formActions.SET_ERROR },
+        { type: formActions.SET_SEND_ERROR },
       ];
   
       return store.dispatch(API.editOrder(orderData, mockedToken, orderId))

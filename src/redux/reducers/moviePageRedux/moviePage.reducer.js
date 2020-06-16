@@ -2,7 +2,7 @@ import actions from './actions/actions';
 
 const moviePageReducer = (statePart = {}, action = {}) => {
     switch(action.type) {
-      case actions.START_LOADING: {
+      case actions.START_FETCHING: {
         return {
           data: {},
           loading: {
@@ -11,7 +11,7 @@ const moviePageReducer = (statePart = {}, action = {}) => {
           }
         }
       }
-      case actions.SET_ERROR: {
+      case actions.SET_FETCH_ERROR: {
         return {
           ...statePart,
           loading: {
@@ -20,7 +20,7 @@ const moviePageReducer = (statePart = {}, action = {}) => {
           }
         }
       }
-      case actions.SET_DATA: {
+      case actions.SET_FETCH_DATA: {
         return {
           data: action.payload,
           loading: {

@@ -6,7 +6,7 @@ import { mockedData } from '../testUtils/mockedData';
 describe('Show reducer action creators', () => {
   it('returns proper action when starting to fetch data', () => {
     const expectedActions = {
-      type: actions.START_FETCHING_DATA,
+      type: actions.START_FETCHING,
     };
 
     expect(actionCreators.startFetching()).toEqual(expectedActions);
@@ -15,7 +15,7 @@ describe('Show reducer action creators', () => {
   it('returns proper action when setting data', () => {
 
     const expectedActions = {
-      type: actions.SET_DATA,
+      type: actions.SET_FETCH_DATA,
       payload: mockedData,
     }
 
@@ -24,7 +24,7 @@ describe('Show reducer action creators', () => {
 
   it('returns proper action when setting error', () => {
     const expectedActions = {
-      type: actions.SET_ERROR,
+      type: actions.SET_FETCH_ERROR,
     };
 
     expect(actionCreators.setError()).toEqual(expectedActions);

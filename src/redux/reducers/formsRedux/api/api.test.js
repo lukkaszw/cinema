@@ -52,7 +52,7 @@ describe('Forms Reducer async actions', () => {
 
     const expected = [
       { type: actions.START_SENDING },
-      { type: actions.SET_SUCCESS, payload: response.message },
+      { type: actions.SET_SEND_SUCCESS, payload: response.message },
     ];
  
     return store.dispatch(API.sendData(mockedUrl, mockedData))
@@ -77,7 +77,7 @@ describe('Forms Reducer async actions', () => {
 
     const expected = [
       { type: actions.START_SENDING },
-      { type: actions.SET_ERROR, payload: response.message },
+      { type: actions.SET_SEND_ERROR, payload: response.message },
     ];
  
     return store.dispatch(API.sendData(mockedUrl, mockedData))
@@ -100,7 +100,7 @@ describe('Forms Reducer async actions', () => {
 
     const expected = [
       { type: actions.START_SENDING },
-      { type: actions.SET_ERROR, payload: 'Internal server error. Try again later.' },
+      { type: actions.SET_SEND_ERROR, payload: 'Internal server error. Try again later.' },
     ];
  
     return store.dispatch(API.sendData(mockedUrl, mockedData))

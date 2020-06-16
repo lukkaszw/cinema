@@ -40,8 +40,8 @@ describe('SearchPanel reducer async actions', () => {
     });
 
     const expected = [
-      { type: actions.START_SEARCHING, payload: mockedQuery },
-      { type: actions.SET_FOUND_DATA, payload: response },
+      { type: actions.START_FETCHING, payload: mockedQuery },
+      { type: actions.SET_FETCH_DATA, payload: response },
     ];
  
     return store.dispatch(API.searchMovies(mockedQuery))
@@ -61,8 +61,8 @@ describe('SearchPanel reducer async actions', () => {
     const mockedQuery = 'some movie';
 
     const expected = [
-      { type: actions.START_SEARCHING, payload: mockedQuery },
-      { type: actions.SET_ERROR },
+      { type: actions.START_FETCHING, payload: mockedQuery },
+      { type: actions.SET_FETCH_ERROR },
     ];
 
     return store.dispatch(API.searchMovies(mockedQuery))

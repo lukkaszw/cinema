@@ -3,12 +3,12 @@ const reducerName = 'seats';
 const createActionName = name => `app/${reducerName}/${name}`;
 
 /* action types */
-const START_FETCHING_SEATS = createActionName('START_FETCHING_SEATS');
-const SET_ERROR = createActionName('SET_ERROR');
-const SET_DATA = createActionName('SET_DATA');
+const START_FETCHING = createActionName('START_FETCHING');
+const SET_FETCH_ERROR = createActionName('SET_FETCH_ERROR');
+const SET_FETCH_DATA = createActionName('SET_FETCH_DATA');
 
 export default {
-  START_FETCHING_SEATS,
-  SET_ERROR,
-  SET_DATA,
+  START_FETCHING,
+  SET_FETCH_ERROR,
+  SET_FETCH_DATA,
 };

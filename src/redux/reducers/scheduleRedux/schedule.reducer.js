@@ -11,7 +11,7 @@ const scheduleReducer = (statePart = {}, action = {}) => {
         }
       }
     }
-    case actions.SET_ERROR: {
+    case actions.SET_FETCH_ERROR: {
       return {
         ...statePart,
         loading: {
@@ -20,7 +20,7 @@ const scheduleReducer = (statePart = {}, action = {}) => {
         }
       }
     }
-    case actions.SET_DATA: {
+    case actions.SET_FETCH_DATA: {
       return {
         ...statePart,
         data: action.payload,

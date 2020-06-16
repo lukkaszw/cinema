@@ -40,8 +40,8 @@ describe('User Reducer async actions', () => {
 
     const expected = [
       { type: formActions.START_SENDING },
-      { type: formActions.SET_SUCCESS, payload: mockedSuccessMsg },
-      { type: actions.SET_DATA, payload: {}},
+      { type: formActions.SET_SEND_SUCCESS, payload: mockedSuccessMsg },
+      { type: actions.SET_FETCH_DATA, payload: {}},
     ];
  
     return store.dispatch(API.deleteAccount(mockedToken))
@@ -62,7 +62,7 @@ describe('User Reducer async actions', () => {
 
     const expected = [
       { type: formActions.START_SENDING },
-      { type: formActions.SET_ERROR, payload: expectedMessage },
+      { type: formActions.SET_SEND_ERROR, payload: expectedMessage },
     ];
 
     return store.dispatch(API.deleteAccount(mockedToken))

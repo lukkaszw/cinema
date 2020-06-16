@@ -2,7 +2,7 @@ import actions from './actions/actions';
 
 const showReducer = (statePart = {}, action = {}) => {
   switch (action.type) {
-    case actions.START_FETCHING_DATA: {
+    case actions.START_FETCHING: {
       return {
         ...statePart,
         loadingData: {
@@ -11,7 +11,7 @@ const showReducer = (statePart = {}, action = {}) => {
         },
       };
     }
-    case actions.SET_DATA: {
+    case actions.SET_FETCH_DATA: {
       return {
         ...statePart,
         data: action.payload,
@@ -21,7 +21,7 @@ const showReducer = (statePart = {}, action = {}) => {
         },
       };
     }
-    case actions.SET_ERROR: {
+    case actions.SET_FETCH_ERROR: {
       return {
         ...statePart,
         loadingData: {

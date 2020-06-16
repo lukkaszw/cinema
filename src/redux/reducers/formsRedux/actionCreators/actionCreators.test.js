@@ -17,7 +17,7 @@ describe('Forms reducer action creators', () => {
     
     const expectedAction = {
       payload: successMsg,
-      type: actions.SET_SUCCESS,
+      type: actions.SET_SEND_SUCCESS,
     };
     expect(actionCreators.setSuccess(successMsg)).toEqual(expectedAction);
   });
@@ -27,7 +27,7 @@ describe('Forms reducer action creators', () => {
 
     const expectedAction = {
       payload,
-      type: actions.SET_ERROR,
+      type: actions.SET_SEND_ERROR,
     };
     expect(actionCreators.setError(payload)).toEqual(expectedAction);
   });

@@ -42,9 +42,9 @@ describe('Movies Reducer', () => {
       email: 'someemail@wp.pl',
     };
     //check if user reducer is clean function
-    expect(userReducer(mockedStatePart, { type: actions.SET_DATA, payload })).not.toBe(mockedStatePart);
+    expect(userReducer(mockedStatePart, { type: actions.SET_FETCH_DATA, payload })).not.toBe(mockedStatePart);
 
-    expect(userReducer(mockedStatePart, { type: actions.SET_DATA, payload })).toEqual({
+    expect(userReducer(mockedStatePart, { type: actions.SET_FETCH_DATA, payload })).toEqual({
       data: payload,
       loading: {
         isActive: false,
@@ -55,9 +55,9 @@ describe('Movies Reducer', () => {
 
   it('returns proper state when error occured - SET_ERROR', () => {
     //check if user reducer is clean function
-    expect(userReducer(mockedStatePart, { type: actions.SET_ERROR })).not.toBe(mockedStatePart);
+    expect(userReducer(mockedStatePart, { type: actions.SET_FETCH_ERROR })).not.toBe(mockedStatePart);
 
-    expect(userReducer(mockedStatePart, { type: actions.SET_ERROR })).toEqual({
+    expect(userReducer(mockedStatePart, { type: actions.SET_FETCH_ERROR })).toEqual({
       data: {},
       loading: {
         isActive: false,

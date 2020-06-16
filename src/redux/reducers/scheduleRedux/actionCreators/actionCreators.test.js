@@ -11,7 +11,7 @@ describe('Schedule Reducer actions', () => {
 
   it('creates proper action when error is occured', () => {
     const expectedAction = {
-      type: actions.SET_ERROR,
+      type: actions.SET_FETCH_ERROR,
     };
     expect(actionCreators.fetchError()).toEqual(expectedAction);
   });
@@ -23,7 +23,7 @@ describe('Schedule Reducer actions', () => {
     ];
 
     const expectedAction = {
-      type: actions.SET_DATA,
+      type: actions.SET_FETCH_DATA,
       payload: payloadData,
     };
     expect(actionCreators.fetchSucceded(payloadData)).toEqual(expectedAction);

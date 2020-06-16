@@ -1,8 +1,8 @@
 import actions from '../actions/actions';
 
 const startFetching = () => ({ type: actions.START_FETCHING });
-const fetchError = () => ({ type: actions.SET_ERROR });
-const fetchSucceded = (payload) => ({ payload, type: actions.SET_DATA });
+const fetchError = () => ({ type: actions.SET_FETCH_ERROR });
+const fetchSucceded = (payload) => ({ payload, type: actions.SET_FETCH_DATA });
 const setAllMoviesFilter = (payload) => ({payload, type: actions.SET_ALL_FILTER });
 const setCurrentMoviesFilter = (payload) => ({ payload, type: actions.SET_CURRENT_FILTER })
 const setSearchText = (payload) => ({ payload, type: actions.SET_SEARCH_TEXT });

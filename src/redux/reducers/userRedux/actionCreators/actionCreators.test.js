@@ -19,7 +19,7 @@ describe('User reducer - action creators', () => {
     };
 
     const expectedAction = {
-      type: actions.SET_DATA, payload: payloadData,
+      type: actions.SET_FETCH_DATA, payload: payloadData,
     };
 
     expect(actionCreators.setData(payloadData)).toEqual(expectedAction);
@@ -27,7 +27,7 @@ describe('User reducer - action creators', () => {
 
   it('creates proper action when fetching data was ended with error', () => {
     const expectedAction = {
-      type: actions.SET_ERROR,
+      type: actions.SET_FETCH_ERROR,
     };
 
     expect(actionCreators.setError()).toEqual(expectedAction);

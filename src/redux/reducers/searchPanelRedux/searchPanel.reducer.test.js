@@ -25,9 +25,9 @@ describe('SearchPanel reducer', () => {
   it('returns proper state if app is starting searching data', () => {
     const mockedPayload = 'search text';
     //check if reducer is clean function
-    expect(searchPanelReducer(mockedStatePart, { payload: mockedPayload, type: actions.START_SEARCHING })).not.toBe(mockedStatePart);
+    expect(searchPanelReducer(mockedStatePart, { payload: mockedPayload, type: actions.START_FETCHING })).not.toBe(mockedStatePart);
     //check if reducer returns proper state
-    expect(searchPanelReducer(mockedStatePart, { payload: mockedPayload, type: actions.START_SEARCHING })).toEqual({
+    expect(searchPanelReducer(mockedStatePart, { payload: mockedPayload, type: actions.START_FETCHING })).toEqual({
       data: [],
       query: mockedPayload,
       loading: {
@@ -40,9 +40,9 @@ describe('SearchPanel reducer', () => {
   it('returns proper state if user found some movies', () => {
     const mockedPayload = ['Movie 1', 'Movie 2'];
     //check if reducer is clean function
-    expect(searchPanelReducer(mockedStatePart, { payload: mockedPayload, type: actions.SET_FOUND_DATA })).not.toBe(mockedStatePart);
+    expect(searchPanelReducer(mockedStatePart, { payload: mockedPayload, type: actions.SET_FETCH_DATA })).not.toBe(mockedStatePart);
     //check if reducer returns proper state
-    expect(searchPanelReducer(mockedStatePart, { payload: mockedPayload, type: actions.SET_FOUND_DATA })).toEqual({
+    expect(searchPanelReducer(mockedStatePart, { payload: mockedPayload, type: actions.SET_FETCH_DATA })).toEqual({
       ...mockedStatePart,
       data: mockedPayload,
       loading: {
@@ -54,9 +54,9 @@ describe('SearchPanel reducer', () => {
 
   it('returns proper state if error occured', () => {
     //check if reducer is clean function
-    expect(searchPanelReducer(mockedStatePart, { type: actions.SET_ERROR })).not.toBe(mockedStatePart);
+    expect(searchPanelReducer(mockedStatePart, { type: actions.SET_FETCH_ERROR })).not.toBe(mockedStatePart);
     //check if reducer returns proper state
-    expect(searchPanelReducer(mockedStatePart, { type: actions.SET_ERROR })).toEqual({
+    expect(searchPanelReducer(mockedStatePart, { type: actions.SET_FETCH_ERROR })).toEqual({
       ...mockedStatePart,
       data: [],
       loading: {

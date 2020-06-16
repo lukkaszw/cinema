@@ -62,9 +62,9 @@ describe('Movies Reducer', () => {
 
   it('returns proper state if error is occured', () => {
     //check if reducer is clean function
-    expect(moviesReducer(mockedStatePart, { type: actions.SET_ERROR })).not.toBe(mockedStatePart);
+    expect(moviesReducer(mockedStatePart, { type: actions.SET_FETCH_ERROR })).not.toBe(mockedStatePart);
     //check if reducer returns proper state
-    expect(moviesReducer(mockedStatePart, { type: actions.SET_ERROR })).toEqual({
+    expect(moviesReducer(mockedStatePart, { type: actions.SET_FETCH_ERROR })).toEqual({
       ...mockedStatePart,
       loading: {
         ...mockedStatePart.loading,
@@ -75,9 +75,9 @@ describe('Movies Reducer', () => {
 
   it('returns proper data in state when fetching data succeded', () => {
     //check if reducer is clean function
-    expect(moviesReducer(mockedStatePart, { type: actions.SET_DATA, payload: mockedData })).not.toBe(mockedStatePart);
+    expect(moviesReducer(mockedStatePart, { type: actions.SET_FETCH_DATA, payload: mockedData })).not.toBe(mockedStatePart);
     //check if reducer returns proper state
-    expect(moviesReducer(mockedStatePart, { type: actions.SET_DATA, payload: mockedData })).toEqual({
+    expect(moviesReducer(mockedStatePart, { type: actions.SET_FETCH_DATA, payload: mockedData })).toEqual({
       ...mockedStatePart,
       data: mockedData,
       loading: {
