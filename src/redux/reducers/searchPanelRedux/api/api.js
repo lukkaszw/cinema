@@ -5,7 +5,9 @@ import actionCreators from '../actionCreators/actionCreators';
 const searchMovies = (searchedTitle) => {
   const url = `${api.url}/${api.endpoints.searchMovie}`;
   const config = {
-    params: searchedTitle,
+    params: {
+      title: searchedTitle,
+    },
   };
 
   return REDUX_UTILS.fetchData(actionCreators, { url, config }, searchedTitle);
