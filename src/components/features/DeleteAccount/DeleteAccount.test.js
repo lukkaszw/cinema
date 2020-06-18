@@ -64,18 +64,10 @@ describe('DeleteAccount component', () => {
       expect(btnEl.prop('disabled')).toBe(false);
     });
 
-    it('does not render Loader when no action occured, when error occured and when deleting was succeded', () => {
-      let loaderEl = component.find('Loader');
-      expect(loaderEl.exists()).toBeFalsy();
-      loaderEl = componentWhenError.find('Loader');
-      expect(loaderEl.exists()).toBeFalsy();
-      loaderEl = componentWhenSuccess.find('Loader');
-      expect(loaderEl.exists()).toBeFalsy();
-    });
-
-    it('renders Loader when deleting action is on', () => {
-      const loaderEl = componentWhenDeleting.find('Loader');
-      expect(loaderEl.exists()).toBeTruthy();
+    it('renders LoaderIndicator with proper isActive prop', () => {
+      expect(componentWhenDeleting.find('LoaderIndicator').prop('isActive')).toBe(true);
+      expect(componentWhenSuccess.find('LoaderIndicator').prop('isActive')).toBe(false);
+      expect(componentWhenError.find('LoaderIndicator').prop('isActive')).toBe(false);
     });
 
     it('redners two buttons as before when deleting is on but they are disabled', () => {

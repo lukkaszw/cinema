@@ -41,9 +41,8 @@ describe('DeleteOrderModal component', () => {
       expect(msgEl.text()).toBe('Are you sure you want to delete this order?');
     });
 
-    it('does not render Loader', () => {
-      const loaderEl = component.find('Loader');
-      expect(loaderEl.exists()).toBeFalsy();
+    it('renders LoaderIndicator with proper isActive prop', () => {
+      expect(component.find('LoaderIndicator').prop('isActive')).toBe(false);
     });
 
     it('renders two Buttons with proper props', () => {
@@ -77,9 +76,8 @@ describe('DeleteOrderModal component', () => {
     });
 
     
-    it('renders Loader', () => {
-      const loaderEl = componentWhenSending.find('Loader');
-      expect(loaderEl.exists()).toBeTruthy();
+    it('renders LoaderIndicator with proper isActive prop', () => {
+      expect(componentWhenSending.find('LoaderIndicator').prop('isActive')).toBe(true);
     });
 
     it('renders two Buttons with proper props', () => {
@@ -112,9 +110,8 @@ describe('DeleteOrderModal component', () => {
       expect(msgEl.text()).toBe('Success - the order has been deleted!');
     });
 
-    it('does not render Loader', () => {
-      const loaderEl = componentWhenSuccess.find('Loader');
-      expect(loaderEl.exists()).toBeFalsy();
+    it('renders LoaderIndicator with proper isActive prop', () => {
+      expect(componentWhenSuccess.find('LoaderIndicator').prop('isActive')).toBe(false);
     });
     
     it('renders one Button with proper props', () => {
@@ -138,9 +135,8 @@ describe('DeleteOrderModal component', () => {
       expect(msgEl.text()).toBe('Error - the order has not been deleted! Please try again later!');
     });
 
-    it('does not render Loader', () => {
-      const loaderEl = componentWhenError.find('Loader');
-      expect(loaderEl.exists()).toBeFalsy();
+    it('renders LoaderIndicator with proper isActive prop', () => {
+      expect(componentWhenError.find('LoaderIndicator').prop('isActive')).toBe(false);
     });
    
     it('renders one Button with proper props', () => {

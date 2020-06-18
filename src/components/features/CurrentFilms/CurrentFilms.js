@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Button from '../../common/Button/Button';
 import ButtonsList from '../ButtonsList/ButtonsList';
-import Loader from '../../common/Loader/Loader';
+import LoaderIndicator from '../../common/LoaderIndicator/LoaderIndicator';
 import CartsList from '../../common/CartsList/CartsList';
 import PropTypes from 'prop-types';
 import styles from './CurrentFilms.module.scss';
@@ -110,12 +110,16 @@ class CurrentFilms extends Component {
   }
 
   render() {
-    const { isLoading, movies, filter, setFilter, isError } = this.props;
+    const { isLoading, movies, filter, setFilter } = this.props;
     const { cartsInList, lists } = this.state;
     const { getGeneratedCarts, getMoreCarts, categoriesButtons } = this;
 
     return ( 
       <div className={styles.root}>
+        <LoaderIndicator 
+          top={20}
+          isActive={isLoading}
+        />
         <div className={styles.btns}>
           <ButtonsList 
             buttons={categoriesButtons}
@@ -140,12 +144,6 @@ class CurrentFilms extends Component {
                 ...MORE
               </Button>
             </div>
-        }
-        {
-         isLoading && 
-          <div className={styles.loader}>
-            <Loader classes={['red', 'small']}/>
-          </div>
         }
       </div>
      );

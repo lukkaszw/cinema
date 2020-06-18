@@ -22,7 +22,6 @@ const InputField = ({ id, onChange, value, type, placeholder, isError, message, 
             {message}
           </span>
       }
-
     </div>
     
    );

@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import Loader from '../Loader/Loader';
+import LoaderIndicator from '../LoaderIndicator/LoaderIndicator';
 import FormMessage from './FormMessage/FormMessage';
 import PropTypes from 'prop-types';
 import styles from './Form.module.scss';
@@ -17,14 +17,12 @@ const Form = ({ onSubmit, isSending, isError, isSuccess, message, resetForm, chi
       onSubmit={submitAction}
     >
       { children }
-      {
-        isSending &&
-          <div className={styles.loader}>
-            <Loader 
-              classes={['tiny']}
-            />
-          </div>
-      }
+      <LoaderIndicator
+        isActive={isSending}
+        top={80}
+        size='tiny'
+        color="white"
+      />
       {
         (isSuccess || isError) &&
           <FormMessage 

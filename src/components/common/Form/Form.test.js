@@ -30,14 +30,8 @@ describe('Form component', () => {
     expect(mockedProps.onSubmit).toHaveBeenCalledTimes(1);
   });
 
-  it('renders loader when isSending prop is true', () => {
-    expect(component.find('Loader').exists()).toBeFalsy();
-    const propsWhenSending = {
-      ...mockedProps,
-      isSending: true,
-    };
-    const compWhenSending = shallow(<Form {...propsWhenSending}><MockedComponent /></Form>);
-    expect(compWhenSending.find('Loader').exists()).toBeTruthy();
+  it('renders LoaderIndicator with proper isLoading prop', () => {
+    expect(component.find('LoaderIndicator').prop('isActive')).toBe(mockedProps.isSending);
   });
 
   it('renders FormMessage componment only when sending is successful and when error occured', () => {

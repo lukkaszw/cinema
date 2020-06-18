@@ -42,13 +42,9 @@ describe('CurrentFilmsList component', () => {
     expect(componentWithData).toBeTruthy();
   });
 
-  it('includes Loader when data is loading', () => {
-    const loaderEl = componentWhenLoading.find('.loader');
-    expect(loaderEl.find('Loader').exists()).toBeTruthy();
-  });
-
-  it('does not includes Loader when loading data is finished', () => {
-    expect(componentWithData.find('.loader').exists()).toBeFalsy();
+  it('includes LoaderIndicator whith proper isLoading prop', () => {
+    expect(componentWhenLoading.find('LoaderIndicator').prop('isActive')).toBe(true);
+    expect(componentWithData.find('LoaderIndicator').prop('isActive')).toBe(false);
   });
 
   it('includes slider when data are loaded with proper props', () => {

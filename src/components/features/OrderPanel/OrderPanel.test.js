@@ -208,20 +208,15 @@ describe('OrderPanel component', () => {
       });
     });
 
-    it('renders no Loader at the begining', () => {
-      const loaderEl = component.find('Loader');
-      expect(loaderEl.exists()).toBeFalsy();
-    });
-
-    it('renders Loader when prop isSendingOrder is true', () => {
+    it('renders LoaderIndicator with proper isActive prop', () => {
+      expect(component.find('LoaderIndicator').prop('isActive')).toBe(false);
       const propsWhenSending = {
         ...mockedProps,
         isSendingOrder: true,
       };
 
       const compWhenSending = shallow(<OrderPanel {...propsWhenSending}/>);
-      const loaderEl = compWhenSending.find('Loader');
-      expect(loaderEl.exists()).toBeTruthy();
+      expect(compWhenSending.find('LoaderIndicator').prop('isActive')).toBe(true);
     });
   });
 

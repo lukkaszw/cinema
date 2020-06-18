@@ -37,13 +37,13 @@ describe('Page component', () => {
     expect(componentWhenFetching).toBeTruthy();
   });
 
-  it('shows loader only when data are fetching', () => {
-    expect(componentWithData.find('.loader Loader').exists()).toBeFalsy();
-    expect(componentWithError.find('.loader Loader').exists()).toBeFalsy();
-    expect(componentWhenFetching.find('.loader Loader').exists()).toBeTruthy();
+  it('renders LoaderIndicator with proper prop isLoading', () => {
+    expect(componentWithData.find('LoaderIndicator').prop('isActive')).toBe(false);
+    expect(componentWithError.find('LoaderIndicator').prop('isActive')).toBe(false);
+    expect(componentWhenFetching.find('LoaderIndicator').prop('isActive')).toBe(true);
   });
 
-  it('shows children pnly when fetching is finished without error', () => {
+  it('shows children only when fetching is finished without error', () => {
     expect(componentWithData.find('ChildComponent').exists()).toBeTruthy();
     expect(componentWithError.find('ChildComponent').exists()).toBeFalsy();
     expect(componentWhenFetching.find('ChildComponent').exists()).toBeFalsy();

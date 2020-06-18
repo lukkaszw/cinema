@@ -1,4 +1,5 @@
 .root {
+  position: relative;
   width: 600px;
   max-width: 100%;
   min-height: 110px;
@@ -18,7 +19,7 @@
   }
 
   .loader {
-    padding: 20px 0;
+    padding: 10px 0;
     text-align: center;
   }
 }

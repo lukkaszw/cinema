@@ -1,11 +1,12 @@
 import React from 'react';
-import Loader from '../../common/Loader/Loader';
+import LoaderIndicator from '../../common/LoaderIndicator/LoaderIndicator';
 import CartSlider from '../../common/CartSlider/CartSlider';
 import PropTypes from 'prop-types';
 import styles from './ComingFilms.module.scss';
 
 const ComingFilms = ({ isLoading, movies, isError }) => ( 
   <div className={styles.root}>
+    <LoaderIndicator isActive={isLoading}/>
     {
       movies && movies.length > 0 &&
         <CartSlider 
@@ -13,12 +14,6 @@ const ComingFilms = ({ isLoading, movies, isError }) => (
           cartWidth={270}
           data={movies}
         />
-    }
-    {
-      isLoading && 
-      <div className={styles.loader}>
-        <Loader classes={['red', 'small']}/>
-      </div>
     }
     {
       !isLoading && (isError || movies.length === 0) &&

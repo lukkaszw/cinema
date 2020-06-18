@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback } from 'react';
-import Loader from '../../common/Loader/Loader';
+import LoaderIndicator from '../../common/LoaderIndicator/LoaderIndicator';
 import Button from '../../common/Button/Button';
 import ButtonLink from '../../common/ButtonLink/ButtonLink';
 import PropTypes from 'prop-types';
@@ -71,14 +71,11 @@ const DeleteAccount = ({ token, onDeleteAccount, onLogout, isDeleting, isError, 
             </div>
           </div>
         }
-        {
-          isDeleting &&
-            <div className={styles.loader}>
-              <Loader 
-                classes={['tiny', 'red']}
-              />
-            </div>
-        }
+        <LoaderIndicator 
+          size='tiny'
+          top={140}
+          isActive={isDeleting}
+        />
     </div>
    );
 }

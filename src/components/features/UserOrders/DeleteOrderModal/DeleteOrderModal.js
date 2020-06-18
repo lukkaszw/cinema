@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '../../../common/Button/Button';
-import Loader from '../../../common/Loader/Loader';
+import LoaderIndicator from '../../../common/LoaderIndicator/LoaderIndicator';
 import Modal from '../../../common/Modal/Modal';
 import PropTypes from 'prop-types';
 import styles from './DeleteOrderModal.module.scss';
@@ -55,14 +55,10 @@ const DeleteOrderModal = ({ onCancel, onConfirm, isSending, isError, isSuccess }
               )
           }
         </div>
-        {
-          isSending &&
-            <div className={styles.loader}>
-              <Loader 
-                classes={['tiny', 'red']}
-              />
-            </div>
-        }
+        <LoaderIndicator 
+          isActive={isSending}
+          size='tiny'
+        />
       </div>
     </Modal>
    );

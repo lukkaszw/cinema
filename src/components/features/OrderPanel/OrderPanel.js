@@ -7,7 +7,7 @@ import Button from '../../common/Button/Button';
 import OrderProcessBar from './OrderProcessBar/OrderProcessBar';
 import OrderMessage from './OrderMessage/OrderMessage';
 import FetchError from '../../common/FetchError/FetchError';
-import Loader from '../../common/Loader/Loader';
+import LoaderIndicator from '../../common/LoaderIndicator/LoaderIndicator';
 import PropTypes from 'prop-types';
 import styles from './OrderPanel.module.scss';
 import _v from 'validator';
@@ -278,20 +278,16 @@ export class OrderPanel extends Component {
                     Next
                   </Button>
                 </div>
+                <LoaderIndicator 
+                  isActive={isSendingOrder}
+                  top={90}
+                />
                 {
                   errorId && 
                     <OrderMessage 
                       message={this.MESSAGES[errorId]}
                       action={() => handleModalAction(errorId)}
                     />
-                }
-                {
-                  isSendingOrder &&
-                    <div className={styles.loader}>
-                      <Loader 
-                        classes={['small', 'red']}
-                      />
-                    </div> 
                 }
                 {
                   isOrderSuccess && 

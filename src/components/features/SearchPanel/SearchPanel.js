@@ -54,7 +54,7 @@ const SearchPanel = ({ closeAction, isLoading, resetQuery, isError, movies, sear
         {
           isLoading && 
             <div className={styles.loader}>
-              <Loader classes={["tiny"]}/>
+              <Loader classes={['tiny', 'red']}/>
             </div>
         }
         <SmallMoviesItemsList 

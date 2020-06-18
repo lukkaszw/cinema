@@ -8,6 +8,7 @@ import  TicketsPanel from '../../features/TicketsPanel/TicketsPanel';
 import FetchError from '../../common/FetchError/FetchError';
 import OrderPanel from '../../features/OrderPanel/OrderPanel.container';
 import ShowsDetails from '../../features/ShowsDetails/ShowsDetails';
+import LoaderIndicator from '../../common/LoaderIndicator/LoaderIndicator';
 import { SEATS, ROWS } from '../../../utils/seats/seats';
 import styles from './Order.module.scss';
 
@@ -181,6 +182,7 @@ class Order extends Component {
 
     return ( 
       <div className={styles.root}>
+        <LoaderIndicator isLoading={isFetching} />
         {
           isFetchingError ?
            <FetchError />
