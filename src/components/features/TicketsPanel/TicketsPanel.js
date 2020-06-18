@@ -26,7 +26,7 @@ const TicketsPanel = ({ tickets, price, handleCancelTicket }) => {
       />
       <div className={styles.btn}>
         <Button
-          variants={['small']}
+          variants={['small', 'special']}
           action={onToggleAction}
         >
           <span className={styles.ticketsAmount}>{tickets.length}</span> <FontAwesomeIcon icon={faTicketAlt} />

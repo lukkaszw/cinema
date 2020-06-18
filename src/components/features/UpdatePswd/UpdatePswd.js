@@ -117,21 +117,17 @@ class UpdatePswd extends Component {
             />
           </div>
           <div className={styles.btns}>
-            <div className={styles.btn}>
-              <ButtonLink 
-                to='/user/settings'
-                title="Cancel"
-                disabled={isSending}
-              />
-            </div>
-            <div className={styles.btn}>
-              <Button
-                variants={['tertiary']}
-                disabled={isSending}
-              >
-                Submit
-              </Button>
-            </div>
+            <ButtonLink 
+              to='/user/settings'
+              title="Cancel"
+              disabled={isSending}
+            />
+            <Button
+              variants={['tertiary']}
+              disabled={isSending}
+            >
+              Submit
+            </Button>
           </div>
         </Form>
       </div>

@@ -32,21 +32,38 @@
 }
 
 @mixin button {
+  position: relative;
   display: inline-block;
-  padding: 8px 20px;
+  padding: 0 20px;
+  height: 28px;
   color: inherit;
   text-decoration: none;
   border: none;
   background-color: $main-red;
   border-radius: 5px;
-  line-height: 1;
+  line-height: 28px;
   font-family: 'Lato';
   cursor: pointer;
   outline: 1px solid transparent;
+  overflow: hidden;
+  font-size: 14px;
 
+  &::before {
+    content: '';
+    background: #fff;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-150%)  skewX(-45deg);
+    transition: .5s;
+  }
 
   &.small {
-    padding: 4px 14px;
+    padding: 0 14px;
+    height: 22px;
+    line-height: 22px;
   }
 
   &.tiny {
@@ -54,13 +71,24 @@
   }
 
   &.big {
-    padding: 12px 32px;
+    padding: 0 32px;
     font-size: 18px;
+    height: 40px;
+    line-height: 40px;
 
     @media (max-width: 800px) {
-      padding: 8px 20px;
+      padding: 0 20px;
       font-size: 16px;
+      height: 34px;
+      line-height: 34px;
     }
+  }
+
+  &.special {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    height: auto;
+    line-height: 1;
   }
 
   &.secondary {
@@ -77,6 +105,12 @@
 
   &:disabled, &.gray {
     background-color: #555;
+  }
+
+  &:hover:not(:disabled):not(.notHovered) {
+    &::before {
+      transform: translateX(150%)  skewX(-45deg);
+    }
   }
 
   &.inline {

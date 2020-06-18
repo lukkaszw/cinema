@@ -14,7 +14,7 @@ const ButtonsList = ({ buttons, action, value, variants }) => {
           >
             <Button 
               action={() => action(button.value)}
-              variants={[value === button.value ? null : 'gray', ...variants]}
+              variants={[value === button.value ? null : 'gray', ...variants, 'notHovered']}
             >
               {button.title}
             </Button>

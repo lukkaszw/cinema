@@ -8,13 +8,12 @@
   }
 
   .btns {
+    display: flex;
     margin-top: 30px;
-    text-align: center;
+    justify-content: center;
 
-    .btn {
-      display: inline-block;
-      font-size: 14px;
-      margin: 0 5px;
+    > * {
+      margin: 0 6px;
     }
   }
 }

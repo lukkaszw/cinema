@@ -26,7 +26,6 @@ const DeleteAccount = ({ token, onDeleteAccount, onLogout, isDeleting, isError, 
               Your account is <strong className={styles.warning}>irrecoverable</strong>!
             </p>
             <div className={styles.btns}>
-              <span className={styles.btn}>
                 <ButtonLink 
                   to="/user/settings"
                   size="small"
@@ -34,8 +33,6 @@ const DeleteAccount = ({ token, onDeleteAccount, onLogout, isDeleting, isError, 
                   title="No"
                   disabled={isDeleting}
                 />
-              </span>
-              <span className={styles.btn}>
                 <Button
                   action={onDeleteAction}
                   variants={['small']}
@@ -43,7 +40,6 @@ const DeleteAccount = ({ token, onDeleteAccount, onLogout, isDeleting, isError, 
                 >
                   Yes
                 </Button>
-              </span>
             </div>
           </>
       }
