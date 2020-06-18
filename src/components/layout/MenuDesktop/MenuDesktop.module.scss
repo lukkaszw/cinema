@@ -3,9 +3,9 @@
 
 .root {
   list-style: none;
+  display: flex;
 
   .item {
-    display: inline-block;
     margin-left: 30px;
     font-size: 18px;
     
