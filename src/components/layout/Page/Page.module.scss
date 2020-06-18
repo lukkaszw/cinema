@@ -1,3 +1,5 @@
+@import '../../../styles/variables';
+
 .root {
   min-height: 100vh;
 
@@ -18,5 +20,18 @@
     top: 50vh;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+
+  .error {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    padding: 0 10px;
+    text-align: center;
+    line-height: 1.5;
+    transform: translate(-50%, -50%);
+    color: $main-red;
+    text-align: center;
   }
 }

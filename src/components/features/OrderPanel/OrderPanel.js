@@ -6,6 +6,7 @@ import OrderConfirm from '../OrderConfirm/OrderConfirm';
 import Button from '../../common/Button/Button';
 import OrderProcessBar from './OrderProcessBar/OrderProcessBar';
 import OrderMessage from './OrderMessage/OrderMessage';
+import FetchError from '../../common/FetchError/FetchError';
 import Loader from '../../common/Loader/Loader';
 import PropTypes from 'prop-types';
 import styles from './OrderPanel.module.scss';
@@ -211,95 +212,103 @@ export class OrderPanel extends Component {
       isOrderSuccess,
       isOrderError,
       resetFormState,
+      isFetchingError,
       isEditing,
     } = this.props;
 
     return ( 
       <div className={styles.root}>
-        <OrderProcessBar 
-          orderStep={orderStep}
-        />
-        <div 
-          className={styles.panel}
-          style={{
-            transform: `translateX(-${((orderStep - 1) / 3) * 100}%)`
-          }}
-        >
-          <div className={styles.board}>
-            <SeatsPanel 
-              seats={seats}
-              handleToggleSeat={handleToggleSeat}
-            />
-          </div>
-          <div className={styles.board}>
-            <OrderForm 
-              handleChangeInputValue={handleChangeInputValue}
-              name={name}
-              surname={surname}
-              phone={phone}
-              email={email}
-              errors={valuesErrors}
-            />
-          </div>
-          <div className={styles.board}>
-            <OrderConfirm 
-              name={name}
-              surname={surname}
-              phone={phone}
-              email={email}
-              chosenSeats={chosenSeats}
-              handleCancelTicket={handleCancelTicket}
-              price={price}
-              onSubmitOrder={handleSubmitOrder}
-              isSendingOrder={isSendingOrder}
-            />
-          </div>
-        </div>
-        <div className={styles.btns}>
-          <Button 
-            variants={['small']}
-            action={goToPrevStep}
-            disabled={orderStep === 1 || isSendingOrder}
-          >
-            Back
-          </Button>
-          <Button
-            variants={['small']}
-            action={goToNextStep}
-            disabled={orderStep === 3 || isSendingOrder}
-          >
-            Next
-          </Button>
-        </div>
         {
-          errorId && 
-            <OrderMessage 
-              message={this.MESSAGES[errorId]}
-              action={() => handleModalAction(errorId)}
-            />
-        }
-        {
-          isSendingOrder &&
-            <div className={styles.loader}>
-              <Loader 
-                classes={['small', 'red']}
+          isFetchingError ?
+            <FetchError />
+            :
+            <>
+              <OrderProcessBar 
+                orderStep={orderStep}
               />
-            </div> 
-        }
-        {
-          isOrderSuccess && 
-            <OrderMessage 
-              message={isEditing ? MESSAGES[6] : MESSAGES[5]}
-              action={backToMainPage}
-              isSuccess
-            />
-        }
-        {
-          isOrderError &&
-            <OrderMessage
-              message={MESSAGES[4]}
-              action={resetFormState}
-            />
+              <div 
+                className={styles.panel}
+                style={{
+                  transform: `translateX(-${((orderStep - 1) / 3) * 100}%)`
+                }}
+              >
+                <div className={styles.board}>
+                  <SeatsPanel 
+                    seats={seats}
+                    handleToggleSeat={handleToggleSeat}
+                  />
+                </div>
+                <div className={styles.board}>
+                  <OrderForm 
+                    handleChangeInputValue={handleChangeInputValue}
+                    name={name}
+                    surname={surname}
+                    phone={phone}
+                    email={email}
+                    errors={valuesErrors}
+                  />
+                </div>
+                <div className={styles.board}>
+                  <OrderConfirm 
+                    name={name}
+                    surname={surname}
+                    phone={phone}
+                    email={email}
+                    chosenSeats={chosenSeats}
+                    handleCancelTicket={handleCancelTicket}
+                    price={price}
+                    onSubmitOrder={handleSubmitOrder}
+                    isSendingOrder={isSendingOrder}
+                  />
+                </div>
+              </div>
+              <div className={styles.btns}>
+                <Button 
+                  variants={['small']}
+                  action={goToPrevStep}
+                  disabled={orderStep === 1 || isSendingOrder}
+                >
+                  Back
+                </Button>
+                  <Button
+                    variants={['small']}
+                    action={goToNextStep}
+                    disabled={orderStep === 3 || isSendingOrder}
+                  >
+                    Next
+                  </Button>
+                </div>
+                {
+                  errorId && 
+                    <OrderMessage 
+                      message={this.MESSAGES[errorId]}
+                      action={() => handleModalAction(errorId)}
+                    />
+                }
+                {
+                  isSendingOrder &&
+                    <div className={styles.loader}>
+                      <Loader 
+                        classes={['small', 'red']}
+                      />
+                    </div> 
+                }
+                {
+                  isOrderSuccess && 
+                    <OrderMessage 
+                      message={isEditing ? MESSAGES[6] : MESSAGES[5]}
+                      action={backToMainPage}
+                      isSuccess
+                    />
+                }
+                {
+                  isOrderError &&
+                    <OrderMessage
+                      message={MESSAGES[4]}
+                      action={resetFormState}
+                    />
+                }
+            </>
         }
       </div>
      );

@@ -103,7 +103,7 @@ describe('SearchPanel component', () => {
   });
 
   it('renders text about error when props isError is true', () => {
-    const expectedText = 'Error occured. Please try again later.';
+    const expectedText = 'Error occured!!! Please try again later.';
     const messageEl = componentWithError.find('.message');
     expect(messageEl.exists()).toBeTruthy();
     expect(messageEl.text()).toBe(expectedText);

@@ -24,7 +24,7 @@ class User extends Component {
     return ( 
       <Page
         isFetching={isFetching}
-        isError={isError} 
+        isFetchingError={isError} 
         noHeader
       >
         <Container>

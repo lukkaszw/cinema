@@ -1,5 +1,6 @@
 import React from 'react';
 import Loader from '../../common/Loader/Loader';
+import FetchError from '../../common/FetchError/FetchError';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import styles from './Page.module.scss';
@@ -22,7 +23,8 @@ const Page = ({ isFetching, isFetchingError, noHeader, children }) => {
           </> 
       }
       {
-        /* place for error */
+        isFetchingError &&
+          <FetchError />
       }
     </main>
    );

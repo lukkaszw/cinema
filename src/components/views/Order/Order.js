@@ -5,6 +5,7 @@ import api from '../../../config/api';
 import OrderHeader from './OrderHeader/OrderHeader';
 import OrderContent from './OrderContent/OrderContent';
 import  TicketsPanel from '../../features/TicketsPanel/TicketsPanel'; 
+import FetchError from '../../common/FetchError/FetchError';
 import OrderPanel from '../../features/OrderPanel/OrderPanel.container';
 import ShowsDetails from '../../features/ShowsDetails/ShowsDetails';
 import { SEATS, ROWS } from '../../../utils/seats/seats';
@@ -180,47 +181,53 @@ class Order extends Component {
 
     return ( 
       <div className={styles.root}>
-          {
-            movie &&
-              <OrderHeader
-                img={movie.details.pageImage}
-                imgPortrait={movie.details.imagePortrait}
-              />
-          }
-          {
-            movie && 
-              <OrderContent 
-                title={movie.title}
-              >
-                <OrderPanel 
-                  token={token}
-                  showId={showData._id}
-                  chosenSeats={chosenSeats}
-                  seats={seats}
-                  handleToggleSeat={handleToggleSeat}
-                  handleCancelTicket={handleCancelTicket}
-                  price={price}
-                  userData={userData}
-                  orderTickets={orderTickets}
-                  isEditing={isEditing}
-                  editingId={orderToEdit ? orderToEdit._id : null}
+        {
+          isFetchingError ?
+           <FetchError />
+           :
+          <>
+            {
+              movie &&
+              <>
+                <OrderHeader
+                  img={movie.details.pageImage}
+                  imgPortrait={movie.details.imagePortrait}
                 />
-                <ShowsDetails 
-                   title={movie.title}
-                   img={movie.scheduleImg}
-                   date={generateDate()}
-                   hour={showData.startAt}
-                   hall={showData.hall}
-                   technology={showData.category}
-                   price={price}
-                />
-                <TicketsPanel 
-                  tickets={chosenSeats}
-                  price={price}
-                  handleCancelTicket={handleCancelTicket}
-                />
-              </OrderContent>
-          }
+                <OrderContent 
+                  title={movie.title}
+                >
+                  <OrderPanel 
+                    token={token}
+                    showId={showData._id}
+                    chosenSeats={chosenSeats}
+                    seats={seats}
+                    handleToggleSeat={handleToggleSeat}
+                    handleCancelTicket={handleCancelTicket}
+                    price={price}
+                    userData={userData}
+                    orderTickets={orderTickets}
+                    isEditing={isEditing}
+                    editingId={orderToEdit ? orderToEdit._id : null}
+                  />
+                  <ShowsDetails 
+                    title={movie.title}
+                    img={movie.scheduleImg}
+                    date={generateDate()}
+                    hour={showData.startAt}
+                    hall={showData.hall}
+                    technology={showData.category}
+                    price={price}
+                  />
+                  <TicketsPanel 
+                    tickets={chosenSeats}
+                    price={price}
+                    handleCancelTicket={handleCancelTicket}
+                  />
+                </OrderContent>
+              </>
+            }
+          </>
+        }
       </div>
      );
   }

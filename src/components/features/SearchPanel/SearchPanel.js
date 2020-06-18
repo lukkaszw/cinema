@@ -7,6 +7,7 @@ import SearchedByItem from '../../common/SearchedByItem/SearchedByItem';
 import Loader from '../../common/Loader/Loader';
 import PropTypes from 'prop-types';
 import styles from './SearchPanel.module.scss';
+import clsx from 'clsx';
 
 const SearchPanel = ({ closeAction, isLoading, resetQuery, isError, movies, searchMovies, query }) => {
   const [searchText, changeSearchText] = useState('');
@@ -20,7 +21,7 @@ const SearchPanel = ({ closeAction, isLoading, resetQuery, isError, movies, sear
   }, [searchMovies, searchText]);
 
   const message = isLoading ? null : 
-    isError ? 'Error occured. Please try again later.' : 
+    isError ? 'Error occured!!! Please try again later.' : 
     movies.length === 0 ? "No movies've been found! Try with another phrase!" :
     movies.length === 1 ? '1 movie has been found' :
     `${movies.length} movies've been found!`;
@@ -48,7 +49,7 @@ const SearchPanel = ({ closeAction, isLoading, resetQuery, isError, movies, sear
         </div>
         {
           message && 
-            <h4 className={styles.message}>{message}</h4>
+            <h4 className={clsx([styles.message, isError && styles.error])}>{message}</h4>
         }
         {
           isLoading && 
