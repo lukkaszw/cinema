@@ -8,14 +8,9 @@
   padding: 20px;
 
   .title {
-    position: relative;
     display: inline-block;
     font-size: 18px;
     font-weight: normal;
-
-    &::before {
-      @include under-red-line(-70%, 6px, 6px, 50%);
-    }
   }
 
   @media (max-width: 600px) {

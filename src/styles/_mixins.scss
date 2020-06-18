@@ -10,7 +10,7 @@
   transition: .2s;
 }
 
-@mixin under-red-line($top: 120%, $width: 16px, $height: 2px, $borderRadius: 0) {
+@mixin under-red-line($top: 120%, $width: 16px, $height: 2px) {
   position: absolute;
   content: '';
   display: block;
@@ -19,7 +19,6 @@
   transform: translateX(-50%);
   width: $width;
   height: $height;
-  border-radius: $borderRadius;
   background-color: $main-red;
   transition: .2s;
 }
