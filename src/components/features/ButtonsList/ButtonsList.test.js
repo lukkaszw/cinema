@@ -40,10 +40,10 @@ describe('ButtonsList component', () => {
     mockedProps.buttons.forEach((button, index) => {
       const component = shallow(<ButtonsList {...mockedProps} value={button.value} />);
       const buttonsEl = component.find('.btnItem Button');
-      expect(buttonsEl.at(index).prop('variants')).toEqual([null]);
+      expect(buttonsEl.at(index).prop('variants')).toEqual([null, 'notHovered']);
       for(let i = 0; i < buttonsEl.length; i++) {
         if(i !== index) {
-          expect(buttonsEl.at(i).prop('variants')).toEqual(['gray']);
+          expect(buttonsEl.at(i).prop('variants')).toEqual(['gray', 'notHovered']);
         }
       }
     });
