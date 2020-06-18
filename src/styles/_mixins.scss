@@ -109,7 +109,7 @@
     background-color: #555;
   }
 
-  &:hover:not(:disabled):not(.notHovered) {
+  &:hover:not(:disabled):not(.notHovered):not(.inline) {
     &::before {
       transform: translateX(150%)  skewX(-45deg);
     }
