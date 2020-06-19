@@ -12,8 +12,8 @@ const ShowsDetails = ({ title, img, date, hour, hall, technology, price }) => {
       </div>
       <div className={styles.detailsWrapper}>
         <div className={styles.details}>
-          <span className={styles.item}>{date.date}</span>
-          <span className={styles.item}>{date.dayOfWeek}</span>
+          <span className={styles.item}>{date.day} {date.month}</span>
+          <span className={styles.item}>{date.dayName}</span>
           <span className={styles.item}>{hour}</span>
           <span className={styles.item}><span className={styles.hall}>hall:</span> {hall}</span>
         </div>
@@ -27,7 +27,7 @@ const ShowsDetails = ({ title, img, date, hour, hall, technology, price }) => {
 ShowsDetails.propTypes = {
   title: PropTypes.string.isRequired, 
   img: PropTypes.string.isRequired, 
-  date: PropTypes.objectOf(PropTypes.string),
+  date: PropTypes.object,
   hour: PropTypes.string.isRequired, 
   hall: PropTypes.number.isRequired, 
   technology: PropTypes.string.isRequired, 

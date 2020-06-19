@@ -25,6 +25,13 @@ const mockedProps = {
   handleCancelTicket: jest.fn(),
   price: 10,
   userData: mockedUserData,
+  hour: '22:00',
+  date: {
+    dayName: 'THU',
+    day: 12,
+    month: 'OCT',
+    year: 2020,
+  }
 };
 
 const createEventValue = (value) => ({
@@ -394,6 +401,7 @@ describe('OrderPanel component', () => {
         seats: mockedSeats,
         showId: mockedProps.showId,
         price: expectedPrice,
+        showDate: "THU OCT 12 2020 22:00 GMT+0200",
       }, mockedProps.token, undefined );
     });
 

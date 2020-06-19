@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import EditOrderBottomBar from './EditOrderBottomBar';
-import { useHistory } from 'react-router-dom';
 
 const mockedProps = {
   orderToEdit: {
@@ -12,7 +11,8 @@ const mockedProps = {
       movieId: {
         title: 'Title',
       }
-    }
+    },
+    showDate: 'WED DEC 2 2020 22:00 GMT+0200',
   }
 };
 
@@ -47,7 +47,7 @@ describe('BottomBar component', () => {
     const mockComp = shallow(<EditOrderBottomBar {...mockedProps} />);
     const textEl = mockComp.find('.text');
     expect(textEl.length).toBe(1);
-    expect(textEl.text()).toBe('JUN 222:00Title');
+    expect(textEl.text()).toBe('2 DEC22:00Title');
   });
 
   it('renders one "Cancel" Button', () => {
@@ -84,7 +84,7 @@ describe('BottomBar component', () => {
     const noBtnEl = component.find('Button').at(0);
     noBtnEl.prop('action')();
     const textEl = component.find('.text');
-    expect(textEl.text()).toBe('JUN 222:00Title');
+    expect(textEl.text()).toBe('2 DEC22:00Title');
   });
 
   it('renders the same one "Cancel" Button when Button "No" was clicked', () => {

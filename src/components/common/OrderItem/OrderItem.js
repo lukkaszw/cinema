@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import styles from './OrderItem.module.scss';
 import clsx from 'clsx';
 import Button from '../../common/Button/Button';
-import { getDate } from '../../../utils/getDate/getDate';
+import { getDateString, MS_BEFORE_ORDER } from '../../../utils/getDate/getDate';
 
-const OrderItem = ({ _id, showId, seats, email, phone, name, price, surname, isActive, onToggleActive, onEdit, onDelete }) => {
+const OrderItem = ({ _id, showId, seats, email, phone, name, price, surname, isActive, showDate, onToggleActive, onEdit, onDelete }) => {
 
   const title = showId.movieId.title;
-  const date = useMemo(() => getDate(showId.day), [showId]);
-  const seatsString = useMemo(() => seats.join(', '), [seats])
+  const date = useMemo(() => getDateString(showDate), [showDate]);
+  const seatsString = useMemo(() => seats.join(', '), [seats]);
+  const isEditable = useMemo(() => (new Date().getTime() + MS_BEFORE_ORDER) < new Date(showDate).getTime(), [showDate]);
 
   return ( 
     <li className={clsx([styles.root, isActive && styles.active])}>
@@ -58,6 +59,7 @@ const OrderItem = ({ _id, showId, seats, email, phone, name, price, surname, isA
             <Button
               variants={['small', 'secondary']}
               action={onEdit}
+              disabled={!isEditable}
             >
               Edit
             </Button>
@@ -88,6 +90,7 @@ OrderItem.propTypes = {
   onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   price: PropTypes.number.isRequired,
+  showDate: PropTypes.string.isRequired,
 };
  
 export default OrderItem;

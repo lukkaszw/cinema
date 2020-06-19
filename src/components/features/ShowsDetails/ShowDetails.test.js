@@ -6,8 +6,10 @@ const mockedProps = {
   title: 'Title', 
   img: '/img.jpg', 
   date: {
-    date: '11 JUN',
-    dayOfWeek: 'THU',
+    day: 11,
+    dayName: 'THU',
+    month: 'JUN',
+    year: 2020,
   }, 
   hour: '22:00', 
   hall: 2, 
@@ -24,8 +26,8 @@ describe('ShowsDetails component', () => {
   it('renders details with 4 items with proper text inside', () => {
     const itemEl = component.find('.details .item');
     expect(itemEl.length).toBe(4);
-    expect(itemEl.at(0).text()).toBe(mockedProps.date.date);
-    expect(itemEl.at(1).text()).toBe(mockedProps.date.dayOfWeek);
+    expect(itemEl.at(0).text()).toBe(`${mockedProps.date.day} ${mockedProps.date.month}`);
+    expect(itemEl.at(1).text()).toBe(mockedProps.date.dayName);
     expect(itemEl.at(2).text()).toBe(mockedProps.hour);
     expect(itemEl.at(3).text()).toBe(`hall: ${mockedProps.hall}`);
   });

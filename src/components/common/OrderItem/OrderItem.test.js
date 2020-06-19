@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import OrderItem from './OrderItem';
-import { getDate } from '../../../utils/getDate/getDate';
+import { getDateString } from '../../../utils/getDate/getDate';
 
 const mockedProps = {
   _id: '1',
@@ -9,7 +9,7 @@ const mockedProps = {
     movieId: {
       title: 'Some title',
     },
-    day: 11,
+    day: 21,
     startAt: '22:00',
     hall: 2,
   },
@@ -19,6 +19,7 @@ const mockedProps = {
   price: 20,
   surname: 'Surname',
   name: 'Name',
+  showDate: 'SUN JUN 21 2020 22:00 GMT+0200',
   isActive: false,
   onDelete: jest.fn(),
   onEdit: jest.fn(),
@@ -26,7 +27,7 @@ const mockedProps = {
 
 const component = shallow(<OrderItem {...mockedProps}/>);
 
-describe('OrderInfo component', () => {
+describe('OrderItem component', () => {
   it('renders without crashing', () => {
     expect(component).toBeTruthy();
   });
@@ -34,7 +35,7 @@ describe('OrderInfo component', () => {
   it('renders header with title, date and hour', () => {
     const expectedTitle = mockedProps.showId.movieId.title;
     const expectedHour = mockedProps.showId.startAt;
-    const expectedDate = getDate(mockedProps.showId.day);
+    const expectedDate = getDateString(mockedProps.showDate);
 
     const headerEl = component.find('.header');
     expect(headerEl.exists()).toBeTruthy();
@@ -100,6 +101,7 @@ describe('OrderInfo component', () => {
       action: mockedProps.onEdit,
       children: 'Edit',
       variants: ['small', 'secondary'],
+      disabled: false,
     });
   });
 

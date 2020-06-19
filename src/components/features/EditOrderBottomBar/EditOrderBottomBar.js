@@ -3,11 +3,11 @@ import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Button from '../../common/Button/Button';
 import styles from './EditOrderBottomBar.module.scss';
-import { getDate } from '../../../utils/getDate/getDate';
+import { getDateString } from '../../../utils/getDate/getDate';
 
 const EditOrderBottomBar = ({ orderToEdit }) => {
   const [isCanceling, setIsCanceling] = useState(false);
-  const date = useMemo(() => getDate(orderToEdit.showId.day), [orderToEdit]);
+  const date = useMemo(() => getDateString(orderToEdit.showDate), [orderToEdit]);
   const startCanceling = useCallback(() => setIsCanceling(true), [setIsCanceling]);
   const stopCanceling = useCallback(() => setIsCanceling(false), [setIsCanceling]);
   const history = useHistory();

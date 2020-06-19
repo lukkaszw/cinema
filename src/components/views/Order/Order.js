@@ -10,6 +10,7 @@ import OrderPanel from '../../features/OrderPanel/OrderPanel.container';
 import ShowsDetails from '../../features/ShowsDetails/ShowsDetails';
 import LoaderIndicator from '../../common/LoaderIndicator/LoaderIndicator';
 import { SEATS, ROWS } from '../../../utils/seats/seats';
+import { getDate } from '../../../utils/getDate/getDate';
 import styles from './Order.module.scss';
 
 class Order extends Component {
@@ -18,8 +19,6 @@ class Order extends Component {
     seats: JSON.parse(JSON.stringify(SEATS)),
   };
 
-  MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-  DAYS = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
   PRICES = {
     '2d': 10,
     '3d': 12,
@@ -146,17 +145,9 @@ class Order extends Component {
 
   generateDate = () => {
     const { day } = this.props.showData;
-    const currentDate =  new Date();
-    const monthNr = currentDate.getMonth()
-    const year = currentDate.getFullYear();
-    const month = this.MONTHS[monthNr];
-    const dayNr = new Date(`${month}.${day}.${year}`).getDay();
-    const dayOfWeek = this.DAYS[dayNr];
-    const date = `${day} ${month}`;
-    return {
-      dayOfWeek,
-      date
-    };
+    const date = getDate(day);
+
+    return date;
   }
 
   render() {
@@ -179,6 +170,7 @@ class Order extends Component {
     const movie = showData.movieId || null;
 
     const price = this.PRICES[showData.category || '2d'];
+    const date = generateDate();
 
     return ( 
       <div className={styles.root}>
@@ -209,12 +201,14 @@ class Order extends Component {
                     userData={userData}
                     orderTickets={orderTickets}
                     isEditing={isEditing}
+                    date={date}
+                    hour={showData.startAt}
                     editingId={orderToEdit ? orderToEdit._id : null}
                   />
                   <ShowsDetails 
                     title={movie.title}
                     img={movie.scheduleImg}
-                    date={generateDate()}
+                    date={date}
                     hour={showData.startAt}
                     hall={showData.hall}
                     technology={showData.category}

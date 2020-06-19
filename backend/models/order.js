@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const _v = require('validator');
 
+const MS_BEFORE_NOW = 60 * 60 * 1000;
+
 const orderSchema = new mongoose.Schema({
   showId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -39,6 +41,12 @@ const orderSchema = new mongoose.Schema({
   price: {
     type: Number,
     required: true,
+  },
+  showDate: {
+    type: String,
+    required: true,
+    validate: (value) => new Date(value).getTime() > (new Date().getTime() + MS_BEFORE_NOW),
+    message: () => 'Expired show date!',
   },
   status: {
     type: String,

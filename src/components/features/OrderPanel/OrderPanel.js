@@ -124,7 +124,7 @@ export class OrderPanel extends Component {
 
   handleSubmitOrder = () => {
     const { name, surname, phone, email } = this.state;
-    const { showId, chosenSeats, isEditing, token, editingId, price } = this.props;
+    const { showId, chosenSeats, isEditing, token, editingId, price, date, hour } = this.props;
     const totalPrice = chosenSeats.length * price;
 
     const orderData = {
@@ -135,6 +135,11 @@ export class OrderPanel extends Component {
       showId,
       seats: chosenSeats,
       price: totalPrice,
+    }
+
+    if(!isEditing) {
+      const showDate = `${date.dayName} ${date.month} ${date.day} ${date.year} ${hour} GMT+0200`;
+      orderData.showDate = showDate;
     }
 
     if(isEditing) {
@@ -328,6 +333,8 @@ OrderPanel.propTypes = {
   price: PropTypes.number.isRequired,
   userData: PropTypes.object,
   isEditing: PropTypes.bool,
+  date: PropTypes.object,
+  hour: PropTypes.string,
 };
  
 export default withRouter(OrderPanel);

@@ -25,6 +25,7 @@ const propsWithOrders = {
       phone: '555 555 555',
       showId: {},
       price: 20,
+      showDate: 'SUN JUN 21 2020 22:30 GMT+0200',
     },
     {
       _id: '2',
@@ -35,6 +36,7 @@ const propsWithOrders = {
       phone: '666 666 666',
       showId: {},
       price: 24,
+      showDate: 'WED JUN 24 2020 22:00 GMT+0200',
     }
   ]
 }
@@ -43,6 +45,9 @@ const componentWithoutOrders = shallow(<UserOrders {...mockedProps} />);
 const componentWithOrders = shallow(<UserOrders {...propsWithOrders} />);
 
 describe('UserSettings component', () => {
+
+
+
   describe('rendering', () => {
     it('renders without crashing', () => {
       expect(componentWithOrders).toBeTruthy();

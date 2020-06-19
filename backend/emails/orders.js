@@ -7,7 +7,7 @@ const afterCreate = (order, show) => {
   const user = `${order.name} ${order.surname}`;
   const ticketsAmount = order.seats.length;
   const tickets = order.seats.join(', ');
-  const date = `${getDate(show.day)} ${show.startAt}`;
+  const date = `${getDate(order.showDate)} ${show.startAt}`;
   const title = show.movieId.title.toUpperCase();
 
   const msg = {
@@ -40,7 +40,7 @@ const afterEdit = (order) => {
   const user = `${order.name} ${order.surname}`;
   const ticketsAmount = order.seats.length;
   const tickets = order.seats.join(', ');
-  const date = `${getDate(order.showId.day)} ${order.showId.startAt}`;
+  const date = `${getDate(order.showDate)} ${order.showId.startAt}`;
   const title = order.showId.movieId.title.toUpperCase();
   const hall = order.showId.hall;
 
@@ -71,7 +71,7 @@ const afterEdit = (order) => {
 
 const afterDelete = (order) => {
   const user = `${order.name} ${order.surname}`;
-  const date = `${getDate(order.showId.day)} ${order.showId.startAt}`;
+  const date = `${getDate(order.showDate)} ${order.showId.startAt}`;
   const title = order.showId.movieId.title.toUpperCase();
 
   const msg = {
