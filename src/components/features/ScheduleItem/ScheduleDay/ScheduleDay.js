@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import ScheduleLink from '../ScheduleLink/ScheduleLink';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import styles from './ScheduleDay.module.scss';
@@ -8,7 +8,7 @@ import styles from './ScheduleDay.module.scss';
 const ScheduleDay = ({ inWeek, day, dayNr, month, isToday, shows, isBefore }) => {
 
   return ( 
-    <li key={inWeek} className={clsx([styles.root, isToday && styles.active, isBefore && styles.before])}>
+    <li key={inWeek} className={clsx([styles.root, isToday && styles.active])}>
       <div className={styles.top}>
         <span className={styles.name}>{day}</span>
         <span className={styles.dayNr}>{dayNr}</span>
@@ -17,9 +17,13 @@ const ScheduleDay = ({ inWeek, day, dayNr, month, isToday, shows, isBefore }) =>
       <ul className={styles.bottom}>
         {
           shows.map(show => (
-            <li key={show._id} className={styles.showsItem}>
-              <Link className={styles.showLink} to={`/schedule/${show._id}`}>{show.startAt}</Link>
-            </li>
+            <ScheduleLink 
+              key={show._id}
+              showId={show._id}
+              hour={show.startAt}
+              isBefore={isBefore}
+              isToday={isToday}
+            />
           ))
         }
       </ul>

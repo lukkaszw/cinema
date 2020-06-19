@@ -17,7 +17,9 @@ const mockedProps = {
       _id: '2',
       startAt: '17:00',
     }
-  ]
+  ],
+  isToday: false,
+  isBefore: false,
 };
 
 const component = shallow(<ScheduleDay {...mockedProps} />);
@@ -56,24 +58,16 @@ describe('ScheduleDay component', () => {
     expect(componentWithTodayDate.find('.active').exists()).toBeTruthy();
   });
 
-  it('has class before if rendered day is before today', () => {
-    expect(component.find('.before').exists()).toBeFalsy();
-    const beforeDayProps = {
-      ...mockedProps,
-      isBefore: true,
-      isToday: false,
-    };
-    const componentWithBeforeDate = shallow(<ScheduleDay {...beforeDayProps}/>);
-    expect(componentWithBeforeDate.find('.before').exists()).toBeTruthy();
-  });
-
   it(`renders ${mockedProps.shows.length} links to schedule pages`, () => {
-    const linksEl = component.find('Link');
+    const linksEl = component.find('ScheduleLink');
     expect(linksEl.length).toBe(mockedProps.shows.length);
     linksEl.forEach((link, i) => {
-      expect(link.text()).toBe(mockedProps.shows[i].startAt);
-      const expectedUrl = `/schedule/${mockedProps.shows[i]._id}`;
-      expect(link.prop('to')).toBe(expectedUrl);
+      expect(link.props()).toEqual({
+        hour: mockedProps.shows[i].startAt,
+        isBefore: mockedProps.isBefore,
+        isToday: mockedProps.isToday,
+        showId: mockedProps.shows[i]._id,
+      });
     });
   });
 });
