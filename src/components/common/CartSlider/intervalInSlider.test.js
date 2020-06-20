@@ -2,10 +2,11 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import CartSlider from './CartSlider';
 import {
-  mockedProps
-} from './mockedPropsForCartSlider';
+  generalMockedProps
+} from './CartSlider.test';
 import interval from '../../../config/comingFilmsInterval';
 
+const mockedProps = generalMockedProps;
 
 let component;
 

@@ -1,0 +1,20 @@
+.root {
+  position: absolute;
+  display: flex;
+  list-style: none;
+  transition: .4s;
+
+  .cartWrapper {
+    transform: scale(0.90) perspective(500px ) rotate3d(0,-10, 0.5, 15deg);
+    padding: 10px;
+    transition: .2s;
+
+    &.active {
+      transform: scale(1) perspective(500px)  rotate3d(0,0, 0, 0);
+    }
+
+    &:hover {
+      transform: scale(1) perspective(500px)  rotate3d(0,0, 0, 0);
+    }
+  }
+}

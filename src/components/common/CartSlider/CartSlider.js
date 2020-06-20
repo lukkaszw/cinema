@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import IconButton from '../../common/IconButton/IconButton';
-import Cart from '../Cart/Cart';
+import CartsSliderList from './CartsSliderList/CartsSliderList';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import styles from './Slider.module.scss';
 
 import interval from '../../../config/comingFilmsInterval';
@@ -103,31 +102,11 @@ class CartSlider extends Component {
     return ( 
       <div className={styles.root}>
         <div className={styles.slider} style={{height: `${cartHeight + 30}px`}} >
-          <ul 
-            className={styles.cartsList}
-            style={{ transform: `translateX(${-100 * activeCart/(allCartsAmount + 4)}%)`}}
-          >
-            {
-              data.map((cartData, index) => (
-                <li 
-                  key={cartData._id}
-                  style={{ width: `${cartWidth}px`}}
-                  className={clsx([styles.cartWrapper, activeCart === index && styles.active ])}
-                >
-                  <Cart {...cartData} />
-                </li>
-              ))
-            }
-            <li
-              className={styles.advert}
-              style={{ width: `${cartWidth * 4}px`}}
-            >
-              <img 
-                src="/images/advert.jpg" 
-                alt="Advert" 
-              />
-            </li>
-          </ul>
+          <CartsSliderList 
+            carts={data}
+            cartWidth={cartWidth}
+            activeCart={activeCart}
+          />
           <div className={styles.panel}>
             <IconButton 
               icon={faChevronLeft}
