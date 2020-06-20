@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
-import SeatsPanel from '../SeatsPanel/SeatsPanel';
-import OrderForm from '../OrderForm/OrderForm';
-import OrderConfirm from '../OrderConfirm/OrderConfirm';
-import Button from '../../common/Button/Button';
+import OrderPanelBoards from './OrderPanelBoards/OrderPanelBoards';
+import NextPrevBtns from '../../common/NextPrevBtns/NextPrevBtns';
 import OrderProcessBar from './OrderProcessBar/OrderProcessBar';
 import OrderMessage from './OrderMessage/OrderMessage';
 import FetchError from '../../common/FetchError/FetchError';
@@ -228,87 +226,57 @@ export class OrderPanel extends Component {
             <FetchError />
             :
             <>
+              <LoaderIndicator 
+                isActive={isSendingOrder}
+                top={90}
+              />
               <OrderProcessBar 
                 orderStep={orderStep}
               />
-              <div 
-                className={styles.panel}
-                style={{
-                  transform: `translateX(-${((orderStep - 1) / 3) * 100}%)`
-                }}
-              >
-                <div className={styles.board}>
-                  <SeatsPanel 
-                    seats={seats}
-                    handleToggleSeat={handleToggleSeat}
+              <OrderPanelBoards 
+                orderStep={orderStep}
+                seats={seats}
+                name={name}
+                surname={surname}
+                phone={phone}
+                email={email}
+                handleChangeInputValue={handleChangeInputValue}
+                valuesErrors={valuesErrors}
+                chosenSeats={chosenSeats}
+                price={price}
+                isSendingOrder={isSendingOrder}
+                handleToggleSeat={handleToggleSeat}
+                handleCancelTicket={handleCancelTicket}
+                handleSubmitOrder={handleSubmitOrder}
+              />
+              <NextPrevBtns 
+                goToPrevStep={goToPrevStep}
+                goToNextStep={goToNextStep}
+                isInactivePrev={orderStep === 1 || isSendingOrder}
+                isInactiveNext={orderStep === 3 || isSendingOrder}
+              />
+              {
+                errorId && 
+                  <OrderMessage 
+                    message={this.MESSAGES[errorId]}
+                    action={() => handleModalAction(errorId)}
                   />
-                </div>
-                <div className={styles.board}>
-                  <OrderForm 
-                    handleChangeInputValue={handleChangeInputValue}
-                    name={name}
-                    surname={surname}
-                    phone={phone}
-                    email={email}
-                    errors={valuesErrors}
+              }
+              {
+                isOrderSuccess && 
+                  <OrderMessage 
+                    message={isEditing ? MESSAGES[6] : MESSAGES[5]}
+                    action={backToMainPage}
+                    isSuccess
                   />
-                </div>
-                <div className={styles.board}>
-                  <OrderConfirm 
-                    name={name}
-                    surname={surname}
-                    phone={phone}
-                    email={email}
-                    chosenSeats={chosenSeats}
-                    handleCancelTicket={handleCancelTicket}
-                    price={price}
-                    onSubmitOrder={handleSubmitOrder}
-                    isSendingOrder={isSendingOrder}
+              }
+              {
+                isOrderError &&
+                  <OrderMessage
+                    message={MESSAGES[4]}
+                    action={resetFormState}
                   />
-                </div>
-              </div>
-              <div className={styles.btns}>
-                <Button 
-                  variants={['small']}
-                  action={goToPrevStep}
-                  disabled={orderStep === 1 || isSendingOrder}
-                >
-                  Back
-                </Button>
-                  <Button
-                    variants={['small']}
-                    action={goToNextStep}
-                    disabled={orderStep === 3 || isSendingOrder}
-                  >
-                    Next
-                  </Button>
-                </div>
-                <LoaderIndicator 
-                  isActive={isSendingOrder}
-                  top={90}
-                />
-                {
-                  errorId && 
-                    <OrderMessage 
-                      message={this.MESSAGES[errorId]}
-                      action={() => handleModalAction(errorId)}
-                    />
-                }
-                {
-                  isOrderSuccess && 
-                    <OrderMessage 
-                      message={isEditing ? MESSAGES[6] : MESSAGES[5]}
-                      action={backToMainPage}
-                      isSuccess
-                    />
-                }
-                {
-                  isOrderError &&
-                    <OrderMessage
-                      message={MESSAGES[4]}
-                      action={resetFormState}
-                    />
-                }
+              }
             </>
         }
       </div>

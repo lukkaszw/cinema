@@ -58,87 +58,52 @@ describe('OrderPanel component', () => {
       });
     });
 
-    it('renders panel with proper translate state after mount', () => {
-      const panelEl = component.find('.panel');
-      expect(panelEl.exists()).toBeTruthy();
-      expect(panelEl.prop('style')).toEqual({
-        transform: 'translateX(-0%)',
-      });
-    });
-
-    it('renders 3 boards inside panel', () => {
-      const boardEl = component.find('.panel .board');
-      expect(boardEl.length).toBe(3);
-    });
-
-    it('renders SeatsPanel component inside first board', () => {
-      const firstBoardEl = component.find('.panel .board').at(0);
-      const seatsPanelEL = firstBoardEl.find('SeatsPanel');
-      expect(seatsPanelEL.exists()).toBeTruthy();
-      expect(seatsPanelEL.props()).toEqual({
+    it('renders OrderPanelBoards with proper props', () => {
+      const panelBoardsEl = component.find('OrderPanelBoards');
+      expect(panelBoardsEl.length).toBe(1);
+      const instance = component.instance();
+      expect(panelBoardsEl.props()).toEqual({
+        orderStep: component.state('orderStep'),
         seats: mockedProps.seats,
-        handleToggleSeat: mockedProps.handleToggleSeat,
-      });
-    });
-
-    it('renders OrderForm component inside second board', () => {
-      const secondBoardEl = component.find('.panel .board').at(1);
-      const orderFormEl = secondBoardEl.find('OrderForm');
-      expect(orderFormEl.exists()).toBeTruthy();
-      const instance = component.instance();
-      expect(orderFormEl.props()).toEqual({
         name: component.state('name'),
         surname: component.state('surname'),
         phone: component.state('phone'),
         email: component.state('email'),
-        errors: component.state('valuesErrors'),
         handleChangeInputValue: instance.handleChangeInputValue,
-      });
-    });
-
-    it('renders OrderConfirm component inside third board', () => {
-      const thirdBoardEl = component.find('.panel .board').at(2);
-      const confirmEl = thirdBoardEl.find('OrderConfirm');
-      const instance = component.instance();
-      expect(confirmEl.exists()).toBeTruthy();
-      expect(confirmEl.props()).toEqual({
-        name: component.state('name'),
-        surname: component.state('surname'),
-        phone: component.state('phone'),
-        email: component.state('email'),
+        valuesErrors: component.state('valuesErrors'),
         chosenSeats: mockedProps.chosenSeats,
-        handleCancelTicket: mockedProps.handleCancelTicket,
         price: mockedProps.price,
-        onSubmitOrder: instance.handleSubmitOrder,
         isSendingOrder: mockedProps.isSendingOrder,
+        handleToggleSeat: mockedProps.handleToggleSeat,
+        handleCancelTicket: mockedProps.handleCancelTicket,
+        handleSubmitOrder: instance.handleSubmitOrder,
       });
     });
 
-    it('renders two Buttons', () => {
-      const btnEl = component.find('Button');
-      expect(btnEl.length).toBe(2);
-    });
-
-    it('renders first button as "Back" Button with proper props', () => {
-      const prevBtnEl = component.find('Button').at(0);
+    it('renders NextPrevBtns with proper props after mount', () => {
       const instance = component.instance();
-      expect(prevBtnEl.props()).toEqual({
-        variants: ['small'],
-        action: instance.goToPrevStep,
-        disabled: true,
-        children: 'Back',
+      const nextPrevBtnsEl = component.find('NextPrevBtns');
+      expect(nextPrevBtnsEl.length).toBe(1);
+      expect(nextPrevBtnsEl.props()).toEqual({
+        goToNextStep: instance.goToNextStep,
+        goToPrevStep: instance.goToPrevStep,
+        isInactivePrev: true,
+        isInactiveNext: false,
       });
     });
 
-    it('renders second button as "Next" Button with proper props', () => {
-      const nextBtnEl = component.find('Button').at(1);
+    it('changes props InactivePrev, InactiveNext according to changing orderStep', () => {
       const instance = component.instance();
-      expect(nextBtnEl.props()).toEqual({
-        variants: ['small'],
-        action: instance.goToNextStep,
-        disabled: false,
-        children: 'Next',
+      instance.setState({
+        orderStep: 2,
       });
+      expect(component.find('NextPrevBtns').prop('isInactivePrev')).toBe(false);
+      expect(component.find('NextPrevBtns').prop('isInactiveNext')).toBe(false);
+      instance.setState({
+        orderStep: 3,
+      });
+      expect(component.find('NextPrevBtns').prop('isInactivePrev')).toBe(false);
+      expect(component.find('NextPrevBtns').prop('isInactiveNext')).toBe(true);
     });
 
     it('renders no OrderMessage element at the begining', () => {

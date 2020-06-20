@@ -1,0 +1,13 @@
+.root {
+  width: 600%;
+  flex: 1;
+  display: flex;
+  transition: .3s;
+
+  .board {
+    width: 33.333%;
+    height: 100%;
+  }
+}
+
+

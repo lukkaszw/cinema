@@ -11,18 +11,6 @@
   flex-direction: column;
   justify-content: space-between;
 
-  .panel {
-    width: 600%;
-    flex: 1;
-    display: flex;
-    transition: .3s;
-  }
-
-  .board {
-    width: 33.333%;
-    height: 100%;
-  }
-
   .btns {
     display: flex;
     justify-content: space-between;
