@@ -5,22 +5,24 @@ import Modal from '../../../common/Modal/Modal';
 import PropTypes from 'prop-types';
 import styles from './DeleteOrderModal.module.scss';
 
+const MESSAGES = {
+  question: 'Are you sure you want to delete this order?',
+  error: 'Error - the order has not been deleted! Please try again later!',
+  success: 'Success - the order has been deleted!',
+};
+
+
 const DeleteOrderModal = ({ onCancel, onConfirm, isSending, isError, isSuccess }) => {
+  
+  const text = isError ? MESSAGES.error : (isSuccess ? MESSAGES.success : MESSAGES.question);
+
   return ( 
     <Modal
       closeAction={onCancel}
     > 
       <div className={styles.root}>
         <p className={styles.message}>
-          {
-            isError ?
-              'Error - the order has not been deleted! Please try again later!'
-              :
-              isSuccess ?
-                'Success - the order has been deleted!'
-                  :
-                  'Are you sure you want to delete this order?'
-          }
+          {text}
         </p>
         <div className={styles.btns}>
           {
