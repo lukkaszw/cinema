@@ -24,16 +24,7 @@ jest.mock('react-router-dom', () => ({
 
 let component;
 
-const RealDate = Date.now;
-
 describe('BottomBar component', () => {
-  beforeAll(() => {
-    Date.now = () => new Date('2019-01-22T10:20:30Z').getTime();
-  });
-
-  afterAll(() => {
-    global.Date.now = RealDate;
-  });
 
   beforeEach(() => {
     component = shallow(<EditOrderBottomBar {...mockedProps}/>);
