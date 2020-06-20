@@ -1,7 +1,5 @@
 import React from 'react';
-import Ticket from '../TicketsPanel/Ticket/Ticket';
 import Button from '../../common/Button/Button';
-import TicketSummary from '../TicketsPanel/TicketsSummary/TicketsSummary';
 import TicketsDetails from './TicketsDetails/TicketsDetails';
 import PurchaserDetails from './PurchaserDetails/PurchaserDetails';
 import PropTypes from 'prop-types';
