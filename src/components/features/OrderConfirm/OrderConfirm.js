@@ -37,7 +37,9 @@ const OrderConfirm = ({ name, surname, phone, email, price, chosenSeats, handleC
           tickets={chosenSeats}
           price={price}
         />
-        <p className={styles.info}>Please, made payment <strong className={styles.time}>30 min. before</strong> film show</p>
+        <p className={styles.info}>
+          Please, made payment <strong className={styles.time}>30 min. before</strong> film show
+        </p>
         <div className={styles.btn}>
           <Button
             variants={['tertiary']}
