@@ -5,6 +5,16 @@ import ButtonLink from '../../common/ButtonLink/ButtonLink';
 import PropTypes from 'prop-types';
 import styles from './DeleteAccount.module.scss';
 
+const MESSAGES = {
+  question: <>
+    Do you really want to delete your account?
+    Your account is <strong className={styles.warning}>irrecoverable</strong>!
+  </>,
+  success: 'Your account has been deleted!',
+  error: 'Error. We are not able to delete your account now! Please try again later.',
+};
+
+
 const DeleteAccount = ({ token, onDeleteAccount, onLogout, isDeleting, isError, isSuccess, onResetForm }) => {
 
   useEffect(() => () => onResetForm(), [onResetForm]);
@@ -15,67 +25,58 @@ const DeleteAccount = ({ token, onDeleteAccount, onLogout, isDeleting, isError, 
   }, [onLogout]);
 
   const onDeleteAction = useCallback(() => onDeleteAccount(token), [onDeleteAccount, token]);
+  const isQuestion = !isError && !isSuccess;
+  const text = isQuestion ? MESSAGES.question : (isSuccess ? MESSAGES.success : MESSAGES.error);
 
   return ( 
     <div className={styles.root}>
-      {
-        (!isError && !isSuccess) &&
-          <>
-            <p className={styles.message}>
-              Do you really want to delete your account?
-              Your account is <strong className={styles.warning}>irrecoverable</strong>!
-            </p>
-            <div className={styles.btns}>
-                <ButtonLink 
-                  to="/user/settings"
-                  size="small"
-                  variant="tertiary"
-                  title="No"
-                  disabled={isDeleting}
-                />
-                <Button
-                  action={onDeleteAction}
-                  variants={['small']}
-                  disabled={isDeleting}
-                >
-                  Yes
-                </Button>
-            </div>
-          </>
-      }
-      {
-        (isSuccess || isError) &&
-          <div>
-            <p className={styles.message}>
-              {
-                isSuccess  ? 'Your account has been deleted!' 
-                : 'Error. We are not able to delete your account now! Please try again later.'
-              }
-            </p>
-            <div className={styles.btns}>
+      <LoaderIndicator 
+        size='tiny'
+        top={140}
+        isActive={isDeleting}
+      />
+      <p className={styles.message}>
+        {text}
+      </p>
+      <div className={styles.btns}>
+        {
+          isQuestion ?
+            <>
+              <ButtonLink 
+                to="/user/settings"
+                size="small"
+                variant="tertiary"
+                title="No"
+                disabled={isDeleting}
+              />
+              <Button
+                action={onDeleteAction}
+                variants={['small']}
+                disabled={isDeleting}
+              >
+                Yes
+              </Button>
+            </>
+            :
+            <>
               {
                 isSuccess ? 
-                <Button
-                  variants={['small', 'tertiary']}
-                  action={onLogoutLocally}
-                >
-                  Ok
-                </Button>
-                :
-                <ButtonLink 
-                  to="/user/settings"
-                  size="small"
-                  title="Ok"
-                />
-              }
-            </div>
-          </div>
+                  <Button
+                    variants={['small', 'tertiary']}
+                    action={onLogoutLocally}
+                  >
+                    Ok
+                  </Button>
+                  :
+                  <ButtonLink 
+                    to="/user/settings"
+                    size="small"
+                    title="Ok"
+                  />
+              }    
+            </>
         }
-        <LoaderIndicator 
-          size='tiny'
-          top={140}
-          isActive={isDeleting}
-        />
+      </div>
     </div>
    );
 }
