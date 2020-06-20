@@ -17,6 +17,7 @@ class Order extends Component {
   state = {
     chosenSeats: [],
     seats: JSON.parse(JSON.stringify(SEATS)),
+    date: {},
   };
 
   PRICES = {
@@ -44,6 +45,10 @@ class Order extends Component {
   componentDidUpdate(prevProps) {
     if(prevProps.orderedSeats !== this.props.orderedSeats) {
       this.generateSeats();
+    }
+
+    if(prevProps.showData !== this.props.showData) {
+      this.generateDate();
     }
   }
   
@@ -145,9 +150,9 @@ class Order extends Component {
 
   generateDate = () => {
     const { day } = this.props.showData;
-    const date = getDate(day);
-
-    return date;
+    this.setState({
+      date: getDate(day),
+    });
   }
 
   render() {
@@ -161,16 +166,14 @@ class Order extends Component {
       orderTickets,
       orderToEdit,
       } = this.props;
-    const { chosenSeats, seats } = this.state;
+    const { chosenSeats, seats, date } = this.state;
     const { 
-      generateDate, 
       handleToggleSeat, 
       handleCancelTicket,
     } = this;
     const movie = showData.movieId || null;
 
     const price = this.PRICES[showData.category || '2d'];
-    const date = generateDate();
 
     return ( 
       <div className={styles.root}>
