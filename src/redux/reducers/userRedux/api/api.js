@@ -3,6 +3,7 @@ import axios from 'axios';
 import actionCreators from '../actionCreators/actionCreators';
 import ordersActionCreators from '../../ordersRedux/actionCreators/actionCreators';
 import formActionCreators from '../../formsRedux/actionCreators/actionCreators';
+import REDUX_UTILS from '../../../utils';
 
 const fetchData = (token) => {
   const url = `${api.user.url}/${api.user.endpoints.data}`;
@@ -12,9 +13,10 @@ const fetchData = (token) => {
       dispatch(actionCreators.setFetchError());
       return;
     } 
-    const AuthString = `Bearer ${token}`;
+    const config = REDUX_UTILS.generateAuthConfig(token);
+
     dispatch(actionCreators.startFetching());
-    return axios.get(url, { headers: { 'Authorization': AuthString } })
+    return axios.get(url, config)
       .then(res => {
         const userOrders = res.data.orders;
         const data = res.data;
@@ -28,10 +30,10 @@ const fetchData = (token) => {
 
 const sendReadNews = (token, newsId) => {
   const url = `${api.news.url}/${newsId}`;
-  const AuthString = `Bearer ${token}`;
+  const config = REDUX_UTILS.generateAuthConfig(token);
 
   return dispatch => {
-    return axios.patch(url, {}, { headers: { 'Authorization': AuthString }})
+    return axios.patch(url, {}, config)
       .then(() => {
         dispatch(actionCreators.setNewsAsRead(newsId));
       })
@@ -41,11 +43,11 @@ const sendReadNews = (token, newsId) => {
 
 const updateUserData = (token, data) => {
   const url = `${api.user.url}/${api.user.endpoints.data}`;
-  const AuthString = `Bearer ${token}`;
+  const config = REDUX_UTILS.generateAuthConfig(token);
 
   return dispatch => {
     dispatch(formActionCreators.startSending());
-    return axios.put(url, data, { headers: { 'Authorization': AuthString }})
+    return axios.put(url, data, config)
       .then((res) => {
         dispatch(formActionCreators.setSendSuccess(res.data.message));
         dispatch(actionCreators.setFetchData(res.data.userData));
@@ -56,11 +58,11 @@ const updateUserData = (token, data) => {
 
 const updateUserPswd = (token, data) => {
   const url = `${api.user.url}/${api.user.endpoints.pswd}`;
-  const AuthString = `Bearer ${token}`;
+  const config = REDUX_UTILS.generateAuthConfig(token);
 
   return dispatch => {
     dispatch(formActionCreators.startSending());
-    return axios.patch(url, data, { headers: { 'Authorization': AuthString }})
+    return axios.patch(url, data, config)
       .then((res) => {
         dispatch(formActionCreators.setSendSuccess(res.data.message));
       })
@@ -70,11 +72,11 @@ const updateUserPswd = (token, data) => {
 
 const deleteAccount = (token) => {
   const url = `${api.user.url}/me`;
-  const AuthString = `Bearer ${token}`;
+  const config = REDUX_UTILS.generateAuthConfig(token);
 
   return dispatch => {
     dispatch(formActionCreators.startSending());
-    return axios.delete(url, { headers: { 'Authorization': AuthString }})
+    return axios.delete(url, config)
       .then((res) => {
         dispatch(formActionCreators.setSendSuccess(res.data.message));
         dispatch(actionCreators.setFetchData({}));

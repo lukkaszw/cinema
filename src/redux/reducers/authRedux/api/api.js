@@ -4,6 +4,7 @@ import axios from 'axios';
 import actionCreators from '../actionCreators/actionCreators';
 import formActionCreators from '../../formsRedux/actionCreators/actionCreators';
 import userActionCreators from '../../userRedux/actionCreators/actionCreators';
+import REDUX_UTILS from '../../../utils';
 
 
 const sendCredentials = (credentials, destination) => {
@@ -39,11 +40,11 @@ const logoutUser = (token, isFromAllDevices) => {
     localStorage.removeItem('tkn');
     const logoutPath = isFromAllDevices ? api.auth.endpoints.logoutAll : api.auth.endpoints.logout;
     const url = `${api.auth.url}/${logoutPath}`;
-    const AuthStr = `Bearer ${token}`;
+    const config = REDUX_UTILS.generateAuthConfig(token);
 
     dispatch(actionCreators.logout());
     dispatch(userActionCreators.setFetchData({}));
-    return axios.post(url, {}, { headers: { 'Authorization': AuthStr }})
+    return axios.post(url, {}, config)
       .then(res => {
         console.log('Logout successfull on the server!');
       })

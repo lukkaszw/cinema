@@ -2,14 +2,11 @@ import api from '../../../../config/api';
 import axios from 'axios';
 import actionCreators from '../actionCreators/actionCreators';
 import formActionCreators from '../../formsRedux/actionCreators/actionCreators';
+import REDUX_UTILS from '../../../utils';
 
 const orderTickets = (orderData, token) => {
   const url = `${api.url}/${api.endpoints.orders}`;
-  const config = {};
-  if(token) {
-    config.headers = {};
-    config.headers.Authorization = `Bearer ${token}`;
-  }
+  const config = REDUX_UTILS.generateAuthConfig(token);
 
   return dispatch => {
     dispatch(formActionCreators.startSending());
@@ -23,11 +20,7 @@ const orderTickets = (orderData, token) => {
 
 const deleteOrder = (orderId, token) => {
   const url = `${api.url}/${api.endpoints.orders}/${orderId}`;
-  const config = {};
-  if(token) {
-    config.headers = {};
-    config.headers.Authorization = `Bearer ${token}`;
-  }
+  const config = REDUX_UTILS.generateAuthConfig(token);
 
   return dispatch => {
     dispatch(formActionCreators.startSending());
@@ -42,11 +35,7 @@ const deleteOrder = (orderId, token) => {
 
 const editOrder = (orderData, token, editingId) => {
   const url = `${api.url}/${api.endpoints.orders}/${editingId}`;
-  const config = {};
-  if(token) {
-    config.headers = {};
-    config.headers.Authorization = `Bearer ${token}`;
-  }
+  const config = REDUX_UTILS.generateAuthConfig(token);
 
   return dispatch => {
     dispatch(formActionCreators.startSending());
