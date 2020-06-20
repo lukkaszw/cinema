@@ -2,6 +2,8 @@ import React from 'react';
 import Ticket from '../TicketsPanel/Ticket/Ticket';
 import Button from '../../common/Button/Button';
 import TicketSummary from '../TicketsPanel/TicketsSummary/TicketsSummary';
+import TicketsDetails from './TicketsDetails/TicketsDetails';
+import PurchaserDetails from './PurchaserDetails/PurchaserDetails';
 import PropTypes from 'prop-types';
 import styles from './OrderConfirm.module.scss';
 
@@ -9,32 +11,15 @@ const OrderConfirm = ({ name, surname, phone, email, price, chosenSeats, handleC
   return ( 
     <div className={styles.root}>
       <div className={styles.orderSummary}>
-        <h3 className={styles.category}>Purchaser:</h3>
-        <p className={styles.value}><strong>{name} {surname}</strong></p>
-        <h3 className={styles.category}>Contact details:</h3>
-        <p className={styles.value}>
-          tel: 
-          <strong className={styles.contactItem}>{phone ? phone : '-'}</strong> 
-        </p>
-        <p className={styles.value}>
-          email: 
-          <strong className={styles.contactItem}>{email ? email : '-'}</strong>
-        </p>
-        <h3 className={styles.category}>Tickets: <span className={styles.ticketsAmount}>{chosenSeats.length}</span></h3>
-        <ul className={styles.list}>
-          {
-            chosenSeats.map(seatId => (
-              <Ticket 
-                key={seatId}
-                ticketId={seatId}
-                price={price}
-                onCancel={() => handleCancelTicket(seatId)}
-              />
-            ))
-          }
-        </ul>
-        <TicketSummary 
+        <PurchaserDetails 
+          name={name}
+          surname={surname}
+          phone={phone}
+          email={email}
+        />
+        <TicketsDetails 
           tickets={chosenSeats}
+          handleCancelTicket={handleCancelTicket}
           price={price}
         />
         <p className={styles.info}>

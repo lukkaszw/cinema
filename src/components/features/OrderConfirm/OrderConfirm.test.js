@@ -21,50 +21,23 @@ describe('OrderConfirm component', () => {
     expect(component).toBeTruthy();
   });
 
-  it('renders info about name and surname', () => {
-    const expectedText = `${mockedProps.name} ${mockedProps.surname}`;
-    const nameSurnEl = component.find('.value').at(0);
-    expect(nameSurnEl.text()).toBe(expectedText);
-  });
-
-  it('renders info about phone and emial', () => {
-    const contactEl = component.find('.contactItem');
-    expect(contactEl.at(0).text()).toBe(mockedProps.phone);
-    expect(contactEl.at(1).text()).toBe(mockedProps.email);
-  });
-
-  it('renders proper tickets amount', () => {
-    const ticketsAmountEl = component.find('.ticketsAmount');
-    expect(ticketsAmountEl.text()).toMatch(mockedProps.chosenSeats.length.toString());
-  });
-
-  it(`renders list of ${mockedProps.chosenSeats.length} Ticket components with proper props`, () => {
-    const ticketEl = component.find('.list Ticket');
-    expect(ticketEl.length).toBe(mockedProps.chosenSeats.length);  
-    ticketEl.forEach((ticketEl, i) => {
-      expect(ticketEl.prop('ticketId')).toBe(mockedProps.chosenSeats[i]);
-      expect(ticketEl.prop('price')).toBe(mockedProps.price);
+  it('renders PurchaserDetails with proper props', () => {
+    const purchDetailsEl = component.find('PurchaserDetails');
+    expect(purchDetailsEl.length).toBe(1);
+    expect(purchDetailsEl.props()).toEqual({
+      name: mockedProps.name,
+      surname: mockedProps.surname,
+      phone: mockedProps.phone,
+      email: mockedProps.email,
     });
   });
 
-  it('fires handleCancelTicket function with proper value when clicking on Ticket component', () => {
-    const ticketEl = component.find('.list Ticket');
-    let funcCalledTimes = 0;
-    expect(mockedProps.handleCancelTicket).toHaveBeenCalledTimes(funcCalledTimes);
-    ticketEl.forEach((ticketEl, i) => {
-      funcCalledTimes++;
-      ticketEl.prop('onCancel')();
-      const ticketId = mockedProps.chosenSeats[i];
-      expect(mockedProps.handleCancelTicket).toHaveBeenCalledTimes(funcCalledTimes);
-      expect(mockedProps.handleCancelTicket).toHaveBeenCalledWith(ticketId);
-    });
-  });
-
-  it('renders TicketsSummary with proper props', () => {
-    const ticketSummaryEl = component.find('TicketsSummary');
-    expect(ticketSummaryEl.exists()).toBeTruthy();
-    expect(ticketSummaryEl.props()).toEqual({
+  it('renders TicketsDetails with proper props', () => {
+    const ticketsDetailsEl = component.find('TicketsDetails');
+    expect(ticketsDetailsEl.length).toBe(1);
+    expect(ticketsDetailsEl.props()).toEqual({
       tickets: mockedProps.chosenSeats,
+      handleCancelTicket: mockedProps.handleCancelTicket,
       price: mockedProps.price,
     });
   });
