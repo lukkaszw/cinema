@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Cart from './Cart';
+import { Cart } from './Cart';
 
 const mockedProps = {
   _id: '1',

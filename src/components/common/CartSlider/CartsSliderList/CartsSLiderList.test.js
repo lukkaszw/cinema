@@ -17,8 +17,8 @@ describe('CartsSliderList component', () => {
     expect(component).toBeTruthy();
   });
 
-  it(`renders ${mockedProps.carts.lenght + 4} .cartWrappers with Carts inside`, () => {
-    const cartsEl = component.find('.cartWrapper Cart');
+  it(`renders ${mockedProps.carts.length + 4} .cartWrappers with Carts inside`, () => {
+    const cartsEl = component.find('.cartWrapper Memo(Cart)');
     expect(cartsEl.length).toBe(mockedProps.carts.length + 4);
     cartsEl.forEach((cartEl, i) => {
       if(i >= mockedProps.carts.length) {

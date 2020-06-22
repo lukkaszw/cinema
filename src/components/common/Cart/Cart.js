@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './Cart.module.scss';
 
-const Cart = ({ _id, image, title, duration, categories, played, playDate }) => {
+export const Cart = ({ _id, image, title, duration, categories, played, playDate }) => {
   return ( 
     <Link
      className={styles.root}
@@ -46,4 +46,4 @@ Cart.propTypes = {
   playDate: PropTypes.string,
 };
  
-export default Cart;
+export default React.memo(Cart);

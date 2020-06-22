@@ -62,7 +62,7 @@ describe('CartsList component', () => {
   });
 
   it(`includes ${mockedProps.movies.length} Cart elements with proper props`, () => {
-    const cartEl = component.find('Cart');
+    const cartEl = component.find('Memo(Cart)');
     expect(cartEl.length).toBe(mockedProps.movies.length);
     mockedProps.movies.forEach((movie, index) => {
       expect(cartEl.at(index).props()).toEqual(movie);
