@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import ScheduleItem from './ScheduleItem';
-import mockedProps from './mockedProps';
+import { mockedProps } from './SheduleItem.test';
 
 describe('ScheduleItem - generateFilterBtns method', () => {
 
