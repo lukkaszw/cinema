@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import UserDetailsForm from './UserDetailsForm/UserDetailsForm';
-import Button from '../../common/Button/Button';
-import ButtonLink from '../../common/ButtonLink/ButtonLink';
+import UserSettingsButtons from './UserSettingsButtons/UserSettingsButtons';
 import PropTypes from 'prop-types';
 import styles from './UserSettings.module.scss';
 import _v from 'validator';
@@ -154,34 +153,9 @@ class UserSettings extends Component {
         />
         {
           !isEditing &&
-            <div className={styles.editBtn}>
-              <Button
-                action={handleStartEditMode}
-                variants={['small', 'secondary']}
-              >
-                Edit
-              </Button>
-            </div>
-        }
-        {
-          !isEditing &&
-              <div className={styles.btns}>
-                <div className={styles.btn}>
-                  <ButtonLink
-                    to="/user/settings/up"
-                    size="small"
-                    variant="fourth"
-                    title="Update password!"
-                  />
-                </div>
-                <div className={styles.btn}>
-                  <ButtonLink
-                    to="/user/settings/delete"
-                    size="small"
-                    title="Delete account"
-                  />
-                </div>
-              </div>
+            <UserSettingsButtons 
+              handleStartEditMode={handleStartEditMode}
+            />
         }
       </div>
      );

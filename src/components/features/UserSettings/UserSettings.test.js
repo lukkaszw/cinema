@@ -223,5 +223,19 @@ describe('UserSettings component', () => {
       });
 
     });
+
+    it('redners UserSettingsButtons with proper props when it is not in editing mode', () => {
+      const instance = component.instance();
+      const settingsBtnsEl = component.find('UserSettingsButtons');
+      expect(settingsBtnsEl.length).toBe(1);
+      expect(settingsBtnsEl.prop('handleStartEditMode')).toBe(instance.handleStartEditMode);
+    });
+
+    it('does not render UserSettingsButtons when it is in during editing', () => {
+      const instance = component.instance();
+      instance.handleStartEditMode();
+
+      expect(component.find('UserSettingsButtons').exists()).toBeFalsy();
+    });
   });
 });

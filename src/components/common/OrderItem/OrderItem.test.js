@@ -19,7 +19,7 @@ const mockedProps = {
   price: 20,
   surname: 'Surname',
   name: 'Name',
-  showDate: 'SUN JUN 21 2020 22:00 GMT+0200',
+  showDate: 'SAT DEC 30 2023 22:00 GMT+0200',
   isActive: false,
   onDelete: jest.fn(),
   onEdit: jest.fn(),
