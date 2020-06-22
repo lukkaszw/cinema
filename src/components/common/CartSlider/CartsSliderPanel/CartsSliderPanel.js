@@ -32,4 +32,4 @@ CartsSliderPanel.propTypes = {
   isInactiveNext: PropTypes.bool.isRequired,
 };
  
-export default CartsSliderPanel;
+export default React.memo(CartsSliderPanel);

@@ -67,7 +67,7 @@ describe('Slider component', () => {
   it('renders CartsSliderPanel with proper props', () => {
     const instance = component.instance();
 
-    const sliderPanelEl = component.find('CartsSliderPanel');
+    const sliderPanelEl = component.find('Memo(CartsSliderPanel)');
     expect(sliderPanelEl.length).toBe(1);
 
     expect(sliderPanelEl.props()).toEqual({
@@ -86,7 +86,7 @@ describe('Slider component', () => {
     instance.goToPreviousCart();
     expect(instance.state.activeCart).toBe(0);
     // check icon buttons elements disabled prop after unsuccessful action
-    let sliderPanelEl = component.find('CartsSliderPanel');
+    let sliderPanelEl = component.find('Memo(CartsSliderPanel)');
     expect(sliderPanelEl.prop('isInactiveNext')).toBe(false);
     expect(sliderPanelEl.prop('isInactivePrev')).toBe(true);
 
@@ -96,7 +96,7 @@ describe('Slider component', () => {
       instance.goToNextCart();
       expect(instance.state.activeCart).toBe(i);
       // check icon buttons elements disabled prop after actions
-      sliderPanelEl = component.find('CartsSliderPanel');
+      sliderPanelEl = component.find('Memo(CartsSliderPanel)');
       expect(sliderPanelEl.prop('isInactivePrev')).toBe(false);
       if(i === mockedProps.data.length - 1) {
         expect(sliderPanelEl.prop('isInactiveNext')).toBe(true);
@@ -109,7 +109,7 @@ describe('Slider component', () => {
     instance.goToNextCart();
     expect(instance.state.activeCart).toBe(mockedProps.data.length - 1);
     // check icon buttons elements disabled prop after unsuccessful action
-    sliderPanelEl = component.find('CartsSliderPanel');
+    sliderPanelEl = component.find('Memo(CartsSliderPanel)');
     expect(sliderPanelEl.prop('isInactiveNext')).toBe(true);
     expect(sliderPanelEl.prop('isInactivePrev')).toBe(false);
 
@@ -118,7 +118,7 @@ describe('Slider component', () => {
       instance.goToPreviousCart();
       expect(instance.state.activeCart).toBe(i);
       // check icon buttons elements disabled prop after actions
-      sliderPanelEl = component.find('CartsSliderPanel');
+      sliderPanelEl = component.find('Memo(CartsSliderPanel)');
       expect(sliderPanelEl.prop('isInactivePrev')).toBe(false);
       if(i === 0) {
         expect(sliderPanelEl.prop('isInactiveNext')).toBe(true);
