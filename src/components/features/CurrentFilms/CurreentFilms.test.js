@@ -1,10 +1,40 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import CurrentFilms from './CurrentFilms';
-import {
-  mockedPropsWhenLoading,
-  mockedPropsWithData,
-} from './mockedDataForTests';
+
+const oneMovie =     {
+  title: 'Title test',
+  duration: 120,
+  categories: ['Action', 'Drama'],
+  image: '/images/carts/image-test.jpg',
+};
+
+const mockedMovies = [];
+
+for(let i = 0; i < 18; i++) {
+  mockedMovies.push({
+    id: `${i}`,
+    ...oneMovie,
+  });
+}
+
+const mockedPropsWithData = {
+  isLoading: false,
+  isError: false,
+  filter: 'all',
+  movies: mockedMovies,
+  fetchMovies: jest.fn(),
+  setFilter: jest.fn(),
+}
+
+
+const mockedPropsWhenLoading = {
+  isLoading: true,
+  isError: false,
+  filter: 'all',
+  fetchMovies: jest.fn(),
+  setFilter: jest.fn(),
+};
 
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
