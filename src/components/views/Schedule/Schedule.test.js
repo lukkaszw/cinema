@@ -1,7 +1,26 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import Schedule from './Schedule';
-import mockedData from './mockedData';
+
+const mockedData = [];
+
+for(let i = 1; i <= 18; i++) {
+  const movie = {
+    _id: `${i}`,
+    title: `Title ${i}`,
+    categories: ['Comedy'],
+    img: `image-${i}.jpg`,
+    rate: i,
+    filters: ['2d'],
+    shows: [{
+      _id: `${i}${i}`,
+    }],
+    duration: i,
+  };
+  mockedData.push(movie);
+}
+
+export default mockedData;
 
 const mockedProps = {
   fetchSchedule: jest.fn(),
