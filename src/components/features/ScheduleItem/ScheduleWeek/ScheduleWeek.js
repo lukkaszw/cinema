@@ -20,11 +20,13 @@ const ScheduleWeek = ({ days, getPrev, getNext, prevDisabled, nextDisabled }) =>
           action={getPrev}
           icon={faLongArrowAltLeft} 
           disabled={prevDisabled}
+          ariaLabel='Go to previous'
         />
         <IconButton 
           action={getNext}
           icon={faLongArrowAltRight} 
           disabled={nextDisabled}
+          ariaLabel='Go to next'
         />
       </div>
     </div>

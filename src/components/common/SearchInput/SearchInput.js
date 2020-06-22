@@ -10,15 +10,17 @@ const SearchInput = ({ value, onChange, onSubmit, placeholder}) => {
       onSubmit={onSubmit}
       className={styles.root}
     >
-      <input 
+      <input
         className={styles.input}
         value={value} 
         onChange={onChange}
         placeholder={placeholder}
+        aria-label={placeholder}
       />
       <span className={styles.iconBtn}>
         <IconButton 
           icon={faSearch}
+          ariaLabel='Search'
         />
       </span>
 

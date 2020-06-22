@@ -21,6 +21,7 @@ const FormMessage = ({ isError, message, resetMessage }) => {
         <IconButton 
           action={resetMessage}
           icon={faCheck} 
+          ariaLabel='close message'
         />
       </span>
     </p>

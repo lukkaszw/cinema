@@ -15,12 +15,14 @@ const SortPanel = ({ sort, setSort}) => {
         action={sortAsc}
         inactive={sort !== 'asc'}
         notGrow
+        ariaLabel='Sort from a to z'
       />
       <IconButton 
         icon={faSortAlphaUp}
         action={sortDesc}
         inactive={sort !== 'desc'}
         notGrow
+        ariaLabel='Sort from z to a'
       />
     </div>
    );

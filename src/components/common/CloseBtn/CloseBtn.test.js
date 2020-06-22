@@ -20,6 +20,7 @@ describe('CloseBtn component', () => {
     expect(iconBtnEl.props()).toEqual({
       icon: faWindowClose,
       action: mockedProps.closeAction,
+      ariaLabel: 'Close'
     });
   });
 });

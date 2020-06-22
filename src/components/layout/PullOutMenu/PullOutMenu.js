@@ -28,6 +28,7 @@ const PullOutMenu = ({ isAuth, isActive, links, closeAction, openSearchPanel }) 
         <IconButton 
           icon={faSearch} 
           action={openPanelCloseMenu}
+          ariaLabel='Open search panel'
         />
         {
           isAuth &&

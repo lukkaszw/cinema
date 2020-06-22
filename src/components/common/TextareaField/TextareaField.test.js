@@ -40,6 +40,7 @@ describe('TextareaField component', () => {
       const textareaEl = component.find('textarea');
       expect(textareaEl.exists()).toBeTruthy();
       expect(textareaEl.props()).toEqual({
+        'aria-label': 'some placeholder',
         value: mockedProps.value,
         onChange: mockedProps.onChange,
         placeholder: mockedProps.placeholder,

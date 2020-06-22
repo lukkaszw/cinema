@@ -10,6 +10,7 @@ const CloseBtn = ({ closeAction }) => {
       <IconButton 
         icon={faWindowClose}
         action={closeAction}
+        ariaLabel="Close"
       />
     </div>
    );

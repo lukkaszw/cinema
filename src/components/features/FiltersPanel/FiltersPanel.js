@@ -58,6 +58,7 @@ const FiltersPanel = ({
           <IconButton 
             icon={faFilter}
             action={togglePanelFc}
+            ariaLabel='Toggle filters panel'
           />
         </div>
       </div>

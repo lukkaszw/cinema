@@ -15,6 +15,7 @@ const GenreFilterPanel = ({ activeGenres, toggleGenre, foundMoviesAmount }) => {
       <IconButton 
         icon={faFilm}
         action={openAction}
+        ariaLabel='Open genre modal'
       />
       {
         isModalOpen &&

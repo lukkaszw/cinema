@@ -10,6 +10,7 @@ const SeatsRow = ({ seats, handleToggleSeat }) => {
         seats.map(seat => (
           <Seat 
             key={seat.seatId}
+            seatId={seat.seatId}
             onClick={() => handleToggleSeat(seat.seatId)}
             {...seat}
           />

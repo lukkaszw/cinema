@@ -12,6 +12,7 @@ const SearchedByItem = ({ value, removeAction }) => {
         icon={faTimesCircle} 
         action={removeAction}
         notGrow
+        ariaLabel='remove search item'
       />
     </div>
    );

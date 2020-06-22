@@ -25,12 +25,17 @@ const Gallery = ({ gallery, title, padImage }) => {
       >
         {
           gallery.map((imgSrc, i) => (
-            <img 
+            <li 
               key={`${title}-${i}`} 
-              className={styles.img}
-              src={imgSrc} 
-              alt={`${title}-${i}`} 
-            />
+              className={styles.imageWrapper}
+            >
+              <img 
+                className={styles.img}
+                src={imgSrc} 
+                alt={`${title}-${i}`} 
+              />
+            </li>
+     
           ))
         }
       </ul>
@@ -39,6 +44,7 @@ const Gallery = ({ gallery, title, padImage }) => {
           action={goToPrev}
           icon={faChevronLeft} 
           disabled={activeImg <= 0}
+          ariaLabel='Go to previous'
         />
       </div>
       <div className={styles.btnNext}>
@@ -46,6 +52,7 @@ const Gallery = ({ gallery, title, padImage }) => {
           action={goToNext}
           icon={faChevronRight}
           disabled={activeImg >= gallery.length - 1}
+          ariaLabel='Go to next'
         />
       </div>
       <div className={styles.descr}>

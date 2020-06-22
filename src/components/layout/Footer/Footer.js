@@ -52,6 +52,7 @@ const Footer = ({ links }) => {
                       outside={true}
                       circle={true}
                       specialClass={link.title}
+                      ariaLabel={`go to ${link.title}`}
                     />
                   </li>
                 ))

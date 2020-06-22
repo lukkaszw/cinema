@@ -112,12 +112,14 @@ class CartSlider extends Component {
               icon={faChevronLeft}
               disabled={activeCart >= allCartsAmount - 1}
               action={goToNextCart}
+              ariaLabel='Go to next cart'
             />
             <p>{`${allCartsAmount} upcoming movies`}</p>
             <IconButton 
               icon={faChevronRight}
               disabled={activeCart === 0}
               action={goToPreviousCart}
+              ariaLabel='Go to previous cart'
             />
           </div>
         </div>

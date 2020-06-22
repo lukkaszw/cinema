@@ -10,6 +10,7 @@ const TextareaField = ({ value, onChange, placeholder, isError, message, maxChar
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        aria-label={placeholder}
       >
       </textarea>
       {

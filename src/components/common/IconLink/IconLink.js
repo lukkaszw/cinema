@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import styles from './IconLink.module.scss';
 
-const IconLink = ({ to, outside, icon, circle, specialClass, mobile, secondaryAction }) => {
+const IconLink = ({ to, outside, icon, circle, specialClass, mobile, secondaryAction, ariaLabel }) => {
   const classes = [
     styles.root, 
     circle && styles.circle, 
@@ -22,6 +22,7 @@ const IconLink = ({ to, outside, icon, circle, specialClass, mobile, secondaryAc
             className={clsx(classes)}
             href={to}
             target="__blank"
+            aria-label={ariaLabel}
           >
             <FontAwesomeIcon icon={icon} />
           </a>
@@ -30,6 +31,7 @@ const IconLink = ({ to, outside, icon, circle, specialClass, mobile, secondaryAc
             onClick={secondaryAction}
             className={clsx(classes)}
             to={to}
+            aria-label={ariaLabel}
           >
             <FontAwesomeIcon icon={icon} />
           </Link>
@@ -46,6 +48,7 @@ IconLink.propTypes = {
   circle: PropTypes.bool,
   specialClass: PropTypes.string,
   secondaryAction: PropTypes.func,
+  ariaLabel: PropTypes.string,
 };
  
 export default IconLink;

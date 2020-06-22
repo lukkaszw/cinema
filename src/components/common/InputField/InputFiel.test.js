@@ -31,6 +31,9 @@ describe('InputField component', () => {
         placeholder: mockedProps.placeholder,
         onChange: mockedProps.onChange,
         type: 'text',
+        'aria-label': 'Some placeholder',
+        autoComplete: undefined,
+        disabled: undefined,
       });
     });
 

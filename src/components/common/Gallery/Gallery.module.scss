@@ -33,9 +33,14 @@
     background-color: rgba(0, 0, 0, .5);
   }
 
-  .img {
+  .imageWrapper {
     width: 1360px;
     max-width: calc(100vw - 40px);
+    height: 100%;
+  }
+
+  .img {
+    width: 100%;
     height: 100%;
     object-fit: cover;
   }

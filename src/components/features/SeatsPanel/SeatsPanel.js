@@ -42,11 +42,13 @@ const SeatsPanel = ({ seats, handleToggleSeat }) => {
           action={goToLeft}
           disabled={translateX > PANEL.LEFT}
           icon={faLongArrowAltLeft}
+          ariaLabel='go to left'
         />
         <IconButton 
           action={goToRight}
           icon={faLongArrowAltRight}
           disabled={translateX < PANEL.RIGHT}
+          ariaLabel='go to right'
         />
       </div>
     </div>

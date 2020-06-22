@@ -7,6 +7,7 @@ const mockedProps = {
   onClick: jest.fn(),
   disabled: false,
   chosen: false,
+  seatId: '1A'
 };
 
 const disabledProps = {
@@ -36,6 +37,7 @@ describe('Seat component', () => {
       onClick: mockedProps.onClick,
       disabled: false,
       className: 'root',
+      "aria-label": "toggle seat 1A",
     });
 
     btnEl = componentDisabled.find('button');
@@ -43,6 +45,7 @@ describe('Seat component', () => {
       onClick: disabledProps.onClick,
       disabled: true,
       className: 'root',
+      "aria-label": "toggle seat 1A",
     });
 
     btnEl = componentChosen.find('button');
@@ -50,6 +53,7 @@ describe('Seat component', () => {
       onClick: chosenProps.onClick,
       disabled: false,
       className: 'root chosen',
+      "aria-label": "toggle seat 1A",
     });
   });
 

@@ -9,6 +9,7 @@ const Logo = ({ size }) => {
     <Link
       className={styles.root}
       to="/"
+      aria-label='go to main page'
     >
       <img 
         className={clsx([styles.image, size && styles[size]])}
