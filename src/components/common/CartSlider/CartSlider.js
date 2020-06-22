@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import IconButton from '../../common/IconButton/IconButton';
+import CartsSliderPanel from './CartsSliderPanel/CartsSliderPanel';
 import CartsSliderList from './CartsSliderList/CartsSliderList';
 import PropTypes from 'prop-types';
 import styles from './Slider.module.scss';
@@ -107,21 +106,13 @@ class CartSlider extends Component {
             cartWidth={cartWidth}
             activeCart={activeCart}
           />
-          <div className={styles.panel}>
-            <IconButton 
-              icon={faChevronLeft}
-              disabled={activeCart >= allCartsAmount - 1}
-              action={goToNextCart}
-              ariaLabel='Go to next cart'
-            />
-            <p>{`${allCartsAmount} upcoming movies`}</p>
-            <IconButton 
-              icon={faChevronRight}
-              disabled={activeCart === 0}
-              action={goToPreviousCart}
-              ariaLabel='Go to previous cart'
-            />
-          </div>
+          <CartsSliderPanel 
+            goToNextCart={goToNextCart}
+            goToPreviousCart={goToPreviousCart}
+            moviesAmount={allCartsAmount}
+            isInactivePrev={activeCart === 0}
+            isInactiveNext={activeCart >= allCartsAmount - 1}
+          />
         </div>
       </div>
      );

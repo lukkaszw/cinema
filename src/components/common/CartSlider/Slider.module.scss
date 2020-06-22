@@ -1,30 +1,8 @@
-@import '../../../styles/variables';
-
 .root {
   .slider {
     width: 100%;
     position: relative;
     overflow: hidden;
     padding: 5px;
-  }
-
-  .panel {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 30px;
-    margin-top: 20px;
-    text-align: center;
-
-    p {
-      text-transform: uppercase;
-      color: $main-red;
-      line-height: 1;
-      font-size: 20px;
-    }
   }
 }

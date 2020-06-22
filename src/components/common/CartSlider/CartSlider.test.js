@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import CartSlider from './CartSlider';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 export const generalMockedProps = {
   data: [
     {
@@ -65,18 +64,19 @@ describe('Slider component', () => {
       cartWrapersEl.forEach(cartWrapper => expect(cartWrapper.prop('style')).toEqual({ width: expectedWidth}));
   });
 
-  it('includes buttons to change slides with proper props', () => {
-    const panelEl = component.find('.panel');
-    expect(panelEl.exists()).toBeTruthy();
+  it('renders CartsSliderPanel with proper props', () => {
     const instance = component.instance();
-    const buttonsEl = panelEl.find('IconButton');
-    expect(buttonsEl.at(0).prop('action')).toBe(instance.goToNextCart);
-    expect(buttonsEl.at(0).prop('icon')).toEqual(faChevronLeft);
-    expect(buttonsEl.at(1).prop('action')).toBe(instance.goToPreviousCart);
-    expect(buttonsEl.at(1).prop('icon')).toEqual(faChevronRight);
-    //check buttons elemenets disable prop at the begining
-    expect(buttonsEl.at(0).prop('disabled')).toBe(false);
-    expect(buttonsEl.at(1).prop('disabled')).toBe(true);
+
+    const sliderPanelEl = component.find('CartsSliderPanel');
+    expect(sliderPanelEl.length).toBe(1);
+
+    expect(sliderPanelEl.props()).toEqual({
+      goToNextCart: instance.goToNextCart,
+      goToPreviousCart: instance.goToPreviousCart,
+      moviesAmount: mockedProps.data.length,
+      isInactivePrev: true,
+      isInactiveNext: false,
+    });
   });
 
   it('updates carts in slides properly and updates buttons disable props', () => {
@@ -86,9 +86,9 @@ describe('Slider component', () => {
     instance.goToPreviousCart();
     expect(instance.state.activeCart).toBe(0);
     // check icon buttons elements disabled prop after unsuccessful action
-    let iconButtonsEl = component.find('IconButton');
-    expect(iconButtonsEl.at(0).prop('disabled')).toBe(false);
-    expect(iconButtonsEl.at(1).prop('disabled')).toBe(true);
+    let sliderPanelEl = component.find('CartsSliderPanel');
+    expect(sliderPanelEl.prop('isInactiveNext')).toBe(false);
+    expect(sliderPanelEl.prop('isInactivePrev')).toBe(true);
 
 
     //try go to next carts to the end of data
@@ -96,12 +96,12 @@ describe('Slider component', () => {
       instance.goToNextCart();
       expect(instance.state.activeCart).toBe(i);
       // check icon buttons elements disabled prop after actions
-      iconButtonsEl = component.find('IconButton');
-      expect(iconButtonsEl.at(1).prop('disabled')).toBe(false);
+      sliderPanelEl = component.find('CartsSliderPanel');
+      expect(sliderPanelEl.prop('isInactivePrev')).toBe(false);
       if(i === mockedProps.data.length - 1) {
-        expect(iconButtonsEl.at(0).prop('disabled')).toBe(true);
+        expect(sliderPanelEl.prop('isInactiveNext')).toBe(true);
       } else {
-        expect(iconButtonsEl.at(0).prop('disabled')).toBe(false);
+        expect(sliderPanelEl.prop('isInactiveNext')).toBe(false);
       }
     }
     
@@ -109,21 +109,21 @@ describe('Slider component', () => {
     instance.goToNextCart();
     expect(instance.state.activeCart).toBe(mockedProps.data.length - 1);
     // check icon buttons elements disabled prop after unsuccessful action
-    iconButtonsEl = component.find('IconButton');
-    expect(iconButtonsEl.at(0).prop('disabled')).toBe(true);
-    expect(iconButtonsEl.at(1).prop('disabled')).toBe(false);
+    sliderPanelEl = component.find('CartsSliderPanel');
+    expect(sliderPanelEl.prop('isInactiveNext')).toBe(true);
+    expect(sliderPanelEl.prop('isInactivePrev')).toBe(false);
 
     // try to go to previous carts to the end - to cart 0
     for(let i = mockedProps.data.length - 2; i === 0; i--) {
       instance.goToPreviousCart();
       expect(instance.state.activeCart).toBe(i);
       // check icon buttons elements disabled prop after actions
-      iconButtonsEl = component.find('IconButton');
-      expect(iconButtonsEl.at(1).prop('disabled')).toBe(false);
+      sliderPanelEl = component.find('CartsSliderPanel');
+      expect(sliderPanelEl.prop('isInactivePrev')).toBe(false);
       if(i === 0) {
-        expect(iconButtonsEl.at(0).prop('disabled')).toBe(true);
+        expect(sliderPanelEl.prop('isInactiveNext')).toBe(true);
       } else {
-        expect(iconButtonsEl.at(0).prop('disabled')).toBe(false);
+        expect(sliderPanelEl.prop('isInactiveNext')).toBe(false);
       }
     }
   });
