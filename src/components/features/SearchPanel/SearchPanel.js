@@ -31,6 +31,7 @@ const SearchPanel = ({ closeAction, isLoading, resetQuery, isError, movies, sear
       closeAction={closeAction}
       renderPlace='modals-after-menu'
       position="top"
+      variant='dark'
     >
       <div className={styles.root}>
         <SearchInput 
