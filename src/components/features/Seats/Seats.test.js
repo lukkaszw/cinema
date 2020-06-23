@@ -28,7 +28,7 @@ describe('Seats component', () => {
   });
 
   it(`renders ${mockedProps.seats.length} SeatsRow components with proper props`, () => {
-    const seatsRowsEl = component.find('SeatsRow');
+    const seatsRowsEl = component.find('Memo(SeatsRow)');
     expect(seatsRowsEl.length).toBe(mockedProps.seats.length);
     seatsRowsEl.forEach((seatsRowEl, i) => {
       expect(seatsRowEl.props()).toEqual({

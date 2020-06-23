@@ -25,4 +25,4 @@ SeatsRow.propTypes = {
   handleToggleSeat: PropTypes.func.isRequired,
 };
  
-export default SeatsRow;
+export default React.memo(SeatsRow);

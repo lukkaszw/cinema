@@ -69,7 +69,7 @@ class Order extends Component {
   }
 
   generateSeats() {
-    const seats = [...this.state.seats];
+    let seats = [...this.state.seats];
     
     const { orderedSeats, orderToEdit } = this.props;
 
@@ -82,7 +82,7 @@ class Order extends Component {
 
     const chosenSeats = this.state.chosenSeats.filter(seatId => !ordered.includes(seatId));
 
-    seats.map(seatsGroup => seatsGroup.map(seat => {
+    seats = seats.map(seatsGroup => seatsGroup.map(seat => {
         seat.chosen = chosenSeats.includes(seat.seatId);
         seat.disabled = ordered.includes(seat.seatId);
         return seat;

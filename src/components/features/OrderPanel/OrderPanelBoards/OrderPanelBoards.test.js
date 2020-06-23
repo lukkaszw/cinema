@@ -41,7 +41,7 @@ describe('OrderPanelView component', () => {
 
   it('renders SeatsPanel component inside first board', () => {
     const firstBoardEl = component.find('.board').at(0);
-    const seatsPanelEL = firstBoardEl.find('SeatsPanel');
+    const seatsPanelEL = firstBoardEl.find('Memo(SeatsPanel)');
     expect(seatsPanelEL.length).toBe(1);
     expect(seatsPanelEL.props()).toEqual({
       seats: mockedProps.seats,
