@@ -18,4 +18,4 @@ const UserNav = () => {
    );
 }
  
-export default UserNav;
+export default React.memo(UserNav);
