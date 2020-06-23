@@ -20,9 +20,9 @@ class Home extends Component {
       <div>
         <EntryPanel
           img="/images/entry.jpg"
-          from="18 April"
-          to="28 April"
-          title="300 Rise of an empire"
+          from="20 Jun"
+          to="30 Dec"
+          title="Alien"
           types={['2d', '3d']}
         />
         <Section 

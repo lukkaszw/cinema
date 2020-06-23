@@ -17,7 +17,7 @@ const EntryPanel = ({ img, title, from, to, types }) => {
         <ButtonLink 
           size="big"
           title="Book Now"
-          to="/movies"
+          to="/schedule"
         />
         <div className={styles.panel}>
           <div className={styles.dates}>
