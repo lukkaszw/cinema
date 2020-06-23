@@ -54,4 +54,4 @@ OrderForm.propTypes = {
   errors: PropTypes.object.isRequired,
 };
  
-export default OrderForm;
+export default React.memo(OrderForm);

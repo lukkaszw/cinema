@@ -51,7 +51,7 @@ describe('OrderPanelView component', () => {
 
   it('renders OrderForm component inside second board', () => {
     const secondBoardEl = component.find('.board').at(1);
-    const orderFormEl = secondBoardEl.find('OrderForm');
+    const orderFormEl = secondBoardEl.find('Memo(OrderForm)');
     expect(orderFormEl.length).toBe(1);
     expect(orderFormEl.props()).toEqual({
       name: mockedProps.name,
