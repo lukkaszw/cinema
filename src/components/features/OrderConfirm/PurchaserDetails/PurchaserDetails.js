@@ -27,4 +27,4 @@ PurchaserDetails.propTypes = {
   email: PropTypes.string.isRequired,
 };
  
-export default PurchaserDetails;
+export default React.memo(PurchaserDetails);

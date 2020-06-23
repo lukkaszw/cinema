@@ -22,7 +22,7 @@ describe('OrderConfirm component', () => {
   });
 
   it('renders PurchaserDetails with proper props', () => {
-    const purchDetailsEl = component.find('PurchaserDetails');
+    const purchDetailsEl = component.find('Memo(PurchaserDetails)');
     expect(purchDetailsEl.length).toBe(1);
     expect(purchDetailsEl.props()).toEqual({
       name: mockedProps.name,
@@ -33,7 +33,7 @@ describe('OrderConfirm component', () => {
   });
 
   it('renders TicketsDetails with proper props', () => {
-    const ticketsDetailsEl = component.find('TicketsDetails');
+    const ticketsDetailsEl = component.find('Memo(TicketsDetails)');
     expect(ticketsDetailsEl.length).toBe(1);
     expect(ticketsDetailsEl.props()).toEqual({
       tickets: mockedProps.chosenSeats,

@@ -40,4 +40,4 @@ TicketsDetails.defaultProps = {
   tickets: [],
 }
  
-export default TicketsDetails;
+export default React.memo(TicketsDetails);
