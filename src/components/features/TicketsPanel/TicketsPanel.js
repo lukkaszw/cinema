@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import styles from './TicketsPanel.module.scss';
 import clsx from 'clsx';
 
-const TicketsPanel = ({ tickets, price, handleCancelTicket }) => {
+export const TicketsPanel = ({ tickets, price, handleCancelTicket }) => {
   const [isVisible, toggleVisibility] = useState(false);
 
   const onToggleAction = useCallback(() => toggleVisibility(prevVisible => !prevVisible), [toggleVisibility]);
@@ -49,4 +49,4 @@ TicketsPanel.defaultProps = {
   tickets: [],
 };
  
-export default TicketsPanel;
+export default React.memo(TicketsPanel);

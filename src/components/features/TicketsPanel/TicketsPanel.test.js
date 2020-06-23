@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import TicketsPanel from './TicketsPanel';
+import { TicketsPanel } from './TicketsPanel';
 
 const mockedProps = {
   tickets: ['1A', '2B'],
