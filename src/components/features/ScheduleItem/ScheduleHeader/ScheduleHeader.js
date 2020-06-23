@@ -27,4 +27,4 @@ ScheduleHeader.propTypes = {
   rate: PropTypes.number.isRequired,
 };
  
-export default ScheduleHeader;
+export default React.memo(ScheduleHeader);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ButtonsList from '../ButtonsList/ButtonsList';
+import { MemoButtonsList }from '../ButtonsList/ButtonsList';
 import ScheduleWeek from './ScheduleWeek/ScheduleWeek';
 import ScheduleHeader from './ScheduleHeader/ScheduleHeader';
 import ScheduleImage from './ScheduleImage/ScheduleImage';
@@ -156,7 +156,7 @@ class ScheduleItem extends Component {
             rate={rate}
             title={title}
           />
-          <ButtonsList 
+          <MemoButtonsList 
             buttons={buttons}
             value={filter}
             action={setFilter}

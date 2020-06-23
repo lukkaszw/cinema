@@ -37,7 +37,7 @@ describe('ScheduleItem component', () => {
     });
   
     it('includes ScheduleHeader with proper props', () => {
-      const headerEl = component.find('ScheduleHeader');
+      const headerEl = component.find('Memo(ScheduleHeader)');
       expect(headerEl.exists()).toBeTruthy();
   
       const expectedProps = {
@@ -50,7 +50,7 @@ describe('ScheduleItem component', () => {
     });
   
     it('includes image with proper props', () => {
-      const imageEl = component.find('ScheduleImage');
+      const imageEl = component.find('Memo(ScheduleImage)');
       expect(imageEl.exists()).toBeTruthy();
       const expectedProps = {
         img: mockedProps.img,
@@ -61,7 +61,7 @@ describe('ScheduleItem component', () => {
     });
   
     it('includes ScheduleWeek component', () => {
-      const scheduleWeekEl = component.find('ScheduleWeek');
+      const scheduleWeekEl = component.find('Memo(ScheduleWeek)');
       expect(scheduleWeekEl.exists()).toBeTruthy();
       const instance = component.instance();
       const expectedProps = {
@@ -80,9 +80,8 @@ describe('ScheduleItem component', () => {
         buttons: instance.buttons,
         value: instance.state.filter,
         action: instance.setFilter,
-        variants: [],
       };
-      const buttonsListEl = component.find('ButtonsList');
+      const buttonsListEl = component.find('Memo(ButtonsList)');
       expect(buttonsListEl.exists()).toBeTruthy();
       expect(buttonsListEl.props()).toEqual(expectedProps);
     });

@@ -34,5 +34,7 @@ ButtonsList.propTypes = {
 ButtonsList.defaultProps = {
   variants: [],
 }
+
+export const MemoButtonsList = React.memo(ButtonsList);
  
 export default ButtonsList;

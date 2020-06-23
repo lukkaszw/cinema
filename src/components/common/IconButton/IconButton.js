@@ -22,5 +22,7 @@ IconButton.propTypes = {
   action: PropTypes.func,
   ariaLabel: PropTypes.string,
 };
+
+export const MemoIconButton = React.memo(IconButton);
  
 export default IconButton;

@@ -17,4 +17,4 @@ ScheduleImage.propTypes = {
   title: PropTypes.string,
 };
  
-export default ScheduleImage;
+export default React.memo(ScheduleImage);

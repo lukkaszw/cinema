@@ -44,4 +44,4 @@ ScheduleDay.defaultProps = {
   shows: [],
 }
  
-export default ScheduleDay;
+export default React.memo(ScheduleDay);

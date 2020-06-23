@@ -1,11 +1,11 @@
 import React from 'react';
-import IconButton from '../../../common/IconButton/IconButton';
+import { MemoIconButton } from '../../../common/IconButton/IconButton';
 import { faLongArrowAltLeft, faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons';
 import ScheduleDay from '../ScheduleDay/ScheduleDay';
 import PropTypes from 'prop-types';
 import styles from './ScheduleWeek.module.scss';
 
-const ScheduleWeek = ({ days, getPrev, getNext, prevDisabled, nextDisabled }) => {
+export const ScheduleWeek = ({ days, getPrev, getNext, prevDisabled, nextDisabled }) => {
   return ( 
     <div className={styles.root}>
       <ul className={styles.dayList}>
@@ -16,13 +16,13 @@ const ScheduleWeek = ({ days, getPrev, getNext, prevDisabled, nextDisabled }) =>
           }
       </ul>
       <div className={styles.buttons}>
-        <IconButton 
+        <MemoIconButton 
           action={getPrev}
           icon={faLongArrowAltLeft} 
           disabled={prevDisabled}
           ariaLabel='Go to previous'
         />
-        <IconButton 
+        <MemoIconButton 
           action={getNext}
           icon={faLongArrowAltRight} 
           disabled={nextDisabled}
@@ -41,4 +41,4 @@ ScheduleWeek.propTypes = {
   nextDisabled: PropTypes.bool,
 }
  
-export default ScheduleWeek;
+export default React.memo(ScheduleWeek);

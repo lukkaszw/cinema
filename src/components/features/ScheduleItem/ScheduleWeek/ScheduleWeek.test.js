@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { faLongArrowAltLeft, faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons';
-import ScheduleWeek from './ScheduleWeek';
+import { ScheduleWeek } from './ScheduleWeek';
 
 const mockedProps = {
   days: [
@@ -69,15 +69,15 @@ describe('ScheduleWeek component', () => {
   });
 
   it('includes 7 ScheduleDay elements with proper data', () => {
-    const scheduleDayEl = component.find('ScheduleDay');
+    const scheduleDayEl = component.find('Memo(ScheduleDay)');
     expect(scheduleDayEl.length).toBe(7);
     scheduleDayEl.forEach((dayEl, index) => {
-      expect(dayEl.props()).toEqual({...mockedProps.days[index], shows: []});
+      expect(dayEl.props()).toEqual({...mockedProps.days[index]});
     });
   });
 
   it('includes buttons left and right', () => {
-    const btnsEl = component.find('.buttons IconButton');
+    const btnsEl = component.find('.buttons Memo(IconButton)');
     expect(btnsEl.exists()).toBeTruthy();
     expect(btnsEl.at(0).prop('icon')).toEqual(faLongArrowAltLeft);
     expect(btnsEl.at(1).prop('icon')).toEqual(faLongArrowAltRight);
