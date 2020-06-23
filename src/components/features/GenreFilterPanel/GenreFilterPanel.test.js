@@ -1,7 +1,7 @@
 import React from 'react';
 import { faFilm } from '@fortawesome/free-solid-svg-icons';
 import { shallow } from 'enzyme';
-import GenreFilterPanel from './GenreFilterPanel';
+import { GenreFilterPanel } from './GenreFilterPanel';
 
 const mockedProps = {
   activeGenres: [],

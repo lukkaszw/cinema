@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from 'react';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
-import IconButton from '../../common/IconButton/IconButton';
+import { MemoIconButton as IconButton } from '../../common/IconButton/IconButton';
 import ButtonsList from '../../features/ButtonsList/ButtonsList';
-import SearchInput from '../../common/SearchInput/SearchInput';
+import { MemoSearchInput as SearchInput } from '../../common/SearchInput/SearchInput';
 import SortPanel from '../../common/SortPanel/SortPanel';
 import GenreFilterPanel from '../GenreFilterPanel/GenreFilterPanel';
 import SearchedFilters from './SearchedFilters/SearchedFilters';

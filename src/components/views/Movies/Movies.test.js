@@ -66,7 +66,7 @@ describe('Movies Component', () => {
   });
 
   it('includes movies list with proper props', () => {
-    const movieListEl = component.find('MoviesList');
+    const movieListEl = component.find('Memo(MoviesList)');
     expect(movieListEl.exists()).toBeTruthy();
     const instance = component.instance();
     expect(movieListEl.props()).toEqual({

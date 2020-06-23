@@ -38,7 +38,7 @@ describe('FiltersPanel component', () => {
     });
   
     it('includes search input in top part with proper props', () => {
-      const searchInputEl = component.find('.top SearchInput');
+      const searchInputEl = component.find('.top Memo(SearchInput)');
       expect(searchInputEl.exists()).toBeTruthy();
       expect(searchInputEl.props()).toEqual({
         value: mockedProps.inputText,
@@ -49,7 +49,7 @@ describe('FiltersPanel component', () => {
     });
   
     it('includes filter icon button in top part with proper props', () => {
-      const filterBtn = component.find('.top IconButton');
+      const filterBtn = component.find('.top Memo(IconButton)');
       expect(filterBtn.exists()).toBeTruthy();
       expect(filterBtn.prop('icon')).toEqual(faFilter);
     });
@@ -78,7 +78,7 @@ describe('FiltersPanel component', () => {
     });
 
     it('includes sort panel with proper props', () => {
-      const sortPanelEl = component.find('SortPanel');
+      const sortPanelEl = component.find('Memo(SortPanel)');
       expect(sortPanelEl.exists()).toBeTruthy();
       expect(sortPanelEl.props()).toEqual({
         sort: mockedProps.sort,
@@ -87,7 +87,7 @@ describe('FiltersPanel component', () => {
     });
 
     it('includes movies genres filter panel with proper props', () => {
-      const genreFilterEl = component.find('GenreFilterPanel');
+      const genreFilterEl = component.find('Memo(GenreFilterPanel)');
       expect(genreFilterEl.exists()).toBeTruthy();
 
       expect(genreFilterEl.props()).toEqual({
@@ -98,7 +98,7 @@ describe('FiltersPanel component', () => {
     });
 
     it('includes SearchedFilters in bottom part', () => {
-      const searchedFiltersEl = component.find('.bottom SearchedFilters');
+      const searchedFiltersEl = component.find('.bottom Memo(SearchedFilters)');
       expect(searchedFiltersEl.exists()).toBeTruthy();
     });
   })

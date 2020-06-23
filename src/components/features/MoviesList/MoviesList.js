@@ -21,4 +21,4 @@ MoviesList.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.object),
 };
  
-export default MoviesList;
+export default React.memo(MoviesList);

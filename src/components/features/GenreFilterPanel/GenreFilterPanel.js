@@ -5,7 +5,7 @@ import { faFilm } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 import styles from './GenreFilterPanel.module.scss';
 
-const GenreFilterPanel = ({ activeGenres, toggleGenre, foundMoviesAmount }) => {
+export const GenreFilterPanel = ({ activeGenres, toggleGenre, foundMoviesAmount }) => {
   const [isModalOpen, toggleOpening] = useState(false);
   const openAction = useCallback(() => toggleOpening(true), [toggleOpening]);
   const closeAction = useCallback(() => toggleOpening(false), [toggleOpening])
@@ -40,4 +40,4 @@ GenreFilterPanel.defaultProps = {
   activeGenres: [],
 };
  
-export default GenreFilterPanel;
+export default React.memo(GenreFilterPanel);

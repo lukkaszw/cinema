@@ -35,4 +35,6 @@ SearchInput.propTypes = {
   placeholder: PropTypes.string,
 };
 
+export const MemoSearchInput = React.memo(SearchInput);
+
 export default SearchInput;

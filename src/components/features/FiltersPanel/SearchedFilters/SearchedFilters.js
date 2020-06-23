@@ -31,4 +31,4 @@ SearchedFilters.defaultProps = {
   items: [],
 }
 
-export default SearchedFilters;
+export default React.memo(SearchedFilters);

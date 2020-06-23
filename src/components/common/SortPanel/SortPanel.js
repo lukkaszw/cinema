@@ -33,4 +33,4 @@ SortPanel.propTypes = {
   setSort: PropTypes.func.isRequired,
 };
  
-export default SortPanel;
+export default React.memo(SortPanel);
