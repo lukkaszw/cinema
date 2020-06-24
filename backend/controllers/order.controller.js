@@ -7,6 +7,13 @@ const sendOrderEmail = require('../emails/orders');
 const addOrder = async (req, res) => {
   const orderData = req.body;
   try {
+    const takenOrders = await Order.find({showId: ObjectId(orderData.showId), seats: { $in: orderData.seats }});
+
+    if(takenOrders.length > 0) {
+      throw Error('Those Seats are taken!');
+    }
+
+
     const order = new Order(orderData);
     if(req.userId) {
       order.userId = req.userId;
@@ -93,6 +100,7 @@ const editOrder = async (req, res) => {
   }
 
   try {
+
     const order = await Order.findOne({ _id, userId }).populate({
       path: 'showId',
       populate: {
@@ -101,8 +109,6 @@ const editOrder = async (req, res) => {
       }
     });
 
-    const seatsBeforeUpdate = [...order.seats];
-
     if(!order) {
       res.status(404).json({
         isError: true,
@@ -110,6 +116,19 @@ const editOrder = async (req, res) => {
       });
       return;
     }
+
+    const takenOrders = await Order.find({
+      showId: ObjectId(order.showId._id),
+      seats: { $in: data.seats },
+    });
+
+    const othersTakenThanEdited = takenOrders.filter(takenOrder => takenOrder._id.toString() !== order._id.toString());
+
+    if(othersTakenThanEdited.length > 0) {
+      throw Error('Seats are taken by another users!');
+    }
+
+    const seatsBeforeUpdate = [...order.seats];
 
     changes.forEach(key => {
       order[key] = data[key];
@@ -122,7 +141,6 @@ const editOrder = async (req, res) => {
     sendOrderEmail.afterEdit(order);
 
     if(JSON.stringify(data.seats) !== JSON.stringify(seatsBeforeUpdate)) {
-      console.log('we are here');
       const orders = await Order.find({ showId: ObjectId(order.showId._id)})
         .select('seats');
       let seats = [];
