@@ -55,3 +55,7 @@ app.use('/api/movies', moviesRouter);
 app.use('/api/schedule', scheduleRouter);
 app.use('/api/messages', messagesRouter);
 app.use('/api/orders', orderRouter);
+
+app.get('*', (req, res) => {                       
+  res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));                               
+});
