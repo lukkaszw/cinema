@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { withRouter, Redirect, Link } from 'react-router-dom';
 import Page from '../../layout/Page/Page';
 import PropTypes from 'prop-types';
@@ -6,6 +6,10 @@ import clsx from 'clsx';
 import styles from './MovieSchedule.module.scss';
 
 export const MovieSchedule = ({ isAuth, match }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const showId = match.params.id;
   return ( 
     <Page noHeader>
