@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, Suspense } from 'react';
 import { NavLink } from 'react-router-dom';
 import { faSearch, faUser, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import Logo from '../Logo/Logo';
@@ -9,6 +9,8 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 
 import styles from './PullOutMenu.module.scss';
+
+const Courtains = React.lazy(() => import('./Courtains/Courtains'));
 
 const PullOutMenu = ({ isAuth, isActive, links, closeAction, openSearchPanel }) => {
   const openPanelCloseMenu = useCallback(() => {
@@ -78,8 +80,9 @@ const PullOutMenu = ({ isAuth, isActive, links, closeAction, openSearchPanel }) 
           ))}
         </ul>
       </div>
-      <div className={styles.leftCourtain} />
-      <div className={styles.rightCourtain} />
+      <Suspense fallback='...'>
+        <Courtains isActive={isActive} />
+      </Suspense>
     </div>
   );
 }

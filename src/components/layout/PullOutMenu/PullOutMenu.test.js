@@ -33,7 +33,6 @@ const mockedPropsWhenAuthenticated = {
 describe('PullOutMenu component', () => {
   describe('common features', () => {
     const component = shallow(<PullOutMenu {...mockedProps}/>);
-
     
     it('renders without crashing', () => {
       expect(component).toBeTruthy();
@@ -48,11 +47,6 @@ describe('PullOutMenu component', () => {
     it('has got an active class when prop isActive is true', () => {
       const componentWithTrueIsActive = shallow(<PullOutMenu isActive={true} {...mockedProps}/>);
       expect(componentWithTrueIsActive.hasClass('active')).toBeTruthy();
-    });
-  
-    it('includes two left and right courtains elements', () => {
-      expect(component.find('.leftCourtain').exists()).toBeTruthy();
-      expect(component.find('.rightCourtain').exists()).toBeTruthy();
     });
   
     it('includes Logo component', () => {
