@@ -36,6 +36,7 @@ const MenuDesktop = ({ isAuth, links, openSearchPanel }) => {
         <IconButton 
           icon={faSearch}
           action={openSearchPanel}
+          ariaLabel="Search movies"
         />
       </li>
       {
