@@ -52,7 +52,7 @@ describe('OrderConfirm component', () => {
     })
   });
 
-  it('renders order Button which disabled setting reacts in proper way on isSendingOrder props', () => {
+  it('renders order Button whith disabled setting according to isSendingOrder props', () => {
     //check when isSendingOrder is false
     expect(component.find('Button').prop('disabled')).toBeFalsy();
 
@@ -64,5 +64,18 @@ describe('OrderConfirm component', () => {
     const sendingOrderComp = shallow(<OrderConfirm {...propsWhenSendingOrder}/>);
     //check when component is sending order
     expect(sendingOrderComp.find('Button').prop('disabled')).toBeTruthy();
+  });
+
+  it('renders order Button whitch disabled setting when there are no chosen seats', () => {
+    //check when there are chosenSeats
+    expect(component.find('Button').prop('disabled')).toBeFalsy();
+    const propsWithoutChosenSeats = {
+      ...mockedProps,
+      chosenSeats: [],
+    };
+
+    const compWithoutChosenSeatrs = shallow(<OrderConfirm {...propsWithoutChosenSeats}/>);
+    //check when there are no chosenSeats
+    expect(compWithoutChosenSeatrs.find('Button').prop('disabled')).toBeTruthy();
   });
 });

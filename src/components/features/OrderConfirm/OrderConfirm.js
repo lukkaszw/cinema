@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import styles from './OrderConfirm.module.scss';
 
 const OrderConfirm = ({ name, surname, phone, email, price, chosenSeats, handleCancelTicket, onSubmitOrder, isSendingOrder }) => {
+  const isDisabled = isSendingOrder || chosenSeats.length === 0;
+  
   return ( 
     <div className={styles.root}>
       <div className={styles.orderSummary}>
@@ -27,7 +29,7 @@ const OrderConfirm = ({ name, surname, phone, email, price, chosenSeats, handleC
           <Button
             variants={['tertiary']}
             action={onSubmitOrder}
-            disabled={isSendingOrder}
+            disabled={isDisabled}
           >
             Order!
           </Button>

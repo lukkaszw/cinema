@@ -9,7 +9,11 @@ const orderSchema = new mongoose.Schema({
     ref: 'Show',
     required: true,
   },
-  seats: [String],
+  seats: {
+    type: [String],
+    validate: (value) => value.length > 0,
+    message: () => 'Bad request!',
+  },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
