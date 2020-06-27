@@ -23,7 +23,7 @@ const getAllMovies = ({ movies }) => {
   }
 
   if(searchText) {
-    filteredMovies = filteredMovies.filter(movie => movie.title.toLowerCase().includes(searchText));
+    filteredMovies = filteredMovies.filter(movie => movie.title.toLowerCase().includes(searchText.toLowerCase()));
   }
 
   return sortByAlphabet(filteredMovies, sort);
