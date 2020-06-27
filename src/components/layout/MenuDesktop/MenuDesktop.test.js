@@ -46,6 +46,7 @@ describe('MenuDesktop component', () => {
       expect(iconBtnEl.exists()).toBeTruthy();
       expect(iconBtnEl.props()).toEqual({
         icon: faSearch,
+        ariaLabel: 'Search movies',
         action: mockedProps.openSearchPanel,
       });
     });
