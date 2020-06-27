@@ -22,15 +22,20 @@ const useMobilePanel = () => {
 
   const goToLeft = useCallback(() => {
     updateTranslateX(prevTranslX => prevTranslX > PANEL.LEFT ? prevTranslX : prevTranslX + 25);
+    setXPos(0);
   }, [updateTranslateX]);
   const goToRight = useCallback(() => {
     updateTranslateX(prevTranslX => prevTranslX < PANEL.RIGHT ? prevTranslX : prevTranslX -25);
+    setXPos(0);
   }, [updateTranslateX]);
 
   const onSwipe = useCallback((e) => {
-    if(startX > (xPos + 70)) {
+
+    if(xPos === 0) return;
+
+    if(startX > (xPos + 100)) {
       goToRight();
-    } else if (startX < (xPos - 70)) {
+    } else if (startX < (xPos - 100)) {
       goToLeft();
     }
   }, [startX, xPos, goToLeft, goToRight]);
