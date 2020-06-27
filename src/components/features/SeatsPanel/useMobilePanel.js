@@ -33,9 +33,9 @@ const useMobilePanel = () => {
 
     if(xPos === 0) return;
 
-    if(startX > (xPos + 100)) {
+    if(startX > (xPos + 70)) {
       goToRight();
-    } else if (startX < (xPos - 100)) {
+    } else if (startX < (xPos - 70)) {
       goToLeft();
     }
   }, [startX, xPos, goToLeft, goToRight]);
