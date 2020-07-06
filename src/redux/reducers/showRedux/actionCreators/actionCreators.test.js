@@ -29,4 +29,12 @@ describe('Show reducer action creators', () => {
 
     expect(actionCreators.setFetchError()).toEqual(expectedActions);
   });
+
+  it('returns proper action when resets the show data', () => {
+    const expectedActions = {
+      type: actions.RESET_DATA,
+    };
+
+    expect(actionCreators.resetData()).toEqual(expectedActions);
+  });
 });

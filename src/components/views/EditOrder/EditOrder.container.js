@@ -19,7 +19,8 @@ const mapDispatchToProps = (dispatch) => ({
   fetchShowData: (showId) => dispatch(API.show.fetchData(showId)),
   fetchSeats: (showId, token) => dispatch(API.seats.fetchData(showId, token)),
   updateSeats: (data) => dispatch(ACTION_CREATORS.seats.setFetchData(data)),
-  editOrder: (orderData, token, editingId) => dispatch(API.orders.editOrder(orderData, token, editingId)), 
+  editOrder: (orderData, token, editingId) => dispatch(API.orders.editOrder(orderData, token, editingId)),
+  resetShowData: () => dispatch(ACTION_CREATORS.show.resetData()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditOrder);

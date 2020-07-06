@@ -30,6 +30,15 @@ const showReducer = (statePart = {}, action = {}) => {
         },
       };
     }
+    case actions.RESET_DATA: {
+      return {
+        data: {},
+        loadingData: {
+          isActive: false,
+          isError: false,
+        }
+      }
+    }
     default: 
     return statePart;
   }

@@ -40,6 +40,7 @@ class Order extends Component {
 
   componentWillUnmount() {
     this.socket.close();
+    this.props.resetShowData();
   }
 
   componentDidUpdate(prevProps) {
@@ -234,6 +235,7 @@ class Order extends Component {
 }
 
 Order.propTypes = {
+  resetShowData: PropTypes.func.isRequired,
   fetchShowData: PropTypes.func.isRequired,
   showData: PropTypes.object,
   isFetching: PropTypes.bool.isRequired,

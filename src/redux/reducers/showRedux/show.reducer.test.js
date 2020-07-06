@@ -56,5 +56,25 @@ describe('Show reducer', () => {
       data: mockedData,
     });
   });
+
+  it('returns proper state when reseting data', () => {
+    const startState = {
+      data: {
+        _id: 'someId',
+        title: 'Title',
+      }
+    }
+
+    //check if reducer is clean function
+    expect(showReducer(startState, { type: actions.RESET_DATA })).not.toBe(mockedStatePart);
+    //check if reducer returns proper state
+    expect(showReducer(startState, { type:  actions.RESET_DATA })).toEqual({
+      data: {},
+      loadingData: {
+        isActive: false,
+        isError: false,
+      }
+    });
+  });
 });
 

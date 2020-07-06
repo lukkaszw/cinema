@@ -4,6 +4,7 @@ import EditOrderBottomBar from '../../features/EditOrderBottomBar/EditOrderBotto
 import PropTypes from 'prop-types';
 
 const EditOrder = ({
+  resetShowData,
   fetchShowData,
   showData,
   isFetching,
@@ -34,6 +35,7 @@ const EditOrder = ({
         isEditing
         orderToEdit={orderToEdit}
         orderTickets={editOrder}
+        resetShowData={resetShowData}
       />
       <EditOrderBottomBar 
         orderToEdit={orderToEdit}
@@ -44,6 +46,7 @@ const EditOrder = ({
 }
 
 EditOrder.propTypes = {
+  resetShowData: PropTypes.func.isRequired,
   fetchShowData: PropTypes.func.isRequired,
   showData: PropTypes.object,
   isFetching: PropTypes.bool.isRequired,

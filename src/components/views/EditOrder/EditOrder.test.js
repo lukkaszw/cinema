@@ -14,6 +14,7 @@ const mockedProps = {
   fetchSeats: () => console.log('fetchSeats'),
   updateSeats: () => console.log('updateSeats'), 
   editOrder: () => console.log('orderTickets'),
+  resetShowData: () => console.log('resetShowData'),
 };
 
 const component = shallow(<EditOrder {...mockedProps}/>);
@@ -40,6 +41,7 @@ describe('EditOrder component', () => {
       isEditing: true,
       orderToEdit: mockedProps.orderToEdit,
       orderTickets: mockedProps.editOrder,
+      resetShowData: mockedProps.resetShowData,
     });
   });
 
