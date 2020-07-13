@@ -153,7 +153,7 @@ export class OrderPanel extends Component {
       history.push('/user/orders');
       return;
     }
-    history.push('/');
+    history.push('/schedule');
   }
 
   checkOrderErrors = () => {
