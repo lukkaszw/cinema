@@ -29,10 +29,10 @@ describe('FormMessage component', () => {
   });
 
   it('renders proper confirm icon button', () => {
-    const confirmBtnEl = componentWhenSuccess.find('IconButton');
+    const confirmBtnEl = componentWhenSuccess.find('Button');
     expect(confirmBtnEl.exists()).toBeTruthy();
-    expect(confirmBtnEl.prop('icon')).toEqual(faCheck);
     expect(confirmBtnEl.prop('action')).toBe(mockedPropsWhenSuccess.resetMessage);
+    expect(confirmBtnEl.prop('children')).toBe('Ok');
   });
 
   it('renders proper sign icon when error occured', () => {

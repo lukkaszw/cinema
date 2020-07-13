@@ -1,30 +1,35 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faCheck } from '@fortawesome/free-solid-svg-icons';
-import IconButton from '../../../common/IconButton/IconButton';
+import Button from '../../Button/Button';
 import PropTypes from 'prop-types';
 import styles from './FormMessage.module.scss';
 import clsx from 'clsx';
 
 
 const FormMessage = ({ isError, message, resetMessage }) => {
-
+  let btnVariant = null;
+  if(!isError) {
+    btnVariant = 'tertiary';
+  }
+  
   return ( 
-    <p className={clsx([styles.root, isError && styles.error])}>
+    <div className={clsx([styles.root, isError && styles.error])}>
       <span className={styles.sign}>
         <FontAwesomeIcon icon={isError ? faTimes : faCheck} />
       </span>
       <span className={styles.message}>
         {message}
       </span>
-      <span className={styles.confirmMsg}>
-        <IconButton 
+      <div className={styles.confirmMsg}>
+        <Button
           action={resetMessage}
-          icon={faCheck} 
-          ariaLabel='close message'
-        />
-      </span>
-    </p>
+          variants={[btnVariant]}
+        >
+          Ok
+        </Button>
+      </div>
+    </div>
    );
 }
 
