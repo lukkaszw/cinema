@@ -3,6 +3,7 @@ import Button from '../../common/Button/Button';
 import Form from '../../common/Form/Form.container';
 import InputField from '../../common/InputField/InputField';
 import TextareaField from '../../common/TextareaField/TextareaField';
+import RodoWarning from '../../common/RodoWarning/RodoWarning';
 import useContactForm from './useContactForm';
 import PropTypes from 'prop-types';
 import styles from './ContactForm.module.scss';
@@ -41,6 +42,9 @@ const ContactForm = ({ sendData, resetForm }) => {
           <Button>SEND</Button>
         </div>
       </Form>
+
+      <RodoWarning />
+
     </div>
    );
 }
