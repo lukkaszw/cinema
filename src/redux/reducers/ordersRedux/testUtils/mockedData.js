@@ -3,7 +3,7 @@ export const mockedData = {
   showId: 'someShowId',
   name: 'Name',
   surname: 'Surname',
-  phone: '666666666',
+  phone: '111111111',
   email: 'someemail@gmail.com',
 };
 

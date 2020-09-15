@@ -12,9 +12,9 @@ const ContactData = () => {
         tel. 
         <a 
           className={styles.phone}
-          href={'tel:666666666'}
+          href={'tel:111111111'}
         >
-          666 666 666
+          111 111 111
         </a>
       </p>
     </div>
