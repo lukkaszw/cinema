@@ -2,14 +2,10 @@
   display: block;
   
   .image {
-    width: 100px;
+    width: 70px;
 
     &.small {
       width: 50px;
-    }
-
-    &.medium {
-      width: 70px;
     }
   }
 }

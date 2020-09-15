@@ -86,6 +86,15 @@ const AuthForm = ({
             </Button>
           </div>
         </Form>
+        {
+          (type === 'register') &&
+            <div className={styles.warning}>
+              <p>
+                Please provide nonexistent email for your personal data security
+                (proszę podać nieistniejący email dla bezpieczeństwa danych osobowych!)
+              </p>
+            </div>
+        }
         <div className={styles.query}>
           <p>
             {query}

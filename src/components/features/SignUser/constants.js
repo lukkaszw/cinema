@@ -10,7 +10,7 @@ const constants = {
     TYPE: 'login',
     FORM_TITLE: 'Sign in to your account',
     BUTTON_TITLE: 'Sign in',
-    QUERY: "If you don't have an account yet, please register now!",
+    QUERY: "If you don't have an account yet, please register!",
     BTN_QUERY: 'Register now!',
   },
 };
