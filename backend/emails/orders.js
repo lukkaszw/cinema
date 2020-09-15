@@ -2,17 +2,22 @@ const sgMail = require('./sendgrid');
 const getDate = require('../utils/getDate');
 
 const mainEmail = process.env.SENDGRID_API_EMAIL;
+const destinedEmail = process.env.SENDGRID_DESTINED_EMAIL;
 
 const afterCreate = (order, show) => {
-  const user = `${order.name} ${order.surname}`;
+  //RODO update !!!
+  // const user = `${order.name} ${order.surname}`;
+  const user = 'Some User';
   const ticketsAmount = order.seats.length;
   const tickets = order.seats.join(', ');
   const date = `${getDate(order.showDate)} ${show.startAt}`;
   const title = show.movieId.title.toUpperCase();
 
   const msg = {
-    to: `${order.email}`,
-    from: `${mainEmail}`,
+    //in production app should be to user but because of RODO this app will send it to destinedEmail
+    // to: order.email,
+    to: destinedEmail,
+    from: mainEmail,
     subject: 'Thank you for your order!',
     text: `You have added your order!`,
     html: `
@@ -29,7 +34,7 @@ const afterCreate = (order, show) => {
       <p>Order price:  <strong style="color: #2ECC40;">${order.price}$</strong></p>
       <br>
       <p><strong style="color: red;">Please make the payment 30 min. before movie's show in cinema ticket office!</strong></p>
-      <p>For more information or editing, canceling order please call: <strong style="color: orangered;">666 666 666</strong></p>
+      <p>For more information or editing, canceling order please call: <strong style="color: orangered;">111 111 111</strong></p>
     </div>`,
   };
 
@@ -37,7 +42,9 @@ const afterCreate = (order, show) => {
 }
 
 const afterEdit = (order) => {
-  const user = `${order.name} ${order.surname}`;
+  //RODO update !!!
+  // const user = `${order.name} ${order.surname}`;
+  const user = 'Some User';
   const ticketsAmount = order.seats.length;
   const tickets = order.seats.join(', ');
   const date = `${getDate(order.showDate)} ${order.showId.startAt}`;
@@ -45,8 +52,10 @@ const afterEdit = (order) => {
   const hall = order.showId.hall;
 
   const msg = {
-    to: `${order.email}`,
-    from: `${mainEmail}`,
+    //in production app should be to user but because of RODO this app will send it to destinedEmail
+    // to: order.email,
+    to: destinedEmail,
+    from: mainEmail,
     subject: 'You have edited your order!',
     text: 'You have edited your order!',
     html: `<div>
@@ -62,7 +71,7 @@ const afterEdit = (order) => {
       <br>
       <p>Order price:  <strong style="color: #2ECC40;">${order.price}$</strong></p>
       <br>
-      <p>If it was not you, please call: <strong style="color: red;">666 666 666</strong>.</p>
+      <p>If it was not you, please call: <strong style="color: red;">111 111 111</strong>.</p>
     </div>`,
   };
 
@@ -70,13 +79,17 @@ const afterEdit = (order) => {
 }
 
 const afterDelete = (order) => {
-  const user = `${order.name} ${order.surname}`;
+  //RODO update !!!
+  // const user = `${order.name} ${order.surname}`;
+  const user = 'Some User';
   const date = `${getDate(order.showDate)} ${order.showId.startAt}`;
   const title = order.showId.movieId.title.toUpperCase();
 
   const msg = {
-    to: `${order.email}`,
-    from: `${mainEmail}`,
+    //in production app should be to user but because of RODO this app will send it to destinedEmail
+    // to: order.email,
+    to: destinedEmail,
+    from: mainEmail,
     subject: 'You have deleted your order!',
     text: 'You have deleted your order!',
     html:  `<div>
@@ -85,7 +98,7 @@ const afterDelete = (order) => {
     <p><strong style="color: #2ECC40;">${date}</strong></p>
     <p>Movie:  <strong style="color: #2ECC40;">${title}</strong></p>
     <br>
-    <p>You have deleted your order. If it was not you, please call: <strong style="color: red;">666 666 666</strong></p>
+    <p>You have deleted your order. If it was not you, please call: <strong style="color: red;">111 111 111</strong></p>
   </div>`,
   };
 

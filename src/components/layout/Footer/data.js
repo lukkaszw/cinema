@@ -30,6 +30,6 @@ export const contactData = [
   },
   {
     type: 'phone',
-    text: '666 666 666',
+    text: '111 111 111',
   },
 ];
