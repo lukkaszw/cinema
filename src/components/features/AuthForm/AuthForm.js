@@ -90,8 +90,7 @@ const AuthForm = ({
           (type === 'register') &&
             <div className={styles.warning}>
               <p>
-                Please provide nonexistent email for your personal data security
-                (proszę podać nieistniejący email dla bezpieczeństwa danych osobowych!)
+                Only for development purposes! Please provide nonexistent address email for your personal data security (proszę podać nieistniejący adres email dla bezpieczeństwa danych osobowych)!
               </p>
             </div>
         }

@@ -1,3 +1,5 @@
+@import '../../../styles/variables';
+
 .root {
   width: 100%;
   min-height: 100%;
@@ -17,7 +19,7 @@
     margin: 0 auto;
     margin-top: 10px;
     font-size: 12px;
-    color: red;
+    color: $main-red;
     text-align: center;
   }
 
