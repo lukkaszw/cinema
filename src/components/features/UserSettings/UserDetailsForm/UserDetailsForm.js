@@ -2,6 +2,7 @@ import React from 'react';
 import Form from '../../../common/Form/Form.container';
 import InputField from '../../../common/InputField/InputField';
 import Checkbox from '../../../common/Checkbox/Checkbox';
+import RodoWarning from '../../../common/RodoWarning/RodoWarning';
 import Button from '../../../common/Button/Button';
 import PropTypes from 'prop-types';
 import styles from './UserDetailsForm.module.scss';
@@ -92,6 +93,13 @@ const UserDetailsForm = ({
               </Button>
             </div>
           </div>
+      }
+      { 
+        isEditing && 
+          <RodoWarning 
+            additionalENG="Only email address is stored in database so please provide some nonexistent email address!"
+            additionalPL="Tylko adres email jest przechowywany w bazie danych więc proszę o użycie nieistniejącego adresu!"
+          />
       }
     </Form>
    );

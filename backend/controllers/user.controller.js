@@ -16,12 +16,17 @@ const updateUserData = async (req, res) => {
     return;
   }
 
+  //RODO - update user personal data
+  data.name = 'Username';
+  data.surname = 'Usersurname';
+  data.phone = '111111111';
+
   try {
     sentUpdates.forEach(key => {
       if(key === 'email') {
-        req.user.login = req.body[key];
+        req.user.login = data[key];
       } else {
-        req.user[key] = req.body[key];
+        req.user[key] = data[key];
       }
     });
     await req.user.save();
