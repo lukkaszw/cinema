@@ -1,5 +1,6 @@
 import React from 'react';
 import InputField from '../../common/InputField/InputField';
+import RodoWarning from '../../common/RodoWarning/RodoWarning';
 import PropTypes from 'prop-types';
 import styles from './OrderForm.module.scss';
 
@@ -41,6 +42,7 @@ const OrderForm = ({ name, surname, phone, email, handleChangeInputValue, errors
       <p className={styles.field}>
         All details required!
       </p>
+      <RodoWarning />
     </div>
    );
 }

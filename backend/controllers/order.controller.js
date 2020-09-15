@@ -6,6 +6,7 @@ const sendOrderEmail = require('../emails/orders');
 
 const addOrder = async (req, res) => {
   const orderData = req.body;
+
   try {
     const takenOrders = await Order.find({showId: ObjectId(orderData.showId), seats: { $in: orderData.seats }});
 
@@ -13,6 +14,11 @@ const addOrder = async (req, res) => {
       throw Error('Those Seats are taken!');
     }
 
+    //RODO - need to change personal data from form 
+    orderData.name = 'Addedname';
+    orderData.surname = 'Addedsurname';
+    orderData.phone = '111111111';
+    orderData.email = 'added_email@gmail.com';
 
     const order = new Order(orderData);
     if(req.userId) {
@@ -129,6 +135,12 @@ const editOrder = async (req, res) => {
     }
 
     const seatsBeforeUpdate = [...order.seats];
+
+    //RODO - need to change personal data from form 
+    data.name = 'Editedname';
+    data.surname = 'Editedsurname';
+    data.phone = '222222222';
+    data.email = 'edited_email@gmail.com';
 
     changes.forEach(key => {
       order[key] = data[key];
